@@ -26,7 +26,7 @@
 
     <target name="compileSrc" depends="clean">
         <mkdir dir="${sourceOutput}"/>
-        <javac srcdir="src" destdir="${sourceOutput}"/>
+        <javac srcdir="src" destdir="${sourceOutput}" includeantruntime="yes"/>
     </target>
 
     <target name="jar" depends="compileSrc">
@@ -39,7 +39,7 @@
 
     <target name="compileTest" depends="jar">
         <mkdir dir="${testOutput}"/>
-        <javac srcdir="test"  destdir="${testOutput}" classpath="${sourceOutput}"/>
+        <javac srcdir="test"  destdir="${testOutput}" classpath="${sourceOutput}" includeantruntime="yes"/>
     </target>
 
 
