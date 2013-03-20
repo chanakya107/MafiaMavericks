@@ -13,8 +13,9 @@ public class Client {
         this.socket = socket;
     }
 
-    public static Client createClient() throws IOException {
-        return new Client(new Socket("localhost", 1254));
+    public static Client createClient(String serverName, int portNumber) throws IOException {
+        if (serverName == null || serverName.matches(" +")) throw new IllegalArgumentException("server name cannot be null");
+        return new Client(new Socket(serverName, portNumber));
     }
 
     public String getMessage() {
@@ -32,7 +33,4 @@ public class Client {
         return message;
     }
 
-    public void close() throws IOException {
-        socket.close();
-    }
 }

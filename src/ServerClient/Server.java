@@ -25,7 +25,7 @@ public class Server {
         return new Server(backlog);
     }
 
-    public void stop() throws IOException {
+    public void close() throws IOException {
         for (Socket socket : sockets) {
             socket.close();
         }
