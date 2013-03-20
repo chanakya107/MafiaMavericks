@@ -15,6 +15,7 @@ public class JoinGameScreen {
         joinPanel.setBackground(Color.black);
         joinPanel.setLayout(null);
 
+
         JButton cancel = new JButton("Cancel");
 
         joinPanel.add(cancel);
