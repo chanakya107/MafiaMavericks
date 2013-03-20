@@ -23,7 +23,7 @@ public class StartServerScreen {
         label.setLocation(130, 25);
 
         DefaultListModel<String> players = new DefaultListModel<String>();
-        players.addElement("Chanakya");
+        players.addElement("Chanakyaa");
         players.addElement("Deepthi");
         players.addElement("Chethan");
         players.addElement("Raghavendra");
