@@ -1,4 +1,5 @@
-sounds
+.idea
+*.iml
 out
 reports
 archive
