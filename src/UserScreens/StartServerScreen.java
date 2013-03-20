@@ -48,16 +48,19 @@ public class StartServerScreen {
             }
         });
 
-        JButton back = new JButton("Back");
+        JButton cancel = new JButton("Cancel");
 
-        serverPanel.add(back);
-        back.setSize(150, 50);
-        back.setLocation(600, 500);
-        back.addActionListener(new ActionListener() {
+        serverPanel.add(cancel);
+        cancel.setSize(150, 50);
+        cancel.setLocation(600, 500);
+        cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                serverFrame.setVisible(false);
-                frame.setVisible(true);
+                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Cancel ?","",JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                    serverFrame.setVisible(false);
+                    frame.setVisible(true);
+                }
             }
         });
         serverFrame.setContentPane(serverPanel);
