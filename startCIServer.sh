@@ -13,5 +13,4 @@ do
 		echo "no changes"
 	fi
 	sleep 2m
-
 done
