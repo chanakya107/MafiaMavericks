@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="938c84c4-ba7d-4841-b9a7-329187574cce" name="Default" comment="changed the sleep duration of ci-server|deepthi|chanakya">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Prototypes/Prototype1.vp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Prototypes/hdwallpapersbase.com.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Prototypes/if.invisionfree.com.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Prototypes/nice-cool-pics.com.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Prototypes/scottystarnes.wordpress.com.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Prototypes/www.desktopwallpapers4.me.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserScreens/StartServerScreen.java" afterPath="$PROJECT_DIR$/src/UserScreens/StartServerScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/startCIServer.sh" afterPath="$PROJECT_DIR$/startCIServer.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="938c84c4-ba7d-4841-b9a7-329187574cce" name="Default" comment="">
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\.name" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\ant.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\copyright\profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\dictionaries\chanakg.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\scopes\scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\projects\MafiaMavericks\.idea\workspace.xml" afterPath="" />
     </list>
     <ignored path="MafiaMavericks.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/SampleTest.java" changelist="938c84c4-ba7d-4841-b9a7-329187574cce" time="1363695331505" ignored="false" />
-    <file path="/Dummy.txt" changelist="938c84c4-ba7d-4841-b9a7-329187574cce" time="1363770510701" ignored="false" />
+    <file path="/Dummy.txt" changelist="938c84c4-ba7d-4841-b9a7-329187574cce" time="1363770617950" ignored="false" />
     <file path="/UserInterface.java" changelist="938c84c4-ba7d-4841-b9a7-329187574cce" time="1363683416367" ignored="false" />
     <file path="/fragment.java" changelist="938c84c4-ba7d-4841-b9a7-329187574cce" time="1363687692499" ignored="false" />
     <file path="/JoinGameScreen.java" changelist="938c84c4-ba7d-4841-b9a7-329187574cce" time="1363753589079" ignored="false" />
@@ -110,7 +113,7 @@
       <file leaf-file-name="startCIServer.sh" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/startCIServer.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="4" selection-start="293" selection-end="293" vertical-scroll-proportion="0.71428573">
+            <state line="16" column="36" selection-start="298" selection-end="298" vertical-scroll-proportion="0.7619048">
               <folding />
             </state>
           </provider>
@@ -481,7 +484,11 @@
       <created>1363770180370</created>
       <updated>1363770180370</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added startCiServer as it was deleted by mistake|deepthi|chanakya">
+      <created>1363770623536</created>
+      <updated>1363770623536</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -548,7 +555,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed the sleep duration of ci-server|deepthi|chanakya" />
+    <option name="LAST_COMMIT_MESSAGE" value="added startCiServer as it was deleted by mistake|deepthi|chanakya" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -563,6 +570,7 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="testing build with sample change|deepthi|chanakya" />
     <MESSAGE value="changed the sleep duration of ci-server|deepthi|chanakya" />
+    <MESSAGE value="added startCiServer as it was deleted by mistake|deepthi|chanakya" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -700,7 +708,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/startCIServer.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="4" selection-start="293" selection-end="293" vertical-scroll-proportion="0.71428573">
+        <state line="16" column="36" selection-start="298" selection-end="298" vertical-scroll-proportion="0.7619048">
           <folding />
         </state>
       </provider>
