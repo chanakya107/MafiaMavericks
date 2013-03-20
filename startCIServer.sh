@@ -12,5 +12,5 @@ do
 	else
 		echo "no changes"
 	fi
-	sleep 30s	
+	sleep 2m
 done
