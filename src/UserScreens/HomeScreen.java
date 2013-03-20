@@ -33,6 +33,7 @@ public class HomeScreen {
         joinGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String response = JOptionPane.showInputDialog(null,"Enter the server Name", "", JOptionPane.QUESTION_MESSAGE);
                 new JoinGameScreen().joinGame(frame);
             }
         });

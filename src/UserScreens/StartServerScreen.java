@@ -15,7 +15,7 @@ public class StartServerScreen {
         serverPanel.setBackground(Color.black);
         serverPanel.setLayout(null);
 
-        JLabel label = new JLabel("Player Joined");
+        JLabel label = new JLabel("Players Joined");
         serverPanel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
@@ -28,7 +28,7 @@ public class StartServerScreen {
         players.addElement("Chethan");
         players.addElement("Raghavendra");
 
-        JList playerList = new JList(players);
+        JList<String> playerList = new JList<String>(players);
         serverPanel.add(playerList);
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
