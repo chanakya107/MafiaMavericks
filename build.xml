@@ -22,6 +22,9 @@
     <target name="clean">
         <delete dir="out"/>
         <delete dir="jar"/>
+        <delete dir="reports"/>
+
+        <mkdir dir="reports"/>
     </target>
 
     <target name="compileSrc" depends="clean">
@@ -39,7 +42,7 @@
 
     <target name="compileTest" depends="jar">
         <mkdir dir="${testOutput}"/>
-        <javac srcdir="test"  destdir="${testOutput}" classpath="${sourceOutput}" includeantruntime="yes"/>
+        <javac srcdir="test"  destdir="${testOutput}" classpath="${sourceOutput}:./lib/junit-4.0.jar" includeantruntime="yes"/>
     </target>
 
 
@@ -50,7 +53,7 @@
     <target name="runTest" depends="compileTest">
         <junit printsummary="yes" haltonfailure="yes" showoutput="yes" fork="yes">
             <classpath>
-                <pathelement path="${jarName}:${testOutput}"/>
+                <pathelement path="${jarName}:${testOutput}:./lib/junit-4.0.jar"/>
             </classpath>
             <batchtest fork="yes" haltonfailure="yes" todir="${reportsDir}">
                 <formatter type="xml"/>
