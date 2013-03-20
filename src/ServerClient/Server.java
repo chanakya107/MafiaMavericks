@@ -15,8 +15,14 @@ public class Server {
     private int backlog;
     private List<Socket> sockets = new ArrayList<Socket>();
 
-    public Server(int backlog) {
+    private Server(int backlog) {
         this.backlog = backlog;
+    }
+
+    public static Server createServer(int backlog) {
+        if (backlog <= 0)
+            throw new IllegalArgumentException("cannot create server with NEGATIVE or ZERO backlog: backlog was : " + backlog);
+        return new Server(backlog);
     }
 
     public void stop() throws IOException {
