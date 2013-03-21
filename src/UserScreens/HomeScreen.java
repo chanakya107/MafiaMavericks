@@ -1,7 +1,6 @@
 package UserScreens;
 
 import ServerClient.Client;
-import ServerClient.Server;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,20 +25,6 @@ public class HomeScreen {
             @Override
             public void actionPerformed(ActionEvent event) {
                 new StartServerScreen().startServer(frame);
-                Server server = Server.createServer(2);
-                try {
-                    server.start();
-                    server.listen();
-                    server.sendMessage();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        server.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
         });
 
@@ -80,7 +65,7 @@ public class HomeScreen {
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Quit ?", "", JOptionPane.YES_NO_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, "Do you really want to Quit?", "", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
