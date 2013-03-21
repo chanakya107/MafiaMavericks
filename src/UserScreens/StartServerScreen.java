@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StartServerScreen {
+
     public void startServer(final JFrame frame, final JPanel firstPanel) {
         final JPanel serverPanel = new JPanel();
         frame.add(serverPanel);
@@ -54,7 +55,8 @@ public class StartServerScreen {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Cancel ?", "", JOptionPane.YES_NO_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, "Do you really want to Cancel ?","",JOptionPane.YES_NO_OPTION);
+
                 if (option == JOptionPane.YES_OPTION) {
                     serverPanel.setVisible(false);
                     firstPanel.setVisible(true);
@@ -62,5 +64,4 @@ public class StartServerScreen {
             }
         });
     }
-
 }
