@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Understands providing connection to multiple clients.
-public class Server {
+public class Server extends Thread{
     private static final int PORT = 1254;
     private ServerSocket serverSocket;
     private int backlog;
@@ -25,14 +25,7 @@ public class Server {
         return new Server(backlog);
     }
 
-    public void close() throws IOException {
-        for (Socket socket : sockets) {
-            socket.close();
-        }
-        serverSocket.close();
-    }
-
-    public void start() throws IOException {
+    public void startServer() throws IOException {
         serverSocket = new ServerSocket(PORT);
     }
 
@@ -55,6 +48,22 @@ public class Server {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void close() throws IOException {
+        for (Socket socket : sockets) {
+            socket.close();
+        }
+        serverSocket.close();
+    }
+
+    public void run()
+    {
+        try {
+            listen();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

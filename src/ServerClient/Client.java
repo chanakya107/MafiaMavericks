@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.net.Socket;
 
 //Understands to connect to a server.
-public class Client {
+public class Client  extends Thread{
     private Socket socket;
 
     private Client(Socket socket) {
@@ -31,6 +31,11 @@ public class Client {
             e.printStackTrace();
         }
         return message;
+    }
+
+    public void run()
+    {
+        getMessage();
     }
 
     public void close() throws IOException {
