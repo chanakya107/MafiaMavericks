@@ -7,11 +7,9 @@ import java.awt.event.ActionListener;
 
 public class WelcomeScreen {
 
-    public void display(JFrame serverFrame) {
-        serverFrame.setVisible(false);
-        final JFrame welcomeFrame = new JFrame("Mafia");
-        welcomeFrame.setVisible(true);
+    public void display(JFrame frame) {
         JPanel welcomePanel = new JPanel();
+        frame.add(welcomePanel);
         welcomePanel.setBackground(Color.black);
         welcomePanel.setLayout(null);
 
@@ -29,10 +27,6 @@ public class WelcomeScreen {
                 }
             }
         });
-
-        welcomeFrame.setContentPane(welcomePanel);
-        welcomeFrame.setBounds(500, 300, 900, 700);
-        welcomeFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
 }
