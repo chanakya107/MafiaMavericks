@@ -10,9 +10,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class HomeScreen {
-     JFrame frame = new JFrame("Mafia");
-     JPanel firstPanel = new JPanel();
+    JFrame frame = new JFrame("Mafia");
+
     public void display() {
+        final JPanel firstPanel = new JPanel();
         frame.setVisible(true);
         firstPanel.setBackground(Color.black);
         firstPanel.setLayout(null);
@@ -26,7 +27,7 @@ public class HomeScreen {
             @Override
             public void actionPerformed(ActionEvent event) {
                 firstPanel.setVisible(false);
-                new StartServerScreen().startServer(frame,firstPanel);
+                new StartServerScreen().startServer(frame, firstPanel);
                 Server server = Server.createServer(1);
                 try {
                     server.start();
@@ -54,7 +55,8 @@ public class HomeScreen {
             public void actionPerformed(ActionEvent e) {
                 String serverName = JOptionPane.showInputDialog(null, "Enter the server Name", "", JOptionPane.QUESTION_MESSAGE);
                 String playerName = JOptionPane.showInputDialog(null, "Enter your Name", "", JOptionPane.QUESTION_MESSAGE);
-                new JoinGameScreen().joinGame(frame);
+                firstPanel.setVisible(false);
+                new JoinGameScreen().joinGame(frame,firstPanel);
                 Client client = null;
                 try {
                     client = Client.createClient(serverName, 1254);
