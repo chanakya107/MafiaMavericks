@@ -1,9 +1,12 @@
 package UserScreens;
 
+import ServerClient.Client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class JoinGameScreen {
     public void joinGame(final JFrame frame, final JPanel firstPanel) {
@@ -21,13 +24,30 @@ public class JoinGameScreen {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Do you really want to Cancel?", "", JOptionPane.YES_NO_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Cancel ?", "", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
                     joinPanel.setVisible(false);
                     firstPanel.setVisible(true);
                 }
             }
         });
+    }
+    public void connectTo(String serverName) {
+        Client client = null;
+        try {
+            client = Client.createClient(serverName, 1254);
+            client.getMessage();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } finally {
+            try {
+                if (client != null) {
+                    client.close();
+                }
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 
 }

@@ -1,6 +1,5 @@
 package UserScreens;
 
-import ServerClient.Client;
 import ServerClient.Server;
 
 import javax.swing.*;
@@ -56,22 +55,9 @@ public class HomeScreen {
                 String serverName = JOptionPane.showInputDialog(null, "Enter the server Name", "", JOptionPane.QUESTION_MESSAGE);
                 String playerName = JOptionPane.showInputDialog(null, "Enter your Name", "", JOptionPane.QUESTION_MESSAGE);
                 firstPanel.setVisible(false);
-                new JoinGameScreen().joinGame(frame,firstPanel);
-                Client client = null;
-                try {
-                    client = Client.createClient(serverName, 1254);
-                    client.getMessage();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                } finally {
-                    try {
-                        if (client != null) {
-                            client.close();
-                        }
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                }
+                JoinGameScreen joinGameScreen =  new JoinGameScreen();
+                joinGameScreen.joinGame(frame, firstPanel);
+                joinGameScreen.connectTo(serverName);
             }
         });
 
