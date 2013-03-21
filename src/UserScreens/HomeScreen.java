@@ -53,11 +53,21 @@ public class HomeScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String serverName = JOptionPane.showInputDialog(null, "Enter the server Name", "", JOptionPane.QUESTION_MESSAGE);
-                String playerName = JOptionPane.showInputDialog(null, "Enter your Name", "", JOptionPane.QUESTION_MESSAGE);
-                firstPanel.setVisible(false);
-                JoinGameScreen joinGameScreen =  new JoinGameScreen();
-                joinGameScreen.joinGame(frame, firstPanel);
-                joinGameScreen.connectTo(serverName);
+                if (serverName.equals(""))
+                    firstPanel.setVisible(true);
+                else{
+                    String playerName = JOptionPane.showInputDialog(null, "Enter your Name", "", JOptionPane.QUESTION_MESSAGE);
+                    if (playerName.equals(""))
+                        firstPanel.setVisible(true);
+                    else{
+                        firstPanel.setVisible(false);
+                        JoinGameScreen joinGameScreen =  new JoinGameScreen();
+                        joinGameScreen.joinGame(frame, firstPanel);
+                        joinGameScreen.connectTo(serverName);
+                    }
+
+                }
+
             }
         });
 
