@@ -33,22 +33,15 @@ public class JoinGameScreen {
             }
         });
     }
+
     public void connectTo(String serverName) {
-        Client client = null;
+        Client client;
         try {
             client = Client.createClient(serverName, 1254);
             client.start();
         } catch (IOException e1) {
             e1.printStackTrace();
-        } finally {
-            try {
-                if (client != null) {
-                    client.close();
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
         }
     }
-
 }
+
