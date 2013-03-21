@@ -6,12 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StartServerScreen {
-    public void startServer(final JFrame frame) {
-        frame.setVisible(false);
-        final JFrame serverFrame = new JFrame("Mafia");
-        serverFrame.setVisible(true);
-        serverFrame.setBounds(500, 300, 900, 700);
-        JPanel serverPanel = new JPanel();
+
+    public void startServer(final JFrame frame, final JPanel firstPanel) {
+        final JPanel serverPanel = new JPanel();
+        frame.add(serverPanel);
         serverPanel.setBackground(Color.black);
         serverPanel.setLayout(null);
 
@@ -44,7 +42,8 @@ public class StartServerScreen {
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               new WelcomeScreen().display(serverFrame);
+                serverPanel.setVisible(false);
+                new WelcomeScreen().display(frame);
             }
         });
 
@@ -57,13 +56,12 @@ public class StartServerScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int option = JOptionPane.showConfirmDialog(null, "Do you really want to Cancel ?","",JOptionPane.YES_NO_OPTION);
+
                 if (option == JOptionPane.YES_OPTION) {
-                    serverFrame.setVisible(false);
-                    frame.setVisible(true);
+                    serverPanel.setVisible(false);
+                    firstPanel.setVisible(true);
                 }
             }
         });
-        serverFrame.setContentPane(serverPanel);
-        serverFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }

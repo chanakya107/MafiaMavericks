@@ -1,6 +1,7 @@
 package UserScreens;
 
 import ServerClient.Client;
+import ServerClient.Server;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,10 +10,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class HomeScreen {
+     JFrame frame = new JFrame("Mafia");
+     JPanel firstPanel = new JPanel();
     public void display() {
-        final JFrame frame = new JFrame("Mafia");
         frame.setVisible(true);
-        final JPanel firstPanel = new JPanel();
         firstPanel.setBackground(Color.black);
         firstPanel.setLayout(null);
 
@@ -24,7 +25,22 @@ public class HomeScreen {
         startServer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                new StartServerScreen().startServer(frame);
+                firstPanel.setVisible(false);
+                new StartServerScreen().startServer(frame,firstPanel);
+                Server server = Server.createServer(1);
+                try {
+                    server.start();
+                    server.listen();
+                    server.sendMessage();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        server.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
 
@@ -73,7 +89,7 @@ public class HomeScreen {
         });
 
         frame.setBounds(500, 300, 900, 700);
-        frame.setContentPane(firstPanel);
+        frame.add(firstPanel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }
