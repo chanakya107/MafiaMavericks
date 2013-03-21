@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class StartServerScreen {
     public void startServer(final JFrame frame) {
-        frame.setVisible(false);
+        frame.setVisible(true);
         final JFrame serverFrame = new JFrame("Mafia");
         serverFrame.setVisible(true);
         serverFrame.setBounds(500, 300, 900, 700);

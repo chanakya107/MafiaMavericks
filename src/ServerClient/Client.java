@@ -33,4 +33,7 @@ public class Client {
         return message;
     }
 
+    public void close() throws IOException {
+        socket.close();
+    }
 }
