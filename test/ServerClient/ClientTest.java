@@ -7,10 +7,11 @@ import java.io.IOException;
 
 public class ClientTest {
     private static final int PORTNUMBER = 1254;
+
     @Test
     public void client_when_connected_with_server_will_get_connected_message() throws IOException {
         Server server = Server.createServer(1);
-        server.start();
+        server.startServer();
         Client client = Client.createClient("localhost", PORTNUMBER);
         server.listen();
         server.sendMessage();
@@ -21,7 +22,7 @@ public class ClientTest {
     @Test(expected = IllegalArgumentException.class)
     public void createClient_with_serverName_as_null_throws_IllegalArgumentException() throws IOException {
         Server server = Server.createServer(1);
-        server.start();
+        server.startServer();
         try {
             Client.createClient(null, PORTNUMBER);
         } finally {
@@ -32,7 +33,7 @@ public class ClientTest {
     @Test(expected = IllegalArgumentException.class)
     public void createClient_with_serverName_as_spaces_throws_IllegalArgumentException() throws IOException {
         Server server = Server.createServer(1);
-        server.start();
+        server.startServer();
         try {
             Client.createClient("   ", PORTNUMBER);
         } finally {

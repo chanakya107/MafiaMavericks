@@ -9,7 +9,7 @@ public class ServerTest {
     @Test
     public void server_when_connected_to_a_client_gives_a_connected_message() throws IOException {
         Server server = Server.createServer(1);
-        server.start();
+        server.startServer();
         Client client = Client.createClient("localhost", 1254);
         server.listen();
         server.sendMessage();
@@ -20,7 +20,7 @@ public class ServerTest {
     @Test
     public void connection_of_two_clients_with_the_server_gives_two_connected_message() throws IOException {
         Server server = Server.createServer(2);
-        server.start();
+        server.startServer();
         Client one = Client.createClient("localhost", 1254);
         Client two = Client.createClient("localhost", 1254);
         server.listen();

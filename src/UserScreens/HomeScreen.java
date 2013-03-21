@@ -9,14 +9,21 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class HomeScreen {
-    JFrame frame = new JFrame("Mafia");
+    JFrame frame;
+    JPanel firstPanel;
 
-    public void display() {
-        final JPanel firstPanel = new JPanel();
+    public HomeScreen() {
+        frame = new JFrame("Mafia");
+        firstPanel = new JPanel();
         frame.setVisible(true);
         firstPanel.setBackground(Color.black);
         firstPanel.setLayout(null);
+        frame.setBounds(500, 300, 900, 700);
+        frame.add(firstPanel);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
 
+    public void display() {
         JButton startServer = new JButton("Start server");
         firstPanel.add(startServer);
         startServer.setSize(150, 50);
@@ -27,19 +34,13 @@ public class HomeScreen {
             public void actionPerformed(ActionEvent event) {
                 firstPanel.setVisible(false);
                 new StartServerScreen().startServer(frame, firstPanel);
-                Server server = Server.createServer(1);
+                Server server = Server.createServer(2);
                 try {
+                    server.startServer();
                     server.start();
-                    server.listen();
                     server.sendMessage();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } finally {
-                    try {
-                        server.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         });
@@ -61,13 +62,10 @@ public class HomeScreen {
                         firstPanel.setVisible(true);
                     else{
                         firstPanel.setVisible(false);
-                        JoinGameScreen joinGameScreen =  new JoinGameScreen();
-                        joinGameScreen.joinGame(frame, firstPanel);
-                        joinGameScreen.connectTo(serverName);
+                        new JoinGameScreen().joinGame(frame, firstPanel,serverName);
                     }
 
                 }
-
             }
         });
 
@@ -86,8 +84,5 @@ public class HomeScreen {
             }
         });
 
-        frame.setBounds(500, 300, 900, 700);
-        frame.add(firstPanel);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }

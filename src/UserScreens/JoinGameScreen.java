@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class JoinGameScreen {
-    public void joinGame(final JFrame frame, final JPanel firstPanel) {
+    public void joinGame(final JFrame frame, final JPanel firstPanel, String serverName) {
         final JPanel joinPanel = new JPanel();
         frame.add(joinPanel);
         joinPanel.setBackground(Color.black);
@@ -21,6 +21,7 @@ public class JoinGameScreen {
         joinPanel.add(cancel);
         cancel.setSize(150, 50);
         cancel.setLocation(600, 500);
+        connectTo(serverName);
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -36,7 +37,7 @@ public class JoinGameScreen {
         Client client = null;
         try {
             client = Client.createClient(serverName, 1254);
-            client.getMessage();
+            client.start();
         } catch (IOException e1) {
             e1.printStackTrace();
         } finally {
