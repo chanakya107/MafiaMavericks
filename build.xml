@@ -35,7 +35,7 @@
     <target name="jar" depends="compileSrc">
         <jar destfile="${jarName}" basedir="${sourceOutput}">
             <manifest>
-                <attribute name="Main-Class" value="Main"/>
+                <attribute name="Main-Class" value="Runner.Main"/>
             </manifest>
         </jar>
     </target>

@@ -1,11 +1,13 @@
-package UserScreens;
+package Screens;
+
+import View.JoinGameView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class JoinGame {
+public class JoinGameScreen implements JoinGameView {
 
     public void display(JFrame frame) {
         JPanel joinGame = new JPanel();

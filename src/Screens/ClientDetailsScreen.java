@@ -1,9 +1,10 @@
-package UserScreens;
+package Screens;
 
 
 import Channels.Messages.ChannelMessage;
 import Channels.SocketChannel;
 import Channels.SocketChannelListener;
+import View.ClientDetailsView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ClientDetailScreen implements SocketChannelListener {
+public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsView {
     public void joinGame(final JFrame frame, final JPanel firstPanel, final String serverName) {
         final JPanel joinPanel = new JPanel();
         frame.add(joinPanel);
@@ -59,7 +60,8 @@ public class ClientDetailScreen implements SocketChannelListener {
             public void actionPerformed(ActionEvent e) {
                 joinPanel.setVisible(false);
 
-                String text="";
+
+                String text;
                  text=serverNameField.getText() ;
                 System.out.println("hai : '" + text + "'");
                 if (text.equals(""))
@@ -69,9 +71,10 @@ public class ClientDetailScreen implements SocketChannelListener {
                 }
                 else {
                     connectTo(serverNameField.getText());
-                    new JoinGame().display(frame);
+                    new JoinGameScreen().display(frame);
                     JOptionPane.showMessageDialog(null,"Connected to Server");
                 }
+
 
 
             }
