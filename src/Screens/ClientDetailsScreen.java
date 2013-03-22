@@ -43,7 +43,7 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
         enterUserName.setLocation(100, 200);
 
 
-        final JTextField userNameField = new JTextField();
+        final JTextField userNameField = new JTextField(null);
 
         joinPanel.add(userNameField);
         userNameField.setSize(200, 30);
@@ -60,9 +60,24 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
             @Override
             public void actionPerformed(ActionEvent e) {
                 joinPanel.setVisible(false);
-                new JoinGameScreen().display(frame);
-                String userName = userNameField.getText();
-                connectTo(serverNameField.getText());
+
+
+                String text;
+                 text=serverNameField.getText() ;
+                System.out.println("hai : '" + text + "'");
+                if (text.equals(""))
+                {
+                    joinPanel.setVisible(true);
+                    JOptionPane.showMessageDialog(null,"Connection Failed");
+                }
+                else {
+                    connectTo(serverNameField.getText());
+                    new JoinGameScreen().display(frame);
+                    JOptionPane.showMessageDialog(null,"Connected to Server");
+                }
+
+
+
             }
         });
 
@@ -79,6 +94,7 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
                 if (option == JOptionPane.YES_OPTION) {
                     joinPanel.setVisible(false);
                     firstPanel.setVisible(true);
+
                 }
             }
         });
@@ -100,6 +116,7 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
 
     @Override
     public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
+
     }
 
     @Override
