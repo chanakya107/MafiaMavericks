@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsView {
+    SocketChannel client;
     public void joinGame(final JFrame frame, final JPanel firstPanel, final String serverName) {
         final JPanel joinPanel = new JPanel();
         frame.add(joinPanel);
@@ -84,17 +85,17 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
     }
 
     public void connectTo(String serverName) {
-        SocketChannel client;
         try {
-            client = new SocketChannel(new Socket(serverName,1254));
-            client.bind(this);
-        } catch (IOException e) {
+            SocketChannel.connectTo(serverName, 1234, this);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
+        this.client = channel;
+        client.bind(this);
     }
 
     @Override
