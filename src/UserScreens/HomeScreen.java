@@ -1,12 +1,9 @@
 package UserScreens;
 
-import ServerClient.Server;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class HomeScreen {
     JFrame frame;
@@ -34,14 +31,6 @@ public class HomeScreen {
             public void actionPerformed(ActionEvent event) {
                 firstPanel.setVisible(false);
                 new StartServerScreen().startServer(frame, firstPanel);
-                Server server = Server.createServer(2);
-                try {
-                    server.startServer();
-                    server.start();
-                    server.sendMessage();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
 
@@ -56,13 +45,13 @@ public class HomeScreen {
                 String serverName = JOptionPane.showInputDialog(null, "Enter the server Name", "", JOptionPane.QUESTION_MESSAGE);
                 if (serverName.equals(""))
                     firstPanel.setVisible(true);
-                else{
+                else {
                     String playerName = JOptionPane.showInputDialog(null, "Enter your Name", "", JOptionPane.QUESTION_MESSAGE);
                     if (playerName.equals(""))
                         firstPanel.setVisible(true);
-                    else{
+                    else {
                         firstPanel.setVisible(false);
-                        new JoinGameScreen().joinGame(frame, firstPanel,serverName);
+                        new JoinGameScreen().joinGame(frame, firstPanel, serverName);
                     }
 
                 }

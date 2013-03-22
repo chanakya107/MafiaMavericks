@@ -58,6 +58,10 @@ public class Server extends Thread{
         serverSocket.close();
     }
 
+    public void disconnectServer() throws IOException {
+        serverSocket.close();
+    }
+
     public void run()
     {
         try {

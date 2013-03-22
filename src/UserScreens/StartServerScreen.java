@@ -1,9 +1,12 @@
 package UserScreens;
 
+import ServerClient.Server;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class StartServerScreen {
 
@@ -12,6 +15,15 @@ public class StartServerScreen {
         frame.add(serverPanel);
         serverPanel.setBackground(Color.black);
         serverPanel.setLayout(null);
+
+        final Server server = Server.createServer(2);
+        try {
+            server.startServer();
+            server.start();
+            server.sendMessage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         JLabel label = new JLabel("Players Joined");
         serverPanel.add(label);
@@ -58,6 +70,7 @@ public class StartServerScreen {
                 int option = JOptionPane.showConfirmDialog(null, "Do you really want to Cancel ?","",JOptionPane.YES_NO_OPTION);
 
                 if (option == JOptionPane.YES_OPTION) {
+
                     serverPanel.setVisible(false);
                     firstPanel.setVisible(true);
                 }
