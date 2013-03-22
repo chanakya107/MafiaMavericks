@@ -55,21 +55,9 @@ public class HomeScreen {
         joinGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String serverName = JOptionPane.showInputDialog(frame, "Enter the server Name", "", JOptionPane.QUESTION_MESSAGE);
+                firstPanel.setVisible(false);
+                new ClientDetailScreen().joinGame(frame,firstPanel,"localhost");
 
-                if (serverName.equals(""))
-                    firstPanel.setVisible(true);
-                else {
-                    String playerName = JOptionPane.showInputDialog(null, "Enter your Name", "", JOptionPane.QUESTION_MESSAGE);
-
-                    if (playerName.equals(""))
-                        firstPanel.setVisible(true);
-                    else {
-                        firstPanel.setVisible(false);
-                        new JoinGameScreen().joinGame(frame, firstPanel, serverName);
-                    }
-
-                }
             }
         });
 
