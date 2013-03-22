@@ -1,12 +1,10 @@
 package UserScreens;
 
-import ServerClient.Server;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class HomeScreen {
     JFrame frame;
@@ -34,16 +32,6 @@ public class HomeScreen {
             public void actionPerformed(ActionEvent event) {
                 firstPanel.setVisible(false);
                 new StartServerScreen().startServer(frame, firstPanel);
-
-                Server server = Server.createServer(1);
-                try {
-                    server.startServer();
-                    server.start();
-                    server.sendMessage();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
             }
         });
 
@@ -56,7 +44,7 @@ public class HomeScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 firstPanel.setVisible(false);
-                new ClientDetailScreen().joinGame(frame,firstPanel,"localhost");
+                new ClientDetailScreen().joinGame(frame, firstPanel, "localhost");
 
             }
         });

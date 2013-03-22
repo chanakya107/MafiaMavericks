@@ -1,17 +1,28 @@
 package UserScreens;
 
+import Channels.Server.SocketServer;
+import Channels.Server.SocketServerListener;
+import Channels.SocketChannel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartServerScreen {
+public class StartServerScreen implements SocketServerListener {
 
     public void startServer(final JFrame frame, final JPanel firstPanel) {
         final JPanel serverPanel = new JPanel();
         frame.add(serverPanel);
         serverPanel.setBackground(Color.black);
         serverPanel.setLayout(null);
+
+        final SocketServer server = new SocketServer(1254, this);
+        try {
+            server.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         JLabel label = new JLabel("Players Joined");
         serverPanel.add(label);
@@ -64,5 +75,14 @@ public class StartServerScreen {
                 }
             }
         });
+    }
+
+    @Override
+    public void onError(Exception e) {
+
+    }
+
+    @Override
+    public void onConnectionEstablished(SocketChannel channel) {
     }
 }

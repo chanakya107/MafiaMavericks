@@ -1,14 +1,18 @@
 package UserScreens;
 
-import ServerClient.Client;
+
+import Channels.Messages.ChannelMessage;
+import Channels.SocketChannel;
+import Channels.SocketChannelListener;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.Socket;
 
-public class ClientDetailScreen {
+public class ClientDetailScreen implements SocketChannelListener {
     public void joinGame(final JFrame frame, final JPanel firstPanel, final String serverName) {
         final JPanel joinPanel = new JPanel();
         frame.add(joinPanel);
@@ -79,13 +83,37 @@ public class ClientDetailScreen {
     }
 
     public void connectTo(String serverName) {
-        Client client;
+        SocketChannel client;
         try {
-            client = Client.createClient(serverName, 1254);
-            client.start();
-        } catch (IOException e1) {
-            e1.printStackTrace();
+            client = new SocketChannel(new Socket(serverName,1254));
+            client.bind(this);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onConnectionEstablished(SocketChannel channel) {
+    }
+
+    @Override
+    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
+    }
+
+    @Override
+    public void onClose(SocketChannel channel, Exception e) {
+    }
+
+    @Override
+    public void onSendFailed(SocketChannel channel, IOException e, ChannelMessage message) {
+    }
+
+    @Override
+    public void onNewMessageArrived(SocketChannel channel, ChannelMessage message) {
+    }
+
+    @Override
+    public void onMessageReadError(SocketChannel channel, Exception e) {
     }
 }
 
