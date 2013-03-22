@@ -1,15 +1,16 @@
-package UserScreens;
+package Screens;
 
 import Channels.Server.SocketServer;
 import Channels.Server.SocketServerListener;
 import Channels.SocketChannel;
+import View.StartServerView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartServerScreen implements SocketServerListener {
+public class StartServerScreen implements SocketServerListener,StartServerView {
 
     public void startServer(final JFrame frame, final JPanel firstPanel) {
         final JPanel serverPanel = new JPanel();
@@ -23,6 +24,7 @@ public class StartServerScreen implements SocketServerListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         JLabel label = new JLabel("Players Joined");
         serverPanel.add(label);
@@ -59,7 +61,6 @@ public class StartServerScreen implements SocketServerListener {
         });
 
         JButton cancel = new JButton("Cancel");
-
         serverPanel.add(cancel);
         cancel.setSize(150, 50);
         cancel.setLocation(600, 500);
@@ -69,7 +70,7 @@ public class StartServerScreen implements SocketServerListener {
                 int option = JOptionPane.showConfirmDialog(null, "Do you really want to Cancel ?", "", JOptionPane.YES_NO_OPTION);
 
                 if (option == JOptionPane.YES_OPTION) {
-
+                    server.stop();
                     serverPanel.setVisible(false);
                     firstPanel.setVisible(true);
                 }
@@ -84,5 +85,6 @@ public class StartServerScreen implements SocketServerListener {
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
+
     }
 }

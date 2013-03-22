@@ -1,11 +1,13 @@
-package UserScreens;
+package Screens;
+
+import View.WelcomeView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WelcomeScreen {
+public class WelcomeScreen implements WelcomeView {
 
     public void display(JFrame frame) {
         JPanel welcomePanel = new JPanel();

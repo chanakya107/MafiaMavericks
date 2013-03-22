@@ -1,12 +1,14 @@
-package UserScreens;
+package Screens;
 
+
+import View.HomeView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomeScreen {
+public class HomeScreen implements HomeView {
     JFrame frame;
     JPanel firstPanel;
 
@@ -44,7 +46,7 @@ public class HomeScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 firstPanel.setVisible(false);
-                new ClientDetailScreen().joinGame(frame, firstPanel, "localhost");
+                new ClientDetailsScreen().joinGame(frame, firstPanel, "localhost");
 
             }
         });

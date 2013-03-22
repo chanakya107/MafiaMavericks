@@ -1,4 +1,5 @@
-import UserScreens.HomeScreen;
+package Runner;
+import Screens.HomeScreen;
 
 public class Main {
     public static void main(String[] args) {
