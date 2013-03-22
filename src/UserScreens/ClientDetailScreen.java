@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class ClientDetailScreen {
-    String userName;
     public void joinGame(final JFrame frame, final JPanel firstPanel, final String serverName) {
         final JPanel joinPanel = new JPanel();
         frame.add(joinPanel);
@@ -21,12 +20,12 @@ public class ClientDetailScreen {
         joinPanel.add(enterServerName);
         enterServerName.setSize(300, 150);
         enterServerName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        enterServerName.setLocation(100,100);
+        enterServerName.setLocation(100, 100);
 
-        final JTextField serverNameField=new JTextField();
+        final JTextField serverNameField = new JTextField();
 
         joinPanel.add(serverNameField);
-        serverNameField.setSize(200,30);
+        serverNameField.setSize(200, 30);
         serverNameField.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
         serverNameField.setLocation(400, 160);
 
@@ -38,7 +37,7 @@ public class ClientDetailScreen {
         enterUserName.setLocation(100, 200);
 
 
-        final JTextField userNameField=new JTextField();
+        final JTextField userNameField = new JTextField();
 
         joinPanel.add(userNameField);
         userNameField.setSize(200, 30);
@@ -56,8 +55,7 @@ public class ClientDetailScreen {
             public void actionPerformed(ActionEvent e) {
                 joinPanel.setVisible(false);
                 new JoinGame().display(frame);
-                userName = userNameField.getText();
-                System.out.println(userName);
+                String userName = userNameField.getText();
                 connectTo(serverNameField.getText());
             }
         });
