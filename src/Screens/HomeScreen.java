@@ -74,7 +74,7 @@ public class HomeScreen implements HomeView {
     @Override
     public void onJoinGame() {
         firstPanel.setVisible(false);
-        new ClientDetailsScreen().joinGame(frame, firstPanel, "localhost");
+        new ClientDetailsScreen().joinGame(frame, firstPanel);
 
     }
 
