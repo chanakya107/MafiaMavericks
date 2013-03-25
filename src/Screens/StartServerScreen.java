@@ -74,7 +74,6 @@ public class StartServerScreen implements SocketServerListener, StartServerView 
     }
 
 
-
     @Override
     public void onError(Exception e) {
 

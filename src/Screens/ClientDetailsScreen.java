@@ -42,14 +42,12 @@ public class ClientDetailsScreen implements SocketChannelListener, ClientDetails
         enterUserName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterUserName.setLocation(100, 200);
 
-
         final JTextField userNameField = new JTextField("player");
 
         joinPanel.add(userNameField);
         userNameField.setSize(200, 30);
         userNameField.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
         userNameField.setLocation(400, 260);
-
 
         JButton connect = new JButton("Connect");
 
@@ -63,18 +61,13 @@ public class ClientDetailsScreen implements SocketChannelListener, ClientDetails
                 boolean connectionStatus;
                 connectionStatus = connectTo(serverNameField.getText());
 
-                if (!connectionStatus)
-                {
+                if (!connectionStatus) {
                     joinPanel.setVisible(true);
-                    JOptionPane.showMessageDialog(null,"Connection Failed");
-                }
-                else {
-
+                    JOptionPane.showMessageDialog(null, serverNameField.getText() + " server not found");
+                } else {
                     new JoinGameScreen().display(frame);
-                    JOptionPane.showMessageDialog(null, "Connected to Server");
+                    JOptionPane.showMessageDialog(null, "Connected to " + serverNameField.getText());
                 }
-
-
             }
         });
 
@@ -99,16 +92,14 @@ public class ClientDetailsScreen implements SocketChannelListener, ClientDetails
     public boolean connectTo(String serverName) {
         SocketChannel client;
         try {
-            if (!serverName.equals("")){
-                client = new SocketChannel(new Socket(serverName,1254));
+            if (!serverName.equals("")) {
+                client = new SocketChannel(new Socket(serverName, 1254));
                 client.bind(this);
                 return true;
-            }
-            else
+            } else
                 return false;
-        }
-        catch (IOException e) {
-            onConnectionFailed(serverName,1254,e);
+        } catch (IOException e) {
+            onConnectionFailed(serverName, 1254, e);
             return false;
         }
 
@@ -122,7 +113,6 @@ public class ClientDetailsScreen implements SocketChannelListener, ClientDetails
 
     @Override
     public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
-
     }
 
     @Override
