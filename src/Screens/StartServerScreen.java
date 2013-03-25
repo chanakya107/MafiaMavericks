@@ -3,6 +3,7 @@ package Screens;
 import Channels.Server.SocketServer;
 import Channels.Server.SocketServerListener;
 import Channels.SocketChannel;
+import GameController.Server;
 import View.StartServerView;
 
 import javax.swing.*;
@@ -12,18 +13,13 @@ import java.awt.event.ActionListener;
 
 public class StartServerScreen implements SocketServerListener, StartServerView {
 
-    public void startServer(final JFrame frame, final JPanel firstPanel) {
+    public void display(final JFrame frame, final JPanel firstPanel) {
         final JPanel serverPanel = new JPanel();
         frame.add(serverPanel);
         serverPanel.setBackground(Color.black);
         serverPanel.setLayout(null);
 
-        final SocketServer server = new SocketServer(1254, this);
-        try {
-            server.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        final SocketServer server = new Server().startServer();
 
         JLabel label = new JLabel("Players Joined");
         serverPanel.add(label);
@@ -76,6 +72,8 @@ public class StartServerScreen implements SocketServerListener, StartServerView 
             }
         });
     }
+
+
 
     @Override
     public void onError(Exception e) {
