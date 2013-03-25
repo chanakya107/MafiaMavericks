@@ -1,6 +1,5 @@
 package Screens;
 
-
 import Channels.Messages.ChannelMessage;
 import Channels.SocketChannel;
 import Channels.SocketChannelListener;
@@ -13,7 +12,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsView {
+public class ClientDetailsScreen implements SocketChannelListener, ClientDetailsView {
+    SocketChannel client;
+
     public void joinGame(final JFrame frame, final JPanel firstPanel, final String serverName) {
         final JPanel joinPanel = new JPanel();
         frame.add(joinPanel);
@@ -63,7 +64,7 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
                 connectionStatus = connectTo(serverNameField.getText());
 
                 String text;
-                 text=serverNameField.getText() ;
+                text = serverNameField.getText();
                 System.out.println("hai : '" + text + "'");
                 if (connectionStatus == false)
                 {
@@ -71,10 +72,10 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
                     JOptionPane.showMessageDialog(null,"Connection Failed");
                 }
                 else {
-                    new JoinGameScreen().display(frame);
-                    JOptionPane.showMessageDialog(null,"Connected to Server");
-                }
 
+                    new JoinGameScreen().display(frame);
+                    JOptionPane.showMessageDialog(null, "Connected to Server");
+                }
 
 
             }
@@ -119,6 +120,8 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
+        this.client = channel;
+        client.bind(this);
     }
 
     @Override
