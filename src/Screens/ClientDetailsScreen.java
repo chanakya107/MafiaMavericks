@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.Socket;
 
 public class ClientDetailsScreen implements SocketChannelListener, ClientDetailsView {
     SocketChannel client;
@@ -27,7 +28,7 @@ public class ClientDetailsScreen implements SocketChannelListener, ClientDetails
         enterServerName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterServerName.setLocation(100, 100);
 
-        final JTextField serverNameField = new JTextField();
+        final JTextField serverNameField = new JTextField("");
 
         joinPanel.add(serverNameField);
         serverNameField.setSize(200, 30);
@@ -42,7 +43,7 @@ public class ClientDetailsScreen implements SocketChannelListener, ClientDetails
         enterUserName.setLocation(100, 200);
 
 
-        final JTextField userNameField = new JTextField(null);
+        final JTextField userNameField = new JTextField("player");
 
         joinPanel.add(userNameField);
         userNameField.setSize(200, 30);
@@ -59,16 +60,19 @@ public class ClientDetailsScreen implements SocketChannelListener, ClientDetails
             @Override
             public void actionPerformed(ActionEvent e) {
                 joinPanel.setVisible(false);
-
+                boolean connectionStatus;
+                connectionStatus = connectTo(serverNameField.getText());
 
                 String text;
                 text = serverNameField.getText();
                 System.out.println("hai : '" + text + "'");
-                if (text.equals("")) {
+                if (connectionStatus == false)
+                {
                     joinPanel.setVisible(true);
-                    JOptionPane.showMessageDialog(null, "Connection Failed");
-                } else {
-                    connectTo(serverNameField.getText());
+                    JOptionPane.showMessageDialog(null,"Connection Failed");
+                }
+                else {
+
                     new JoinGameScreen().display(frame);
                     JOptionPane.showMessageDialog(null, "Connected to Server");
                 }
@@ -96,12 +100,22 @@ public class ClientDetailsScreen implements SocketChannelListener, ClientDetails
         });
     }
 
-    public void connectTo(String serverName) {
+    public boolean connectTo(String serverName) {
+        SocketChannel client;
         try {
-            SocketChannel.connectTo(serverName, 1234, this);
-        } catch (Exception e) {
-            e.printStackTrace();
+            if (serverName != ""){
+                client = new SocketChannel(new Socket(serverName,1254));
+                client.bind(this);
+                return true;
+            }
+            else
+                return false;
         }
+        catch (IOException e) {
+            onConnectionFailed(serverName,1254,e);
+            return false;
+        }
+
     }
 
     @Override
