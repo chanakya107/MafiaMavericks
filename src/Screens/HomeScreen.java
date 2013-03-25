@@ -16,13 +16,6 @@ public class HomeScreen implements HomeView {
 
     public HomeScreen() {
 
-        /*ImagePanel panel = new ImagePanel(new ImageIcon("images/background.png").getImage());
-
-        JFrame frame = new JFrame();
-        frame.getContentPane().add(panel);
-        frame.pack();
-        frame.setVisible(true);
-        */
 
         frame = new JFrame("Mafia");
         firstPanel = new JPanel();
@@ -33,19 +26,24 @@ public class HomeScreen implements HomeView {
         frame.add(firstPanel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        PanelImage panelImage = new PanelImage(new ImageIcon("D:\\TestCodeForProjectUsage\\Tulips.jpg").getImage());
+        firstPanel.add(panelImage);
+        firstPanel.setBackground(panelImage.getBackground());
+        panelImage.setVisible(true);
+
         startServer = new JButton("Start server");
-        firstPanel.add(startServer);
+        panelImage.add(startServer);
         startServer.setSize(150, 50);
         startServer.setLocation(100, 300);
 
         joinGame = new JButton("Join Game");
-        firstPanel.add(joinGame);
+        panelImage.add(joinGame);
         joinGame.setSize(150, 50);
         joinGame.setLocation(100, 400);
 
 
         quit = new JButton("Quit");
-        firstPanel.add(quit);
+        panelImage.add(quit);
         quit.setSize(150, 50);
         quit.setLocation(100, 500);
     }
