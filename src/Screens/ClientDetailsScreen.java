@@ -1,6 +1,5 @@
 package Screens;
 
-
 import Channels.Messages.ChannelMessage;
 import Channels.SocketChannel;
 import Channels.SocketChannelListener;
@@ -11,10 +10,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.Socket;
 
-public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsView {
+public class ClientDetailsScreen implements SocketChannelListener, ClientDetailsView {
     SocketChannel client;
+
     public void joinGame(final JFrame frame, final JPanel firstPanel, final String serverName) {
         final JPanel joinPanel = new JPanel();
         frame.add(joinPanel);
@@ -63,19 +62,16 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
 
 
                 String text;
-                 text=serverNameField.getText() ;
+                text = serverNameField.getText();
                 System.out.println("hai : '" + text + "'");
-                if (text.equals(""))
-                {
+                if (text.equals("")) {
                     joinPanel.setVisible(true);
-                    JOptionPane.showMessageDialog(null,"Connection Failed");
-                }
-                else {
+                    JOptionPane.showMessageDialog(null, "Connection Failed");
+                } else {
                     connectTo(serverNameField.getText());
                     new JoinGameScreen().display(frame);
-                    JOptionPane.showMessageDialog(null,"Connected to Server");
+                    JOptionPane.showMessageDialog(null, "Connected to Server");
                 }
-
 
 
             }

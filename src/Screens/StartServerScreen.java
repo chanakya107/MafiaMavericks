@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartServerScreen implements SocketServerListener,StartServerView {
+public class StartServerScreen implements SocketServerListener, StartServerView {
 
     public void startServer(final JFrame frame, final JPanel firstPanel) {
         final JPanel serverPanel = new JPanel();
@@ -24,7 +24,6 @@ public class StartServerScreen implements SocketServerListener,StartServerView {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         JLabel label = new JLabel("Players Joined");
         serverPanel.add(label);
