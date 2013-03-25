@@ -27,7 +27,7 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
         enterServerName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterServerName.setLocation(100, 100);
 
-        final JTextField serverNameField = new JTextField();
+        final JTextField serverNameField = new JTextField("");
 
         joinPanel.add(serverNameField);
         serverNameField.setSize(200, 30);
@@ -42,7 +42,7 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
         enterUserName.setLocation(100, 200);
 
 
-        final JTextField userNameField = new JTextField(null);
+        final JTextField userNameField = new JTextField("player");
 
         joinPanel.add(userNameField);
         userNameField.setSize(200, 30);
@@ -59,18 +59,18 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
             @Override
             public void actionPerformed(ActionEvent e) {
                 joinPanel.setVisible(false);
-
+                boolean connectionStatus;
+                connectionStatus = connectTo(serverNameField.getText());
 
                 String text;
                  text=serverNameField.getText() ;
                 System.out.println("hai : '" + text + "'");
-                if (text.equals(""))
+                if (connectionStatus == false)
                 {
                     joinPanel.setVisible(true);
                     JOptionPane.showMessageDialog(null,"Connection Failed");
                 }
                 else {
-                    connectTo(serverNameField.getText());
                     new JoinGameScreen().display(frame);
                     JOptionPane.showMessageDialog(null,"Connected to Server");
                 }
@@ -99,14 +99,22 @@ public class ClientDetailsScreen implements SocketChannelListener,ClientDetailsV
         });
     }
 
-    public void connectTo(String serverName) {
+    public boolean connectTo(String serverName) {
         SocketChannel client;
         try {
-            client = new SocketChannel(new Socket(serverName,1254));
-            client.bind(this);
-        } catch (IOException e) {
-            onConnectionFailed(serverName,1254,e);
+            if (serverName != ""){
+                client = new SocketChannel(new Socket(serverName,1254));
+                client.bind(this);
+                return true;
+            }
+            else
+                return false;
         }
+        catch (IOException e) {
+            onConnectionFailed(serverName,1254,e);
+            return false;
+        }
+
     }
 
     @Override
