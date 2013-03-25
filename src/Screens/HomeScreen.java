@@ -75,16 +75,15 @@ public class HomeScreen implements HomeView {
     }
 
     @Override
-    public void onStart() {
+         public void onStart() {
         firstPanel.setVisible(false);
-        new StartServerScreen().display(frame, firstPanel);
+        new StartServerScreen(frame, firstPanel).display();
     }
 
     @Override
     public void onJoinGame() {
         firstPanel.setVisible(false);
         new ClientDetailsScreen().joinGame(frame, firstPanel);
-
     }
 
     @Override
