@@ -15,6 +15,15 @@ public class HomeScreen implements HomeView {
     private JButton quit;
 
     public HomeScreen() {
+
+        /*ImagePanel panel = new ImagePanel(new ImageIcon("images/background.png").getImage());
+
+        JFrame frame = new JFrame();
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setVisible(true);
+        */
+
         frame = new JFrame("Mafia");
         firstPanel = new JPanel();
         frame.setVisible(true);
