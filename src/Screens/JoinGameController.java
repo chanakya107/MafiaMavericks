@@ -1,8 +1,10 @@
 package screens;
 
-import channels.messages.ChannelMessage;
 import channels.SocketChannel;
 import channels.SocketChannelListener;
+import channels.messages.ChannelMessage;
+import messages.PlayerConnectedMessage;
+import messages.PlayerDetailsMessage;
 import view.JoinGameView;
 
 import java.io.IOException;
@@ -37,7 +39,7 @@ public class JoinGameController implements SocketChannelListener {
 
     @Override
     public void onClose(SocketChannel channel, Exception e) {
-        throw new RuntimeException("connection closed", e);
+
     }
 
     @Override
@@ -49,6 +51,9 @@ public class JoinGameController implements SocketChannelListener {
         if (message instanceof PlayerConnectedMessage) {
             PlayerConnectedMessage playerConnectedMessage = (PlayerConnectedMessage) message;
             view.displayConnectedPlayers(playerConnectedMessage.getPlayersConnected());
+        } else if (message instanceof ServerDisconnectedMessage) {
+            view.serverDisconnected(serverName);
+            channel.stop();
         }
     }
 
@@ -57,7 +62,11 @@ public class JoinGameController implements SocketChannelListener {
     }
 
     public void start() {
-        view.connectedToServer(serverName,playerName);
+        view.connectedToServer(serverName, playerName);
         channel.send(new PlayerDetailsMessage(playerName));
+    }
+
+    public void goToHome() {
+        workflow.goBackToHome();
     }
 }

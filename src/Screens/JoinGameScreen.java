@@ -71,4 +71,10 @@ public class JoinGameScreen implements JoinGameView {
         String connectedMessage ="Connected To " + serverName + " as " + playerName;
         JOptionPane.showConfirmDialog(null, connectedMessage,"", JOptionPane.DEFAULT_OPTION);
     }
+
+    @Override
+    public void serverDisconnected(String serverName) {
+        JOptionPane.showConfirmDialog(null, "Connection to server : "+serverName+ " is lost","", JOptionPane.DEFAULT_OPTION);
+        controller.goToHome();
+    }
 }

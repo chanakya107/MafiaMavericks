@@ -85,4 +85,6 @@ public class StartGameScreen implements StartGameView {
             players.addElement(player.getName());
         }
     }
+
+
 }

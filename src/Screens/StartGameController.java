@@ -1,6 +1,7 @@
 package screens;
 
 import channels.messages.ChannelMessage;
+import messages.PlayerConnectedMessage;
 import channels.server.SocketServer;
 import channels.server.SocketServerListener;
 import channels.SocketChannel;
@@ -32,6 +33,7 @@ public class StartGameController implements SocketServerListener, God {
     }
 
     public void stopServer() {
+        sendMessage(new ServerDisconnectedMessage());
         server.stop();
         workflow.goBackToHome();
     }
@@ -50,6 +52,8 @@ public class StartGameController implements SocketServerListener, God {
         view.updatePlayers(players);
         sendMessage(new PlayerConnectedMessage(getPlayerNames()));
     }
+
+
 
     private void sendMessage(ChannelMessage message) {
         for (Player player : players) {

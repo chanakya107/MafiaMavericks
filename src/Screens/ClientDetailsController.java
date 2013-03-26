@@ -48,6 +48,7 @@ public class ClientDetailsController implements SocketChannelListener {
 
     @Override
     public void onNewMessageArrived(SocketChannel channel, ChannelMessage message) {
+
     }
 
     @Override

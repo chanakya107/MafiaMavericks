@@ -3,6 +3,7 @@ package screens;
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
+import messages.PlayerDetailsMessage;
 
 import java.io.IOException;
 

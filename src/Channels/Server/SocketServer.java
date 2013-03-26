@@ -1,7 +1,6 @@
 package channels.server;
 
 import channels.SocketChannel;
-import screens.StartGameController;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -16,18 +15,19 @@ public class SocketServer {
     final private int SOCKET_TIMEOUT = 1000;
     private boolean stopWaiting;
 
-    public SocketServer(int port,SocketServerListener listener) {
+    public SocketServer(int port, SocketServerListener listener) {
 
         this.port = port;
         this.listener = listener;
     }
-    private void waitForConnections(){
+
+    private void waitForConnections() {
         startServerSocket();
-        while(true){
+        while (true) {
             try {
                 acceptConnection();
-            }catch (SocketTimeoutException e){
-                if(stopWaiting) {
+            } catch (SocketTimeoutException e) {
+                if (stopWaiting) {
                     try {
                         serverSocket.close();
                     } catch (IOException e1) {
@@ -35,8 +35,7 @@ public class SocketServer {
                     }
                     return;
                 }
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 listener.onError(e);
             }
         }
@@ -56,7 +55,7 @@ public class SocketServer {
         }
     }
 
-    public void start(){
+    public void start() {
         stopWaiting = false;
         thread = new Thread(new Runnable() {
             @Override
@@ -66,7 +65,8 @@ public class SocketServer {
         });
         thread.start();
     }
-    public void stop(){
+
+    public void stop() {
         stopWaiting = true;
     }
 }
