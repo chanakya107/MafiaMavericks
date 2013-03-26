@@ -1,66 +1,59 @@
-package Screens;
+package screens;
+
+import view.HomeView;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomeScreen {
-    private JFrame frame;
-    private JPanel homePanel;
-    private JButton startServer;
-    private JButton joinGame;
-    private JButton quit;
+public class HomeScreen implements HomeView {
+    private final MainFrame mainframe;
+    private final HomeController controller;
+    private final JButton startServer;
+    private final JButton joinGame;
+    private final JButton quit;
 
-    public HomeScreen() {
+    public HomeScreen(MainFrame mainframe, HomeController controller) {
+        this.mainframe = mainframe;
+        this.controller = controller;
 
-
-        frame = new JFrame("Mafia");
-        homePanel = new JPanel();
-        frame.setVisible(true);
-        homePanel.setBackground(Color.black);
-        homePanel.setLayout(null);
-        frame.setBounds(500, 300, 900, 700);
-        frame.add(homePanel);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        PanelImage panelImage = new PanelImage(new ImageIcon("D:\\TestCodeForProjectUsage\\Tulips.jpg").getImage());
-        panelImage.setVisible(true);
+        JPanel panel = mainframe.createPanel();
 
         startServer = new JButton("Start server");
-
-        panelImage.add(startServer);
+        panel.add(startServer);
         startServer.setSize(150, 50);
         startServer.setLocation(100, 300);
 
         joinGame = new JButton("Join Game");
-
-        panelImage.add(joinGame);
+        panel.add(joinGame);
         joinGame.setSize(150, 50);
         joinGame.setLocation(100, 400);
 
 
         quit = new JButton("Quit");
-
-        panelImage.add(quit);
+        panel.add(quit);
         quit.setSize(150, 50);
         quit.setLocation(100, 500);
+
+        addButtonHandlers();
     }
 
-    public void display() {
+    private void addButtonHandlers() {
         startServer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                homePanel.setVisible(false);
-                new StartServerScreen(frame, homePanel).display();
+                controller.startServer();
+//                homePanel.setVisible(false);
+//                new StartGameScreen(frame, homePanel).display();
             }
         });
 
         joinGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                homePanel.setVisible(false);
-                new ClientDetailsScreen(frame, homePanel).joinGame();
+                controller.joinGame();
+//                homePanel.setVisible(false);
+//                new ClientDetailsScreen(frame, homePanel).joinGame();
             }
         });
 

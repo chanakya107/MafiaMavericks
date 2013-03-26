@@ -1,6 +1,6 @@
-package Channels.Server;
+package channels.Server;
 
-import Channels.SocketChannel;
+import channels.SocketChannel;
 
 import java.io.IOException;
 import java.net.ServerSocket;

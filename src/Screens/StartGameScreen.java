@@ -1,15 +1,15 @@
-package Screens;
+package screens;
 
-import Channels.Server.SocketServer;
-import GameController.Server;
-import View.StartServerView;
+import channels.Server.SocketServer;
+import gameController.Server;
+import view.StartGameView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartServerScreen implements StartServerView {
+public class StartGameScreen implements StartGameView {
 
     private JPanel serverPanel;
     private JButton startGame;
@@ -17,7 +17,7 @@ public class StartServerScreen implements StartServerView {
     private JFrame frame;
     private JPanel homePanel;
 
-    public StartServerScreen(JFrame frame, final JPanel homePanel) {
+    public StartGameScreen(JFrame frame, final JPanel homePanel) {
         this.frame = frame;
         this.homePanel = homePanel;
         serverPanel = new JPanel();

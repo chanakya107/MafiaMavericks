@@ -1,7 +1,7 @@
-package Screens;
+package screens;
 
-import GameController.Client;
-import View.ClientDetailsView;
+import gameController.Client;
+import view.ClientDetailsView;
 
 import javax.swing.*;
 import java.awt.*;

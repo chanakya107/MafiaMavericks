@@ -1,8 +1,8 @@
-package GameController;
+package gameController;
 
-import Channels.Messages.ChannelMessage;
-import Channels.SocketChannel;
-import Channels.SocketChannelListener;
+import channels.Messages.ChannelMessage;
+import channels.SocketChannel;
+import channels.SocketChannelListener;
 
 import java.io.IOException;
 import java.net.Socket;

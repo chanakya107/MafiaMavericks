@@ -1,6 +1,6 @@
-package Screens;
+package screens;
 
-import View.WelcomeView;
+import view.WelcomeView;
 
 import javax.swing.*;
 import java.awt.*;
