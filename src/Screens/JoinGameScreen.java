@@ -1,6 +1,6 @@
-package Screens;
+package screens;
 
-import View.JoinGameView;
+import view.JoinGameView;
 
 import javax.swing.*;
 import java.awt.*;

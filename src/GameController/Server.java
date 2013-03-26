@@ -1,8 +1,8 @@
-package GameController;
+package gameController;
 
-import Channels.Server.SocketServer;
-import Channels.Server.SocketServerListener;
-import Channels.SocketChannel;
+import channels.Server.SocketServer;
+import channels.Server.SocketServerListener;
+import channels.SocketChannel;
 
 public class Server implements SocketServerListener{
     public SocketServer startServer() {

@@ -1,8 +1,9 @@
-package Runner;
-import Screens.HomeScreen;
+package runner;
+
+import screens.WorkflowManager;
 
 public class Main {
     public static void main(String[] args) {
-        new HomeScreen().display();
+        new WorkflowManager().start();
     }
 }

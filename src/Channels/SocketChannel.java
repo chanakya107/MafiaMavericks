@@ -1,7 +1,7 @@
-package Channels;
+package channels;
 
-import Channels.Messages.ByeMessage;
-import Channels.Messages.ChannelMessage;
+import channels.Messages.ByeMessage;
+import channels.Messages.ChannelMessage;
 
 import java.io.EOFException;
 import java.io.IOException;

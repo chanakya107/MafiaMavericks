@@ -1,10 +1,4 @@
-package View;
+package view;
 
 public interface HomeView {
-
-    void onQuit();
-
-    void onJoinGame();
-
-    void onStart();
 }
