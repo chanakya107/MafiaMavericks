@@ -1,5 +1,7 @@
 package screens;
 
+import channels.SocketChannel;
+
 public class WorkflowManager implements Workflow {
     private MainFrame mainFrame;
 
@@ -18,8 +20,9 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void joinServer() {
-        JoinGameController controller = new JoinGameController(this);
+    public void getClientDetails() {
+        ClientDetailsController controller = new ClientDetailsController(this);
+        controller.bind(new ClientDetailsScreen(mainFrame,controller));
 
     }
 
@@ -34,6 +37,13 @@ public class WorkflowManager implements Workflow {
     public void goBackToHome() {
         HomeController controller = new HomeController(this);
         controller.bind(new HomeScreen(mainFrame,controller));
+        controller.start();
+    }
+
+    @Override
+    public void connectedToServer(SocketChannel channel, String serverName, String playerName) {
+        JoinGameController controller = new JoinGameController(this,channel,serverName,playerName);
+        controller.bind(new JoinGameScreen(mainFrame,controller));
         controller.start();
     }
 }
