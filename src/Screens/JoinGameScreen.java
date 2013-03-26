@@ -9,6 +9,15 @@ import java.awt.event.ActionListener;
 
 public class JoinGameScreen implements JoinGameView {
 
+    private final MainFrame mainFrame;
+    private final JoinGameController controller;
+
+    public JoinGameScreen(MainFrame mainFrame, JoinGameController controller) {
+
+        this.mainFrame = mainFrame;
+        this.controller = controller;
+    }
+
     public void display(JFrame frame) {
         JPanel joinGame = new JPanel();
         frame.add(joinGame);
