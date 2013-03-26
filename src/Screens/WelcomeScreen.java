@@ -19,13 +19,13 @@ public class WelcomeScreen implements WelcomeView {
         this.controller = controller;
         controller.bind(this);
 
-        Image image = new ImageIcon(".\\Prototypes\\if.invisionfree.com.png").getImage();
+        Image image = new ImageIcon(".\\Prototypes\\www.desktopwallpapers4.me.jpg").getImage();
         panel = mainFrame.createPanel(image);
 
         JButton quit = new JButton("Quit");
         panel.add(quit);
         quit.setSize(150, 50);
-        quit.setLocation(650, 550);
+        quit.setLocation(950, 550);
 
         quit.addActionListener(new ActionListener() {
             @Override

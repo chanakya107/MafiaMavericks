@@ -55,6 +55,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         connect.setSize(150, 50);
         connect.setLocation(400, 500);
 
+
         cancel = new JButton("Cancel");
         joinPanel.add(cancel);
         cancel.setSize(150, 50);
@@ -71,6 +72,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
                 if (!connectionStatus) {
                     joinPanel.setVisible(true);
                     JOptionPane.showMessageDialog(null, serverNameField.getText() + " server not found");
+
                 } else {
                     new JoinGameScreen().display(frame);
                     JOptionPane.showMessageDialog(null, "Connected to " + serverNameField.getText());
