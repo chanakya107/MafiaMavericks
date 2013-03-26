@@ -20,7 +20,6 @@ public class WorkflowManager implements Workflow {
     @Override
     public void joinServer() {
         JoinGameController controller = new JoinGameController(this);
-        controller.bind(new JoinGameScreen(mainFrame,controller));
 
     }
 
