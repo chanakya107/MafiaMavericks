@@ -1,6 +1,5 @@
 package screens;
 
-import gameController.Client;
 import view.ClientDetailsView;
 
 import javax.swing.*;
@@ -9,71 +8,78 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ClientDetailsScreen implements ClientDetailsView {
-    private JPanel joinPanel;
+
+    private MainFrame mainFrame;
+    private ClientDetailsController controller;
+    private JPanel panel;
+    private JLabel enterServerName;
     private JTextField serverNameField;
+    private JLabel enterUserName;
     private JButton connect;
     private JButton cancel;
-    private JFrame frame;
-    private final JPanel homePanel;
+    private final JTextField userNameField;
 
-    public ClientDetailsScreen(JFrame frame, JPanel homePanel) {
-        this.frame = frame;
-        this.homePanel = homePanel;
 
-        joinPanel = new JPanel();
-        frame.add(joinPanel);
-        joinPanel.setBackground(Color.black);
-        joinPanel.setLayout(null);
+    public ClientDetailsScreen(MainFrame mainFrame, ClientDetailsController controller) {
 
-        JLabel enterServerName = new JLabel("Enter the Server Name :");
-        joinPanel.add(enterServerName);
+        this.mainFrame = mainFrame;
+        this.controller = controller;
+
+        panel = mainFrame.createPanel();
+
+        enterServerName = new JLabel("Enter the Server Name :");
+        panel.add(enterServerName);
         enterServerName.setSize(300, 150);
         enterServerName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterServerName.setLocation(100, 100);
 
         serverNameField = new JTextField("");
-        joinPanel.add(serverNameField);
+        panel.add(serverNameField);
         serverNameField.setSize(200, 30);
         serverNameField.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
         serverNameField.setLocation(400, 160);
 
-        JLabel enterUserName = new JLabel("Enter the User Name :");
-        joinPanel.add(enterUserName);
+        enterUserName = new JLabel("Enter the User Name :");
+        panel.add(enterUserName);
         enterUserName.setSize(300, 150);
         enterUserName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterUserName.setLocation(100, 200);
 
-        JTextField userNameField = new JTextField("player");
-        joinPanel.add(userNameField);
+        userNameField = new JTextField("player");
+        panel.add(userNameField);
         userNameField.setSize(200, 30);
         userNameField.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
         userNameField.setLocation(400, 260);
 
         connect = new JButton("Connect");
-        joinPanel.add(connect);
+        panel.add(connect);
         connect.setSize(150, 50);
         connect.setLocation(400, 500);
 
         cancel = new JButton("Cancel");
-        joinPanel.add(cancel);
+        panel.add(cancel);
         cancel.setSize(150, 50);
         cancel.setLocation(600, 500);
+
+        addButtonHandlers();
     }
 
-    public void joinGame() {
+    @Override
+    public String getServerName() {
+        return serverNameField.getText();
+    }
+
+    @Override
+    public String getPlayerName() {
+        return userNameField.getText();
+    }
+
+    private void addButtonHandlers() {
+
         connect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                joinPanel.setVisible(false);
-                boolean connectionStatus;
-                connectionStatus = new Client().createClient(serverNameField.getText());
-                if (!connectionStatus) {
-                    joinPanel.setVisible(true);
-                    JOptionPane.showMessageDialog(null, serverNameField.getText() + " server not found");
-                } else {
-                    new JoinGameScreen().display(frame);
-                    JOptionPane.showMessageDialog(null, "Connected to " + serverNameField.getText());
-                }
+                controller.connectToServer();
             }
         });
 
@@ -82,11 +88,11 @@ public class ClientDetailsScreen implements ClientDetailsView {
             public void actionPerformed(ActionEvent e) {
                 int option = JOptionPane.showConfirmDialog(null, "Do you want to really Cancel ?", "", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
-                    joinPanel.setVisible(false);
-                    homePanel.setVisible(true);
+                    controller.disconnect();
                 }
             }
         });
     }
 }
+
 

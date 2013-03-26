@@ -15,8 +15,8 @@ public class HomeController {
         workflow.startServer();
     }
 
-    public void joinGame() {
-        workflow.joinServer();
+    public void getClientDetails() {
+        workflow.getClientDetails();
     }
 
     public void bind(HomeView view) {
