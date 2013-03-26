@@ -5,6 +5,7 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import view.ClientDetailsView;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class ClientDetailsController implements SocketChannelListener {
@@ -32,6 +33,9 @@ public class ClientDetailsController implements SocketChannelListener {
 
     @Override
     public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
+        String connectedMessage =view.getServerName() + " : Server Not Found";
+        JOptionPane.showConfirmDialog(null, connectedMessage, "", JOptionPane.DEFAULT_OPTION);
+        workflow.getClientDetails();
     }
 
     @Override

@@ -12,5 +12,4 @@ public interface Workflow {
     void goBackToHome();
 
     void connectedToServer(SocketChannel channel, String serverName, String playerName);
-
 }

@@ -57,6 +57,7 @@ public class JoinGameController implements SocketChannelListener {
     }
 
     public void start() {
-
+        view.connectedToServer(serverName,playerName);
+        channel.send(new PlayerDetailsMessage(playerName));
     }
 }

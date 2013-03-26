@@ -46,4 +46,5 @@ public class WorkflowManager implements Workflow {
         controller.bind(new JoinGameScreen(mainFrame,controller));
         controller.start();
     }
+
 }

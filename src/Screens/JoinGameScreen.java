@@ -11,6 +11,11 @@ public class JoinGameScreen implements JoinGameView {
     private final MainFrame mainFrame;
     private final JoinGameController controller;
     private final JPanel panel;
+    private final JLabel label;
+    private DefaultListModel<String> players;
+    private JList<String> playerList;
+    private final JButton quit;
+
 
     public JoinGameScreen(MainFrame mainFrame, JoinGameController controller) {
 
@@ -20,20 +25,16 @@ public class JoinGameScreen implements JoinGameView {
         Image image = new ImageIcon(".\\Prototypes\\hdwallpapersbase.com.jpeg").getImage();
         panel = mainFrame.createPanel(image);
 
-        JLabel label = new JLabel("Players Joined");
+        label = new JLabel("Players Joined");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
         label.setSize(250, 150);
         label.setLocation(130, 25);
 
-        DefaultListModel<String> players = new DefaultListModel<String>();
-        players.addElement("Chanakya");
-        players.addElement("Deepthi");
-        players.addElement("Chethan");
-        players.addElement("Raghavendra");
+        players = new DefaultListModel<String>();
 
-        JList<String> playerList = new JList<String>(players);
+        playerList = new JList<String>(players);
         panel.add(playerList);
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
@@ -41,7 +42,7 @@ public class JoinGameScreen implements JoinGameView {
         playerList.setSize(250, 400);
         playerList.setLocation(100, 130);
 
-        JButton quit = new JButton("Quit");
+        quit = new JButton("Quit");
         panel.add(quit);
         quit.setSize(150, 50);
         quit.setLocation(650, 550);
@@ -59,5 +60,15 @@ public class JoinGameScreen implements JoinGameView {
 
     @Override
     public void displayConnectedPlayers(String[] playersConnected) {
+        players.removeAllElements();
+        for (String player : playersConnected) {
+            players.addElement(player);
+        }
+    }
+
+    @Override
+    public void connectedToServer(String serverName, String playerName) {
+        String connectedMessage ="Connected To " + serverName + " as " + playerName;
+        JOptionPane.showConfirmDialog(null, connectedMessage,"", JOptionPane.DEFAULT_OPTION);
     }
 }
