@@ -3,6 +3,7 @@ package screens;
 import view.HomeView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +20,8 @@ public class HomeScreen implements HomeView {
         controller.bind(this);
 
 
-        JPanel panel = mainframe.createPanel();
+        Image image = new ImageIcon(".\\Prototypes\\nice-cool-pics.com.jpeg").getImage();
+        JPanel panel = mainframe.createPanel(image);
 
         startServer = new JButton("Start server");
         panel.add(startServer);

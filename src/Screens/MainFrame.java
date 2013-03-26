@@ -14,9 +14,9 @@ public class MainFrame {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-    public JPanel createPanel() {
+    public JPanel createPanel(Image image) {
         frame.getContentPane().removeAll();
-        PanelImage panel = new PanelImage(new ImageIcon(".\\Prototypes\\nice-cool-pics.com.jpeg").getImage());
+        PanelImage panel = new PanelImage(image);
         panel.setLayout(null);
         //panel.setBackground(Color.BLACK);
         frame.getContentPane().add(panel);

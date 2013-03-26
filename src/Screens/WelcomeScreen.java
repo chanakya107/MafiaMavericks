@@ -19,7 +19,8 @@ public class WelcomeScreen implements WelcomeView {
         this.controller = controller;
         controller.bind(this);
 
-        panel = mainFrame.createPanel();
+        Image image = new ImageIcon(".\\Prototypes\\if.invisionfree.com.png").getImage();
+        panel = mainFrame.createPanel(image);
 
         JButton quit = new JButton("Quit");
         panel.add(quit);

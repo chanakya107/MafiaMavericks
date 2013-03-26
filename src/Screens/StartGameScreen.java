@@ -1,7 +1,5 @@
 package screens;
 
-import channels.server.SocketServer;
-import gameController.Server;
 import view.StartGameView;
 
 import javax.swing.*;
@@ -23,7 +21,8 @@ public class StartGameScreen implements StartGameView {
         this.controller = controller;
         controller.bind(this);
 
-        panel = mainFrame.createPanel();
+        Image image = new ImageIcon(".\\Prototypes\\hdwallpapersbase.com.jpeg").getImage();
+        panel = mainFrame.createPanel(image);
 
         JLabel label = new JLabel("Players Joined");
         panel.add(label);
