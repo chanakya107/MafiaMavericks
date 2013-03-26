@@ -1,4 +1,4 @@
-package channels.Server;
+package channels.server;
 
 import channels.SocketChannel;
 

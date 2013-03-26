@@ -1,6 +1,6 @@
 package screens;
 
-import channels.Messages.ChannelMessage;
+import channels.messages.ChannelMessage;
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import view.JoinGameView;
@@ -37,7 +37,7 @@ public class JoinGameController implements SocketChannelListener {
 
     @Override
     public void onClose(SocketChannel channel, Exception e) {
-        throw new RuntimeException("connection closed",e);
+        throw new RuntimeException("connection closed", e);
     }
 
     @Override

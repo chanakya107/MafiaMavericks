@@ -17,7 +17,8 @@ public class JoinGameScreen implements JoinGameView {
         this.mainFrame = mainFrame;
         this.controller = controller;
 
-        panel = mainFrame.createPanel();
+        Image image = new ImageIcon(".\\Prototypes\\hdwallpapersbase.com.jpeg").getImage();
+        panel = mainFrame.createPanel(image);
 
         JLabel label = new JLabel("Players Joined");
         panel.add(label);

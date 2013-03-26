@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class ClientDetailsScreen implements ClientDetailsView {
 
     private MainFrame mainFrame;
@@ -17,7 +18,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
     private JLabel enterUserName;
     private JButton connect;
     private JButton cancel;
-    private final JTextField userNameField;
+    private JTextField userNameField;
 
 
     public ClientDetailsScreen(MainFrame mainFrame, ClientDetailsController controller) {
@@ -25,10 +26,12 @@ public class ClientDetailsScreen implements ClientDetailsView {
         this.mainFrame = mainFrame;
         this.controller = controller;
 
-        panel = mainFrame.createPanel();
+        Image image = new ImageIcon(".\\Prototypes\\hdwallpapersbase.com.jpeg").getImage();
+        panel = mainFrame.createPanel(image);
 
         enterServerName = new JLabel("Enter the Server Name :");
         panel.add(enterServerName);
+
         enterServerName.setSize(300, 150);
         enterServerName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterServerName.setLocation(100, 100);
@@ -56,6 +59,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         connect.setSize(150, 50);
         connect.setLocation(400, 500);
 
+
         cancel = new JButton("Cancel");
         panel.add(cancel);
         cancel.setSize(150, 50);
@@ -80,6 +84,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.connectToServer();
+
             }
         });
 

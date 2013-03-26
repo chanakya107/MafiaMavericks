@@ -1,6 +1,6 @@
 package screens;
 
-import channels.Messages.ChannelMessage;
+import channels.messages.ChannelMessage;
 
 import java.io.Serializable;
 

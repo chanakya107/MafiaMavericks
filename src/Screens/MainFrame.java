@@ -14,12 +14,14 @@ public class MainFrame {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-    public JPanel createPanel() {
+    public JPanel createPanel(Image image) {
         frame.getContentPane().removeAll();
-        JPanel panel = new JPanel();
+        PanelImage panel = new PanelImage(image);
         panel.setLayout(null);
-        panel.setBackground(Color.BLACK);
+        //panel.setBackground(Color.BLACK);
         frame.getContentPane().add(panel);
+        frame.pack();
+
         return panel;
     }
 }

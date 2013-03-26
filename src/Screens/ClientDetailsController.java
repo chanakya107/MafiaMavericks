@@ -1,6 +1,6 @@
 package screens;
 
-import channels.Messages.ChannelMessage;
+import channels.messages.ChannelMessage;
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import view.ClientDetailsView;

@@ -1,7 +1,7 @@
 package screens;
 
-import channels.Server.SocketServer;
-import channels.Server.SocketServerListener;
+import channels.server.SocketServer;
+import channels.server.SocketServerListener;
 import channels.SocketChannel;
 import view.StartGameView;
 
