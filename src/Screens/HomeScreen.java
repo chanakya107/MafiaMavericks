@@ -16,6 +16,7 @@ public class HomeScreen implements HomeView {
     public HomeScreen(MainFrame mainframe, HomeController controller) {
         this.mainframe = mainframe;
         this.controller = controller;
+        controller.bind(this);
 
 
         JPanel panel = mainframe.createPanel();
@@ -44,8 +45,6 @@ public class HomeScreen implements HomeView {
             @Override
             public void actionPerformed(ActionEvent event) {
                 controller.startServer();
-//                homePanel.setVisible(false);
-//                new StartGameScreen(frame, homePanel).display();
             }
         });
 
@@ -53,8 +52,6 @@ public class HomeScreen implements HomeView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.joinGame();
-//                homePanel.setVisible(false);
-//                new ClientDetailsScreen(frame, homePanel).joinGame();
             }
         });
 

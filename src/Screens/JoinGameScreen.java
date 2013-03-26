@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class JoinGameScreen implements JoinGameView {
-
     public void display(JFrame frame) {
         JPanel joinGame = new JPanel();
         frame.add(joinGame);

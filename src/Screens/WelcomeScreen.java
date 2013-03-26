@@ -9,14 +9,20 @@ import java.awt.event.ActionListener;
 
 public class WelcomeScreen implements WelcomeView {
 
-    public void display(JFrame frame) {
-        JPanel welcomePanel = new JPanel();
-        frame.add(welcomePanel);
-        welcomePanel.setBackground(Color.black);
-        welcomePanel.setLayout(null);
+    private final MainFrame mainFrame;
+    private WelcomeController controller;
+    private final JPanel panel;
+
+    public WelcomeScreen(MainFrame mainFrame, WelcomeController controller) {
+
+        this.mainFrame = mainFrame;
+        this.controller = controller;
+        controller.bind(this);
+
+        panel = mainFrame.createPanel();
 
         JButton quit = new JButton("Quit");
-        welcomePanel.add(quit);
+        panel.add(quit);
         quit.setSize(150, 50);
         quit.setLocation(650, 550);
 
