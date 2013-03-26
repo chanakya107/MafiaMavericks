@@ -26,8 +26,11 @@ public class HomeScreen implements HomeView {
         frame.add(firstPanel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        PanelImage panelImage = new PanelImage(new ImageIcon("D:\\TestCodeForProjectUsage\\Tulips.jpg").getImage());
+        PanelImage panelImage = new PanelImage(new ImageIcon(".\\Prototypes\\nice-cool-pics.com.jpeg").getImage());
         firstPanel.add(panelImage);
+        panelImage.setSize(1000,1000);
+
+
         firstPanel.setBackground(panelImage.getBackground());
         panelImage.setVisible(true);
 
