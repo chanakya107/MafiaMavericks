@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class StartGameScreen implements StartGameView {
 
@@ -15,8 +16,11 @@ public class StartGameScreen implements StartGameView {
     private final JPanel panel;
     private final JButton startGame;
     private final JButton cancel;
+    private final JLabel label;
+    private JList<String> playerList;
+    private DefaultListModel<String> players;
 
-    public StartGameScreen(MainFrame mainFrame,StartGameController controller) {
+    public StartGameScreen(MainFrame mainFrame, StartGameController controller) {
         this.mainFrame = mainFrame;
         this.controller = controller;
         controller.bind(this);
@@ -24,20 +28,16 @@ public class StartGameScreen implements StartGameView {
         Image image = new ImageIcon(".\\Prototypes\\hdwallpapersbase.com.jpeg").getImage();
         panel = mainFrame.createPanel(image);
 
-        JLabel label = new JLabel("Players Joined");
+        label = new JLabel("Players Joined");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
         label.setSize(250, 150);
         label.setLocation(130, 25);
 
-        DefaultListModel<String> players = new DefaultListModel<String>();
-        players.addElement("Chanakya");
-        players.addElement("Deepthi");
-        players.addElement("Chethan");
-        players.addElement("Raghavendra");
+        players = new DefaultListModel<String>();
 
-        JList<String> playerList = new JList<String>(players);
+        playerList = new JList<String>(players);
         panel.add(playerList);
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
@@ -50,7 +50,7 @@ public class StartGameScreen implements StartGameView {
         startGame.setSize(150, 50);
         startGame.setLocation(600, 400);
 
-        cancel= new JButton("Cancel");
+        cancel = new JButton("Cancel");
         panel.add(cancel);
         cancel.setSize(150, 50);
         cancel.setLocation(600, 500);
@@ -78,4 +78,11 @@ public class StartGameScreen implements StartGameView {
         });
     }
 
+    @Override
+    public void updatePlayers(ArrayList<Player> playerList) {
+        players.removeAllElements();
+        for (Player player : playerList) {
+            players.addElement(player.getName());
+        }
+    }
 }

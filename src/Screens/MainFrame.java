@@ -16,9 +16,8 @@ public class MainFrame {
 
     public JPanel createPanel(Image image) {
         frame.getContentPane().removeAll();
-        PanelImage panel = new PanelImage(image);
+        ImagePanel panel = new ImagePanel(image);
         panel.setLayout(null);
-        //panel.setBackground(Color.BLACK);
         frame.getContentPane().add(panel);
         frame.pack();
 

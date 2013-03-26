@@ -1,6 +1,7 @@
 package channels.server;
 
 import channels.SocketChannel;
+import screens.StartGameController;
 
 import java.io.IOException;
 import java.net.ServerSocket;

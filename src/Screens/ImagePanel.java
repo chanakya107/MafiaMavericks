@@ -3,11 +3,11 @@ package screens;
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelImage extends JPanel {
+public class ImagePanel extends JPanel {
 
     private Image img;
 
-    public PanelImage(Image img) {
+    public ImagePanel(Image img) {
         this.img = img;
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
       setPreferredSize(size);
