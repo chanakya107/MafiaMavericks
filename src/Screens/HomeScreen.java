@@ -13,6 +13,8 @@ public class HomeScreen {
     private JButton quit;
 
     public HomeScreen() {
+
+
         frame = new JFrame("Mafia");
         homePanel = new JPanel();
         frame.setVisible(true);
@@ -22,19 +24,25 @@ public class HomeScreen {
         frame.add(homePanel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        PanelImage panelImage = new PanelImage(new ImageIcon("D:\\TestCodeForProjectUsage\\Tulips.jpg").getImage());
+        panelImage.setVisible(true);
+
         startServer = new JButton("Start server");
-        homePanel.add(startServer);
+
+        panelImage.add(startServer);
         startServer.setSize(150, 50);
         startServer.setLocation(100, 300);
 
         joinGame = new JButton("Join Game");
-        homePanel.add(joinGame);
+
+        panelImage.add(joinGame);
         joinGame.setSize(150, 50);
         joinGame.setLocation(100, 400);
 
 
         quit = new JButton("Quit");
-        homePanel.add(quit);
+
+        panelImage.add(quit);
         quit.setSize(150, 50);
         quit.setLocation(100, 500);
     }
