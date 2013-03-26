@@ -5,4 +5,7 @@ public interface Workflow {
 
     void joinServer();
 
+    void startGame();
+
+    void goBackToHome();
 }

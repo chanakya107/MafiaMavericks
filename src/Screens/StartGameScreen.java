@@ -11,22 +11,22 @@ import java.awt.event.ActionListener;
 
 public class StartGameScreen implements StartGameView {
 
-    private JPanel serverPanel;
-    private JButton startGame;
-    private JButton cancel;
-    private JFrame frame;
-    private JPanel homePanel;
 
-    public StartGameScreen(JFrame frame, final JPanel homePanel) {
-        this.frame = frame;
-        this.homePanel = homePanel;
-        serverPanel = new JPanel();
-        frame.add(serverPanel);
-        serverPanel.setBackground(Color.black);
-        serverPanel.setLayout(null);
+    private final MainFrame mainFrame;
+    private final StartGameController controller;
+    private final JPanel panel;
+    private final JButton startGame;
+    private final JButton cancel;
+
+    public StartGameScreen(MainFrame mainFrame,StartGameController controller) {
+        this.mainFrame = mainFrame;
+        this.controller = controller;
+        controller.bind(this);
+
+        panel = mainFrame.createPanel();
 
         JLabel label = new JLabel("Players Joined");
-        serverPanel.add(label);
+        panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
         label.setSize(250, 150);
@@ -39,7 +39,7 @@ public class StartGameScreen implements StartGameView {
         players.addElement("Raghavendra");
 
         JList<String> playerList = new JList<String>(players);
-        serverPanel.add(playerList);
+        panel.add(playerList);
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
@@ -47,24 +47,24 @@ public class StartGameScreen implements StartGameView {
         playerList.setLocation(100, 130);
 
         startGame = new JButton("Start Game");
-        serverPanel.add(startGame);
+        panel.add(startGame);
         startGame.setSize(150, 50);
         startGame.setLocation(600, 400);
 
-        cancel = new JButton("Cancel");
-        serverPanel.add(cancel);
+        cancel= new JButton("Cancel");
+        panel.add(cancel);
         cancel.setSize(150, 50);
         cancel.setLocation(600, 500);
+
+        addButtonHandlers();
     }
 
-    public void display() {
-        final SocketServer server = new Server().startServer();
+    private void addButtonHandlers() {
 
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                serverPanel.setVisible(false);
-                new WelcomeScreen().display(frame);
+                controller.startGame();
             }
         });
 
@@ -73,9 +73,7 @@ public class StartGameScreen implements StartGameView {
             public void actionPerformed(ActionEvent e) {
                 int option = JOptionPane.showConfirmDialog(null, "Do you really want to Cancel ?", "", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
-                    server.stop();
-                    serverPanel.setVisible(false);
-                    homePanel.setVisible(true);
+                    controller.stopServer();
                 }
             }
         });
