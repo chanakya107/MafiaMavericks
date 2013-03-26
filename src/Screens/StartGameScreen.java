@@ -1,6 +1,6 @@
 package screens;
 
-import channels.Server.SocketServer;
+import channels.server.SocketServer;
 import gameController.Server;
 import view.StartGameView;
 

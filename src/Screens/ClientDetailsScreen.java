@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class ClientDetailsScreen implements ClientDetailsView {
     private JPanel joinPanel;
     private JTextField serverNameField;
@@ -25,7 +26,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         joinPanel.setBackground(Color.black);
         joinPanel.setLayout(null);
 
-        JLabel enterServerName = new JLabel("Enter the Server Name :");
+        JLabel enterServerName = new JLabel("Enter the server Name :");
         joinPanel.add(enterServerName);
         enterServerName.setSize(300, 150);
         enterServerName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));

@@ -3,42 +3,22 @@ package screens;
 import view.HomeView;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HomeScreen implements HomeView {
-    private final screens.MainFrame mainframe;
-    private final screens.HomeController controller;
+    private final MainFrame mainframe;
+    private final HomeController controller;
     private final JButton startServer;
     private final JButton joinGame;
     private final JButton quit;
 
-    public HomeScreen(screens.MainFrame mainframe, screens.HomeController controller) {
+    public HomeScreen(MainFrame mainframe, HomeController controller) {
         this.mainframe = mainframe;
         this.controller = controller;
 
 
-
-        frame = new JFrame("Mafia");
-        firstPanel = new JPanel();
-        frame.setVisible(true);
-        firstPanel.setBackground(Color.black);
-        firstPanel.setLayout(null);
-        frame.setBounds(500, 300, 900, 700);
-        frame.add(firstPanel);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        screens.PanelImage panelImage = new screens.PanelImage(new ImageIcon(".\\Prototypes\\nice-cool-pics.com.jpeg").getImage());
-        firstPanel.add(panelImage);
-        panelImage.setSize(1000,1000);
-
-
-        firstPanel.setBackground(panelImage.getBackground());
-        panelImage.setVisible(true);
-=======
         JPanel panel = mainframe.createPanel();
->>>>>>> 466107b08c82a3186208759c4bcd4679d2f6a97a
 
         startServer = new JButton("Start server");
         panel.add(startServer);

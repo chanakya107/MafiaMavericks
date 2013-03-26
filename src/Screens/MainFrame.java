@@ -16,10 +16,12 @@ public class MainFrame {
 
     public JPanel createPanel() {
         frame.getContentPane().removeAll();
-        JPanel panel = new JPanel();
+        PanelImage panel = new PanelImage(new ImageIcon(".\\Prototypes\\nice-cool-pics.com.jpeg").getImage());
         panel.setLayout(null);
-        panel.setBackground(Color.BLACK);
+        //panel.setBackground(Color.BLACK);
         frame.getContentPane().add(panel);
+        frame.pack();
+
         return panel;
     }
 }

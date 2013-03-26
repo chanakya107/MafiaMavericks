@@ -1,6 +1,6 @@
 package channels;
 
-import channels.Messages.ChannelMessage;
+import channels.messages.ChannelMessage;
 
 import java.io.IOException;
 

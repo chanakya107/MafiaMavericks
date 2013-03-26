@@ -9,8 +9,8 @@ public class PanelImage extends JPanel {
 
     public PanelImage(Image img) {
         this.img = img;
-        setLayout(null);
-
+        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+      setPreferredSize(size);
     }
 
     public void paintComponent(Graphics g) {

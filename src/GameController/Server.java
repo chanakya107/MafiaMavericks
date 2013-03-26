@@ -1,7 +1,7 @@
 package gameController;
 
-import channels.Server.SocketServer;
-import channels.Server.SocketServerListener;
+import channels.server.SocketServer;
+import channels.server.SocketServerListener;
 import channels.SocketChannel;
 
 public class Server implements SocketServerListener{
