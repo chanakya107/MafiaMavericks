@@ -15,11 +15,11 @@ public class StartServerScreen implements StartServerView {
     private JButton startGame;
     private JButton cancel;
     private JFrame frame;
-    private JPanel firstPanel;
+    private JPanel homePanel;
 
-    public StartServerScreen(JFrame frame, final JPanel firstPanel) {
+    public StartServerScreen(JFrame frame, final JPanel homePanel) {
         this.frame = frame;
-        this.firstPanel = firstPanel;
+        this.homePanel = homePanel;
         serverPanel = new JPanel();
         frame.add(serverPanel);
         serverPanel.setBackground(Color.black);
@@ -63,31 +63,22 @@ public class StartServerScreen implements StartServerView {
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                onStartGame();
+                serverPanel.setVisible(false);
+                new WelcomeScreen().display(frame);
             }
         });
 
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                onCancel(server);
+                int option = JOptionPane.showConfirmDialog(null, "Do you really want to Cancel ?", "", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                    server.stop();
+                    serverPanel.setVisible(false);
+                    homePanel.setVisible(true);
+                }
             }
         });
     }
 
-    @Override
-    public void onCancel(SocketServer server) {
-        int option = JOptionPane.showConfirmDialog(null, "Do you really want to Cancel ?", "", JOptionPane.YES_NO_OPTION);
-        if (option == JOptionPane.YES_OPTION) {
-            server.stop();
-            serverPanel.setVisible(false);
-            firstPanel.setVisible(true);
-        }
-    }
-
-    @Override
-    public void onStartGame() {
-        serverPanel.setVisible(false);
-        new WelcomeScreen().display(frame);
-    }
 }
