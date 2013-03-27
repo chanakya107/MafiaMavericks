@@ -90,9 +90,14 @@ public class StartGameScreen implements StartGameView {
     }
 
     @Override
-    public void removePlayer(Player player) {
+    public void removePlayer(ArrayList<Player> playerList, String name) {
+        players.removeAllElements();
+        for (Player player : playerList)
+        {
+            if(!player.getName().equals(name))
+            players.addElement(player.getName());
+        }
 
     }
-
 
 }

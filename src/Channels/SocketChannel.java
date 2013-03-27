@@ -11,10 +11,10 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 
 public class SocketChannel {
+    final private int SOCKET_TIMEOUT = 1000;
     Socket socket;
     private SocketChannelListener channelListener;
     private Thread thread;
-    final private int SOCKET_TIMEOUT = 1000;
     private boolean stopWaiting;
 
 
@@ -22,7 +22,7 @@ public class SocketChannel {
         this.socket = socket;
     }
 
-    public static void connectTo(final String serverAddress, final int serverPort, final SocketChannelListener listener) {
+    public static void connectTo(final String serverAddress, final int serverPort, final ConnectionListener listener) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -31,7 +31,7 @@ public class SocketChannel {
         }).start();
     }
 
-    private static void connectSocket(String serverAddress, int serverPort, SocketChannelListener listener) {
+    private static void connectSocket(String serverAddress, int serverPort, ConnectionListener listener) {
         try {
             Socket clientSocket = new Socket(serverAddress, serverPort);
             listener.onConnectionEstablished(new SocketChannel(clientSocket));

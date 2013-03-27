@@ -1,3 +1,4 @@
 package channels.messages;
 
-public class ByeMessage extends ChannelMessage implements java.io.Serializable{}
+public class ByeMessage extends ChannelMessage implements java.io.Serializable {
+}

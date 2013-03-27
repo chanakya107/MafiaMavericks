@@ -8,5 +8,5 @@ public interface StartGameView {
 
     void addPlayers(ArrayList<Player> playerList);
 
-    void removePlayer(Player player);
+    void removePlayer(ArrayList<Player> players, String name);
 }

@@ -6,4 +6,7 @@ public interface JoinGameView {
     void connectedToServer(String serverName, String playerName);
 
     void serverDisconnected(String serverName);
+
+    void gameStarted();
+
 }

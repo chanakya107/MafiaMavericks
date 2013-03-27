@@ -3,9 +3,8 @@ package controllers.server;
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
-import controllers.server.God;
 import messages.PlayerDetailsMessage;
-import messages.playerDisconnectedMessage;
+import messages.PlayerDisconnectedMessage;
 
 import java.io.IOException;
 
@@ -23,14 +22,6 @@ public class Player implements SocketChannelListener {
     }
 
     @Override
-    public void onConnectionEstablished(SocketChannel channel) {
-    }
-
-    @Override
-    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
-    }
-
-    @Override
     public void onClose(SocketChannel channel, Exception e) {
     }
 
@@ -45,8 +36,10 @@ public class Player implements SocketChannelListener {
             name = playerDetailsMessage.getPlayerName();
             god.playersJoined(this);
         }
-        else if(message instanceof playerDisconnectedMessage)
+        else if(message instanceof PlayerDisconnectedMessage)
         {
+            PlayerDisconnectedMessage playerDisconnectedMessage =  (PlayerDisconnectedMessage) message;
+            name = playerDisconnectedMessage.getPlayerName();
            god.playerDisconnected(this);
         }
     }

@@ -1,5 +1,6 @@
 package controllers.client;
 
+import channels.ConnectionListener;
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
@@ -9,7 +10,7 @@ import view.ClientDetailsView;
 import javax.swing.*;
 import java.io.IOException;
 
-public class ClientDetailsController implements SocketChannelListener {
+public class ClientDetailsController implements ConnectionListener {
     private Workflow workflow;
     private ClientDetailsView view;
 
@@ -44,23 +45,6 @@ public class ClientDetailsController implements SocketChannelListener {
         String connectedMessage = view.getServerName() + " : Server Not Found";
         JOptionPane.showConfirmDialog(null, connectedMessage, "", JOptionPane.DEFAULT_OPTION);
         workflow.getClientDetails();
-    }
-
-    @Override
-    public void onClose(SocketChannel channel, Exception e) {
-    }
-
-    @Override
-    public void onSendFailed(SocketChannel channel, IOException e, ChannelMessage message) {
-    }
-
-    @Override
-    public void onNewMessageArrived(SocketChannel channel, ChannelMessage message) {
-
-    }
-
-    @Override
-    public void onMessageReadError(SocketChannel channel, Exception e) {
     }
 
     public void disconnect() {
