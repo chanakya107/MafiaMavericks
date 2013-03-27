@@ -4,9 +4,9 @@ import controllers.server.Player;
 
 import java.util.ArrayList;
 
-public interface StartGameView {
+public interface WaitForPlayersView {
 
     void addPlayers(ArrayList<Player> playerList);
 
-    void removePlayer(Player player);
+    void removePlayer(ArrayList<Player> players, String name);
 }

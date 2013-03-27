@@ -1,26 +1,25 @@
 package controllers.server;
 
+import channels.ConnectionListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
-import controllers.server.God;
-import controllers.server.Player;
+import messages.GameStartedMessage;
 import messages.PlayerConnectedMessage;
 import channels.server.SocketServer;
-import channels.server.SocketServerListener;
 import channels.SocketChannel;
+import messages.PlayerDisconnectedMessage;
 import messages.ServerDisconnectedMessage;
-import messages.playerDisconnectedMessage;
-import view.StartGameView;
+import view.WaitForPlayersView;
 
 import java.util.ArrayList;
 
-public class StartGameController implements SocketServerListener, God {
+public class WaitForPlayersController implements God, ConnectionListener {
     private Workflow workflow;
-    private StartGameView view;
+    private WaitForPlayersView view;
     SocketServer server = new SocketServer(1254,this);
     private ArrayList<Player> players = new ArrayList<Player>();
 
-    public StartGameController(Workflow workflow) {
+    public WaitForPlayersController(Workflow workflow) {
 
         this.workflow = workflow;
     }
@@ -29,11 +28,12 @@ public class StartGameController implements SocketServerListener, God {
         server.start();
     }
 
-    public void bind(StartGameView view) {
+    public void bind(WaitForPlayersView view) {
         this.view = view;
     }
 
     public void startGame() {
+        sendMessage(new GameStartedMessage());
         workflow.startGame();
     }
 
@@ -44,12 +44,12 @@ public class StartGameController implements SocketServerListener, God {
     }
 
     @Override
-    public void onError(Exception e) {
+    public void onConnectionEstablished(SocketChannel channel) {
+        players.add(new Player(channel, this));
     }
 
     @Override
-    public void onConnectionEstablished(SocketChannel channel) {
-        players.add(new Player(channel, this));
+    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
     }
 
     @Override
@@ -60,16 +60,8 @@ public class StartGameController implements SocketServerListener, God {
 
     @Override
     public void playerDisconnected(Player player) {
-//        for(int i = 0; i<players.size();i ++)
-//        {
-//            if(players..equals(player))
-//            {
-//                players.remove(i);
-//            }
-//        }
-        players.remove(player);
-        view.addPlayers(players);
-        sendMessage(new playerDisconnectedMessage());
+        view.removePlayer(players, player.getName());
+        sendMessage(new PlayerDisconnectedMessage(player.getName()));
     }
 
     private void sendMessage(ChannelMessage message) {

@@ -55,6 +55,7 @@ public class JoinGameScreen implements JoinGameView {
                 int option = JOptionPane.showConfirmDialog(null, "Do you want to really Disconnect ?", "", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
                     controller.disconnectingFromServer();
+
                 }
             }
         });
@@ -79,5 +80,10 @@ public class JoinGameScreen implements JoinGameView {
     public void serverDisconnected(String serverName) {
         JOptionPane.showConfirmDialog(null, "Connection to server : " + serverName + " is lost", "", JOptionPane.DEFAULT_OPTION);
         controller.goToHome();
+    }
+
+    @Override
+    public void gameStarted() {
+        controller.gameStarted();
     }
 }

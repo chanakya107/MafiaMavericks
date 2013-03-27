@@ -5,13 +5,13 @@ import controllers.*;
 import controllers.client.ClientDetailsController;
 import controllers.client.JoinGameController;
 import controllers.client.WelcomeController;
-import controllers.server.StartGameController;
+import controllers.server.WaitForPlayersController;
 import screens.*;
 import screens.client.ClientDetailsScreen;
 import screens.client.JoinGameScreen;
 import screens.client.WelcomeScreen;
 import screens.controls.MainFrame;
-import screens.server.StartGameScreen;
+import screens.server.WaitForPlayersScreen;
 
 public class WorkflowManager implements Workflow {
     private MainFrame mainFrame;
@@ -25,8 +25,8 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void startServer() {
-        StartGameController controller = new StartGameController(this);
-        controller.bind(new StartGameScreen(mainFrame,controller));
+        WaitForPlayersController controller = new WaitForPlayersController(this);
+        controller.bind(new WaitForPlayersScreen(mainFrame,controller));
         controller.start();
     }
 

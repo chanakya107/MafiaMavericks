@@ -4,5 +4,5 @@ import channels.messages.ChannelMessage;
 
 import java.io.Serializable;
 
-public class playerDisconnectedMessage extends ChannelMessage implements Serializable {
+public class GameStartedMessage extends ChannelMessage implements Serializable {
 }

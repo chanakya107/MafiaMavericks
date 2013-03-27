@@ -4,10 +4,7 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
-import messages.PlayerConnectedMessage;
-import messages.PlayerDetailsMessage;
-import messages.ServerDisconnectedMessage;
-import messages.playerDisconnectedMessage;
+import messages.*;
 import view.JoinGameView;
 
 import java.io.IOException;
@@ -32,13 +29,6 @@ public class JoinGameController implements SocketChannelListener {
         this.view = view;
     }
 
-    @Override
-    public void onConnectionEstablished(SocketChannel channel) {
-    }
-
-    @Override
-    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
-    }
 
     @Override
     public void onClose(SocketChannel channel, Exception e) {
@@ -57,6 +47,8 @@ public class JoinGameController implements SocketChannelListener {
         } else if (message instanceof ServerDisconnectedMessage) {
             view.serverDisconnected(serverName);
             channel.stop();
+        } else if (message instanceof GameStartedMessage) {
+            view.gameStarted();
         }
     }
 
@@ -74,8 +66,12 @@ public class JoinGameController implements SocketChannelListener {
     }
 
     public void disconnectingFromServer() {
-        channel.send(new playerDisconnectedMessage());
+        channel.send(new PlayerDisconnectedMessage(playerName));
         channel.stop();
         workflow.getClientDetails();
+    }
+
+    public void gameStarted() {
+        workflow.startGame();
     }
 }

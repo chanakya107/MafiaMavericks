@@ -1,9 +1,9 @@
 package screens.server;
 
 import controllers.server.Player;
-import controllers.server.StartGameController;
+import controllers.server.WaitForPlayersController;
 import screens.controls.MainFrame;
-import view.StartGameView;
+import view.WaitForPlayersView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,11 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class StartGameScreen implements StartGameView {
+public class WaitForPlayersScreen implements WaitForPlayersView {
 
 
     private final MainFrame mainFrame;
-    private final StartGameController controller;
+    private final WaitForPlayersController controller;
     private final JPanel panel;
     private final JButton startGame;
     private final JButton stopServer;
@@ -23,7 +23,7 @@ public class StartGameScreen implements StartGameView {
     private JList<String> playerList;
     private DefaultListModel<String> players;
 
-    public StartGameScreen(MainFrame mainFrame, StartGameController controller) {
+    public WaitForPlayersScreen(MainFrame mainFrame, WaitForPlayersController controller) {
         this.mainFrame = mainFrame;
         this.controller = controller;
         controller.bind(this);
@@ -90,9 +90,14 @@ public class StartGameScreen implements StartGameView {
     }
 
     @Override
-    public void removePlayer(Player player) {
+    public void removePlayer(ArrayList<Player> playerList, String name) {
+        players.removeAllElements();
+        for (Player player : playerList)
+        {
+            if(!player.getName().equals(name))
+            players.addElement(player.getName());
+        }
 
     }
-
 
 }
