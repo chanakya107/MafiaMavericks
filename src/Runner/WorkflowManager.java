@@ -3,13 +3,15 @@ package runner;
 import channels.SocketChannel;
 import controllers.*;
 import controllers.client.ClientDetailsController;
-import controllers.client.JoinGameController;
 import controllers.client.WelcomeController;
+import controllers.server.GameStartedController;
+import controllers.client.JoinGameController;
 import controllers.server.WaitForPlayersController;
 import screens.*;
 import screens.client.ClientDetailsScreen;
 import screens.client.JoinGameScreen;
 import screens.client.WelcomeScreen;
+import screens.server.GameStartedScreen;
 import screens.controls.MainFrame;
 import screens.server.WaitForPlayersScreen;
 
@@ -39,8 +41,8 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void startGame() {
-        WelcomeController controller = new WelcomeController(this);
-        controller.bind(new WelcomeScreen(mainFrame,controller));
+        GameStartedController controller = new GameStartedController(this);
+        controller.bind(new GameStartedScreen(mainFrame,controller));
         controller.start();
     }
 
@@ -55,6 +57,13 @@ public class WorkflowManager implements Workflow {
     public void connectedToServer(SocketChannel channel, String serverName, String playerName) {
         JoinGameController controller = new JoinGameController(this,channel,serverName,playerName);
         controller.bind(new JoinGameScreen(mainFrame,controller));
+        controller.start();
+    }
+
+    @Override
+    public void welcomePlayers(SocketChannel channel) {
+        WelcomeController controller = new WelcomeController(this,channel);
+        controller.bind(new WelcomeScreen(mainFrame,controller));
         controller.start();
     }
 

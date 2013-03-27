@@ -2,7 +2,7 @@ package screens.client;
 
 import controllers.client.JoinGameController;
 import screens.controls.MainFrame;
-import view.JoinGameView;
+import view.client.JoinGameView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +55,6 @@ public class JoinGameScreen implements JoinGameView {
                 int option = JOptionPane.showConfirmDialog(null, "Do you want to really Disconnect ?", "", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
                     controller.disconnectingFromServer();
-
                 }
             }
         });

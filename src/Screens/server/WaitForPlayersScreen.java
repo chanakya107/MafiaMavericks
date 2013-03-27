@@ -3,7 +3,7 @@ package screens.server;
 import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
 import screens.controls.MainFrame;
-import view.WaitForPlayersView;
+import view.server.WaitForPlayersView;
 
 import javax.swing.*;
 import java.awt.*;

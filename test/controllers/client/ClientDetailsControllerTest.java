@@ -3,7 +3,7 @@ package controllers.client;
 import controllers.ConnectionFactory;
 import controllers.Workflow;
 import org.junit.Test;
-import view.ClientDetailsView;
+import view.client.ClientDetailsView;
 
 import static org.mockito.Mockito.*;
 

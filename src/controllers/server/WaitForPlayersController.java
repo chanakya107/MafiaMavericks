@@ -9,7 +9,7 @@ import channels.server.SocketServer;
 import channels.SocketChannel;
 import messages.PlayerDisconnectedMessage;
 import messages.ServerDisconnectedMessage;
-import view.WaitForPlayersView;
+import view.server.WaitForPlayersView;
 
 import java.util.ArrayList;
 
