@@ -5,7 +5,7 @@ import channels.SocketChannel;
 public interface Workflow {
     void startServer();
 
-    void getClientDetails();
+    void getGameDetails();
 
     void startGame();
 
