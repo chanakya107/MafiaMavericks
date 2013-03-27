@@ -3,6 +3,7 @@ package controllers.client;
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
+import controllers.ConnectionFactory;
 import controllers.Workflow;
 import view.ClientDetailsView;
 
@@ -12,10 +13,13 @@ import java.io.IOException;
 public class ClientDetailsController implements SocketChannelListener {
     private Workflow workflow;
     private ClientDetailsView view;
+    private ConnectionFactory connectionFactory;
 
-    public ClientDetailsController(Workflow workflow) {
+    public ClientDetailsController(Workflow workflow, ConnectionFactory connectionFactory) {
 
         this.workflow = workflow;
+
+        this.connectionFactory = connectionFactory;
     }
 
     public void bind(ClientDetailsView view) {
@@ -24,7 +28,7 @@ public class ClientDetailsController implements SocketChannelListener {
     }
 
     public void connectToServer() {
-        SocketChannel.connectTo(view.getServerName(), 1254, this);
+        connectionFactory.connectToServer(view.getServerName(), 1254, this);
     }
 
     @Override

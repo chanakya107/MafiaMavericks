@@ -32,7 +32,7 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void getClientDetails() {
-        ClientDetailsController controller = new ClientDetailsController(this);
+        ClientDetailsController controller = new ClientDetailsController(this, new ConnectionFactory());
         controller.bind(new ClientDetailsScreen(mainFrame,controller));
 
     }
