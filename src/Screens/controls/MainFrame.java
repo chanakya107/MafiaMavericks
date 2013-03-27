@@ -12,8 +12,9 @@ public class MainFrame {
         frame = new JFrame("Mafia");
         frame.setVisible(true);
         frame.setBackground(Color.black);
-        frame.setBounds(500, 300, 900, 700);
+        frame.setBounds(new Rectangle(1080,1920));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLocation(300,0);
     }
 
     public JPanel createPanel(Image image) {
