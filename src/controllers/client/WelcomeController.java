@@ -1,5 +1,6 @@
-package screens;
+package controllers.client;
 
+import controllers.Workflow;
 import view.WelcomeView;
 
 public class WelcomeController {

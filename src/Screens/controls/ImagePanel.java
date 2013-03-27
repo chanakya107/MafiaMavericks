@@ -1,4 +1,4 @@
-package screens;
+package screens.controls;
 
 import javax.swing.*;
 import java.awt.*;

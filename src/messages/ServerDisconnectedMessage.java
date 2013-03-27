@@ -1,4 +1,4 @@
-package screens;
+package messages;
 
 import channels.messages.ChannelMessage;
 

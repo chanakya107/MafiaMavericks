@@ -1,6 +1,17 @@
-package screens;
+package runner;
 
 import channels.SocketChannel;
+import controllers.*;
+import controllers.client.ClientDetailsController;
+import controllers.client.JoinGameController;
+import controllers.client.WelcomeController;
+import controllers.server.StartGameController;
+import screens.*;
+import screens.client.ClientDetailsScreen;
+import screens.client.JoinGameScreen;
+import screens.client.WelcomeScreen;
+import screens.controls.MainFrame;
+import screens.server.StartGameScreen;
 
 public class WorkflowManager implements Workflow {
     private MainFrame mainFrame;

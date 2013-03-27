@@ -1,5 +1,7 @@
-package screens;
+package screens.client;
 
+import controllers.client.JoinGameController;
+import screens.controls.MainFrame;
 import view.JoinGameView;
 
 import javax.swing.*;
@@ -14,10 +16,10 @@ public class JoinGameScreen implements JoinGameView {
     private final JLabel label;
     private DefaultListModel<String> players;
     private JList<String> playerList;
-    private final JButton quit;
+    private final JButton disconnect;
 
 
-    public JoinGameScreen(MainFrame mainFrame, JoinGameController controller) {
+    public JoinGameScreen(MainFrame mainFrame, final JoinGameController controller) {
 
         this.mainFrame = mainFrame;
         this.controller = controller;
@@ -42,17 +44,17 @@ public class JoinGameScreen implements JoinGameView {
         playerList.setSize(250, 400);
         playerList.setLocation(100, 130);
 
-        quit = new JButton("Quit");
-        panel.add(quit);
-        quit.setSize(150, 50);
-        quit.setLocation(650, 550);
+        disconnect = new JButton("Disconnect");
+        panel.add(disconnect);
+        disconnect.setSize(150, 50);
+        disconnect.setLocation(650, 550);
 
-        quit.addActionListener(new ActionListener() {
+        disconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Quit ?", "", JOptionPane.YES_NO_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Disconnect ?", "", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
-                    System.exit(0);
+                    controller.disconnectingFromServer();
                 }
             }
         });
@@ -62,19 +64,20 @@ public class JoinGameScreen implements JoinGameView {
     public void displayConnectedPlayers(String[] playersConnected) {
         players.removeAllElements();
         for (String player : playersConnected) {
-            players.addElement(player);
+            if (!(player.equals("null")))
+                players.addElement(player);
         }
     }
 
     @Override
     public void connectedToServer(String serverName, String playerName) {
-        String connectedMessage ="Connected To " + serverName + " as " + playerName;
-        JOptionPane.showConfirmDialog(null, connectedMessage,"", JOptionPane.DEFAULT_OPTION);
+        String connectedMessage = "Connected To " + serverName + " as " + playerName;
+        JOptionPane.showConfirmDialog(null, connectedMessage, "", JOptionPane.DEFAULT_OPTION);
     }
 
     @Override
     public void serverDisconnected(String serverName) {
-        JOptionPane.showConfirmDialog(null, "Connection to server : "+serverName+ " is lost","", JOptionPane.DEFAULT_OPTION);
+        JOptionPane.showConfirmDialog(null, "Connection to server : " + serverName + " is lost", "", JOptionPane.DEFAULT_OPTION);
         controller.goToHome();
     }
 }

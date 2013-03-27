@@ -1,10 +1,13 @@
-package screens;
+package controllers.client;
 
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
+import controllers.Workflow;
 import messages.PlayerConnectedMessage;
 import messages.PlayerDetailsMessage;
+import messages.ServerDisconnectedMessage;
+import messages.playerDisconnectedMessage;
 import view.JoinGameView;
 
 import java.io.IOException;
@@ -68,5 +71,11 @@ public class JoinGameController implements SocketChannelListener {
 
     public void goToHome() {
         workflow.goBackToHome();
+    }
+
+    public void disconnectingFromServer() {
+        channel.send(new playerDisconnectedMessage());
+        channel.stop();
+        workflow.getClientDetails();
     }
 }

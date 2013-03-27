@@ -1,5 +1,7 @@
-package screens;
+package screens.client;
 
+import controllers.client.WelcomeController;
+import screens.controls.MainFrame;
 import view.WelcomeView;
 
 import javax.swing.*;

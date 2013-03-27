@@ -1,5 +1,8 @@
-package screens;
+package screens.server;
 
+import controllers.server.Player;
+import controllers.server.StartGameController;
+import screens.controls.MainFrame;
 import view.StartGameView;
 
 import javax.swing.*;
@@ -15,7 +18,7 @@ public class StartGameScreen implements StartGameView {
     private final StartGameController controller;
     private final JPanel panel;
     private final JButton startGame;
-    private final JButton cancel;
+    private final JButton stopServer;
     private final JLabel label;
     private JList<String> playerList;
     private DefaultListModel<String> players;
@@ -50,10 +53,10 @@ public class StartGameScreen implements StartGameView {
         startGame.setSize(150, 50);
         startGame.setLocation(600, 400);
 
-        cancel = new JButton("Cancel");
-        panel.add(cancel);
-        cancel.setSize(150, 50);
-        cancel.setLocation(600, 500);
+        stopServer = new JButton("Stop server");
+        panel.add(stopServer);
+        stopServer.setSize(150, 50);
+        stopServer.setLocation(600, 500);
 
         addButtonHandlers();
     }
@@ -67,7 +70,7 @@ public class StartGameScreen implements StartGameView {
             }
         });
 
-        cancel.addActionListener(new ActionListener() {
+        stopServer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int option = JOptionPane.showConfirmDialog(null, "Do you really want to Cancel ?", "", JOptionPane.YES_NO_OPTION);
@@ -79,11 +82,16 @@ public class StartGameScreen implements StartGameView {
     }
 
     @Override
-    public void updatePlayers(ArrayList<Player> playerList) {
+    public void addPlayers(ArrayList<Player> playerList) {
         players.removeAllElements();
         for (Player player : playerList) {
             players.addElement(player.getName());
         }
+    }
+
+    @Override
+    public void removePlayer(Player player) {
+
     }
 
 
