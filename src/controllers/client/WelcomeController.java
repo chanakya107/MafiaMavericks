@@ -2,7 +2,6 @@ package controllers.client;
 
 import channels.SocketChannel;
 import controllers.Workflow;
-import messages.PlayerDisconnectedMessage;
 import view.client.WelcomeView;
 
 public class WelcomeController {
@@ -26,6 +25,6 @@ public class WelcomeController {
 
     public void disconnectingFromServer() {
         channel.stop();
-        workflow.getClientDetails();
+        workflow.getGameDetails();
     }
 }
