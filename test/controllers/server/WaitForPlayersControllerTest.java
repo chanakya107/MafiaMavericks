@@ -2,7 +2,7 @@ package controllers.server;
 
 import controllers.Workflow;
 import org.junit.Test;
-import view.WaitForPlayersView;
+import view.server.WaitForPlayersView;
 
 import java.util.ArrayList;
 

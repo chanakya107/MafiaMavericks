@@ -5,7 +5,7 @@ import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
 import messages.*;
-import view.JoinGameView;
+import view.client.JoinGameView;
 
 import java.io.IOException;
 
@@ -74,6 +74,6 @@ public class JoinGameController implements SocketChannelListener {
     }
 
     public void gameStarted() {
-        workflow.startGame();
+        workflow.welcomePlayers(channel);
     }
 }

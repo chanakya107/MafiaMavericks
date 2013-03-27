@@ -1,4 +1,4 @@
-package view;
+package view.client;
 
 public interface JoinGameView {
     void displayConnectedPlayers(String[] playersConnected);

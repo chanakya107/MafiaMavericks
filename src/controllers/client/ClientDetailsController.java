@@ -4,7 +4,7 @@ import channels.ConnectionListener;
 import channels.SocketChannel;
 import controllers.ConnectionFactory;
 import controllers.Workflow;
-import view.ClientDetailsView;
+import view.client.ClientDetailsView;
 
 import javax.swing.*;
 
