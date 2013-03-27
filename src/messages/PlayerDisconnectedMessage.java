@@ -5,13 +5,15 @@ import channels.messages.ChannelMessage;
 import java.io.Serializable;
 
 public class PlayerDisconnectedMessage extends ChannelMessage implements Serializable {
-    private String playerName;
+    private final String[] playerNameList;
 
-    public PlayerDisconnectedMessage(String playerName) {
-        this.playerName = playerName;
+    public PlayerDisconnectedMessage(String playerNames) {
+        super();
+        this.playerNameList = playerNames.split("\n");
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public String[] getPlayersConnected() {
+        return playerNameList;
     }
+
 }

@@ -6,7 +6,5 @@ import java.util.ArrayList;
 
 public interface WaitForPlayersView {
 
-    void addPlayers(ArrayList<Player> playerList);
-
-    void removePlayer(ArrayList<Player> players, String name);
+    void updatePlayers(ArrayList<Player> playerList);
 }

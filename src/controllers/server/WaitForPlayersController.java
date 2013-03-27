@@ -1,12 +1,12 @@
 package controllers.server;
 
 import channels.ConnectionListener;
+import channels.SocketChannel;
 import channels.messages.ChannelMessage;
+import channels.server.SocketServer;
 import controllers.Workflow;
 import messages.GameStartedMessage;
 import messages.PlayerConnectedMessage;
-import channels.server.SocketServer;
-import channels.SocketChannel;
 import messages.PlayerDisconnectedMessage;
 import messages.ServerDisconnectedMessage;
 import view.WaitForPlayersView;
@@ -54,14 +54,15 @@ public class WaitForPlayersController implements God, ConnectionListener {
 
     @Override
     public void playersJoined(Player player) {
-        view.addPlayers(players);
+        view.updatePlayers(players);
         sendMessage(new PlayerConnectedMessage(getPlayerNames()));
     }
 
     @Override
     public void playerDisconnected(Player player) {
-        view.removePlayer(players, player.getName());
-        sendMessage(new PlayerDisconnectedMessage(player.getName()));
+        players.remove(player);
+        view.updatePlayers(players);
+        sendMessage(new PlayerDisconnectedMessage(getPlayerNames()));
     }
 
     private void sendMessage(ChannelMessage message) {

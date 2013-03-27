@@ -65,6 +65,7 @@ public class JoinGameScreen implements JoinGameView {
     public void displayConnectedPlayers(String[] playersConnected) {
         players.removeAllElements();
         for (String player : playersConnected) {
+//            todo: chethan : remove the null here
             if (!(player.equals("null")))
                 players.addElement(player);
         }
