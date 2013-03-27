@@ -45,7 +45,7 @@ public class ClientDetailsController implements ConnectionListener {
     private void serverNotFound() {
         String connectedMessage = view.getServerName() + " : Server Not Found";
         JOptionPane.showConfirmDialog(null, connectedMessage, "", JOptionPane.DEFAULT_OPTION);
-        workflow.getClientDetails();
+        workflow.getGameDetails();
     }
 
     public void disconnect() {

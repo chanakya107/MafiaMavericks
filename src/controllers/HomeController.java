@@ -16,7 +16,7 @@ public class HomeController {
     }
 
     public void getClientDetails() {
-        workflow.getClientDetails();
+        workflow.getGameDetails();
     }
 
     public void bind(HomeView view) {
