@@ -4,10 +4,10 @@ import channels.messages.ChannelMessage;
 
 import java.io.Serializable;
 
-public class playerDisconnectedMessage extends ChannelMessage implements Serializable {
+public class PlayerDisconnectedMessage extends ChannelMessage implements Serializable {
     private String playerName;
 
-    public playerDisconnectedMessage(String playerName) {
+    public PlayerDisconnectedMessage(String playerName) {
         this.playerName = playerName;
     }
 
