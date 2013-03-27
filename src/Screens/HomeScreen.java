@@ -1,5 +1,7 @@
 package screens;
 
+import controllers.HomeController;
+import screens.controls.MainFrame;
 import view.HomeView;
 
 import javax.swing.*;

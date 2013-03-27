@@ -1,10 +1,15 @@
-package screens;
+package controllers.server;
 
 import channels.messages.ChannelMessage;
+import controllers.Workflow;
+import controllers.server.God;
+import controllers.server.Player;
 import messages.PlayerConnectedMessage;
 import channels.server.SocketServer;
 import channels.server.SocketServerListener;
 import channels.SocketChannel;
+import messages.ServerDisconnectedMessage;
+import messages.playerDisconnectedMessage;
 import view.StartGameView;
 
 import java.util.ArrayList;
@@ -48,12 +53,24 @@ public class StartGameController implements SocketServerListener, God {
     }
 
     @Override
-    public void playersUpdated(Player player) {
-        view.updatePlayers(players);
+    public void playersJoined(Player player) {
+        view.addPlayers(players);
         sendMessage(new PlayerConnectedMessage(getPlayerNames()));
     }
 
-
+    @Override
+    public void playerDisconnected(Player player) {
+//        for(int i = 0; i<players.size();i ++)
+//        {
+//            if(players..equals(player))
+//            {
+//                players.remove(i);
+//            }
+//        }
+        players.remove(player);
+        view.addPlayers(players);
+        sendMessage(new playerDisconnectedMessage());
+    }
 
     private void sendMessage(ChannelMessage message) {
         for (Player player : players) {

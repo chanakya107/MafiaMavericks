@@ -1,5 +1,7 @@
-package screens;
+package screens.client;
 
+import controllers.client.ClientDetailsController;
+import screens.controls.MainFrame;
 import view.ClientDetailsView;
 
 import javax.swing.*;

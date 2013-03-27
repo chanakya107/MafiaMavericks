@@ -1,8 +1,9 @@
-package screens;
+package controllers.client;
 
-import channels.messages.ChannelMessage;
 import channels.SocketChannel;
 import channels.SocketChannelListener;
+import channels.messages.ChannelMessage;
+import controllers.Workflow;
 import view.ClientDetailsView;
 
 import javax.swing.*;
@@ -28,12 +29,19 @@ public class ClientDetailsController implements SocketChannelListener {
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
-        workflow.connectedToServer(channel,view.getServerName(),view.getPlayerName());
+        if (!view.getServerName().equals(""))
+            workflow.connectedToServer(channel, view.getServerName(), view.getPlayerName());
+        else
+            serverNotFound();
     }
 
     @Override
     public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
-        String connectedMessage =view.getServerName() + " : Server Not Found";
+        serverNotFound();
+    }
+
+    private void serverNotFound() {
+        String connectedMessage = view.getServerName() + " : Server Not Found";
         JOptionPane.showConfirmDialog(null, connectedMessage, "", JOptionPane.DEFAULT_OPTION);
         workflow.getClientDetails();
     }
@@ -56,6 +64,7 @@ public class ClientDetailsController implements SocketChannelListener {
     }
 
     public void disconnect() {
+
         workflow.goBackToHome();
     }
 }

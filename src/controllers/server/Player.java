@@ -1,9 +1,11 @@
-package screens;
+package controllers.server;
 
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
+import controllers.server.God;
 import messages.PlayerDetailsMessage;
+import messages.playerDisconnectedMessage;
 
 import java.io.IOException;
 
@@ -41,7 +43,11 @@ public class Player implements SocketChannelListener {
         if (message instanceof PlayerDetailsMessage) {
             PlayerDetailsMessage playerDetailsMessage = (PlayerDetailsMessage) message;
             name = playerDetailsMessage.getPlayerName();
-            god.playersUpdated(this);
+            god.playersJoined(this);
+        }
+        else if(message instanceof playerDisconnectedMessage)
+        {
+           god.playerDisconnected(this);
         }
     }
 

@@ -1,4 +1,6 @@
-package screens;
+package screens.controls;
+
+import screens.controls.ImagePanel;
 
 import javax.swing.*;
 import java.awt.*;
