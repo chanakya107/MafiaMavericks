@@ -9,17 +9,17 @@ import channels.server.SocketServer;
 import channels.SocketChannel;
 import messages.PlayerDisconnectedMessage;
 import messages.ServerDisconnectedMessage;
-import view.StartGameView;
+import view.WaitForPlayersView;
 
 import java.util.ArrayList;
 
-public class StartGameController implements God, ConnectionListener {
+public class WaitForPlayersController implements God, ConnectionListener {
     private Workflow workflow;
-    private StartGameView view;
+    private WaitForPlayersView view;
     SocketServer server = new SocketServer(1254,this);
     private ArrayList<Player> players = new ArrayList<Player>();
 
-    public StartGameController(Workflow workflow) {
+    public WaitForPlayersController(Workflow workflow) {
 
         this.workflow = workflow;
     }
@@ -28,7 +28,7 @@ public class StartGameController implements God, ConnectionListener {
         server.start();
     }
 
-    public void bind(StartGameView view) {
+    public void bind(WaitForPlayersView view) {
         this.view = view;
     }
 

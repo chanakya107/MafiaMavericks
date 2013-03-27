@@ -4,7 +4,7 @@ import controllers.server.Player;
 
 import java.util.ArrayList;
 
-public interface StartGameView {
+public interface WaitForPlayersView {
 
     void addPlayers(ArrayList<Player> playerList);
 
