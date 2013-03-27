@@ -2,6 +2,7 @@ package controllers.client;
 
 import channels.ConnectionListener;
 import channels.SocketChannel;
+import controllers.ConnectionFactory;
 import controllers.Workflow;
 import view.ClientDetailsView;
 
@@ -10,9 +11,9 @@ import javax.swing.*;
 public class ClientDetailsController implements ConnectionListener {
     private Workflow workflow;
     private ClientDetailsView view;
-    private controllers.connectionFactory connectionFactory;
+    private ConnectionFactory connectionFactory;
 
-    public ClientDetailsController(Workflow workflow, controllers.connectionFactory connectionFactory) {
+    public ClientDetailsController(Workflow workflow, ConnectionFactory connectionFactory) {
 
         this.workflow = workflow;
 

@@ -1,6 +1,6 @@
 package controllers.client;
 
-import controllers.connectionFactory;
+import controllers.ConnectionFactory;
 import controllers.Workflow;
 import org.junit.Test;
 import view.ClientDetailsView;
@@ -12,7 +12,7 @@ public class ClientDetailsControllerTest {
     public void connect_to_server_on_localhost_is_successful() {
         Workflow workflow = mock(Workflow.class);
         ClientDetailsView view = mock(ClientDetailsView.class);
-        connectionFactory connectionFactory = mock(controllers.connectionFactory.class);
+        ConnectionFactory connectionFactory = mock(ConnectionFactory.class);
         ClientDetailsController controller = new ClientDetailsController(workflow,connectionFactory);
         controller.bind(view);
         when(view.getServerName()).thenReturn("localhost");
