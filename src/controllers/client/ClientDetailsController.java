@@ -2,21 +2,17 @@ package controllers.client;
 
 import channels.ConnectionListener;
 import channels.SocketChannel;
-import channels.SocketChannelListener;
-import channels.messages.ChannelMessage;
-import controllers.ConnectionFactory;
 import controllers.Workflow;
 import view.ClientDetailsView;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class ClientDetailsController implements ConnectionListener {
     private Workflow workflow;
     private ClientDetailsView view;
-    private ConnectionFactory connectionFactory;
+    private controllers.connectionFactory connectionFactory;
 
-    public ClientDetailsController(Workflow workflow, ConnectionFactory connectionFactory) {
+    public ClientDetailsController(Workflow workflow, controllers.connectionFactory connectionFactory) {
 
         this.workflow = workflow;
 
