@@ -66,7 +66,7 @@ public class JoinGameController implements SocketChannelListener {
     }
 
     public void disconnectingFromServer() {
-        channel.send(new PlayerDisconnectedMessage(playerName));
+        channel.send(new playerDisconnectedMessage(playerName));
         channel.stop();
         workflow.getClientDetails();
     }

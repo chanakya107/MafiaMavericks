@@ -4,7 +4,7 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import messages.PlayerDetailsMessage;
-import messages.PlayerDisconnectedMessage;
+import messages.playerDisconnectedMessage;
 
 import java.io.IOException;
 
@@ -36,9 +36,9 @@ public class Player implements SocketChannelListener {
             name = playerDetailsMessage.getPlayerName();
             god.playersJoined(this);
         }
-        else if(message instanceof PlayerDisconnectedMessage)
+        else if(message instanceof playerDisconnectedMessage)
         {
-            PlayerDisconnectedMessage playerDisconnectedMessage =  (PlayerDisconnectedMessage) message;
+            playerDisconnectedMessage playerDisconnectedMessage =  (messages.playerDisconnectedMessage) message;
             name = playerDisconnectedMessage.getPlayerName();
            god.playerDisconnected(this);
         }

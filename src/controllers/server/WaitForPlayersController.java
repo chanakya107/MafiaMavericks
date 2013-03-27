@@ -7,7 +7,7 @@ import messages.GameStartedMessage;
 import messages.PlayerConnectedMessage;
 import channels.server.SocketServer;
 import channels.SocketChannel;
-import messages.PlayerDisconnectedMessage;
+import messages.playerDisconnectedMessage;
 import messages.ServerDisconnectedMessage;
 import view.WaitForPlayersView;
 
@@ -61,7 +61,7 @@ public class WaitForPlayersController implements God, ConnectionListener {
     @Override
     public void playerDisconnected(Player player) {
         view.removePlayer(players, player.getName());
-        sendMessage(new PlayerDisconnectedMessage(player.getName()));
+        sendMessage(new playerDisconnectedMessage(player.getName()));
     }
 
     private void sendMessage(ChannelMessage message) {
