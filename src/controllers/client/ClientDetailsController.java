@@ -26,30 +26,24 @@ public class ClientDetailsController implements ConnectionListener {
     }
 
     public void connectToServer() {
-        if (!view.getServerName().equals("")){
-        connectionFactory.connectToServer(view.getServerName(), 1254, this); }
-        else{
-           serverNotFound();
-        }
+        String serverName = view.getServerName();
+        if (!serverName.equals(""))
+            connectionFactory.connectToServer(serverName, 1254, this);
     }
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
-//        if (!view.getServerName().equals(""))
-            workflow.connectedToServer(channel, view.getServerName(), view.getPlayerName());
-//        else
-//            serverNotFound();
+        workflow.connectedToServer(channel, view.getServerName(), view.getPlayerName());
     }
 
     @Override
-    public  void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
+    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
         serverNotFound();
     }
 
     public void serverNotFound() {
         String connectedMessage = view.getServerName() + " : Server Not Found";
         JOptionPane.showConfirmDialog(null, connectedMessage, "", JOptionPane.DEFAULT_OPTION);
-//        workflow.getGameDetails();
     }
 
     public void disconnect() {
