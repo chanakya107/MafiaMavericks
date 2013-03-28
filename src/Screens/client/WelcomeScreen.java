@@ -38,4 +38,10 @@ public class WelcomeScreen implements WelcomeView {
             }
         });
     }
+
+    @Override
+    public void serverDisconnected(String serverName) {
+        JOptionPane.showConfirmDialog(null, "Connection to server : " + serverName + " is lost", "", JOptionPane.DEFAULT_OPTION);
+        controller.goToHome();
+    }
 }

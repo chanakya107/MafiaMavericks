@@ -71,6 +71,6 @@ public class JoinGameController implements SocketChannelListener {
     }
 
     public void gameStarted() {
-        workflow.welcomePlayers(channel);
+        workflow.welcomePlayers(channel,serverName);
     }
 }

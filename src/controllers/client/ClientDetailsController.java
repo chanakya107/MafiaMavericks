@@ -52,4 +52,8 @@ public class ClientDetailsController implements ConnectionListener {
 
         workflow.goBackToHome();
     }
+
+    public void start() {
+
+    }
 }

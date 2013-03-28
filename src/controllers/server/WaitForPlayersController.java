@@ -1,12 +1,12 @@
 package controllers.server;
 
 import channels.ConnectionListener;
+import channels.SocketChannel;
 import channels.messages.ChannelMessage;
+import channels.server.SocketServer;
 import controllers.Workflow;
 import messages.GameStartedMessage;
 import messages.PlayerConnectedMessage;
-import channels.server.SocketServer;
-import channels.SocketChannel;
 import messages.PlayerDisconnectedMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
@@ -16,11 +16,11 @@ import java.util.ArrayList;
 public class WaitForPlayersController implements God, ConnectionListener {
     private Workflow workflow;
     private WaitForPlayersView view;
-    SocketServer server = new SocketServer(1254,this);
     private ArrayList<Player> players = new ArrayList<Player>();
+    private SocketServer server = new SocketServer(1254, this);
+
 
     public WaitForPlayersController(Workflow workflow) {
-
         this.workflow = workflow;
     }
 
@@ -41,15 +41,6 @@ public class WaitForPlayersController implements God, ConnectionListener {
         sendMessage(new ServerDisconnectedMessage());
         server.stop();
         workflow.goBackToHome();
-    }
-
-    @Override
-    public void onConnectionEstablished(SocketChannel channel) {
-        players.add(new Player(channel, this));
-    }
-
-    @Override
-    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
     }
 
     @Override
@@ -76,5 +67,15 @@ public class WaitForPlayersController implements God, ConnectionListener {
             resultName += player.getName() + "\n";
         }
         return resultName;
+    }
+
+    @Override
+    public void onConnectionEstablished(SocketChannel channel) {
+        players.add(new Player(channel, this));
+
+    }
+
+    @Override
+    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
     }
 }

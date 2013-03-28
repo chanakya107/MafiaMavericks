@@ -16,7 +16,7 @@ public class GameStartedScreen implements GameStartedView {
     private final JPanel panel;
     private final JButton quit;
 
-    public GameStartedScreen(MainFrame mainFrame, GameStartedController controller) {
+    public GameStartedScreen(MainFrame mainFrame, final GameStartedController controller) {
 
         this.mainFrame = mainFrame;
         this.controller = controller;
@@ -35,6 +35,7 @@ public class GameStartedScreen implements GameStartedView {
             public void actionPerformed(ActionEvent e) {
                 int option = JOptionPane.showConfirmDialog(null, "Do you want to really Quit ?", "", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
+//                    controller.stopServer();
                     System.exit(0);
                 }
             }
