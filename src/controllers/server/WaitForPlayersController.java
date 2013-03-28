@@ -5,10 +5,12 @@ import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import channels.server.SocketServer;
 import controllers.Workflow;
-import messages.*;
+import messages.PlayerConnectedMessage;
+import messages.PlayerDisconnectedMessage;
+import messages.RoleAssignedMessage;
+import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
-import javax.management.relation.RoleStatus;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +37,13 @@ public class WaitForPlayersController implements God, ConnectionListener {
         new RoleAssignment(players).assign();
         sendRoleMessage(players);
 //sendMessage(new GameStartedMessage());
-        workflow.startGame(server,players);
+        workflow.startGame(server, players);
+
     }
 
     private void sendRoleMessage(List<Player> players) {
         for (Player player : players) {
-            if(player.getRole() == Role.Mafia)
+            if (player.getRole() == Role.Mafia)
                 player.sendMessage(new RoleAssignedMessage(Role.Mafia));
             else
                 player.sendMessage(new RoleAssignedMessage(Role.Villager));
@@ -51,6 +54,16 @@ public class WaitForPlayersController implements God, ConnectionListener {
         sendMessage(new ServerDisconnectedMessage());
         server.stop();
         workflow.goBackToHome();
+    }
+
+    @Override
+    public void onConnectionEstablished(SocketChannel channel) {
+        players.add(new Player(channel, this));
+    }
+
+    @Override
+    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
+
     }
 
     @Override
@@ -80,13 +93,4 @@ public class WaitForPlayersController implements God, ConnectionListener {
         return resultName;
     }
 
-    @Override
-    public void onConnectionEstablished(SocketChannel channel) {
-        players.add(new Player(channel, this));
-
-    }
-
-    @Override
-    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
-    }
 }

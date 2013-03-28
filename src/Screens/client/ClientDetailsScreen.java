@@ -85,6 +85,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         connect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 controller.connectToServer();
 
             }
