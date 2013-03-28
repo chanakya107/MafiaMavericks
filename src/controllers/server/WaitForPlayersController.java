@@ -16,10 +16,10 @@ public class WaitForPlayersController {
     private SocketServer server;
     private List<Player> players;
 
-    public WaitForPlayersController(Workflow workflow) {
+    public WaitForPlayersController(Workflow workflow, SocketServer server, List<Player> players) {
         this.workflow = workflow;
-        server = workflow.getServer();
-        players = workflow.getPlayers();
+        this.server = server;
+        this.players = players;
     }
 
     public void start() {

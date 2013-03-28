@@ -20,7 +20,5 @@ public interface Workflow {
 
     void welcomePlayers(SocketChannel channel, String serverName);
 
-    SocketServer getServer();
-
-    List<Player> getPlayers();
+    void updatePlayersList(List<Player> players);
 }

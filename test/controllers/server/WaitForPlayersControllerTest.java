@@ -12,8 +12,8 @@ public class WaitForPlayersControllerTest {
     public void players_disconnected_is_successful() {
         Workflow workflow = mock(Workflow.class);
         WaitForPlayersView view = mock(WaitForPlayersView.class);
-        WaitForPlayersController controller = new WaitForPlayersController(workflow);
-        controller.bind(view);
+//        WaitForPlayersController controller = new WaitForPlayersController(workflow, players.getServer(), players.getPlayers());
+//        controller.bind(view);
         Player player = mock(Player.class);
         when(player.getName()).thenReturn("player");
 //        controller.playerDisconnected(player);
