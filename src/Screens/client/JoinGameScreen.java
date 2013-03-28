@@ -83,7 +83,12 @@ public class JoinGameScreen implements JoinGameView {
     }
 
     @Override
-    public void gameStarted() {
-        controller.gameStarted();
+    public void goToMafiaScreen() {
+        controller.goToMafiaScreen();
+    }
+
+    @Override
+    public void goToVillagerScreen() {
+        controller.goToVillagerScreen();
     }
 }

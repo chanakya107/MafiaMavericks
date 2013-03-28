@@ -5,18 +5,17 @@ import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import channels.server.SocketServer;
 import controllers.Workflow;
-import messages.GameStartedMessage;
-import messages.PlayerConnectedMessage;
-import messages.PlayerDisconnectedMessage;
-import messages.ServerDisconnectedMessage;
+import messages.*;
 import view.server.WaitForPlayersView;
 
+import javax.management.relation.RoleStatus;
 import java.util.ArrayList;
+import java.util.List;
 
 public class WaitForPlayersController implements God, ConnectionListener {
     private Workflow workflow;
     private WaitForPlayersView view;
-    private ArrayList<Player> players = new ArrayList<Player>();
+    private List<Player> players = new ArrayList<Player>();
     private SocketServer server = new SocketServer(1254, this);
 
 
@@ -33,8 +32,19 @@ public class WaitForPlayersController implements God, ConnectionListener {
     }
 
     public void startGame() {
-        sendMessage(new GameStartedMessage());
+        new RoleAssignment(players).assign();
+        sendRoleMessage(players);
+//sendMessage(new GameStartedMessage());
         workflow.startGame(server,players);
+    }
+
+    private void sendRoleMessage(List<Player> players) {
+        for (Player player : players) {
+            if(player.getRole() == Role.Mafia)
+                player.sendMessage(new RoleAssignedMessage(Role.Mafia));
+            else
+                player.sendMessage(new RoleAssignedMessage(Role.Villager));
+        }
     }
 
     public void stopServer() {

@@ -6,15 +6,15 @@ import controllers.Workflow;
 import messages.ServerDisconnectedMessage;
 import view.server.GameStartedView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GameStartedController {
     private Workflow workflow;
     private final SocketServer server;
-    private final ArrayList<Player> players;
+    private final List<Player> players;
     private GameStartedView view;
 
-    public GameStartedController(Workflow workflow, SocketServer server, ArrayList<Player> players) {
+    public GameStartedController(Workflow workflow, SocketServer server, List<Player> players) {
         this.workflow = workflow;
         this.server = server;
         this.players = players;
