@@ -16,11 +16,11 @@ import java.util.ArrayList;
 public class WaitForPlayersController implements God, ConnectionListener {
     private Workflow workflow;
     private WaitForPlayersView view;
-    SocketServer server = new SocketServer(1254,this);
     private ArrayList<Player> players = new ArrayList<Player>();
+    private SocketServer server = new SocketServer(1254, this);
+
 
     public WaitForPlayersController(Workflow workflow) {
-
         this.workflow = workflow;
     }
 
@@ -34,7 +34,7 @@ public class WaitForPlayersController implements God, ConnectionListener {
 
     public void startGame() {
         sendMessage(new GameStartedMessage());
-        workflow.startGame();
+        workflow.startGame(server, players);
     }
 
     public void stopServer() {
@@ -49,7 +49,7 @@ public class WaitForPlayersController implements God, ConnectionListener {
     }
 
     @Override
-    public void onConnectionFailed(String serverAddress, int serverPort, Exception e)  {
+    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
 
     }
 
@@ -79,4 +79,5 @@ public class WaitForPlayersController implements God, ConnectionListener {
         }
         return resultName;
     }
+
 }

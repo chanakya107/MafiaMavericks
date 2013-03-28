@@ -1,6 +1,7 @@
 package runner;
 
 import channels.SocketChannel;
+import channels.server.SocketServer;
 import controllers.ConnectionFactory;
 import controllers.HomeController;
 import controllers.Workflow;
@@ -8,6 +9,7 @@ import controllers.client.ClientDetailsController;
 import controllers.client.JoinGameController;
 import controllers.client.WelcomeController;
 import controllers.server.GameStartedController;
+import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
 import screens.HomeScreen;
 import screens.client.ClientDetailsScreen;
@@ -16,6 +18,8 @@ import screens.client.WelcomeScreen;
 import screens.controls.MainFrame;
 import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
+
+import java.util.ArrayList;
 
 public class WorkflowManager implements Workflow {
     private MainFrame mainFrame;
@@ -38,12 +42,12 @@ public class WorkflowManager implements Workflow {
     public void getGameDetails() {
         ClientDetailsController controller = new ClientDetailsController(this, new ConnectionFactory());
         controller.bind(new ClientDetailsScreen(mainFrame, controller));
-
+        controller.start();
     }
 
     @Override
-    public void startGame() {
-        GameStartedController controller = new GameStartedController(this);
+    public void startGame(SocketServer server, ArrayList<Player> players) {
+        GameStartedController controller = new GameStartedController(this,server,players);
         controller.bind(new GameStartedScreen(mainFrame, controller));
         controller.start();
     }
@@ -63,8 +67,8 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void welcomePlayers(SocketChannel channel) {
-        WelcomeController controller = new WelcomeController(this, channel);
+    public void welcomePlayers(SocketChannel channel, String serverName) {
+        WelcomeController controller = new WelcomeController(this, channel, serverName);
         controller.bind(new WelcomeScreen(mainFrame, controller));
         controller.start();
     }

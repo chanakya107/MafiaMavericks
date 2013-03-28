@@ -58,4 +58,7 @@ public class ClientDetailsController implements ConnectionListener {
     }
 
 
+    public void start() {
+
+    }
 }

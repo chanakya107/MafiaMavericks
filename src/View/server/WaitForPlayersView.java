@@ -6,5 +6,5 @@ import java.util.ArrayList;
 
 public interface WaitForPlayersView {
 
-    void updatePlayers(ArrayList<Player> playerList);
+void updatePlayers(ArrayList<Player> playerList);
 }
