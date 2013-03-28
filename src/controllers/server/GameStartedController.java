@@ -3,23 +3,16 @@ package controllers.server;
 import channels.ConnectionListener;
 import channels.SocketChannel;
 import channels.messages.ChannelMessage;
-import channels.server.SocketServer;
 import controllers.Workflow;
 import messages.ServerDisconnectedMessage;
 import view.server.GameStartedView;
 
-import java.util.List;
-
 public class GameStartedController{
     private Workflow workflow;
-    private final SocketServer server;
-    private final List<Player> players;
     private GameStartedView view;
 
-    public GameStartedController(Workflow workflow, SocketServer server, List<Player> players) {
+    public GameStartedController(Workflow workflow) {
         this.workflow = workflow;
-        this.server = server;
-        this.players = players;
     }
 
     public void bind(GameStartedView view) {
@@ -30,16 +23,16 @@ public class GameStartedController{
 
     }
 
-    public void stopServer() {
-        sendMessage(new ServerDisconnectedMessage());
-        server.stop();
-        workflow.goBackToHome();
-    }
-
-    private void sendMessage(ChannelMessage message) {
-        for (Player player : players) {
-            player.sendMessage(message);
-        }
-    }
+//    public void stopServer() {
+//        sendMessage(new ServerDisconnectedMessage());
+//        workflow.getServer().stop();
+//        workflow.goBackToHome();
+//    }
+//
+//    private void sendMessage(ChannelMessage message) {
+//        for (Player player : workflow.getPlayers()) {
+//            player.sendMessage(message);
+//        }
+//    }
 
 }

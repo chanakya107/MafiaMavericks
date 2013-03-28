@@ -5,7 +5,6 @@ import channels.server.SocketServer;
 import controllers.server.Player;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface Workflow {
     void startServer();
@@ -20,5 +19,4 @@ public interface Workflow {
 
     void welcomePlayers(SocketChannel channel, String serverName);
 
-    void updatePlayersList(List<Player> players);
 }

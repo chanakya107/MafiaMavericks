@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.util.ArrayList;
 
 public class WaitForPlayersScreen implements WaitForPlayersView {
 
@@ -82,7 +82,7 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
     }
 
     @Override
-    public void updatePlayers(List<Player> playerList) {
+    public void updatePlayers(ArrayList<Player> playerList) {
         players.removeAllElements();
         for (Player player : playerList) {
             players.addElement(player.getName());
