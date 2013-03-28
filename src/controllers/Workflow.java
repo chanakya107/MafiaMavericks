@@ -5,6 +5,7 @@ import channels.server.SocketServer;
 import controllers.server.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface Workflow {
     void startServer();
@@ -21,5 +22,5 @@ public interface Workflow {
 
     SocketServer getServer();
 
-    ArrayList<Player> getPlayers();
+    List<Player> getPlayers();
 }

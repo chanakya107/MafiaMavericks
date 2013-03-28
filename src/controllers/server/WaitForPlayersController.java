@@ -8,12 +8,13 @@ import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WaitForPlayersController {
     private Workflow workflow;
     private WaitForPlayersView view;
     private SocketServer server;
-    private ArrayList<Player> players;
+    private List<Player> players;
 
     public WaitForPlayersController(Workflow workflow) {
         this.workflow = workflow;

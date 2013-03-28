@@ -25,11 +25,12 @@ import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WorkflowManager implements Workflow, ConnectionListener, God {
     private MainFrame mainFrame;
     private final SocketServer server = new SocketServer(1254, this);
-    private final ArrayList<Player> players = new ArrayList<Player>();
+    private final List<Player> players = new ArrayList<Player>();
 
     public void start() {
         mainFrame = new MainFrame();
@@ -123,7 +124,7 @@ public class WorkflowManager implements Workflow, ConnectionListener, God {
     }
 
     @Override
-    public ArrayList<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
