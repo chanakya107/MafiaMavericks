@@ -49,7 +49,7 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void startGame() {
-        GameStartedController controller = new GameStartedController(this);
+        GameStartedController controller = new GameStartedController(this,players.getServer(),players.getPlayers());
         controller.bind(new GameStartedScreen(mainFrame, controller));
         controller.start();
     }
