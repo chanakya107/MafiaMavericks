@@ -5,23 +5,23 @@ import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
 import messages.ServerDisconnectedMessage;
-import view.client.WelcomeView;
+import view.client.MafiaView;
 
 import java.io.IOException;
 
-public class WelcomeController implements SocketChannelListener {
+public class MafiaController implements SocketChannelListener {
     private Workflow workflow;
     private SocketChannel channel;
     private String serverName;
-    private WelcomeView view;
+    private MafiaView view;
 
-    public WelcomeController(Workflow workflow, SocketChannel channel, String serverName) {
+    public MafiaController(Workflow workflow, SocketChannel channel, String serverName) {
         this.workflow = workflow;
         this.channel = channel;
         this.serverName = serverName;
     }
 
-    public void bind(WelcomeView view) {
+    public void bind(MafiaView view) {
 
         this.view = view;
     }

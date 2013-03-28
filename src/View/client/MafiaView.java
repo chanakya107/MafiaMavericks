@@ -1,5 +1,5 @@
 package view.client;
 
-public interface WelcomeView {
+public interface MafiaView {
     void serverDisconnected(String serverName);
 }

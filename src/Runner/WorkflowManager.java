@@ -7,19 +7,20 @@ import controllers.HomeController;
 import controllers.Workflow;
 import controllers.client.ClientDetailsController;
 import controllers.client.JoinGameController;
-import controllers.client.WelcomeController;
+import controllers.client.MafiaController;
+import controllers.client.VillagerController;
 import controllers.server.GameStartedController;
 import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
 import screens.HomeScreen;
 import screens.client.ClientDetailsScreen;
 import screens.client.JoinGameScreen;
-import screens.client.WelcomeScreen;
-import screens.controls.MainFrame;
+import screens.client.MafiaScreen;
+import screens.client.VillagerScreen;import screens.controls.MainFrame;
 import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class WorkflowManager implements Workflow {
     private MainFrame mainFrame;
@@ -46,7 +47,7 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void startGame(SocketServer server, ArrayList<Player> players) {
+    public void startGame(SocketServer server, List<Player> players) {
         GameStartedController controller = new GameStartedController(this,server,players);
         controller.bind(new GameStartedScreen(mainFrame, controller));
         controller.start();
@@ -67,9 +68,16 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void welcomePlayers(SocketChannel channel, String serverName) {
-        WelcomeController controller = new WelcomeController(this, channel, serverName);
-        controller.bind(new WelcomeScreen(mainFrame, controller));
+    public void MafiaScreen(SocketChannel channel, String serverName) {
+        MafiaController controller = new MafiaController(this, channel, serverName);
+        controller.bind(new MafiaScreen(mainFrame, controller));
+        controller.start();
+    }
+
+    @Override
+    public void VillagerScreen(SocketChannel channel, String serverName) {
+        VillagerController controller = new VillagerController(this,channel,serverName);
+        controller.bind(new VillagerScreen(mainFrame,controller));
         controller.start();
     }
 }

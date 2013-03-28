@@ -24,6 +24,7 @@ public class ClientDetailsController implements ConnectionListener {
     }
 
     public void connectToServer() {
+
         if (view.getServerName().equals("")) {
             view.display("Server Name Cannot Be Empty");
         } else if (view.getPlayerName().equals("")) {
@@ -42,6 +43,7 @@ public class ClientDetailsController implements ConnectionListener {
     public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
         view.display("Unable to connect to " + view.getServerName() + " server");
     }
+
 
     public void disconnect() {
         workflow.goBackToHome();

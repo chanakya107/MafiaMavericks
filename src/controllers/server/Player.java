@@ -12,6 +12,7 @@ public class Player implements SocketChannelListener {
     private final SocketChannel channel;
     private God god;
     private String name;
+    private Role role;
 
     public Player(SocketChannel channel, God god) {
 
@@ -49,5 +50,13 @@ public class Player implements SocketChannelListener {
 
     public void sendMessage(ChannelMessage message) {
         channel.send(message);
+    }
+
+    public void assignRole(Role role) {
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
     }
 }

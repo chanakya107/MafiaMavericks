@@ -7,6 +7,7 @@ public interface JoinGameView {
 
     void serverDisconnected(String serverName);
 
-    void gameStarted();
+    void goToMafiaScreen();
 
+    void goToVillagerScreen();
 }

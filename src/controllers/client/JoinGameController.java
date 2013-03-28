@@ -4,6 +4,7 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
+import controllers.server.Role;
 import messages.*;
 import view.client.JoinGameView;
 
@@ -47,9 +48,13 @@ public class JoinGameController implements SocketChannelListener {
         } else if (message instanceof ServerDisconnectedMessage) {
             view.serverDisconnected(serverName);
             channel.stop();
-        } else if (message instanceof GameStartedMessage) {
-            view.gameStarted();
-        }else if (message instanceof PlayerDisconnectedMessage) {
+        } else if (message instanceof RoleAssignedMessage) {
+            RoleAssignedMessage roleAssignedMessage = (RoleAssignedMessage) message;
+            if (roleAssignedMessage.getRole().equals(Role.Mafia))
+                view.goToMafiaScreen();
+            else
+                view.goToVillagerScreen();
+        } else if (message instanceof PlayerDisconnectedMessage) {
             PlayerDisconnectedMessage playerDisconnectedMessage = (PlayerDisconnectedMessage) message;
             view.displayConnectedPlayers(playerDisconnectedMessage.getPlayersConnected());
         }
@@ -73,7 +78,11 @@ public class JoinGameController implements SocketChannelListener {
         workflow.getGameDetails();
     }
 
-    public void gameStarted() {
-        workflow.welcomePlayers(channel,serverName);
+    public void goToMafiaScreen() {
+        workflow.MafiaScreen(channel, serverName);
+    }
+
+    public void goToVillagerScreen() {
+        workflow.VillagerScreen(channel,serverName);
     }
 }
