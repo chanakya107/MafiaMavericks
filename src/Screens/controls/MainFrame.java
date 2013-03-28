@@ -1,7 +1,5 @@
 package screens.controls;
 
-import screens.controls.ImagePanel;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,9 +10,9 @@ public class MainFrame {
         frame = new JFrame("Mafia");
         frame.setVisible(true);
         frame.setBackground(Color.black);
-        frame.setBounds(new Rectangle(1080,1920));
+        frame.setBounds(new Rectangle(1080, 1920));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLocation(300,0);
+        frame.setLocation(300, 0);
     }
 
     public JPanel createPanel(Image image) {

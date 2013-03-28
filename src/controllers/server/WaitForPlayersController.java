@@ -49,7 +49,8 @@ public class WaitForPlayersController implements God, ConnectionListener {
     }
 
     @Override
-    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
+    public void onConnectionFailed(String serverAddress, int serverPort, Exception e)  {
+
     }
 
     @Override
