@@ -1,27 +1,24 @@
 package controllers.server;
 
-import channels.ConnectionListener;
-import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import channels.server.SocketServer;
 import controllers.Workflow;
 import messages.GameStartedMessage;
-import messages.PlayerConnectedMessage;
-import messages.PlayerDisconnectedMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
 import java.util.ArrayList;
 
-public class WaitForPlayersController implements God, ConnectionListener {
+public class WaitForPlayersController {
     private Workflow workflow;
     private WaitForPlayersView view;
-    private ArrayList<Player> players = new ArrayList<Player>();
-    private SocketServer server = new SocketServer(1254, this);
-
+    private SocketServer server;
+    private ArrayList<Player> players;
 
     public WaitForPlayersController(Workflow workflow) {
         this.workflow = workflow;
+        server = workflow.getServer();
+        players = workflow.getPlayers();
     }
 
     public void start() {
@@ -43,40 +40,10 @@ public class WaitForPlayersController implements God, ConnectionListener {
         workflow.goBackToHome();
     }
 
-    @Override
-    public void playersJoined(Player player) {
-        view.updatePlayers(players);
-        sendMessage(new PlayerConnectedMessage(getPlayerNames()));
-    }
-
-    @Override
-    public void playerDisconnected(Player player) {
-        players.remove(player);
-        view.updatePlayers(players);
-        sendMessage(new PlayerDisconnectedMessage(getPlayerNames()));
-    }
-
     private void sendMessage(ChannelMessage message) {
         for (Player player : players) {
             player.sendMessage(message);
         }
     }
 
-    private String getPlayerNames() {
-        String resultName = "";
-        for (Player player : players) {
-            resultName += player.getName() + "\n";
-        }
-        return resultName;
-    }
-
-    @Override
-    public void onConnectionEstablished(SocketChannel channel) {
-        players.add(new Player(channel, this));
-
-    }
-
-    @Override
-    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
-    }
 }

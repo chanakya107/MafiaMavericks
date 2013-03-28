@@ -1,6 +1,9 @@
 package runner;
 
+import channels.ConnectionListener;
 import channels.SocketChannel;
+import channels.messages.ChannelMessage;
+import channels.server.SocketServer;
 import controllers.ConnectionFactory;
 import controllers.HomeController;
 import controllers.Workflow;
@@ -8,7 +11,11 @@ import controllers.client.ClientDetailsController;
 import controllers.client.JoinGameController;
 import controllers.client.WelcomeController;
 import controllers.server.GameStartedController;
+import controllers.server.God;
+import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
+import messages.PlayerConnectedMessage;
+import messages.PlayerDisconnectedMessage;
 import screens.HomeScreen;
 import screens.client.ClientDetailsScreen;
 import screens.client.JoinGameScreen;
@@ -17,8 +24,12 @@ import screens.controls.MainFrame;
 import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
 
-public class WorkflowManager implements Workflow {
+import java.util.ArrayList;
+
+public class WorkflowManager implements Workflow, ConnectionListener, God {
     private MainFrame mainFrame;
+    private final SocketServer server = new SocketServer(1254, this);
+    private final ArrayList<Player> players = new ArrayList<Player>();
 
     public void start() {
         mainFrame = new MainFrame();
@@ -68,4 +79,57 @@ public class WorkflowManager implements Workflow {
         controller.bind(new WelcomeScreen(mainFrame, controller));
         controller.start();
     }
+
+    @Override
+    public void onConnectionEstablished(SocketChannel channel) {
+        players.add(new Player(channel, this));
+    }
+
+    @Override
+    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
+
+    }
+
+    @Override
+    public void playersJoined(Player player) {
+        sendMessage(new PlayerConnectedMessage(getPlayerNames()));
+        updatePlayersList();
+    }
+
+    private void updatePlayersList() {
+        WaitForPlayersController controller = new WaitForPlayersController(this);
+        new WaitForPlayersScreen(mainFrame, controller).updatePlayers(players);
+    }
+
+    private String getPlayerNames() {
+        String resultName = "";
+        for (Player player : players) {
+            resultName += player.getName() + "\n";
+        }
+        return resultName;
+    }
+
+    private void sendMessage(ChannelMessage message) {
+        for (Player player : players) {
+            player.sendMessage(message);
+        }
+    }
+
+    @Override
+    public void playerDisconnected(Player player) {
+        players.remove(player);
+        sendMessage(new PlayerDisconnectedMessage(getPlayerNames()));
+        updatePlayersList();
+    }
+
+    @Override
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    @Override
+    public SocketServer getServer() {
+        return server;
+    }
+
 }
