@@ -82,22 +82,11 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
     }
 
     @Override
-    public void addPlayers(ArrayList<Player> playerList) {
+    public void updatePlayers(ArrayList<Player> playerList) {
         players.removeAllElements();
         for (Player player : playerList) {
             players.addElement(player.getName());
         }
-    }
-
-    @Override
-    public void removePlayer(ArrayList<Player> playerList, String name) {
-        players.removeAllElements();
-        for (Player player : playerList)
-        {
-            if(!player.getName().equals(name))
-            players.addElement(player.getName());
-        }
-
     }
 
 }

@@ -45,14 +45,15 @@ public class WaitForPlayersController implements God, ConnectionListener {
 
     @Override
     public void playersJoined(Player player) {
-        view.addPlayers(players);
+        view.updatePlayers(players);
         sendMessage(new PlayerConnectedMessage(getPlayerNames()));
     }
 
     @Override
     public void playerDisconnected(Player player) {
-        view.removePlayer(players, player.getName());
-        sendMessage(new PlayerDisconnectedMessage(player.getName()));
+        players.remove(player);
+        view.updatePlayers(players);
+        sendMessage(new PlayerDisconnectedMessage(getPlayerNames()));
     }
 
     private void sendMessage(ChannelMessage message) {

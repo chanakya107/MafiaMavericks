@@ -4,7 +4,6 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import messages.PlayerDetailsMessage;
-import messages.PlayerDisconnectedMessage;
 
 import java.io.IOException;
 
@@ -23,7 +22,9 @@ public class Player implements SocketChannelListener {
 
     @Override
     public void onClose(SocketChannel channel, Exception e) {
+        god.playerDisconnected(this);
     }
+
 
     @Override
     public void onSendFailed(SocketChannel channel, IOException e, ChannelMessage message) {
@@ -35,12 +36,6 @@ public class Player implements SocketChannelListener {
             PlayerDetailsMessage playerDetailsMessage = (PlayerDetailsMessage) message;
             name = playerDetailsMessage.getPlayerName();
             god.playersJoined(this);
-        }
-        else if(message instanceof PlayerDisconnectedMessage)
-        {
-            PlayerDisconnectedMessage playerDisconnectedMessage =  (PlayerDisconnectedMessage) message;
-            name = playerDisconnectedMessage.getPlayerName();
-           god.playerDisconnected(this);
         }
     }
 

@@ -20,6 +20,5 @@ public class WaitForPlayersControllerTest {
         Player player = mock(Player.class);
         when(player.getName()).thenReturn("player");
         controller.playerDisconnected(player);
-        verify(view).removePlayer(new ArrayList<Player>(),"player");
     }
 }

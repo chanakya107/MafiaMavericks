@@ -49,6 +49,9 @@ public class JoinGameController implements SocketChannelListener {
             channel.stop();
         } else if (message instanceof GameStartedMessage) {
             view.gameStarted();
+        }else if (message instanceof PlayerDisconnectedMessage) {
+            PlayerDisconnectedMessage playerDisconnectedMessage = (PlayerDisconnectedMessage) message;
+            view.displayConnectedPlayers(playerDisconnectedMessage.getPlayersConnected());
         }
     }
 
