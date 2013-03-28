@@ -16,17 +16,20 @@ public class ClientDetailsScreen implements ClientDetailsView {
     private ClientDetailsController controller;
     private JPanel panel;
     private JLabel enterServerName;
+    private JLabel textFieldBlank;
     private JTextField serverNameField;
     private JLabel enterUserName;
     private JButton connect;
     private JButton cancel;
     private JTextField userNameField;
+    private JLabel statusLabel;
 
 
     public ClientDetailsScreen(MainFrame mainFrame, ClientDetailsController controller) {
 
         this.mainFrame = mainFrame;
         this.controller = controller;
+        statusLabel = new JLabel();
 
         Image image = new ImageIcon(".\\Prototypes\\hdwallpapersbase.com.jpeg").getImage();
         panel = mainFrame.createPanel(image);
@@ -80,14 +83,23 @@ public class ClientDetailsScreen implements ClientDetailsView {
         return userNameField.getText();
     }
 
+    @Override
+    public void display(String message) {
+        panel.remove(statusLabel);
+        statusLabel = new JLabel(message);
+        panel.add(statusLabel);
+        statusLabel.setBounds(400, 400, 1000, 150);
+        statusLabel.setForeground(Color.red);
+        statusLabel.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
+    }
+
     private void addButtonHandlers() {
 
         connect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                display("Connecting To Server...");
                 controller.connectToServer();
-
             }
         });
 

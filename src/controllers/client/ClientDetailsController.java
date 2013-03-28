@@ -7,6 +7,7 @@ import controllers.Workflow;
 import view.client.ClientDetailsView;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ClientDetailsController implements ConnectionListener {
     private Workflow workflow;
@@ -14,51 +15,39 @@ public class ClientDetailsController implements ConnectionListener {
     private ConnectionFactory connectionFactory;
 
     public ClientDetailsController(Workflow workflow, ConnectionFactory connectionFactory) {
-
         this.workflow = workflow;
-
         this.connectionFactory = connectionFactory;
     }
 
     public void bind(ClientDetailsView view) {
-
         this.view = view;
     }
 
     public void connectToServer() {
-        if (!view.getServerName().equals("")){
-        connectionFactory.connectToServer(view.getServerName(), 1254, this); }
-        else{
-           serverNotFound();
+        if (view.getServerName().equals("")) {
+            view.display("Server Name Cannot Be Empty");
+        } else if (view.getPlayerName().equals("")) {
+            view.display("Player Name Cannot Be Empty");
+        } else {
+            connectionFactory.connectToServer(view.getServerName(), 1254, this);
         }
     }
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
-//        if (!view.getServerName().equals(""))
-            workflow.connectedToServer(channel, view.getServerName(), view.getPlayerName());
-//        else
-//            serverNotFound();
+        workflow.connectedToServer(channel, view.getServerName(), view.getPlayerName());
     }
 
     @Override
-    public  void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
-        serverNotFound();
-    }
-
-    public void serverNotFound() {
-        String connectedMessage = view.getServerName() + " : Server Not Found";
-        JOptionPane.showConfirmDialog(null, connectedMessage, "", JOptionPane.DEFAULT_OPTION);
-//        workflow.getGameDetails();
+    public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
+        view.display("Unable to connect to " + view.getServerName() + " server");
     }
 
     public void disconnect() {
-
         workflow.goBackToHome();
     }
 
 
     public void start() {
-
     }
 }
