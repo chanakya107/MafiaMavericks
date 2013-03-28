@@ -34,7 +34,7 @@ public class WaitForPlayersController implements God, ConnectionListener {
 
     public void startGame() {
         sendMessage(new GameStartedMessage());
-        workflow.startGame();
+        workflow.startGame(server,players);
     }
 
     public void stopServer() {
