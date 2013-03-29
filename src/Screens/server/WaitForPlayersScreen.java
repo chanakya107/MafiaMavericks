@@ -27,7 +27,7 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
         this.controller = controller;
         controller.bind(this);
 
-        Image image = new ImageIcon(".\\Prototypes\\hdwallpapersbase.com.jpeg").getImage();
+        Image image = new ImageIcon(".\\Images\\hdwallpapersbase.com.jpg").getImage();
         panel = mainFrame.createPanel(image);
 
         label = new JLabel("Players Joined");
