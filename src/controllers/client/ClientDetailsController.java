@@ -6,9 +6,6 @@ import controllers.ConnectionFactory;
 import controllers.Workflow;
 import view.client.ClientDetailsView;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class ClientDetailsController implements ConnectionListener {
     private Workflow workflow;
     private ClientDetailsView view;
@@ -44,11 +41,9 @@ public class ClientDetailsController implements ConnectionListener {
         view.display("Unable to connect to " + view.getServerName() + " server");
     }
 
-
     public void disconnect() {
         workflow.goBackToHome();
     }
-
 
     public void start() {
     }
