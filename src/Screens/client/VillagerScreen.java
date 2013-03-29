@@ -21,7 +21,7 @@ public class VillagerScreen implements VillagerView {
 
         controller.bind(this);
 
-        Image image = new ImageIcon(".\\Prototypes\\www.desktopwallpapers4.me.jpg").getImage();
+        Image image = new ImageIcon(".\\Images\\www.desktopwallpapers4.me.jpg").getImage();
         panel = mainFrame.createPanel(image);
 
         disconnect = new JButton("Disconnect");

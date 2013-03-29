@@ -22,7 +22,7 @@ public class HomeScreen implements HomeView {
         controller.bind(this);
 
 
-        Image image = new ImageIcon(".\\Prototypes\\nice-cool-pics.com.jpeg").getImage();
+        Image image = new ImageIcon(".\\Images\\nice-cool-pics.com.jpeg").getImage();
         JPanel panel = mainframe.createPanel(image);
 
         startServer = new JButton("Start server");

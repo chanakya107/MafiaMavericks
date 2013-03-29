@@ -20,7 +20,7 @@ public class MafiaScreen implements MafiaView {
         this.controller = controller;
         controller.bind(this);
 
-        Image image = new ImageIcon("D:\\projects\\MafiaMavericks\\Prototypes\\scottystarnes.wordpress.com.jpeg").getImage();
+        Image image = new ImageIcon(".\\Images\\if.invisionfree.com.jpg").getImage();
         panel = mainFrame.createPanel(image);
 
         disconnect = new JButton("Disconnect");

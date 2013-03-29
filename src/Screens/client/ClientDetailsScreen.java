@@ -31,7 +31,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         this.controller = controller;
         statusLabel = new JLabel();
 
-        Image image = new ImageIcon(".\\Prototypes\\hdwallpapersbase.com.jpeg").getImage();
+        Image image = new ImageIcon(".\\Images\\hdwallpapersbase.com.jpg").getImage();
         panel = mainFrame.createPanel(image);
 
         enterServerName = new JLabel("Enter the Server Name :");
