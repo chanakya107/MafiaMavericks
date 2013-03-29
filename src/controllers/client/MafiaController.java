@@ -56,6 +56,6 @@ public class MafiaController implements SocketChannelListener {
     }
 
     public void goToHome() {
-        workflow.goBackToHome();
+        workflow.goToHome();
     }
 }

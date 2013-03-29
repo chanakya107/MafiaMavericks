@@ -14,11 +14,11 @@ public interface Workflow {
 
     void startGame(SocketServer server, List<Player> players);
 
-    void goBackToHome();
+    void goToHome();
 
     void connectedToServer(SocketChannel channel, String serverName, String playerName);
 
-    void MafiaScreen(SocketChannel channel, String serverName);
+    void mafiaScreen(SocketChannel channel, String serverName);
 
     void VillagerScreen(SocketChannel channel, String serverName);
 }

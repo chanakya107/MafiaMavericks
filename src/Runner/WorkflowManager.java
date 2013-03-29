@@ -54,7 +54,7 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void goBackToHome() {
+    public void goToHome() {
         HomeController controller = new HomeController(this);
         controller.bind(new HomeScreen(mainFrame, controller));
         controller.start();
@@ -68,7 +68,7 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void MafiaScreen(SocketChannel channel, String serverName) {
+    public void mafiaScreen(SocketChannel channel, String serverName) {
         MafiaController controller = new MafiaController(this, channel, serverName);
         controller.bind(new MafiaScreen(mainFrame, controller));
         controller.start();

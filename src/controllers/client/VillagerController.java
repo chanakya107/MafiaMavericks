@@ -37,7 +37,7 @@ public class VillagerController implements SocketChannelListener {
     }
 
     public void goToHome() {
-        workflow.goBackToHome();
+        workflow.goToHome();
     }
 
     @Override

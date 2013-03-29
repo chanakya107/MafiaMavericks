@@ -14,10 +14,10 @@ public class JoinGameScreen implements JoinGameView {
     private final JoinGameController controller;
     private final JPanel panel;
     private final JLabel label;
+    private final JButton disconnect;
     private JLabel connectedToServer;
     private DefaultListModel<String> players;
     private JList<String> playerList;
-    private final JButton disconnect;
 
 
     public JoinGameScreen(MainFrame mainFrame, final JoinGameController controller) {
@@ -62,23 +62,22 @@ public class JoinGameScreen implements JoinGameView {
     }
 
     @Override
-    public void displayConnectedPlayers(String[] playersConnected) {
+    public void displayPlayers(String[] playersConnected) {
         players.removeAllElements();
         for (String player : playersConnected) {
-                players.addElement(player);
+            players.addElement(player);
         }
     }
 
     @Override
     public void connectedToServer(String serverName, String playerName) {
         String connectedMessage = "Connected To " + serverName + " as " + playerName;
-//        JOptionPane.showConfirmDialog(null, connectedMessage, "", JOptionPane.DEFAULT_OPTION);
         connectedToServer = new JLabel(connectedMessage);
         panel.add(connectedToServer);
-       connectedToServer.setFont(new Font("Chiller", Font.PLAIN, 30));
-       connectedToServer.setForeground(Color.red);
-       connectedToServer.setSize(350, 100);
-       connectedToServer.setLocation(400, 30);
+        connectedToServer.setFont(new Font("Chiller", Font.PLAIN, 30));
+        connectedToServer.setForeground(Color.red);
+        connectedToServer.setSize(350, 100);
+        connectedToServer.setLocation(400, 30);
 
     }
 

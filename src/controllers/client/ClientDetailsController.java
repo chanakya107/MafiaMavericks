@@ -42,7 +42,7 @@ public class ClientDetailsController implements ConnectionListener {
     }
 
     public void disconnect() {
-        workflow.goBackToHome();
+        workflow.goToHome();
     }
 
     public void start() {

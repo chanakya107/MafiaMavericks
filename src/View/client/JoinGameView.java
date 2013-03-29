@@ -1,7 +1,7 @@
 package view.client;
 
 public interface JoinGameView {
-    void displayConnectedPlayers(String[] playersConnected);
+    void displayPlayers(String[] playersConnected);
 
     void connectedToServer(String serverName, String playerName);
 

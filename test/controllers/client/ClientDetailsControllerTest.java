@@ -69,6 +69,6 @@ public class ClientDetailsControllerTest {
     @Test
     public void on_disconnecting_the_server_it_should_go_back_to_home_screen(){
         controller.disconnect();
-        verify(workflow).goBackToHome();
+        verify(workflow).goToHome();
     }
 }

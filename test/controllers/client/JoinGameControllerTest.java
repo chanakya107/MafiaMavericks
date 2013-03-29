@@ -2,6 +2,7 @@ package controllers.client;
 
 import channels.SocketChannel;
 import controllers.Workflow;
+import org.junit.Before;
 import org.junit.Test;
 import view.client.JoinGameView;
 
@@ -9,24 +10,55 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class JoinGameControllerTest {
+    private Workflow workflow;
+    private JoinGameView view;
+    private SocketChannel channel;
+    private JoinGameController controller;
+
+    @Before
+    public void setup() {
+        workflow = mock(Workflow.class);
+        view = mock(JoinGameView.class);
+        channel = mock(SocketChannel.class);
+        controller = new JoinGameController(workflow, channel, "localhost", "player");
+        controller.bind(view);
+    }
+
     @Test
-    public void disconnecting_from_server(){
-        SocketChannel socketChannel = mock(SocketChannel.class);
-        Workflow workflow = mock(Workflow.class);
-        JoinGameController controller = new JoinGameController(workflow, socketChannel,"localhost","player");
+    public void channel_binding_is_done_when_a_new_JoinGameController_is_created() {
+        verify(channel).bind(controller);
+    }
+
+    @Test
+    public void start_on_controller_displays_connected_to_server_screen() {
+        controller.start();
+        verify(view).connectedToServer("localhost", "player");
+    }
+
+    @Test
+    public void disconnecting_from_server_stops_the_channel_goes_back_to_the_GameDetailsScreen() {
         controller.disconnectingFromServer();
-        verify(socketChannel).stop();
+        verify(channel).stop();
         verify(workflow).getGameDetails();
     }
 
     @Test
-    public void connect_to_server(){
-        SocketChannel socketChannel = mock(SocketChannel.class);
-        Workflow workflow = mock(Workflow.class);
-        JoinGameView view = mock(JoinGameView.class);
-        JoinGameController controller = new JoinGameController(workflow, socketChannel,"localhost","player");
-        controller.bind(view);
-//        when(view.connectToServer()).thenReturn("localhost","player");
-//        verify(view).connectToServer();
+    public void goToHome_displays_the_homeScreen_through_workflow(){
+        controller.goToHome();
+        verify(workflow).goToHome();
     }
+
+    @Test
+    public void goToMafiaScreen_displays_mafia_screen_though_workflow(){
+        controller.goToMafiaScreen();
+        verify(workflow).mafiaScreen(channel,"localhost");
+    }
+
+    @Test
+    public void goToVillagerScreen_displays_Villager_screen_through_workflow(){
+        controller.goToVillagerScreen();
+        verify(workflow).VillagerScreen(channel,"localhost");
+    }
+
+
 }

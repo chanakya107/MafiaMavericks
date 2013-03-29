@@ -31,7 +31,7 @@ public class GameStartedController {
     public void stopServer() {
         sendMessage(new ServerDisconnectedMessage());
         server.stop();
-        workflow.goBackToHome();
+        workflow.goToHome();
     }
 
     private void sendMessage(ChannelMessage message) {
