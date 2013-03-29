@@ -83,6 +83,6 @@ public class JoinGameController implements SocketChannelListener {
     }
 
     public void goToVillagerScreen() {
-        workflow.VillagerScreen(channel,serverName);
+        workflow.VillagerScreen(channel, serverName);
     }
 }

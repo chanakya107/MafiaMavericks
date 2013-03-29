@@ -1,4 +1,4 @@
-package screens.client;
+package view.client;
 
 public interface VillagerView {
     void serverDisconnected(String serverName);
