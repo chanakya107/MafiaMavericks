@@ -14,8 +14,9 @@ public class SocketChannel {
     final private int SOCKET_TIMEOUT = 1000;
     Socket socket;
     private SocketChannelListener channelListener;
-    private Thread thread;
     private boolean stopWaiting;
+    private ObjectInputStream inputStream;
+    private ObjectOutputStream outputStream;
 
 
     public SocketChannel(Socket socket) {
@@ -28,7 +29,7 @@ public class SocketChannel {
             public void run() {
                 connectSocket(serverAddress, serverPort, listener);
             }
-        }).start();
+        },"connectTo").start();
     }
 
     private static void connectSocket(String serverAddress, int serverPort, ConnectionListener listener) {
@@ -42,20 +43,21 @@ public class SocketChannel {
 
     public void bind(SocketChannelListener listener) {
         this.channelListener = listener;
-        thread = new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 pollForIncomingData();
             }
-        });
-        thread.start();
+        },"pollForIncomingData").start();
     }
 
     private void pollForIncomingData() {
         try {
             socket.setSoTimeout(SOCKET_TIMEOUT);
             while (waitForData()) ;
-            if (!socket.isClosed()) socket.close();
+            if (!socket.isClosed()) {
+                socket.close();
+            }
             channelListener.onClose(this, null);
         } catch (Exception e) {
             channelListener.onClose(this, e);
@@ -69,16 +71,21 @@ public class SocketChannel {
             public void run() {
                 sendData(message);
             }
-        }).start();
+        },"send").start();
     }
 
     private void sendData(ChannelMessage message) {
         try {
-            ObjectOutputStream stream = new ObjectOutputStream(socket.getOutputStream());
-            stream.writeObject(message);
+            getOrCreateOutputStream().writeObject(message);
         } catch (IOException e) {
             channelListener.onSendFailed(this, e, message);
         }
+    }
+
+    private ObjectOutputStream getOrCreateOutputStream() throws IOException {
+        if (outputStream == null) outputStream = new ObjectOutputStream(socket.getOutputStream());
+        else outputStream.reset();
+        return outputStream;
     }
 
     public String getAddress() {
@@ -93,10 +100,7 @@ public class SocketChannel {
     private boolean waitForData() {
         try {
 
-            ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-            Object o = inputStream.readObject();
-
-            ChannelMessage message = (ChannelMessage) o;
+            ChannelMessage message = (ChannelMessage) getOrCreateObjectInputStream().readObject();
             if (message instanceof ByeMessage) return false;
             channelListener.onNewMessageArrived(this, message);
 
@@ -112,5 +116,10 @@ public class SocketChannel {
             channelListener.onMessageReadError(SocketChannel.this, e);
         }
         return true;
+    }
+
+    private ObjectInputStream getOrCreateObjectInputStream() throws IOException {
+        if (inputStream == null) inputStream = new ObjectInputStream(socket.getInputStream());
+        return inputStream;
     }
 }
