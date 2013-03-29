@@ -2,12 +2,10 @@ package messages;
 
 import channels.messages.ChannelMessage;
 
-import java.io.Serializable;
-
-public class PlayerConnectedMessage extends ChannelMessage {
+public class PlayersUpdateMessage extends ChannelMessage {
     private final String[] playerNameList;
 
-    public PlayerConnectedMessage(String playerNames) {
+    public PlayersUpdateMessage(String playerNames) {
         super();
         this.playerNameList = playerNames.split("\n");
     }

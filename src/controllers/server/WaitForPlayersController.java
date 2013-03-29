@@ -5,8 +5,7 @@ import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import channels.server.SocketServer;
 import controllers.Workflow;
-import messages.PlayerConnectedMessage;
-import messages.PlayerDisconnectedMessage;
+import messages.PlayersUpdateMessage;
 import messages.RoleAssignedMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
@@ -51,7 +50,7 @@ public class WaitForPlayersController implements God, ConnectionListener {
     public void stopServer() {
         sendMessage(new ServerDisconnectedMessage());
         server.stop();
-        workflow.goBackToHome();
+        workflow.goToHome();
     }
 
     @Override
@@ -67,14 +66,14 @@ public class WaitForPlayersController implements God, ConnectionListener {
     @Override
     public void playersJoined(Player player) {
         view.updatePlayers(players);
-        sendMessage(new PlayerConnectedMessage(getPlayerNames()));
+        sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }
 
     @Override
     public void playerDisconnected(Player player) {
         players.remove(player);
         view.updatePlayers(players);
-        sendMessage(new PlayerDisconnectedMessage(getPlayerNames()));
+        sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }
 
     private void sendMessage(ChannelMessage message) {

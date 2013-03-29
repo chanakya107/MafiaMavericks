@@ -41,4 +41,24 @@ public class JoinGameControllerTest {
         verify(channel).stop();
         verify(workflow).getGameDetails();
     }
+
+    @Test
+    public void goToHome_displays_the_homeScreen_through_workflow(){
+        controller.goToHome();
+        verify(workflow).goToHome();
+    }
+
+    @Test
+    public void goToMafiaScreen_displays_mafia_screen_though_workflow(){
+        controller.goToMafiaScreen();
+        verify(workflow).mafiaScreen(channel,"localhost");
+    }
+
+    @Test
+    public void goToVillagerScreen_displays_Villager_screen_through_workflow(){
+        controller.goToVillagerScreen();
+        verify(workflow).VillagerScreen(channel,"localhost");
+    }
+
+
 }

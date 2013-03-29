@@ -62,7 +62,7 @@ public class JoinGameScreen implements JoinGameView {
     }
 
     @Override
-    public void displayConnectedPlayers(String[] playersConnected) {
+    public void displayPlayers(String[] playersConnected) {
         players.removeAllElements();
         for (String player : playersConnected) {
             players.addElement(player);
