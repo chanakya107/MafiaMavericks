@@ -2,6 +2,7 @@ package screens.client;
 
 import controllers.client.VillagerController;
 import screens.controls.MainFrame;
+import view.client.VillagerView;
 
 import javax.swing.*;
 import java.awt.*;

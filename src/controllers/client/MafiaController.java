@@ -51,9 +51,9 @@ public class MafiaController implements SocketChannelListener {
         }
     }
 
-        @Override
-        public void onMessageReadError (SocketChannel channel, Exception e){
-        }
+    @Override
+    public void onMessageReadError(SocketChannel channel, Exception e) {
+    }
 
     public void goToHome() {
         workflow.goBackToHome();
