@@ -2,12 +2,14 @@ package controllers.client;
 
 import channels.SocketChannel;
 import controllers.Workflow;
+import messages.PlayersUpdateMessage;
 import org.junit.Before;
 import org.junit.Test;
 import view.client.JoinGameView;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class JoinGameControllerTest {
     private Workflow workflow;
@@ -60,5 +62,13 @@ public class JoinGameControllerTest {
         verify(workflow).VillagerScreen(channel,"localhost");
     }
 
+    @Test
+    public void on_new_PlayersUpdatedMessage_arrived_will_display_the_players_updated(){
+        PlayersUpdateMessage playersUpdateMessage = mock(PlayersUpdateMessage.class);
+        String[] players = {"player"};
+        when(playersUpdateMessage.getPlayersConnected()).thenReturn(players);
+        controller.onNewMessageArrived(channel,playersUpdateMessage);
+        verify(view).displayPlayers(players);
+    }
 
 }
