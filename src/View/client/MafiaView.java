@@ -1,5 +1,5 @@
 package view.client;
 
-public interface MafiaView {
+public interface MafiaView extends VillagerView {
     void serverDisconnected(String serverName);
 }

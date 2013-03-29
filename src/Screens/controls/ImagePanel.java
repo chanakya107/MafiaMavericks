@@ -10,7 +10,7 @@ public class ImagePanel extends JPanel {
     public ImagePanel(Image img) {
         this.img = img;
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-      setPreferredSize(size);
+        setPreferredSize(size);
     }
 
     public void paintComponent(Graphics g) {

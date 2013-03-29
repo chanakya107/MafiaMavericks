@@ -5,7 +5,10 @@ import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
 import controllers.server.Role;
-import messages.*;
+import messages.PlayerDetailsMessage;
+import messages.PlayersUpdateMessage;
+import messages.RoleAssignedMessage;
+import messages.ServerDisconnectedMessage;
 import view.client.JoinGameView;
 
 import java.io.IOException;
@@ -65,12 +68,10 @@ public class JoinGameController implements SocketChannelListener {
         if (message instanceof PlayersUpdateMessage) {
             PlayersUpdateMessage playersUpdateMessage = (PlayersUpdateMessage) message;
             view.displayPlayers(playersUpdateMessage.getPlayersConnected());
-        }
-        else if (message instanceof ServerDisconnectedMessage) {
+        } else if (message instanceof ServerDisconnectedMessage) {
             view.serverDisconnected(serverName);
             channel.stop();
-        }
-        else if (message instanceof RoleAssignedMessage) {
+        } else if (message instanceof RoleAssignedMessage) {
             RoleAssignedMessage roleAssignedMessage = (RoleAssignedMessage) message;
             if (roleAssignedMessage.getRole().equals(Role.Mafia))
                 view.goToMafiaScreen();

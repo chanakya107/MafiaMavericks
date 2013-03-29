@@ -16,7 +16,8 @@ import screens.HomeScreen;
 import screens.client.ClientDetailsScreen;
 import screens.client.JoinGameScreen;
 import screens.client.MafiaScreen;
-import screens.client.VillagerScreen;import screens.controls.MainFrame;
+import screens.client.VillagerScreen;
+import screens.controls.MainFrame;
 import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
 
@@ -48,7 +49,7 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void startGame(SocketServer server, List<Player> players) {
-        GameStartedController controller = new GameStartedController(this,server,players);
+        GameStartedController controller = new GameStartedController(this, server, players);
         controller.bind(new GameStartedScreen(mainFrame, controller));
         controller.start();
     }
@@ -76,8 +77,8 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void VillagerScreen(SocketChannel channel, String serverName) {
-        VillagerController controller = new VillagerController(this,channel,serverName);
-        controller.bind(new VillagerScreen(mainFrame,controller));
+        VillagerController controller = new VillagerController(this, channel, serverName);
+        controller.bind(new VillagerScreen(mainFrame, controller));
         controller.start();
     }
 }

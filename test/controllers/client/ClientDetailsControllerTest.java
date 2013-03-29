@@ -49,16 +49,16 @@ public class ClientDetailsControllerTest {
     }
 
     @Test
-    public void onConnectionEstablished_displays_connectedToServer_screen_with_serverName_and_playerName(){
+    public void onConnectionEstablished_displays_connectedToServer_screen_with_serverName_and_playerName() {
         when(view.getServerName()).thenReturn("localhost");
         when(view.getPlayerName()).thenReturn("player");
         SocketChannel socketChannel = mock(SocketChannel.class);
         controller.onConnectionEstablished(socketChannel);
-        verify(workflow).connectedToServer(socketChannel,"localhost","player");
+        verify(workflow).connectedToServer(socketChannel, "localhost", "player");
     }
 
     @Test
-    public void onConnectionFailed_displays_unableToConnect_on_the_screen_with_serverName_and_playerName(){
+    public void onConnectionFailed_displays_unableToConnect_on_the_screen_with_serverName_and_playerName() {
         when(view.getServerName()).thenReturn("abcd");
         when(view.getPlayerName()).thenReturn("player");
         controller.onConnectionFailed("localhost", 1254, new Exception());
@@ -67,7 +67,7 @@ public class ClientDetailsControllerTest {
     }
 
     @Test
-    public void on_disconnecting_the_server_it_should_go_back_to_home_screen(){
+    public void on_disconnecting_the_server_it_should_go_back_to_home_screen() {
         controller.disconnect();
         verify(workflow).goToHome();
     }

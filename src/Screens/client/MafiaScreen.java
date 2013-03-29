@@ -3,6 +3,7 @@ package screens.client;
 import controllers.client.MafiaController;
 import screens.controls.MainFrame;
 import view.client.MafiaView;
+import view.client.VillagerView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class MafiaScreen implements MafiaView {
     private final JPanel panel;
     private final JButton disconnect;
 
-    public MafiaScreen(MainFrame mainFrame, final MafiaController controller){
+    public MafiaScreen(MainFrame mainFrame, final MafiaController controller) {
         this.mainFrame = mainFrame;
         this.controller = controller;
         controller.bind(this);
