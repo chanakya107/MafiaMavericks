@@ -36,9 +36,7 @@ public class WaitForPlayersController implements God, ConnectionListener {
     public void startGame() {
         new RoleAssignment(players).assign();
         sendRoleMessage(players);
-//sendMessage(new GameStartedMessage());
         workflow.startGame(server, players);
-
     }
 
     private void sendRoleMessage(List<Player> players) {

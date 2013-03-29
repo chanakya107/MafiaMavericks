@@ -25,7 +25,7 @@ public class GameStartedController {
     }
 
     public void start() {
-
+        view.displayPlayers(players);
     }
 
     public void stopServer() {

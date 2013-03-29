@@ -13,7 +13,6 @@ import java.util.List;
 
 public class WaitForPlayersScreen implements WaitForPlayersView {
 
-
     private final MainFrame mainFrame;
     private final WaitForPlayersController controller;
     private final JPanel panel;
@@ -35,8 +34,7 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
-        label.setSize(250, 150);
-        label.setLocation(130, 25);
+        label.setBounds(130, 25, 250, 150);
 
         players = new DefaultListModel<String>();
 
@@ -45,18 +43,15 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        playerList.setSize(250, 400);
-        playerList.setLocation(100, 130);
+        playerList.setBounds(100, 130, 250, 400);
 
         startGame = new JButton("Start Game");
         panel.add(startGame);
-        startGame.setSize(150, 50);
-        startGame.setLocation(600, 400);
+        startGame.setBounds(600, 400, 150, 50);
 
         stopServer = new JButton("Stop server");
         panel.add(stopServer);
-        stopServer.setSize(150, 50);
-        stopServer.setLocation(600, 500);
+        stopServer.setBounds(600, 500, 150, 50);
 
         addButtonHandlers();
     }
