@@ -11,10 +11,10 @@ import view.client.JoinGameView;
 import java.io.IOException;
 
 public class JoinGameController implements SocketChannelListener {
-    private Workflow workflow;
     private final SocketChannel channel;
     private final String serverName;
     private final String playerName;
+    private Workflow workflow;
     private JoinGameView view;
 
     public JoinGameController(Workflow workflow, SocketChannel channel, String serverName, String playerName) {
@@ -30,10 +30,30 @@ public class JoinGameController implements SocketChannelListener {
         this.view = view;
     }
 
+    public void start() {
+        view.connectedToServer(serverName, playerName);
+        channel.send(new PlayerDetailsMessage(playerName));
+    }
+
+    public void disconnectingFromServer() {
+        channel.stop();
+        workflow.getGameDetails();
+    }
+
+    public void goToHome() {
+        workflow.goBackToHome();
+    }
+
+    public void goToMafiaScreen() {
+        workflow.MafiaScreen(channel, serverName);
+    }
+
+    public void goToVillagerScreen() {
+        workflow.VillagerScreen(channel, serverName);
+    }
 
     @Override
     public void onClose(SocketChannel channel, Exception e) {
-
     }
 
     @Override
@@ -62,27 +82,5 @@ public class JoinGameController implements SocketChannelListener {
 
     @Override
     public void onMessageReadError(SocketChannel channel, Exception e) {
-    }
-
-    public void start() {
-        view.connectedToServer(serverName, playerName);
-        channel.send(new PlayerDetailsMessage(playerName));
-    }
-
-    public void goToHome() {
-        workflow.goBackToHome();
-    }
-
-    public void disconnectingFromServer() {
-        channel.stop();
-        workflow.getGameDetails();
-    }
-
-    public void goToMafiaScreen() {
-        workflow.MafiaScreen(channel, serverName);
-    }
-
-    public void goToVillagerScreen() {
-        workflow.VillagerScreen(channel, serverName);
     }
 }
