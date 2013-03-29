@@ -29,7 +29,7 @@ public class SocketChannel {
             public void run() {
                 connectSocket(serverAddress, serverPort, listener);
             }
-        },"connectTo").start();
+        }, "connectTo").start();
     }
 
     private static void connectSocket(String serverAddress, int serverPort, ConnectionListener listener) {
@@ -48,7 +48,7 @@ public class SocketChannel {
             public void run() {
                 pollForIncomingData();
             }
-        },"pollForIncomingData").start();
+        }, "pollForIncomingData").start();
     }
 
     private void pollForIncomingData() {
@@ -71,7 +71,7 @@ public class SocketChannel {
             public void run() {
                 sendData(message);
             }
-        },"send").start();
+        }, "send").start();
     }
 
     private void sendData(ChannelMessage message) {

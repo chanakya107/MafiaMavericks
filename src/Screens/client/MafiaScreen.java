@@ -3,7 +3,6 @@ package screens.client;
 import controllers.client.MafiaController;
 import screens.controls.MainFrame;
 import view.client.MafiaView;
-import view.client.VillagerView;
 
 import javax.swing.*;
 import java.awt.*;

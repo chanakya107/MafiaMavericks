@@ -65,7 +65,7 @@ public class SocketServer {
             public void run() {
                 waitForConnections();
             }
-        },"wait for connections").start();
+        }, "wait for connections").start();
     }
 
     public void stop() {
