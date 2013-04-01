@@ -3,7 +3,7 @@ package controllers.server;
 import channels.ConnectionListener;
 import channels.SocketChannel;
 import channels.messages.ChannelMessage;
-import channels.server.SocketServer;
+import controllers.ConnectionFactory;
 import controllers.Workflow;
 import messages.PlayersUpdateMessage;
 import messages.RoleAssignedMessage;
@@ -15,17 +15,19 @@ import java.util.List;
 
 public class WaitForPlayersController implements PlayerManager, ConnectionListener {
     private Workflow workflow;
+    private final ConnectionFactory connectionFactory;
     private WaitForPlayersView view;
     private List<Player> players = new ArrayList<Player>();
-    private SocketServer server = new SocketServer(1254, this);
 
 
-    public WaitForPlayersController(Workflow workflow) {
+    public WaitForPlayersController(Workflow workflow,ConnectionFactory connectionFactory) {
         this.workflow = workflow;
+        this.connectionFactory = connectionFactory;
     }
 
     public void start() {
-        server.start();
+        connectionFactory.createServer(this);
+        connectionFactory.startServer();
     }
 
     public void bind(WaitForPlayersView view) {
@@ -35,7 +37,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     public void startGame() {
         new RoleAssignment(players).assign();
         sendRoleMessage(players);
-        workflow.startGame(server, players);
+        workflow.startGame(connectionFactory.getServer(), players);
     }
 
     private void sendRoleMessage(List<Player> players) {
@@ -49,7 +51,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     public void stopServer() {
         sendMessage(new ServerDisconnectedMessage());
-        server.stop();
+        connectionFactory.stopServer();
         workflow.goToHome();
     }
 

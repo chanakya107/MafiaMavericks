@@ -29,7 +29,7 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void startServer() {
-        WaitForPlayersController controller = new WaitForPlayersController(this);
+        WaitForPlayersController controller = new WaitForPlayersController(this,new ConnectionFactory());
         controller.bind(new WaitForPlayersScreen(mainFrame, controller));
         controller.start();
     }
