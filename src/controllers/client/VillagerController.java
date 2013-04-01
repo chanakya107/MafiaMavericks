@@ -4,10 +4,7 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
-import controllers.server.God;
-import messages.PlayersUpdateMessage;
 import messages.ServerDisconnectedMessage;
-import screens.client.MafiaScreen;
 import view.client.VillagerView;
 
 import javax.swing.*;
@@ -68,7 +65,7 @@ public class VillagerController implements SocketChannelListener {
     }
 
     public void goToNight() {
-        workflow.goToNight(serverName,channel);
+        workflow.goToNight(serverName, channel);
     }
 
     public void startTimer() {

@@ -2,8 +2,6 @@ package controllers.client;
 
 import channels.SocketChannel;
 import controllers.Workflow;
-import runner.WorkflowManager;
-import screens.client.NightScreen;
 import view.client.NightView;
 
 public class NightController {

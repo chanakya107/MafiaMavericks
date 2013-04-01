@@ -13,7 +13,7 @@ import view.server.WaitForPlayersView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaitForPlayersController implements God, ConnectionListener {
+public class WaitForPlayersController implements PlayerManager, ConnectionListener {
     private Workflow workflow;
     private WaitForPlayersView view;
     private List<Player> players = new ArrayList<Player>();

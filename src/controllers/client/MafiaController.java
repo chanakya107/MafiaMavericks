@@ -2,12 +2,6 @@ package controllers.client;
 
 import channels.SocketChannel;
 import controllers.Workflow;
-import screens.client.MafiaScreen;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MafiaController extends VillagerController {
     private final Workflow workflow;
@@ -21,8 +15,7 @@ public class MafiaController extends VillagerController {
         this.serverName = serverName;
     }
 
-    public void start()
-    {
+    public void start() {
         startTimer();
     }
 }
