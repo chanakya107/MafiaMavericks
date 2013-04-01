@@ -24,7 +24,7 @@ public class GameStartedControllerTest {
         workflow = mock(Workflow.class);
         server = mock(SocketServer.class);
         view = mock(GameStartedView.class);
-        controller = new GameStartedController(workflow, server, players);
+        controller = new GameStartedController(workflow, server);
         controller.bind(view);
     }
 

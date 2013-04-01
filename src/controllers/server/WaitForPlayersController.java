@@ -16,7 +16,6 @@ import java.util.List;
 public class WaitForPlayersController implements PlayerManager, ConnectionListener {
     private Workflow workflow;
     private WaitForPlayersView view;
-    private List<Player> players = new ArrayList<Player>();
     private SocketServer server = new SocketServer(1254, this);
 
 
@@ -33,12 +32,12 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     public void startGame() {
-        new RoleAssignment(players).assign();
-        sendRoleMessage(players);
-        workflow.startGame(server, players);
+        new RoleAssignment().assign();
+        sendRoleMessage();
+        workflow.startGame(server);
     }
 
-    private void sendRoleMessage(List<Player> players) {
+    private void sendRoleMessage() {
         for (Player player : players) {
             if (player.getRole() == Role.Mafia)
                 player.sendMessage(new RoleAssignedMessage(Role.Mafia));
