@@ -38,7 +38,7 @@ public class Player implements SocketChannelListener {
         if (message instanceof PlayerDetailsMessage) {
             PlayerDetailsMessage playerDetailsMessage = (PlayerDetailsMessage) message;
             name = playerDetailsMessage.getPlayerName();
-            playerManager.playersJoined(this);
+            playerManager.playerJoined(this);
         }
     }
 

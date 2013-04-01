@@ -6,9 +6,7 @@ import controllers.Workflow;
 import messages.ServerDisconnectedMessage;
 import view.server.GameStartedView;
 
-import java.util.List;
-
-public class GameStartedController implements PlayerManager{
+public class GameStartedController implements PlayerManager {
     private Workflow workflow;
     private final SocketServer server;
     private GameStartedView view;
@@ -39,7 +37,7 @@ public class GameStartedController implements PlayerManager{
     }
 
     @Override
-    public void playersJoined(Player player) {
+    public void playerJoined(Player player) {
     }
 
     @Override

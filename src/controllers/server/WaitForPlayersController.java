@@ -62,7 +62,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playersJoined(Player player) {
+    public void playerJoined(Player player) {
         view.updatePlayers(players);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }

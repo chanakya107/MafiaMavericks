@@ -7,15 +7,12 @@ import controllers.HomeController;
 import controllers.Workflow;
 import controllers.client.*;
 import controllers.server.GameStartedController;
-import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
 import screens.HomeScreen;
 import screens.client.*;
 import screens.controls.MainFrame;
 import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
-
-import java.util.List;
 
 public class WorkflowManager implements Workflow {
     private MainFrame mainFrame;
@@ -29,7 +26,7 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void startServer() {
-        WaitForPlayersController controller = new WaitForPlayersController(this,new ConnectionFactory());
+        WaitForPlayersController controller = new WaitForPlayersController(this, new ConnectionFactory());
         controller.bind(new WaitForPlayersScreen(mainFrame, controller));
         controller.start();
     }

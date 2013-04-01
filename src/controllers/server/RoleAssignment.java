@@ -29,7 +29,7 @@ public class RoleAssignment implements PlayerManager {
     }
 
     @Override
-    public void playersJoined(Player player) {
+    public void playerJoined(Player player) {
     }
 
     @Override

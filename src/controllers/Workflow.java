@@ -2,9 +2,6 @@ package controllers;
 
 import channels.SocketChannel;
 import channels.server.SocketServer;
-import controllers.server.Player;
-
-import java.util.List;
 
 public interface Workflow {
     void startServer();

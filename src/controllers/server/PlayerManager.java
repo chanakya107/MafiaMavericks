@@ -7,7 +7,7 @@ public interface PlayerManager {
 
     List<Player> players = new ArrayList<Player>();
 
-    void playersJoined(Player player);
+    void playerJoined(Player player);
 
     void playerDisconnected(Player player);
 }
