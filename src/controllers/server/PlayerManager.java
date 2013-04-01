@@ -1,6 +1,6 @@
 package controllers.server;
 
-public interface God {
+public interface PlayerManager {
 
     void playersJoined(Player player);
 

@@ -10,20 +10,20 @@ import java.io.IOException;
 public class Player implements SocketChannelListener {
 
     private final SocketChannel channel;
-    private God god;
+    private PlayerManager playerManager;
     private String name;
     private Role role;
 
-    public Player(SocketChannel channel, God god) {
+    public Player(SocketChannel channel, PlayerManager playerManager) {
 
         this.channel = channel;
-        this.god = god;
+        this.playerManager = playerManager;
         channel.bind(this);
     }
 
     @Override
     public void onClose(SocketChannel channel, Exception e) {
-        god.playerDisconnected(this);
+        playerManager.playerDisconnected(this);
     }
 
 
@@ -36,16 +36,12 @@ public class Player implements SocketChannelListener {
         if (message instanceof PlayerDetailsMessage) {
             PlayerDetailsMessage playerDetailsMessage = (PlayerDetailsMessage) message;
             name = playerDetailsMessage.getPlayerName();
-            god.playersJoined(this);
+            playerManager.playersJoined(this);
         }
     }
 
     @Override
     public void onMessageReadError(SocketChannel channel, Exception e) {
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void sendMessage(ChannelMessage message) {
@@ -54,6 +50,11 @@ public class Player implements SocketChannelListener {
 
     public void assignRole(Role role) {
         this.role = role;
+    }
+
+
+    public String getName() {
+        return name;
     }
 
     public Role getRole() {
