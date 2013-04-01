@@ -3,7 +3,6 @@ package screens.client;
 import controllers.client.MafiaController;
 import screens.controls.MainFrame;
 import view.client.MafiaView;
-import view.client.VillagerView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,4 +44,21 @@ public class MafiaScreen implements MafiaView {
         JOptionPane.showConfirmDialog(null, "Connection to server : " + serverName + " is lost", "", JOptionPane.DEFAULT_OPTION);
         controller.goToHome();
     }
+
+    public void test() {
+        Runnable runner = new Runnable() {
+            public void run() {
+                Timer timer = new Timer(5000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        controller.goToNight();
+                    }
+                });
+                timer.start();
+            }
+        };
+        EventQueue.invokeLater(runner);
+    }
 }
+
+

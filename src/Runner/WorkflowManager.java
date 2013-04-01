@@ -5,18 +5,12 @@ import channels.server.SocketServer;
 import controllers.ConnectionFactory;
 import controllers.HomeController;
 import controllers.Workflow;
-import controllers.client.ClientDetailsController;
-import controllers.client.JoinGameController;
-import controllers.client.MafiaController;
-import controllers.client.VillagerController;
+import controllers.client.*;
 import controllers.server.GameStartedController;
 import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
 import screens.HomeScreen;
-import screens.client.ClientDetailsScreen;
-import screens.client.JoinGameScreen;
-import screens.client.MafiaScreen;
-import screens.client.VillagerScreen;
+import screens.client.*;
 import screens.controls.MainFrame;
 import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
@@ -79,6 +73,13 @@ public class WorkflowManager implements Workflow {
     public void VillagerScreen(SocketChannel channel, String serverName) {
         VillagerController controller = new VillagerController(this, channel, serverName);
         controller.bind(new VillagerScreen(mainFrame, controller));
+        controller.start();
+    }
+
+    @Override
+    public void goToNight(String serverName, SocketChannel channel) {
+        NightController controller = new NightController(this,serverName,channel);
+        controller.bind(new NightScreen(mainFrame,controller));
         controller.start();
     }
 }
