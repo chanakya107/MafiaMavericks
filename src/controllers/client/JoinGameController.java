@@ -4,7 +4,6 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
-import controllers.server.Role;
 import messages.PlayerDetailsMessage;
 import messages.PlayersUpdateMessage;
 import messages.RoleAssignedMessage;
@@ -73,10 +72,7 @@ public class JoinGameController implements SocketChannelListener {
             channel.stop();
         } else if (message instanceof RoleAssignedMessage) {
             RoleAssignedMessage roleAssignedMessage = (RoleAssignedMessage) message;
-            if (roleAssignedMessage.getRole().equals(Role.Mafia))
-                view.goToMafiaScreen();
-            else
-                view.goToVillagerScreen();
+            roleAssignedMessage.getRole().goToScreen(view);
         }
     }
 
