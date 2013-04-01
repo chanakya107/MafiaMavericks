@@ -45,20 +45,6 @@ public class MafiaScreen implements MafiaView {
         controller.goToHome();
     }
 
-    public void test() {
-        Runnable runner = new Runnable() {
-            public void run() {
-                Timer timer = new Timer(5000, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        controller.goToNight();
-                    }
-                });
-                timer.start();
-            }
-        };
-        EventQueue.invokeLater(runner);
-    }
 }
 
 

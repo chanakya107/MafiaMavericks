@@ -22,7 +22,7 @@ public class Player implements SocketChannelListener {
     }
 
     @Override
-    public void onClose(SocketChannel channel, Exception e) {
+public void onClose(SocketChannel channel, Exception e) {
         god.playerDisconnected(this);
     }
 

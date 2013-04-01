@@ -4,9 +4,16 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
+import controllers.server.God;
+import messages.PlayersUpdateMessage;
 import messages.ServerDisconnectedMessage;
+import screens.client.MafiaScreen;
 import view.client.VillagerView;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class VillagerController implements SocketChannelListener {
@@ -28,7 +35,7 @@ public class VillagerController implements SocketChannelListener {
     }
 
     public void start() {
-
+        startTimer();
     }
 
     public void disconnectingFromServer() {
@@ -58,5 +65,24 @@ public class VillagerController implements SocketChannelListener {
 
     @Override
     public void onMessageReadError(SocketChannel channel, Exception e) {
+    }
+
+    public void goToNight() {
+        workflow.goToNight(serverName,channel);
+    }
+
+    public void startTimer() {
+        Runnable runner = new Runnable() {
+            public void run() {
+                Timer timer = new Timer(5000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        goToNight();
+                    }
+                });
+                timer.start();
+            }
+        };
+        EventQueue.invokeLater(runner);
     }
 }
