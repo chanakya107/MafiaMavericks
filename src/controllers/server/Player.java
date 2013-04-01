@@ -22,8 +22,10 @@ public class Player implements SocketChannelListener {
     }
 
     @Override
+
     public void onClose(SocketChannel channel, Exception e) {
         playerManager.playerDisconnected(this);
+
     }
 
 

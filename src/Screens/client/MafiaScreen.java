@@ -44,4 +44,7 @@ public class MafiaScreen implements MafiaView {
         JOptionPane.showConfirmDialog(null, "Connection to server : " + serverName + " is lost", "", JOptionPane.DEFAULT_OPTION);
         controller.goToHome();
     }
+
 }
+
+

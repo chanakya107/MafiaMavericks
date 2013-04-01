@@ -20,4 +20,6 @@ public interface Workflow {
     void mafiaScreen(SocketChannel channel, String serverName);
 
     void VillagerScreen(SocketChannel channel, String serverName);
+
+    void goToNight(String serverName, SocketChannel channel);
 }

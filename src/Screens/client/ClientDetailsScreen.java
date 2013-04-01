@@ -16,7 +16,6 @@ public class ClientDetailsScreen implements ClientDetailsView {
     private ClientDetailsController controller;
     private JPanel panel;
     private JLabel enterServerName;
-    private JLabel textFieldBlank;
     private JTextField serverNameField;
     private JLabel enterUserName;
     private JButton connect;
