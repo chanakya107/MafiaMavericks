@@ -34,15 +34,15 @@ public class PlayerTest {
     }
 
     @Test
-    public void on_closing_of_the_connection_the_player_should_be_disconnected(){
-        player.onClose(channel,new Exception());
+    public void on_closing_of_the_connection_the_player_should_be_disconnected() {
+        player.onClose(channel, new Exception());
         verify(manager).playerDisconnected(player);
     }
 
     @Test
-    public void on_new_PlayerDetailMessage_arrives_the_player_should_be_joined(){
+    public void on_new_PlayerDetailMessage_arrives_the_player_should_be_joined() {
         PlayerDetailsMessage message = mock(PlayerDetailsMessage.class);
-        player.onNewMessageArrived(channel,message);
+        player.onNewMessageArrived(channel, message);
         verify(manager).playersJoined(player);
     }
 
