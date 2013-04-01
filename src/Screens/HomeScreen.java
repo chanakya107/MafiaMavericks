@@ -55,7 +55,7 @@ public class HomeScreen implements HomeView {
         joinGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.getClientDetails();
+                controller.getPlayerDetails();
             }
         });
 

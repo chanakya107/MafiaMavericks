@@ -15,7 +15,7 @@ public class HomeController {
         workflow.startServer();
     }
 
-    public void getClientDetails() {
+    public void getPlayerDetails() {
         workflow.getGameDetails();
     }
 
