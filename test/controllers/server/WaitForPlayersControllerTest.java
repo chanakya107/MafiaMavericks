@@ -5,8 +5,6 @@ import controllers.Workflow;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -32,12 +30,6 @@ public class WaitForPlayersControllerTest {
     public void on_startGame_should_show_the_StartGame_screen_through_workflow() {
         controller.startGame();
         verify(connectionFactory).getServer();
-        verify(workflow).startGame(connectionFactory.getServer(),new ArrayList<Player>());
+        verify(workflow).startGame(connectionFactory.getServer());
     }
-
-    @Test
-    public void (){
-        
-    }
-        
 }

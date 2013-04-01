@@ -10,17 +10,13 @@ import messages.RoleAssignedMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class WaitForPlayersController implements PlayerManager, ConnectionListener {
-    private Workflow workflow;
     private final ConnectionFactory connectionFactory;
+    private Workflow workflow;
     private WaitForPlayersView view;
-    private List<Player> players = new ArrayList<Player>();
 
 
-    public WaitForPlayersController(Workflow workflow,ConnectionFactory connectionFactory) {
+    public WaitForPlayersController(Workflow workflow, ConnectionFactory connectionFactory) {
         this.workflow = workflow;
         this.connectionFactory = connectionFactory;
     }
@@ -35,12 +31,12 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     public void startGame() {
-        new RoleAssignment(players).assign();
-        sendRoleMessage(players);
-        workflow.startGame(connectionFactory.getServer(), players);
+        new RoleAssignment().assign();
+        sendRoleMessage();
+        workflow.startGame(connectionFactory.getServer());
     }
 
-    private void sendRoleMessage(List<Player> players) {
+    private void sendRoleMessage() {
         for (Player player : players) {
             if (player.getRole() == Role.Mafia)
                 player.sendMessage(new RoleAssignedMessage(Role.Mafia));

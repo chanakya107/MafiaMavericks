@@ -42,8 +42,8 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void startGame(SocketServer server, List<Player> players) {
-        GameStartedController controller = new GameStartedController(this, server, players);
+    public void startGame(SocketServer server) {
+        GameStartedController controller = new GameStartedController(this, server);
         controller.bind(new GameStartedScreen(mainFrame, controller));
         controller.start();
     }
