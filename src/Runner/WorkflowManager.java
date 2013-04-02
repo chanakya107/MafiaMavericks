@@ -77,8 +77,8 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void goToNight(String serverName, SocketChannel channel) {
-        NightController controller = new NightController(this, serverName, channel);
+    public void goToNight() {
+        NightController controller = new NightController(this);
         controller.bind(new NightScreen(mainFrame, controller));
         controller.start();
     }

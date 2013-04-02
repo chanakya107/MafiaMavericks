@@ -16,6 +16,5 @@ public class MafiaController extends VillagerController {
     }
 
     public void start() {
-        startTimer();
     }
 }

@@ -4,10 +4,7 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
-import messages.PlayerDetailsMessage;
-import messages.PlayersUpdateMessage;
-import messages.RoleAssignedMessage;
-import messages.ServerDisconnectedMessage;
+import messages.*;
 import view.client.JoinGameView;
 
 import java.io.IOException;
@@ -73,7 +70,8 @@ public class JoinGameController implements SocketChannelListener {
         } else if (message instanceof RoleAssignedMessage) {
             RoleAssignedMessage roleAssignedMessage = (RoleAssignedMessage) message;
             roleAssignedMessage.getRole().goToScreen(view);
-        }
+        } else if (message instanceof NightStartedMessage)
+            workflow.goToNight();
     }
 
     @Override

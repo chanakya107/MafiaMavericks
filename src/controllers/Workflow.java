@@ -21,5 +21,5 @@ public interface Workflow {
 
     void VillagerScreen(SocketChannel channel, String serverName);
 
-    void goToNight(String serverName, SocketChannel channel);
+    void goToNight();
 }

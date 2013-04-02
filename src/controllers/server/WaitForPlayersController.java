@@ -5,11 +5,16 @@ import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import channels.server.SocketServer;
 import controllers.Workflow;
+import messages.NightStartedMessage;
 import messages.PlayersUpdateMessage;
 import messages.RoleAssignedMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +41,23 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         new RoleAssignment(players).assign();
         sendRoleMessage(players);
         workflow.startGame(server, players);
+        startNight();
+    }
+
+    private void startNight() {
+        Runnable runner = new Runnable() {
+            public void run() {
+                Timer timer = new Timer(5000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        sendMessage(new NightStartedMessage());
+
+                    }
+                });
+                timer.start();
+            }
+        };
+        EventQueue.invokeLater(runner);
     }
 
     private void sendRoleMessage(List<Player> players) {
