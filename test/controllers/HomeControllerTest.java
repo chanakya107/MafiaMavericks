@@ -7,7 +7,7 @@ import static org.mockito.Mockito.verify;
 
 public class HomeControllerTest {
     @Test
-    public void startServer_should_display_startServerScreen(){
+    public void startServer_should_display_startServerScreen() {
         Workflow workflow = mock(Workflow.class);
         HomeController controller = new HomeController(workflow);
         controller.startServer();
@@ -15,12 +15,10 @@ public class HomeControllerTest {
     }
 
     @Test
-    public void getPlayerDetails_should_display_startServerScreen(){
+    public void getPlayerDetails_should_display_startServerScreen() {
         Workflow workflow = mock(Workflow.class);
         HomeController controller = new HomeController(workflow);
         controller.getPlayerDetails();
         verify(workflow).getGameDetails();
     }
-
-
 }
