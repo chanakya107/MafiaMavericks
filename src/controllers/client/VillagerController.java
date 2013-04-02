@@ -71,7 +71,7 @@ public class VillagerController implements SocketChannelListener {
     public void startTimer() {
         Runnable runner = new Runnable() {
             public void run() {
-                Timer timer = new Timer(10000, new ActionListener() {
+                Timer timer = new Timer(5000, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         goToNight();

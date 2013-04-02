@@ -1,10 +1,16 @@
 package controllers.server;
 
+import java.util.List;
 import java.util.Random;
 
 import static java.lang.StrictMath.floor;
 
-public class RoleAssignment implements PlayerManager {
+public class RoleAssignment {
+    private List<Player> players;
+
+    public RoleAssignment(List<Player> players) {
+        this.players = players;
+    }
 
     public void assign() {
         for (Player player : players) {
@@ -26,13 +32,5 @@ public class RoleAssignment implements PlayerManager {
                 mafiaCount++;
         }
         return mafiaCount < floor(players.size() / 2);
-    }
-
-    @Override
-    public void playersJoined(Player player) {
-    }
-
-    @Override
-    public void playerDisconnected(Player player) {
     }
 }

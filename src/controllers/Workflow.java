@@ -11,7 +11,7 @@ public interface Workflow {
 
     void getGameDetails();
 
-    void startGame(SocketServer server);
+    void startGame(SocketServer server, List<Player> players);
 
     void goToHome();
 
