@@ -3,7 +3,7 @@ package controllers.server;
 import channels.ConnectionListener;
 import channels.SocketChannel;
 import channels.messages.ChannelMessage;
-import channels.server.SocketServer;
+import controllers.ConnectionFactory;
 import controllers.Workflow;
 import messages.NightStartedMessage;
 import messages.PlayersUpdateMessage;
@@ -19,18 +19,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WaitForPlayersController implements PlayerManager, ConnectionListener {
+    private final ConnectionFactory connectionFactory;
     private Workflow workflow;
     private WaitForPlayersView view;
     private List<Player> players = new ArrayList<Player>();
-    private SocketServer server = new SocketServer(1254, this);
 
 
-    public WaitForPlayersController(Workflow workflow) {
+    public WaitForPlayersController(Workflow workflow, ConnectionFactory connectionFactory) {
         this.workflow = workflow;
+        this.connectionFactory = connectionFactory;
     }
 
     public void start() {
-        server.start();
+        connectionFactory.createServer(this);
+        connectionFactory.startServer();
     }
 
     public void bind(WaitForPlayersView view) {
@@ -40,8 +42,8 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     public void startGame() {
         new RoleAssignment(players).assign();
         sendRoleMessage(players);
-        workflow.startGame(server, players);
         startNight();
+        workflow.startGame(connectionFactory.getServer(), players);
     }
 
     private void startNight() {
@@ -71,7 +73,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     public void stopServer() {
         sendMessage(new ServerDisconnectedMessage());
-        server.stop();
+        connectionFactory.stopServer();
         workflow.goToHome();
     }
 
@@ -86,7 +88,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playersJoined(Player player) {
+    public void playerJoined(Player player) {
         view.updatePlayers(players);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }

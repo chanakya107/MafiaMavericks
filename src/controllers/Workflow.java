@@ -11,8 +11,6 @@ public interface Workflow {
 
     void getGameDetails();
 
-    void startGame(SocketServer server, List<Player> players);
-
     void goToHome();
 
     void connectedToServer(SocketChannel channel, String serverName, String playerName);
@@ -22,4 +20,6 @@ public interface Workflow {
     void VillagerScreen(SocketChannel channel, String serverName);
 
     void goToNight();
+
+    void startGame(SocketServer server, List<Player> players);
 }

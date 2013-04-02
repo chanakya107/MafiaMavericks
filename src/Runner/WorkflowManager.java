@@ -29,7 +29,7 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void startServer() {
-        WaitForPlayersController controller = new WaitForPlayersController(this);
+        WaitForPlayersController controller = new WaitForPlayersController(this, new ConnectionFactory());
         controller.bind(new WaitForPlayersScreen(mainFrame, controller));
         controller.start();
     }
@@ -41,12 +41,6 @@ public class WorkflowManager implements Workflow {
         controller.start();
     }
 
-    @Override
-    public void startGame(SocketServer server, List<Player> players) {
-        GameStartedController controller = new GameStartedController(this, server, players);
-        controller.bind(new GameStartedScreen(mainFrame, controller));
-        controller.start();
-    }
 
     @Override
     public void goToHome() {
@@ -80,6 +74,13 @@ public class WorkflowManager implements Workflow {
     public void goToNight() {
         NightController controller = new NightController(this);
         controller.bind(new NightScreen(mainFrame, controller));
+        controller.start();
+    }
+
+    @Override
+    public void startGame(SocketServer server, List<Player> players) {
+        GameStartedController controller = new GameStartedController(this, server, players);
+        controller.bind(new GameStartedScreen(mainFrame, controller));
         controller.start();
     }
 }

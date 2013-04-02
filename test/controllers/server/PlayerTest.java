@@ -43,7 +43,7 @@ public class PlayerTest {
     public void on_new_PlayerDetailMessage_arrives_the_player_should_be_joined() {
         PlayerDetailsMessage message = mock(PlayerDetailsMessage.class);
         player.onNewMessageArrived(channel, message);
-        verify(manager).playersJoined(player);
+        verify(manager).playerJoined(player);
     }
 
 }
