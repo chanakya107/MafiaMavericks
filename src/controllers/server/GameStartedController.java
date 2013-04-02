@@ -11,10 +11,10 @@ import java.util.List;
 public class GameStartedController {
     private Workflow workflow;
     private final SocketServer server;
-    private final List<Player> players;
+    private final List<ConnectionManager> players;
     private GameStartedView view;
 
-    public GameStartedController(Workflow workflow, SocketServer server, List<Player> players) {
+    public GameStartedController(Workflow workflow, SocketServer server, List<ConnectionManager> players) {
         this.workflow = workflow;
         this.server = server;
         this.players = players;
@@ -35,7 +35,7 @@ public class GameStartedController {
     }
 
     private void sendMessage(ChannelMessage message) {
-        for (Player player : players) {
+        for (ConnectionManager player : players) {
             player.sendMessage(message);
         }
     }

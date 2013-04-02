@@ -2,7 +2,7 @@ package controllers.server;
 
 public interface PlayerManager {
 
-    void playerJoined(Player player);
+    void playerJoined(ConnectionManager player);
 
-    void playerDisconnected(Player player);
+    void playerDisconnected(ConnectionManager player);
 }

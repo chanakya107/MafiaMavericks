@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 public class GameStartedControllerTest {
     Workflow workflow;
     SocketServer server;
-    List<Player> players = new ArrayList<Player>();
+    List<ConnectionManager> players = new ArrayList<ConnectionManager>();
     GameStartedView view;
     GameStartedController controller;
 

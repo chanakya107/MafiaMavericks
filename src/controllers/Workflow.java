@@ -2,7 +2,7 @@ package controllers;
 
 import channels.SocketChannel;
 import channels.server.SocketServer;
-import controllers.server.Player;
+import controllers.server.ConnectionManager;
 
 import java.util.List;
 
@@ -21,5 +21,5 @@ public interface Workflow {
 
     void goToNight();
 
-    void startGame(SocketServer server, List<Player> players);
+    void startGame(SocketServer server, List<ConnectionManager> players);
 }
