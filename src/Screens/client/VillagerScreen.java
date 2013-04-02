@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,17 +50,19 @@ public class VillagerScreen implements VillagerView {
             panel.add(radioButton);
             buttonGroup.add(radioButton);
 
-            yAxis += 10;
+            yAxis += 80;
 
-
-            /*radioButton.addActionListener(new ActionListener() {
+            radioButton.addItemListener(new ItemListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    String selectedName = e.getActionCommand();
-                    System.out.println("i selected " + selectedName);
-
+                public void itemStateChanged(ItemEvent ev) {
+                    boolean selected = (ev.getStateChange() == ItemEvent.SELECTED);
+                    AbstractButton button = (AbstractButton) ev.getItemSelectable();
+                    System.out.println("ITEM Choice Selected: " + selected
+                            + ", Selection: " + button.getActionCommand());
                 }
-            });*/
+            });
+
+
         }
 
 
