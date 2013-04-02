@@ -6,8 +6,8 @@ import controllers.ConnectionFactory;
 import controllers.HomeController;
 import controllers.Workflow;
 import controllers.client.*;
+import controllers.server.ConnectionManager;
 import controllers.server.GameStartedController;
-import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
 import screens.HomeScreen;
 import screens.client.*;
@@ -78,7 +78,7 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void startGame(SocketServer server, List<Player> players) {
+    public void startGame(SocketServer server, List<ConnectionManager> players) {
         GameStartedController controller = new GameStartedController(this, server, players);
         controller.bind(new GameStartedScreen(mainFrame, controller));
         controller.start();

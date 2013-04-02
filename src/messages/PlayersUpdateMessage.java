@@ -6,7 +6,6 @@ public class PlayersUpdateMessage extends ChannelMessage {
     private final String[] playerNameList;
 
     public PlayersUpdateMessage(String playerNames) {
-        super();
         this.playerNameList = playerNames.split("\n");
     }
 

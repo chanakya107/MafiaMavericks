@@ -34,7 +34,7 @@ public class WaitForPlayersControllerTest {
     public void startGame_should_show_the_StartGame_screen_through_workflow() {
         controller.startGame();
         verify(connectionFactory).getServer();
-        verify(workflow).startGame(connectionFactory.getServer(), new ArrayList<Player>());
+        verify(workflow).startGame(connectionFactory.getServer(), new ArrayList<ConnectionManager>());
     }
 
     @Test
@@ -46,19 +46,19 @@ public class WaitForPlayersControllerTest {
 
     @Test
     public void when_player_joined_the_list_of_players_will_be_updated() {
-        Player player = mock(Player.class);
+        ConnectionManager player = mock(ConnectionManager.class);
         WaitForPlayersView view = mock(WaitForPlayersView.class);
         controller.bind(view);
         controller.playerJoined(player);
-        verify(view).updatePlayers(new ArrayList<Player>());
+        verify(view).updatePlayers(new ArrayList<ConnectionManager>());
     }
 
     @Test
     public void when_player_disconnected_the_list_of_players_will_be_updated() {
-        Player player = mock(Player.class);
+        ConnectionManager player = mock(ConnectionManager.class);
         WaitForPlayersView view = mock(WaitForPlayersView.class);
         controller.bind(view);
         controller.playerDisconnected(player);
-        verify(view).updatePlayers(new ArrayList<Player>());
+        verify(view).updatePlayers(new ArrayList<ConnectionManager>());
     }
 }

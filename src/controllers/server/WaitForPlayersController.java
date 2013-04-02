@@ -22,7 +22,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     private final ConnectionFactory connectionFactory;
     private Workflow workflow;
     private WaitForPlayersView view;
-    private List<Player> players = new ArrayList<Player>();
+    private List<ConnectionManager> players = new ArrayList<ConnectionManager>();
 
 
     public WaitForPlayersController(Workflow workflow, ConnectionFactory connectionFactory) {
@@ -62,12 +62,12 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         EventQueue.invokeLater(runner);
     }
 
-    private void sendRoleMessage(List<Player> players) {
-        for (Player player : players) {
-            if (player.getRole() == Role.Mafia)
-                player.sendMessage(new RoleAssignedMessage(Role.Mafia));
+    private void sendRoleMessage(List<ConnectionManager> players) {
+        for (ConnectionManager connectionManager : players) {
+            if (connectionManager.getPlayer().getRole() == Role.Mafia)
+                connectionManager.sendMessage(new RoleAssignedMessage(Role.Mafia));
             else
-                player.sendMessage(new RoleAssignedMessage(Role.Villager));
+                connectionManager.sendMessage(new RoleAssignedMessage(Role.Villager));
         }
     }
 
@@ -79,7 +79,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
-        players.add(new Player(channel, this));
+        players.add(new ConnectionManager(channel, this));
     }
 
     @Override
@@ -88,28 +88,28 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playerJoined(Player player) {
+    public void playerJoined(ConnectionManager player) {
         view.updatePlayers(players);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }
 
     @Override
-    public void playerDisconnected(Player player) {
+    public void playerDisconnected(ConnectionManager player) {
         players.remove(player);
         view.updatePlayers(players);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }
 
     private void sendMessage(ChannelMessage message) {
-        for (Player player : players) {
+        for (ConnectionManager player : players) {
             player.sendMessage(message);
         }
     }
 
     private String getPlayerNames() {
         String resultName = "";
-        for (Player player : players) {
-            resultName += player.getName() + "\n";
+        for (ConnectionManager connectionManager : players) {
+            resultName += connectionManager.getPlayer().getName() + "\n";
         }
         return resultName;
     }
