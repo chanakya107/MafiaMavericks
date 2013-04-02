@@ -5,15 +5,24 @@ import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import controllers.ConnectionFactory;
 import controllers.Workflow;
+import messages.NightStartedMessage;
 import messages.PlayersUpdateMessage;
 import messages.RoleAssignedMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 public class WaitForPlayersController implements PlayerManager, ConnectionListener {
     private final ConnectionFactory connectionFactory;
     private Workflow workflow;
     private WaitForPlayersView view;
+    private List<Player> players = new ArrayList<Player>();
 
 
     public WaitForPlayersController(Workflow workflow, ConnectionFactory connectionFactory) {
@@ -31,12 +40,29 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     public void startGame() {
-        new RoleAssignment().assign();
-        sendRoleMessage();
-        workflow.startGame(connectionFactory.getServer());
+        new RoleAssignment(players).assign();
+        sendRoleMessage(players);
+        startNight();
+        workflow.startGame(connectionFactory.getServer(), players);
     }
 
-    private void sendRoleMessage() {
+    private void startNight() {
+        Runnable runner = new Runnable() {
+            public void run() {
+                Timer timer = new Timer(5000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        sendMessage(new NightStartedMessage());
+
+                    }
+                });
+                timer.start();
+            }
+        };
+        EventQueue.invokeLater(runner);
+    }
+
+    private void sendRoleMessage(List<Player> players) {
         for (Player player : players) {
             if (player.getRole() == Role.Mafia)
                 player.sendMessage(new RoleAssignedMessage(Role.Mafia));

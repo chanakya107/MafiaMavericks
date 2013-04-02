@@ -2,13 +2,14 @@ package controllers;
 
 import channels.SocketChannel;
 import channels.server.SocketServer;
+import controllers.server.Player;
+
+import java.util.List;
 
 public interface Workflow {
     void startServer();
 
     void getGameDetails();
-
-    void startGame(SocketServer server);
 
     void goToHome();
 
@@ -18,5 +19,7 @@ public interface Workflow {
 
     void VillagerScreen(SocketChannel channel, String serverName);
 
-    void goToNight(String serverName, SocketChannel channel);
+    void goToNight();
+
+    void startGame(SocketServer server, List<Player> players);
 }

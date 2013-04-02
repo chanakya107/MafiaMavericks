@@ -6,14 +6,18 @@ import controllers.Workflow;
 import messages.ServerDisconnectedMessage;
 import view.server.GameStartedView;
 
-public class GameStartedController implements PlayerManager {
+import java.util.List;
+
+public class GameStartedController {
     private Workflow workflow;
     private final SocketServer server;
+    private final List<Player> players;
     private GameStartedView view;
 
-    public GameStartedController(Workflow workflow, SocketServer server) {
+    public GameStartedController(Workflow workflow, SocketServer server, List<Player> players) {
         this.workflow = workflow;
         this.server = server;
+        this.players = players;
     }
 
     public void bind(GameStartedView view) {
@@ -36,11 +40,4 @@ public class GameStartedController implements PlayerManager {
         }
     }
 
-    @Override
-    public void playerJoined(Player player) {
-    }
-
-    @Override
-    public void playerDisconnected(Player player) {
-    }
 }

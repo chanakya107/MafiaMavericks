@@ -7,12 +7,15 @@ import controllers.HomeController;
 import controllers.Workflow;
 import controllers.client.*;
 import controllers.server.GameStartedController;
+import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
 import screens.HomeScreen;
 import screens.client.*;
 import screens.controls.MainFrame;
 import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
+
+import java.util.List;
 
 public class WorkflowManager implements Workflow {
     private MainFrame mainFrame;
@@ -38,12 +41,6 @@ public class WorkflowManager implements Workflow {
         controller.start();
     }
 
-    @Override
-    public void startGame(SocketServer server) {
-        GameStartedController controller = new GameStartedController(this, server);
-        controller.bind(new GameStartedScreen(mainFrame, controller));
-        controller.start();
-    }
 
     @Override
     public void goToHome() {
@@ -74,9 +71,16 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void goToNight(String serverName, SocketChannel channel) {
-        NightController controller = new NightController(this, serverName, channel);
+    public void goToNight() {
+        NightController controller = new NightController(this);
         controller.bind(new NightScreen(mainFrame, controller));
+        controller.start();
+    }
+
+    @Override
+    public void startGame(SocketServer server, List<Player> players) {
+        GameStartedController controller = new GameStartedController(this, server, players);
+        controller.bind(new GameStartedScreen(mainFrame, controller));
         controller.start();
     }
 }
