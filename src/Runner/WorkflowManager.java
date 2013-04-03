@@ -65,7 +65,7 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void mafiaNightScreen(SocketChannel channel, String serverName, List<Player> players) {
-        MafiaNightController controller = new MafiaNightController(this, channel, serverName, players);
+        MafiaNightController controller = new MafiaNightController(this, channel, players);
         controller.bind(new MafiaNightScreen(mainFrame, controller));
         controller.start();
     }

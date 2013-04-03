@@ -25,6 +25,14 @@ public class VillagerNightControllerTest {
     }
 
     @Test
+    public void on_start_display_of_night_screen_should_be_made() {
+        VillagerNightView view = mock(VillagerNightView.class);
+        controller.bind(view);
+        controller.start();
+        verify(view).displayAtNight(new ArrayList<Player>());
+    }
+
+    @Test
     public void disconnecting_from_server_will_stop_the_channel_and_goes_back_to_the_gameDetailsScreen() {
         controller.disconnectingFromServer();
         verify(channel).stop();
@@ -35,14 +43,6 @@ public class VillagerNightControllerTest {
     public void goToHome_will_display_homeScreen_through_workflow() {
         controller.goToHome();
         verify(workflow).goToHome();
-    }
-
-    @Test
-    public void on_start_display_of_night_screen_should_be_made() {
-        VillagerNightView view = mock(VillagerNightView.class);
-        controller.bind(view);
-        controller.start();
-        verify(view).displayAtNight(new ArrayList<Player>());
     }
 
 

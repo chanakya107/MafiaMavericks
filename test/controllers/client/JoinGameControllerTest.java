@@ -72,14 +72,14 @@ public class JoinGameControllerTest {
     }
 
     @Test
-    public void on_new_RoundStartedMessage_arrived_along_with_role_then_respective_screen_should_be_displayed(){
+    public void on_new_RoundStartedMessage_arrived_along_with_role_then_respective_screen_should_be_displayed() {
         RoundStartedMessage roundStartedMessage = mock(RoundStartedMessage.class);
         Role role = mock(Role.class);
         when(roundStartedMessage.getRole()).thenReturn(role);
         ArrayList<Player> players = new ArrayList<Player>();
         when(roundStartedMessage.getPlayers()).thenReturn(players);
-        controller.onNewMessageArrived(channel,roundStartedMessage);
-        verify(role).goToScreen(workflow,channel,"localhost",players);
+        controller.onNewMessageArrived(channel, roundStartedMessage);
+        verify(role).goToScreen(workflow, channel, "localhost", players);
     }
 
 }
