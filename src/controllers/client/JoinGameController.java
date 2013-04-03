@@ -70,8 +70,10 @@ public class JoinGameController implements SocketChannelListener {
         } else if (message instanceof RoleAssignedMessage) {
             RoleAssignedMessage roleAssignedMessage = (RoleAssignedMessage) message;
             roleAssignedMessage.getRole().goToScreen(view);
-        } else if (message instanceof NightStartedMessage)
-            workflow.goToNight();
+        } else if (message instanceof NightStartedMessage) {
+            NightStartedMessage nightStartedMessage = (NightStartedMessage) message;
+            workflow.goToNight(nightStartedMessage.getPlayers());
+        }
     }
 
     @Override

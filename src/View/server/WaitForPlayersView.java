@@ -1,10 +1,10 @@
 package view.server;
 
-import controllers.server.ConnectionManager;
+import controllers.server.Client;
 
 import java.util.List;
 
 public interface WaitForPlayersView {
 
-    void updatePlayers(List<ConnectionManager> playerList);
+    void updatePlayers(List<Client> playerList);
 }

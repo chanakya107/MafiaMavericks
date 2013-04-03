@@ -6,15 +6,15 @@ import java.util.Random;
 import static java.lang.StrictMath.floor;
 
 public class RoleAssignment {
-    private List<ConnectionManager> players;
+    private List<Client> players;
 
-    public RoleAssignment(List<ConnectionManager> players) {
+    public RoleAssignment(List<Client> players) {
         this.players = players;
     }
 
     public void assign() {
-        for (ConnectionManager connectionManager : players) {
-            connectionManager.getPlayer().assignRole(getRole());
+        for (Client client : players) {
+            client.getPlayer().assignRole(getRole());
         }
     }
 
@@ -27,8 +27,8 @@ public class RoleAssignment {
 
     private boolean canAssignToMafia() {
         int mafiaCount = 0;
-        for (ConnectionManager connectionManager : players) {
-            if (connectionManager.getPlayer().getRole() == Role.Mafia)
+        for (Client client : players) {
+            if (client.getPlayer().getRole() == Role.Mafia)
                 mafiaCount++;
         }
         return mafiaCount < floor(players.size() / 2);
