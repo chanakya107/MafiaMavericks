@@ -2,11 +2,16 @@ package controllers.client;
 
 import channels.SocketChannel;
 import controllers.Workflow;
+import controllers.server.Player;
+import controllers.server.Role;
 import messages.PlayersUpdateMessage;
+import messages.RoundStartedMessage;
 import messages.ServerDisconnectedMessage;
 import org.junit.Before;
 import org.junit.Test;
 import view.client.JoinGameView;
+
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
@@ -66,19 +71,15 @@ public class JoinGameControllerTest {
         verify(channel).stop();
     }
 
-//    @Test
-//    public void when_a_new_RoleAssignedMessage_is_arrived_with_role_as_mafia_then_mafia_screen_is_displayed() {
-//        RoleAssignedMessage roleAssignedMessage = mock(RoleAssignedMessage.class);
-//        when(roleAssignedMessage.getRole()).thenReturn(Role.Mafia);
-//        controller.onNewMessageArrived(channel, roleAssignedMessage);
-//        verify(view).goToMafiaNightScreen();
-//    }
-//
-//    @Test
-//    public void when_a_new_RoleAssignedMessage_is_arrived_with_role_as_villager_then_villager_screen_is_displayed() {
-//        RoleAssignedMessage roleAssignedMessage = mock(RoleAssignedMessage.class);
-//        when(roleAssignedMessage.getRole()).thenReturn(Role.Villager);
-//        controller.onNewMessageArrived(channel, roleAssignedMessage);
-//        verify(view).goToVillagerNightScreen();
-//    }
+    @Test
+    public void on_new_RoundStartedMessage_arrived_along_with_role_then_respective_screen_should_be_displayed(){
+        RoundStartedMessage roundStartedMessage = mock(RoundStartedMessage.class);
+        Role role = mock(Role.class);
+        when(roundStartedMessage.getRole()).thenReturn(role);
+        ArrayList<Player> players = new ArrayList<Player>();
+        when(roundStartedMessage.getPlayers()).thenReturn(players);
+        controller.onNewMessageArrived(channel,roundStartedMessage);
+        verify(role).goToScreen(workflow,channel,"localhost",players);
+    }
+
 }
