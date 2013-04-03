@@ -11,10 +11,6 @@ import messages.RoleAssignedMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,25 +38,26 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     public void startGame() {
         new RoleAssignment(getPlayers()).assign();
         sendRoleMessage(clients);
-        startNight();
+        sendMessage(new NightStartedMessage(getPlayers()));
+//        startNight();
         workflow.startGame(connectionFactory.getServer(), clients);
     }
 
-    private void startNight() {
-        Runnable runner = new Runnable() {
-            public void run() {
-                Timer timer = new Timer(10000, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        sendMessage(new NightStartedMessage(getPlayers()));
-                        ((Timer) e.getSource()).stop();
-                    }
-                });
-                timer.start();
-            }
-        };
-        EventQueue.invokeLater(runner);
-    }
+//    private void startNight() {
+//        Runnable runner = new Runnable() {
+//            public void run() {
+//                Timer timer = new Timer(10000, new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                        sendMessage(new NightStartedMessage(getPlayers()));
+//                        ((Timer) e.getSource()).stop();
+//                    }
+//                });
+//                timer.start();
+//            }
+//        };
+//        EventQueue.invokeLater(runner);
+//    }
 
     private List<Player> getPlayers() {
         List<Player> players = new ArrayList<Player>();

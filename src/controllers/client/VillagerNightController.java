@@ -6,27 +6,25 @@ import channels.messages.ChannelMessage;
 import controllers.Workflow;
 import controllers.server.Player;
 import messages.ServerDisconnectedMessage;
-import view.client.VillagerView;
+import view.client.VillagerNightView;
 
 import java.io.IOException;
 import java.util.List;
 
-public class VillagerController implements SocketChannelListener {
+public class VillagerNightController implements SocketChannelListener {
     private final Workflow workflow;
     private final SocketChannel channel;
     private final String serverName;
-    public List<Player> players;
-    private VillagerView view;
+   private VillagerNightView view;
 
-    public VillagerController(Workflow workflow, SocketChannel channel, String serverName) {
+    public VillagerNightController(Workflow workflow, SocketChannel channel, String serverName) {
 
         this.workflow = workflow;
         this.channel = channel;
         this.serverName = serverName;
-        this.players = players;
     }
 
-    public void bind(VillagerView view) {
+    public void bind(VillagerNightView view) {
 
         this.view = view;
     }
@@ -62,6 +60,4 @@ public class VillagerController implements SocketChannelListener {
     @Override
     public void onMessageReadError(SocketChannel channel, Exception e) {
     }
-
-
 }

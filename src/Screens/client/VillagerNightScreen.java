@@ -1,9 +1,10 @@
 package screens.client;
 
-import controllers.client.VillagerController;
+import controllers.client.VillagerNightController;
 import controllers.client.Vote;
+import controllers.server.Player;
 import screens.controls.MainFrame;
-import view.client.VillagerView;
+import view.client.VillagerNightView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,15 +12,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-public class VillagerScreen implements VillagerView {
+public class VillagerNightScreen implements VillagerNightView {
     private final MainFrame mainFrame;
-    private final VillagerController controller;
+    private final VillagerNightController controller;
     private final JPanel panel;
     private final JButton disconnect;
 
 
-    public VillagerScreen(MainFrame mainFrame, final VillagerController controller) {
+    public VillagerNightScreen(MainFrame mainFrame, final VillagerNightController controller) {
         this.mainFrame = mainFrame;
         this.controller = controller;
 
@@ -33,9 +36,12 @@ public class VillagerScreen implements VillagerView {
         ButtonGroup buttonGroup = new ButtonGroup();
 
         int xAxis = 750, yAxis = 450, width = 150, height = 50;
+        final ArrayList<String> players = new ArrayList<String>();
+        players.add("deepthi");
+        players.add("raghav");
 
-        for (int i = 0; i < controller.players.size(); i++) {
-            String player = String.valueOf(controller.players.get(i));
+        for (int i = 0; i < players.size(); i++) {
+            String player = players.get(i);
             radioButton = new JRadioButton(player);
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
@@ -54,8 +60,17 @@ public class VillagerScreen implements VillagerView {
                     String selectedName = button.getActionCommand();
                     System.out.println("ITEM Choice Selected: " + selected
                             + ", Selection: " + selectedName);
-                    Vote vote = new Vote(controller.players, selectedName);
-                    vote.count();
+
+                    Vote vote = new Vote(players, selectedName);
+                    int voteCount = 0;
+                    for (String s : vote.count()) {
+                        String[] temp;
+                        temp = s.split(" ");
+                        System.out.println(" Before : " + voteCount);
+                        voteCount = voteCount + Integer.parseInt(temp[1]);
+                        System.out.println(" After : " + voteCount);
+                    }
+
                 }
             });
 

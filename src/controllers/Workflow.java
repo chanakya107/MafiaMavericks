@@ -16,9 +16,9 @@ public interface Workflow {
 
     void connectedToServer(SocketChannel channel, String serverName, String playerName);
 
-    void mafiaScreen(SocketChannel channel, String serverName);
+    void mafiaNightScreen(SocketChannel channel, String serverName);
 
-    void VillagerScreen(SocketChannel channel, String serverName);
+    void villagerNightScreen(SocketChannel channel, String serverName);
 
     void goToNight(List<Player> players);
 
