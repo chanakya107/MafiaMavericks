@@ -62,12 +62,10 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         EventQueue.invokeLater(runner);
     }
 
-    private Player[] getPlayers() {
-        Player[] players = new Player[clients.size()];
-        int i = 0;
+    private List<Player> getPlayers() {
+        List<Player> players = new ArrayList<Player>();
         for (Client client : clients) {
-            players[i] = client.getPlayer();
-            i++;
+            players.add(client.getPlayer());
         }
         return players;
     }

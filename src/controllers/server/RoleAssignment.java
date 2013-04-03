@@ -1,13 +1,14 @@
 package controllers.server;
 
+import java.util.List;
 import java.util.Random;
 
 import static java.lang.StrictMath.floor;
 
 public class RoleAssignment {
-    private Player[] players;
+    private List<Player> players;
 
-    public RoleAssignment(Player[] players) {
+    public RoleAssignment(List<Player> players) {
         this.players = players;
     }
 
@@ -30,6 +31,6 @@ public class RoleAssignment {
             if (player.isMafia())
                 mafiaCount++;
         }
-        return mafiaCount < floor(players.length / 2);
+        return mafiaCount < floor(players.size() / 2);
     }
 }
