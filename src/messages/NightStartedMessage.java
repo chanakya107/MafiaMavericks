@@ -12,6 +12,6 @@ public class NightStartedMessage extends ChannelMessage {
     }
 
     public Player[] getPlayers() {
-        return players;
+                        return players;
     }
 }

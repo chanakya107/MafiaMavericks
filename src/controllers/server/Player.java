@@ -21,4 +21,8 @@ public class Player implements Serializable {
     public Role getRole() {
         return role;
     }
+
+    public boolean isMafia() {
+        return this.role == Role.Mafia;
+    }
 }

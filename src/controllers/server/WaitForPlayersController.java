@@ -40,7 +40,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     public void startGame() {
-        new RoleAssignment(clients).assign();
+        new RoleAssignment(getPlayers()).assign();
         sendRoleMessage(clients);
         startNight();
         workflow.startGame(connectionFactory.getServer(), clients);
@@ -53,6 +53,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         sendMessage(new NightStartedMessage(getPlayers()));
+                        ((Timer) e.getSource()).stop();
                     }
                 });
                 timer.start();
@@ -63,17 +64,17 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     private Player[] getPlayers() {
         Player[] players = new Player[clients.size()];
-        int i = 0 ;
+        int i = 0;
         for (Client client : clients) {
             players[i] = client.getPlayer();
+            i++;
         }
-        System.out.println("hiiiiiiiii " + players.length);
         return players;
     }
 
     private void sendRoleMessage(List<Client> players) {
         for (Client client : players) {
-            if (client.getPlayer().getRole() == Role.Mafia)
+            if (client.getPlayer().isMafia())
                 client.sendMessage(new RoleAssignedMessage(Role.Mafia));
             else
                 client.sendMessage(new RoleAssignedMessage(Role.Villager));

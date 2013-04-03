@@ -21,5 +21,4 @@ public enum Role  implements Serializable {
     public void goToScreen(JoinGameView view) {
 
     }
-
 }
