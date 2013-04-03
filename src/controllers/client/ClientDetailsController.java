@@ -23,7 +23,7 @@ public class ClientDetailsController implements ConnectionListener {
     public void connectToServer() {
 
         if (view.getServerName().equals("")) {
-            view.display("Server Name Cannot Be Empty");
+            view.display("server Name Cannot Be Empty");
         } else if (view.getPlayerName().equals("")) {
             view.display("Player Name Cannot Be Empty");
         } else {

@@ -11,8 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
-import java.util.List;
 
 public class VillagerScreen implements VillagerView {
     private final MainFrame mainFrame;
@@ -30,20 +28,14 @@ public class VillagerScreen implements VillagerView {
         Image image = new ImageIcon(".\\Images\\www.desktopwallpapers4.me.jpg").getImage();
         panel = mainFrame.createPanel(image);
 
-        String deepthi = "Deepthi";
-        String raghu = "Raghu";
 
-        final List<String> players = new ArrayList<String>();
-        players.add(deepthi);
-        players.add(raghu);
         JRadioButton radioButton;
         ButtonGroup buttonGroup = new ButtonGroup();
 
-        int xAxis = 750 , yAxis = 450 , width = 150 , height = 50;
+        int xAxis = 750, yAxis = 450, width = 150, height = 50;
 
-        for (int i = 0; i < players.size(); i++) {
-            String player = players.get(i);
-            System.out.println("hai" + players.size());
+        for (int i = 0; i < controller.players.size(); i++) {
+            String player = String.valueOf(controller.players.get(i));
             radioButton = new JRadioButton(player);
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
@@ -62,7 +54,7 @@ public class VillagerScreen implements VillagerView {
                     String selectedName = button.getActionCommand();
                     System.out.println("ITEM Choice Selected: " + selected
                             + ", Selection: " + selectedName);
-                    Vote vote = new Vote(players,selectedName);
+                    Vote vote = new Vote(controller.players, selectedName);
                     vote.count();
                 }
             });

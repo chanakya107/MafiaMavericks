@@ -33,7 +33,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         Image image = new ImageIcon(".\\Images\\hdwallpapersbase.com.jpg").getImage();
         panel = mainFrame.createPanel(image);
 
-        enterServerName = new JLabel("Enter the Server Name :");
+        enterServerName = new JLabel("Enter the server Name :");
         panel.add(enterServerName);
 
         enterServerName.setSize(300, 150);
@@ -97,7 +97,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         connect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                display("Connecting To Server...");
+                display("Connecting To server...");
                 controller.connectToServer();
             }
         });

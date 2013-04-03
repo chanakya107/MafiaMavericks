@@ -37,7 +37,7 @@ public class ClientDetailsControllerTest {
         when(view.getServerName()).thenReturn("");
         when(view.getPlayerName()).thenReturn("player");
         controller.connectToServer();
-        verify(view).display("Server Name Cannot Be Empty");
+        verify(view).display("server Name Cannot Be Empty");
     }
 
     @Test

@@ -1,12 +1,14 @@
 package controllers.client;
 
+import controllers.server.Player;
+
 import java.util.List;
 
 public class Vote {
-    private final List<String> players;
+    private final List<Player> players;
     private final String selectedName;
 
-    public Vote(List<String> players, String selectedName) {
+    public Vote(List<Player> players, String selectedName) {
         this.players = players;
         this.selectedName = selectedName;
     }

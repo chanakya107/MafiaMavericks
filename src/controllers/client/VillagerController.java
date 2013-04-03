@@ -4,15 +4,18 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
+import controllers.server.Player;
 import messages.ServerDisconnectedMessage;
 import view.client.VillagerView;
 
 import java.io.IOException;
+import java.util.List;
 
 public class VillagerController implements SocketChannelListener {
     private final Workflow workflow;
     private final SocketChannel channel;
     private final String serverName;
+    public List<Player> players;
     private VillagerView view;
 
     public VillagerController(Workflow workflow, SocketChannel channel, String serverName) {
@@ -20,6 +23,7 @@ public class VillagerController implements SocketChannelListener {
         this.workflow = workflow;
         this.channel = channel;
         this.serverName = serverName;
+        this.players = players;
     }
 
     public void bind(VillagerView view) {
