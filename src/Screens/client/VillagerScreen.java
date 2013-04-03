@@ -1,6 +1,7 @@
 package screens.client;
 
 import controllers.client.VillagerController;
+import controllers.client.Vote;
 import screens.controls.MainFrame;
 import view.client.VillagerView;
 
@@ -32,23 +33,24 @@ public class VillagerScreen implements VillagerView {
         String deepthi = "Deepthi";
         String raghu = "Raghu";
 
-        List<String> players = new ArrayList<String>();
+        final List<String> players = new ArrayList<String>();
         players.add(deepthi);
         players.add(raghu);
         JRadioButton radioButton;
-        ButtonGroup buttonGroup;
+        ButtonGroup buttonGroup = new ButtonGroup();
 
         int xAxis = 750 , yAxis = 450 , width = 150 , height = 50;
 
-        for (String player : players) {
-            System.out.println("hai"+players.size());
+        for (int i = 0; i < players.size(); i++) {
+            String player = players.get(i);
+            System.out.println("hai" + players.size());
             radioButton = new JRadioButton(player);
-            buttonGroup = new ButtonGroup();
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
             radioButton.setSelected(false);
             panel.add(radioButton);
             buttonGroup.add(radioButton);
+
 
             yAxis += 80;
 
@@ -57,8 +59,11 @@ public class VillagerScreen implements VillagerView {
                 public void itemStateChanged(ItemEvent ev) {
                     boolean selected = (ev.getStateChange() == ItemEvent.SELECTED);
                     AbstractButton button = (AbstractButton) ev.getItemSelectable();
+                    String selectedName = button.getActionCommand();
                     System.out.println("ITEM Choice Selected: " + selected
-                            + ", Selection: " + button.getActionCommand());
+                            + ", Selection: " + selectedName);
+                    Vote vote = new Vote(players,selectedName);
+                    vote.count();
                 }
             });
 

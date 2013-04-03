@@ -67,7 +67,6 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         for (Client client : clients) {
             players[i] = client.getPlayer();
         }
-        System.out.println("hiiiiiiiii " + players.length);
         return players;
     }
 
