@@ -72,8 +72,8 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void goToNight(Player[] players) {
-        NightController controller = new NightController(this,players);
+    public void goToNight(List<Player> players) {
+        NightController controller = new NightController(this, players);
         controller.bind(new NightScreen(mainFrame, controller));
         controller.start();
     }

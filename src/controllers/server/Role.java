@@ -4,7 +4,7 @@ import view.client.JoinGameView;
 
 import java.io.Serializable;
 
-public enum Role  implements Serializable {
+public enum Role implements Serializable {
     Mafia() {
         @Override
         public void goToScreen(JoinGameView view) {
@@ -21,5 +21,4 @@ public enum Role  implements Serializable {
     public void goToScreen(JoinGameView view) {
 
     }
-
 }

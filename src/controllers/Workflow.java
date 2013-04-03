@@ -20,7 +20,7 @@ public interface Workflow {
 
     void VillagerScreen(SocketChannel channel, String serverName);
 
-    void goToNight(Player[] players);
+    void goToNight(List<Player> players);
 
     void startGame(SocketServer server, List<Client> players);
 }
