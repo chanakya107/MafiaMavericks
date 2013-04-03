@@ -22,7 +22,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     private final ConnectionFactory connectionFactory;
     private Workflow workflow;
     private WaitForPlayersView view;
-    private List<ConnectionManager> players = new ArrayList<ConnectionManager>();
+    private List<Client> clients = new ArrayList<Client>();
 
 
     public WaitForPlayersController(Workflow workflow, ConnectionFactory connectionFactory) {
@@ -40,10 +40,10 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     public void startGame() {
-        new RoleAssignment(players).assign();
-        sendRoleMessage(players);
+        new RoleAssignment(clients).assign();
+        sendRoleMessage(clients);
         startNight();
-        workflow.startGame(connectionFactory.getServer(), players);
+        workflow.startGame(connectionFactory.getServer(), clients);
     }
 
     private void startNight() {
@@ -52,8 +52,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
                 Timer timer = new Timer(5000, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        sendMessage(new NightStartedMessage());
-
+                        sendMessage(new NightStartedMessage(getPlayers()));
                     }
                 });
                 timer.start();
@@ -62,12 +61,22 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         EventQueue.invokeLater(runner);
     }
 
-    private void sendRoleMessage(List<ConnectionManager> players) {
-        for (ConnectionManager connectionManager : players) {
-            if (connectionManager.getPlayer().getRole() == Role.Mafia)
-                connectionManager.sendMessage(new RoleAssignedMessage(Role.Mafia));
+    private Player[] getPlayers() {
+        Player[] players = new Player[clients.size()];
+        int i = 0 ;
+        for (Client client : clients) {
+            players[i] = client.getPlayer();
+        }
+        System.out.println("hiiiiiiiii " + players.length);
+        return players;
+    }
+
+    private void sendRoleMessage(List<Client> players) {
+        for (Client client : players) {
+            if (client.getPlayer().getRole() == Role.Mafia)
+                client.sendMessage(new RoleAssignedMessage(Role.Mafia));
             else
-                connectionManager.sendMessage(new RoleAssignedMessage(Role.Villager));
+                client.sendMessage(new RoleAssignedMessage(Role.Villager));
         }
     }
 
@@ -79,7 +88,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
-        players.add(new ConnectionManager(channel, this));
+        clients.add(new Client(channel, this));
     }
 
     @Override
@@ -88,28 +97,28 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playerJoined(ConnectionManager player) {
-        view.updatePlayers(players);
+    public void playerJoined(Client player) {
+        view.updatePlayers(clients);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }
 
     @Override
-    public void playerDisconnected(ConnectionManager player) {
-        players.remove(player);
-        view.updatePlayers(players);
+    public void playerDisconnected(Client player) {
+        clients.remove(player);
+        view.updatePlayers(clients);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }
 
     private void sendMessage(ChannelMessage message) {
-        for (ConnectionManager player : players) {
+        for (Client player : clients) {
             player.sendMessage(message);
         }
     }
 
     private String getPlayerNames() {
         String resultName = "";
-        for (ConnectionManager connectionManager : players) {
-            resultName += connectionManager.getPlayer().getName() + "\n";
+        for (Client client : clients) {
+            resultName += client.getPlayer().getName() + "\n";
         }
         return resultName;
     }

@@ -1,6 +1,6 @@
 package screens.server;
 
-import controllers.server.ConnectionManager;
+import controllers.server.Client;
 import controllers.server.WaitForPlayersController;
 import screens.controls.MainFrame;
 import view.server.WaitForPlayersView;
@@ -77,10 +77,10 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
     }
 
     @Override
-    public void updatePlayers(List<ConnectionManager> playerList) {
+    public void updatePlayers(List<Client> playerList) {
         players.removeAllElements();
-        for (ConnectionManager connectionManager : playerList) {
-            players.addElement(connectionManager.getPlayer().getName());
+        for (Client client : playerList) {
+            players.addElement(client.getPlayer().getName());
         }
     }
 

@@ -2,7 +2,9 @@ package controllers.server;
 
 import view.client.JoinGameView;
 
-public enum Role {
+import java.io.Serializable;
+
+public enum Role  implements Serializable {
     Mafia() {
         @Override
         public void goToScreen(JoinGameView view) {

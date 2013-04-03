@@ -9,16 +9,16 @@ import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class ConnectionManagerTest {
+public class ClientTest {
     private SocketChannel channel;
     private PlayerManager manager;
-    private ConnectionManager player;
+    private Client player;
 
     @Before
     public void setup() {
         channel = mock(SocketChannel.class);
         manager = mock(PlayerManager.class);
-        player = new ConnectionManager(channel, manager);
+        player = new Client(channel, manager);
     }
 
     @Test

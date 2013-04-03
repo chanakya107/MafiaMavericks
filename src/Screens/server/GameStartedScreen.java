@@ -1,6 +1,6 @@
 package screens.server;
 
-import controllers.server.ConnectionManager;
+import controllers.server.Client;
 import controllers.server.GameStartedController;
 import screens.controls.MainFrame;
 import view.server.GameStartedView;
@@ -70,10 +70,10 @@ public class GameStartedScreen implements GameStartedView {
     }
 
     @Override
-    public void displayPlayers(List<ConnectionManager> players) {
+    public void displayPlayers(List<Client> players) {
         playersDefaultList.removeAllElements();
-        for (ConnectionManager connectionManager : players) {
-            playersDefaultList.addElement(connectionManager.getPlayer().getName() + " - " + connectionManager.getPlayer().getRole());
+        for (Client client : players) {
+            playersDefaultList.addElement(client.getPlayer().getName() + " - " + client.getPlayer().getRole());
         }
     }
 }

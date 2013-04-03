@@ -1,9 +1,9 @@
 package view.server;
 
-import controllers.server.ConnectionManager;
+import controllers.server.Client;
 
 import java.util.List;
 
 public interface GameStartedView {
-    void displayPlayers(List<ConnectionManager> players);
+    void displayPlayers(List<Client> players);
 }

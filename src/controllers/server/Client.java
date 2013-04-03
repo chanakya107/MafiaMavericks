@@ -7,14 +7,14 @@ import messages.PlayerDetailsMessage;
 
 import java.io.IOException;
 
-public class ConnectionManager implements SocketChannelListener {
+public class Client implements SocketChannelListener {
 
     private final SocketChannel channel;
     private PlayerManager playerManager;
     private Player player;
 
 
-    public ConnectionManager(SocketChannel channel, PlayerManager playerManager) {
+    public Client(SocketChannel channel, PlayerManager playerManager) {
 
         this.channel = channel;
         this.playerManager = playerManager;
