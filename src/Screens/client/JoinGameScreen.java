@@ -86,14 +86,4 @@ public class JoinGameScreen implements JoinGameView {
         JOptionPane.showConfirmDialog(null, "Connection to server : " + serverName + " is lost", "", JOptionPane.DEFAULT_OPTION);
         controller.goToHome();
     }
-
-    @Override
-    public void goToMafiaScreen() {
-        controller.goToMafiaScreen();
-    }
-
-    @Override
-    public void goToVillagerScreen() {
-        controller.goToVillagerScreen();
-    }
 }

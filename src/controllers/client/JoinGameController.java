@@ -43,14 +43,6 @@ public class JoinGameController implements SocketChannelListener {
         workflow.goToHome();
     }
 
-    public void goToMafiaScreen() {
-        workflow.mafiaScreen(channel, serverName);
-    }
-
-    public void goToVillagerScreen() {
-        workflow.VillagerScreen(channel, serverName);
-    }
-
     @Override
     public void onClose(SocketChannel channel, Exception e) {
     }
@@ -69,10 +61,10 @@ public class JoinGameController implements SocketChannelListener {
             channel.stop();
         } else if (message instanceof RoleAssignedMessage) {
             RoleAssignedMessage roleAssignedMessage = (RoleAssignedMessage) message;
-            roleAssignedMessage.getRole().goToScreen(view);
+            roleAssignedMessage.getRole().goToScreen(workflow, channel, serverName);
         } else if (message instanceof NightStartedMessage) {
-            NightStartedMessage nightStartedMessage = (NightStartedMessage) message;
-            workflow.goToNight(nightStartedMessage.getPlayers());
+//            NightStartedMessage nightStartedMessage = (NightStartedMessage) message;
+//            workflow.goToNight(nightStartedMessage.getPlayers());
         }
     }
 

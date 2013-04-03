@@ -1,5 +1,5 @@
 package view.client;
 
-public interface VillagerView {
+public interface VillagerNightView {
     void serverDisconnected(String serverName);
 }

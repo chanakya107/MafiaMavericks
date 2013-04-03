@@ -5,21 +5,21 @@ import controllers.Workflow;
 import messages.ServerDisconnectedMessage;
 import org.junit.Before;
 import org.junit.Test;
-import view.client.VillagerView;
+import view.client.VillagerNightView;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class VillagerControllerTest {
+public class VillagerNightControllerTest {
     Workflow workflow;
     SocketChannel channel;
-    VillagerController controller;
+    VillagerNightController controller;
 
     @Before
     public void setup() {
         workflow = mock(Workflow.class);
         channel = mock(SocketChannel.class);
-        controller = new VillagerController(workflow, channel, "localhost");
+        controller = new VillagerNightController(workflow, channel, "localhost");
     }
 
     @Test
@@ -38,7 +38,7 @@ public class VillagerControllerTest {
     @Test
     public void on_new_ServerDisconnectedMessage_arrived_it_calls_serverDisconnected_and_stops_the_channel() {
         ServerDisconnectedMessage serverDisconnectedMessage = mock(ServerDisconnectedMessage.class);
-        VillagerView view = mock(VillagerView.class);
+        VillagerNightView view = mock(VillagerNightView.class);
         controller.bind(view);
         controller.onNewMessageArrived(channel, serverDisconnectedMessage);
         verify(view).serverDisconnected("localhost");

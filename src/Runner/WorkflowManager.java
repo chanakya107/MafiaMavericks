@@ -58,16 +58,16 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void mafiaScreen(SocketChannel channel, String serverName) {
-        MafiaController controller = new MafiaController(this, channel, serverName);
-        controller.bind(new MafiaScreen(mainFrame, controller));
+    public void mafiaNightScreen(SocketChannel channel, String serverName) {
+        MafiaNightController controller = new MafiaNightController(this, channel, serverName);
+        controller.bind(new MafiaNightScreen(mainFrame, controller));
         controller.start();
     }
 
     @Override
-    public void VillagerScreen(SocketChannel channel, String serverName) {
-        VillagerController controller = new VillagerController(this, channel, serverName);
-        controller.bind(new VillagerScreen(mainFrame, controller));
+    public void villagerNightScreen(SocketChannel channel, String serverName) {
+        VillagerNightController controller = new VillagerNightController(this, channel, serverName);
+        controller.bind(new VillagerNightScreen(mainFrame, controller));
         controller.start();
     }
 

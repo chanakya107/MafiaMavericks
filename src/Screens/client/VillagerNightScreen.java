@@ -1,9 +1,9 @@
 package screens.client;
 
-import controllers.client.VillagerController;
+import controllers.client.VillagerNightController;
 import controllers.client.Vote;
 import screens.controls.MainFrame;
-import view.client.VillagerView;
+import view.client.VillagerNightView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,14 +14,14 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VillagerScreen implements VillagerView {
+public class VillagerNightScreen implements VillagerNightView {
     private final MainFrame mainFrame;
-    private final VillagerController controller;
+    private final VillagerNightController controller;
     private final JPanel panel;
     private final JButton disconnect;
 
 
-    public VillagerScreen(MainFrame mainFrame, final VillagerController controller) {
+    public VillagerNightScreen(MainFrame mainFrame, final VillagerNightController controller) {
         this.mainFrame = mainFrame;
         this.controller = controller;
 
@@ -39,7 +39,7 @@ public class VillagerScreen implements VillagerView {
         JRadioButton radioButton;
         ButtonGroup buttonGroup = new ButtonGroup();
 
-        int xAxis = 750 , yAxis = 450 , width = 150 , height = 50;
+        int xAxis = 750, yAxis = 450, width = 150, height = 50;
 
         for (int i = 0; i < players.size(); i++) {
             String player = players.get(i);
@@ -62,7 +62,7 @@ public class VillagerScreen implements VillagerView {
                     String selectedName = button.getActionCommand();
                     System.out.println("ITEM Choice Selected: " + selected
                             + ", Selection: " + selectedName);
-                    Vote vote = new Vote(players,selectedName);
+                    Vote vote = new Vote(players, selectedName);
                     vote.count();
                 }
             });

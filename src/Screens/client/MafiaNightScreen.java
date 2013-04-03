@@ -1,21 +1,21 @@
 package screens.client;
 
-import controllers.client.MafiaController;
+import controllers.client.MafiaNightController;
 import screens.controls.MainFrame;
-import view.client.MafiaView;
+import view.client.MafiaNightView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MafiaScreen implements MafiaView {
+public class MafiaNightScreen implements MafiaNightView {
     private final MainFrame mainFrame;
-    private final MafiaController controller;
+    private final MafiaNightController controller;
     private final JPanel panel;
     private final JButton disconnect;
 
-    public MafiaScreen(MainFrame mainFrame, final MafiaController controller) {
+    public MafiaNightScreen(MainFrame mainFrame, final MafiaNightController controller) {
         this.mainFrame = mainFrame;
         this.controller = controller;
         controller.bind(this);
