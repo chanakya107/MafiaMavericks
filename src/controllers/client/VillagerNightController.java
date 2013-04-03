@@ -1,35 +1,31 @@
 package controllers.client;
 
 import channels.SocketChannel;
-import channels.SocketChannelListener;
-import channels.messages.ChannelMessage;
 import controllers.Workflow;
 import controllers.server.Player;
-import messages.ServerDisconnectedMessage;
 import view.client.VillagerNightView;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class VillagerNightController implements SocketChannelListener {
+public class VillagerNightController {
     private final Workflow workflow;
     private final SocketChannel channel;
-    private final String serverName;
-   private VillagerNightView view;
+    protected List<Player> players;
+    protected VillagerNightView view;
 
-    public VillagerNightController(Workflow workflow, SocketChannel channel, String serverName) {
-
+    public VillagerNightController(Workflow workflow, SocketChannel channel, List<Player> players) {
         this.workflow = workflow;
         this.channel = channel;
-        this.serverName = serverName;
+        this.players = players;
     }
 
     public void bind(VillagerNightView view) {
-
         this.view = view;
     }
 
     public void start() {
+        view.displayAtNight(getMafiaList());
     }
 
     public void disconnectingFromServer() {
@@ -41,23 +37,12 @@ public class VillagerNightController implements SocketChannelListener {
         workflow.goToHome();
     }
 
-    @Override
-    public void onClose(SocketChannel channel, Exception e) {
-    }
-
-    @Override
-    public void onSendFailed(SocketChannel channel, IOException e, ChannelMessage message) {
-    }
-
-    @Override
-    public void onNewMessageArrived(SocketChannel channel, ChannelMessage message) {
-        if (message instanceof ServerDisconnectedMessage) {
-            view.serverDisconnected(serverName);
-            channel.stop();
+    protected List<Player> getMafiaList() {
+        List<Player> mafiaList = new ArrayList<Player>();
+        for (Player player : players) {
+            if (player.isMafia())
+                mafiaList.add(player);
         }
-    }
-
-    @Override
-    public void onMessageReadError(SocketChannel channel, Exception e) {
+        return mafiaList;
     }
 }

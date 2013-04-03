@@ -1,5 +1,9 @@
 package view.client;
 
+import controllers.server.Player;
+
+import java.util.List;
+
 public interface VillagerNightView {
-    void serverDisconnected(String serverName);
+    void displayAtNight(List<Player> mafiaList);
 }

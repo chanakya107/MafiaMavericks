@@ -20,7 +20,7 @@ public class Vote {
         for (int i = 0; i < size; i++) {
             if (players.get(i).equals(selectedName)) {
                 count = count + 1;
-                resultVote[i] = selectedName +" "+ count;
+                resultVote[i] = selectedName + " " + count;
             }
         }
         return resultVote;

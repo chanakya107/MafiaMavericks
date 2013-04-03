@@ -5,9 +5,8 @@ import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import controllers.ConnectionFactory;
 import controllers.Workflow;
-import messages.NightStartedMessage;
 import messages.PlayersUpdateMessage;
-import messages.RoleAssignedMessage;
+import messages.RoundStartedMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
@@ -38,7 +37,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     public void startGame() {
         new RoleAssignment(getPlayers()).assign();
         sendRoleMessage(clients);
-        sendMessage(new NightStartedMessage(getPlayers()));
+//        sendMessage(new NightStartedMessage(getPlayers()));
 //        startNight();
         workflow.startGame(connectionFactory.getServer(), clients);
     }
@@ -70,9 +69,9 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     private void sendRoleMessage(List<Client> players) {
         for (Client client : players) {
             if (client.getPlayer().isMafia())
-                client.sendMessage(new RoleAssignedMessage(Role.Mafia));
+                client.sendMessage(new RoundStartedMessage(Role.Mafia, getPlayers()));
             else
-                client.sendMessage(new RoleAssignedMessage(Role.Villager));
+                client.sendMessage(new RoundStartedMessage(Role.Villager, getPlayers()));
         }
     }
 

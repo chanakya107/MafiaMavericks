@@ -5,13 +5,19 @@ import channels.server.SocketServer;
 import controllers.ConnectionFactory;
 import controllers.HomeController;
 import controllers.Workflow;
-import controllers.client.*;
+import controllers.client.ClientDetailsController;
+import controllers.client.JoinGameController;
+import controllers.client.MafiaNightController;
+import controllers.client.VillagerNightController;
 import controllers.server.Client;
 import controllers.server.GameStartedController;
 import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
 import screens.HomeScreen;
-import screens.client.*;
+import screens.client.ClientDetailsScreen;
+import screens.client.JoinGameScreen;
+import screens.client.MafiaNightScreen;
+import screens.client.VillagerNightScreen;
 import screens.controls.MainFrame;
 import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
@@ -58,23 +64,16 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void mafiaNightScreen(SocketChannel channel, String serverName) {
-        MafiaNightController controller = new MafiaNightController(this, channel, serverName);
+    public void mafiaNightScreen(SocketChannel channel, String serverName, List<Player> players) {
+        MafiaNightController controller = new MafiaNightController(this, channel, serverName, players);
         controller.bind(new MafiaNightScreen(mainFrame, controller));
         controller.start();
     }
 
     @Override
-    public void villagerNightScreen(SocketChannel channel, String serverName) {
-        VillagerNightController controller = new VillagerNightController(this, channel, serverName);
+    public void villagerNightScreen(SocketChannel channel, String serverName, List<Player> players) {
+        VillagerNightController controller = new VillagerNightController(this, channel, players);
         controller.bind(new VillagerNightScreen(mainFrame, controller));
-        controller.start();
-    }
-
-    @Override
-    public void goToNight(List<Player> players) {
-        NightController controller = new NightController(this, players);
-        controller.bind(new NightScreen(mainFrame, controller));
         controller.start();
     }
 

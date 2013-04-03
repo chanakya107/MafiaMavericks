@@ -49,18 +49,6 @@ public class JoinGameControllerTest {
         verify(workflow).goToHome();
     }
 
-//    @Test
-//    public void goToMafiaScreen_displays_mafia_screen_though_workflow() {
-//        controller.goToMafiaNightScreen();
-//        verify(workflow).mafiaNightScreen(channel, "localhost");
-//    }
-//
-//    @Test
-//    public void goToVillagerScreen_displays_Villager_screen_through_workflow() {
-//        controller.goToVillagerNightScreen();
-//        verify(workflow).villagerNightScreen(channel, "localhost");
-//    }
-
     @Test
     public void on_new_PlayersUpdateMessage_arrived_the_players_will_be_displayed() {
         PlayersUpdateMessage playersUpdateMessage = mock(PlayersUpdateMessage.class);

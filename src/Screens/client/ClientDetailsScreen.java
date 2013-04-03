@@ -40,7 +40,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         enterServerName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterServerName.setLocation(100, 100);
 
-        serverNameField = new JTextField("");
+        serverNameField = new JTextField("localhost");
         panel.add(serverNameField);
         serverNameField.setSize(200, 30);
         serverNameField.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
