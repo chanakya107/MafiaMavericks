@@ -4,7 +4,10 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
-import messages.*;
+import messages.PlayerDetailsMessage;
+import messages.PlayersUpdateMessage;
+import messages.RoundStartedMessage;
+import messages.ServerDisconnectedMessage;
 import view.client.JoinGameView;
 
 import java.io.IOException;
@@ -59,13 +62,15 @@ public class JoinGameController implements SocketChannelListener {
         } else if (message instanceof ServerDisconnectedMessage) {
             view.serverDisconnected(serverName);
             channel.stop();
-        } else if (message instanceof RoleAssignedMessage) {
-            RoleAssignedMessage roleAssignedMessage = (RoleAssignedMessage) message;
-            roleAssignedMessage.getRole().goToScreen(workflow, channel, serverName);
-        } else if (message instanceof NightStartedMessage) {
+        } else if (message instanceof RoundStartedMessage) {
+            RoundStartedMessage roundStartedMessage = (RoundStartedMessage) message;
+            roundStartedMessage.getRole().goToScreen(workflow, channel, serverName, roundStartedMessage.getPlayers());
+        }
+//        else if (message instanceof NightStartedMessage) {
+
 //            NightStartedMessage nightStartedMessage = (NightStartedMessage) message;
 //            workflow.goToNight(nightStartedMessage.getPlayers());
-        }
+//        }
     }
 
     @Override

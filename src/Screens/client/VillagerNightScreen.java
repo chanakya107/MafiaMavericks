@@ -2,6 +2,7 @@ package screens.client;
 
 import controllers.client.VillagerNightController;
 import controllers.client.Vote;
+import controllers.server.Player;
 import screens.controls.MainFrame;
 import view.client.VillagerNightView;
 
@@ -19,7 +20,7 @@ public class VillagerNightScreen implements VillagerNightView {
     private final VillagerNightController controller;
     private final JPanel panel;
     private final JButton disconnect;
-
+    private JLabel label;
 
     public VillagerNightScreen(MainFrame mainFrame, final VillagerNightController controller) {
         this.mainFrame = mainFrame;
@@ -51,9 +52,7 @@ public class VillagerNightScreen implements VillagerNightView {
             panel.add(radioButton);
             buttonGroup.add(radioButton);
 
-
             yAxis += 80;
-
             radioButton.addItemListener(new ItemListener() {
                 @Override
                 public void itemStateChanged(ItemEvent ev) {
@@ -66,10 +65,7 @@ public class VillagerNightScreen implements VillagerNightView {
                     vote.count();
                 }
             });
-
-
         }
-
 
         disconnect = new JButton("Disconnect");
         panel.add(disconnect);
@@ -88,10 +84,11 @@ public class VillagerNightScreen implements VillagerNightView {
     }
 
     @Override
-    public void serverDisconnected(String serverName) {
-        JOptionPane.showConfirmDialog(null, "Connection to server : " + serverName + " is lost", "", JOptionPane.DEFAULT_OPTION);
-        controller.goToHome();
+    public void displayAtNight(List<Player> mafiaList) {
+        label = new JLabel("Night Arrived");
+        panel.add(label);
+        label.setFont(new Font("Chiller", Font.PLAIN, 50));
+        label.setForeground(Color.WHITE);
+        label.setBounds(130, 25, 250, 150);
     }
-
-
 }

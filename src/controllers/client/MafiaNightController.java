@@ -2,19 +2,18 @@ package controllers.client;
 
 import channels.SocketChannel;
 import controllers.Workflow;
+import controllers.server.Player;
+
+import java.util.List;
 
 public class MafiaNightController extends VillagerNightController {
-    private final Workflow workflow;
-    private final SocketChannel channel;
-    private final String serverName;
-
-    public MafiaNightController(Workflow workflow, SocketChannel channel, String serverName) {
-        super(workflow, channel, serverName);
-        this.workflow = workflow;
-        this.channel = channel;
-        this.serverName = serverName;
+    public MafiaNightController(Workflow workflow, SocketChannel channel, String serverName, List<Player> players) {
+        super(workflow, channel, players);
     }
 
     public void start() {
+        view.displayAtNight(getMafiaList());
     }
+
+
 }
