@@ -5,6 +5,7 @@ import controllers.Workflow;
 import controllers.server.Player;
 import org.junit.Before;
 import org.junit.Test;
+import view.client.VillagerNightView;
 
 import java.util.ArrayList;
 
@@ -35,5 +36,14 @@ public class VillagerNightControllerTest {
         controller.goToHome();
         verify(workflow).goToHome();
     }
+
+    @Test
+    public void on_start_display_of_night_screen_should_be_made() {
+        VillagerNightView view = mock(VillagerNightView.class);
+        controller.bind(view);
+        controller.start();
+        verify(view).displayAtNight(new ArrayList<Player>());
+    }
+
 
 }
