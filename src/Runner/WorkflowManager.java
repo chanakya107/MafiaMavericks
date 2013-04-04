@@ -5,19 +5,13 @@ import channels.server.SocketServer;
 import controllers.ConnectionFactory;
 import controllers.HomeController;
 import controllers.Workflow;
-import controllers.client.ClientDetailsController;
-import controllers.client.JoinGameController;
-import controllers.client.MafiaNightController;
-import controllers.client.VillagerNightController;
+import controllers.client.*;
 import controllers.server.Client;
 import controllers.server.GameStartedController;
 import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
 import screens.HomeScreen;
-import screens.client.ClientDetailsScreen;
-import screens.client.JoinGameScreen;
-import screens.client.MafiaNightScreen;
-import screens.client.VillagerNightScreen;
+import screens.client.*;
 import screens.controls.MainFrame;
 import screens.server.GameStartedScreen;
 import screens.server.WaitForPlayersScreen;
@@ -81,6 +75,13 @@ public class WorkflowManager implements Workflow {
     public void startGame(SocketServer server, List<Client> players) {
         GameStartedController controller = new GameStartedController(this, server, players);
         controller.bind(new GameStartedScreen(mainFrame, controller));
+        controller.start();
+    }
+
+    @Override
+    public void dayStarted(String killedPlayer, List<Player> playersRemaining) {
+        DayController controller = new DayController(this,killedPlayer,playersRemaining);
+        controller.bind(new DayScreen(mainFrame,controller));
         controller.start();
     }
 }
