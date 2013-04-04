@@ -4,6 +4,7 @@ import channels.SocketChannel;
 import controllers.Workflow;
 import controllers.server.Player;
 import controllers.server.Role;
+import messages.DayStartedMessage;
 import messages.PlayersUpdateMessage;
 import messages.RoundStartedMessage;
 import messages.ServerDisconnectedMessage;
@@ -81,5 +82,15 @@ public class JoinGameControllerTest {
         controller.onNewMessageArrived(channel, roundStartedMessage);
         verify(role).goToScreen(workflow, channel, "localhost", players);
     }
+
+    @Test
+    public void on_new_day_started_message_arrived_day_started_screen_should_be_displayed() {
+        String killedPlayer = "chethan";
+        ArrayList<Player> playersRemaining = new ArrayList<Player>();
+        DayStartedMessage dayStartedMessage = new DayStartedMessage(killedPlayer, playersRemaining);
+        controller.onNewMessageArrived(channel, dayStartedMessage);
+        verify(workflow).dayStarted(killedPlayer, playersRemaining);
+    }
+
 
 }
