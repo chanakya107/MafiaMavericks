@@ -25,7 +25,7 @@ public class VillagerNightController {
     }
 
     public void start() {
-        view.displayAtNight(getMafiaList());
+        view.displayAtNight();
     }
 
     public void disconnectingFromServer() {
@@ -37,7 +37,7 @@ public class VillagerNightController {
         workflow.goToHome();
     }
 
-    protected List<Player> getMafiaList() {
+    public List<Player> getMafiaList() {
         List<Player> mafiaList = new ArrayList<Player>();
         for (Player player : players) {
             if (player.isMafia())
@@ -45,4 +45,6 @@ public class VillagerNightController {
         }
         return mafiaList;
     }
+
+
 }

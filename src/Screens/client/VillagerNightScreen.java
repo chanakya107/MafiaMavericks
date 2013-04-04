@@ -2,7 +2,6 @@ package screens.client;
 
 import controllers.client.VillagerNightController;
 import controllers.client.Vote;
-import controllers.server.Player;
 import screens.controls.MainFrame;
 import view.client.VillagerNightView;
 
@@ -13,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
-import java.util.List;
 
 public class VillagerNightScreen implements VillagerNightView {
     private final MainFrame mainFrame;
@@ -87,11 +85,15 @@ public class VillagerNightScreen implements VillagerNightView {
     }
 
     @Override
-    public void displayAtNight(List<Player> mafiaList) {
+    public void displayAtNight() {
         label = new JLabel("Night Arrived");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
         label.setBounds(130, 25, 250, 150);
+    }
+
+    @Override
+    public void displayAtDay() {
     }
 }

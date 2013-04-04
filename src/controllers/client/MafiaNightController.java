@@ -12,7 +12,8 @@ public class MafiaNightController extends VillagerNightController {
     }
 
     public void start() {
-        view.displayAtNight(getMafiaList());
+        view.displayAtNight();
+        view.displayAtDay();
     }
 
 

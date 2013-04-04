@@ -18,7 +18,7 @@ public class MafiaNightScreen implements MafiaNightView {
     private final JButton disconnect;
     private final JList<String> playerList;
     private final JLabel label;
-    private final DefaultListModel<String> players;
+    private final DefaultListModel<String> playersDefaultList;
 
     public MafiaNightScreen(MainFrame mainFrame, final MafiaNightController controller) {
         this.mainFrame = mainFrame;
@@ -39,9 +39,9 @@ public class MafiaNightScreen implements MafiaNightView {
         label.setForeground(Color.WHITE);
         label.setBounds(130, 25, 250, 150);
 
-        players = new DefaultListModel<String>();
+        playersDefaultList = new DefaultListModel<String>();
 
-        playerList = new JList<String>(players);
+        playerList = new JList<String>(playersDefaultList);
         panel.add(playerList);
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
@@ -60,18 +60,19 @@ public class MafiaNightScreen implements MafiaNightView {
     }
 
     @Override
-    public void serverDisconnected(String serverName) {
-        JOptionPane.showConfirmDialog(null, "Connection to server : " + serverName + " is lost", "", JOptionPane.DEFAULT_OPTION);
-        controller.goToHome();
+    public void displayAtNight() {
+        playersDefaultList.removeAllElements();
+        List<Player> mafias = controller.getMafiaList();
+        for (Player mafia : mafias) {
+            playersDefaultList.addElement(mafia.getName());
+        }
     }
 
     @Override
-    public void displayAtNight(List<Player> mafiaList) {
-        players.removeAllElements();
-        for (Player mafia : mafiaList) {
-            players.addElement(mafia.getName());
-        }
+    public void displayAtDay() {
     }
+
+
 }
 
 
