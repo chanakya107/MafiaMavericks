@@ -1,6 +1,6 @@
 package view.server;
 
-import controllers.server.Client;
+import controllers.client.Client;
 
 import java.util.List;
 

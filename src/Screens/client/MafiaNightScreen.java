@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 public class MafiaNightScreen implements MafiaNightView {
@@ -47,7 +49,6 @@ public class MafiaNightScreen implements MafiaNightView {
         playerList.setForeground(Color.WHITE);
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         playerList.setBounds(100, 130, 250, 400);
-
         disconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,6 +62,45 @@ public class MafiaNightScreen implements MafiaNightView {
 
     @Override
     public void displayAtNight() {
+        displayMafiaList();
+        displayPlayersList();
+    }
+
+    private void displayPlayersList() {
+        JRadioButton radioButton;
+        ButtonGroup buttonGroup = new ButtonGroup();
+
+        int xAxis = 750, yAxis = 450, width = 150, height = 50;
+
+        List<Player> players = controller.getPlayers();
+        for (int i = 0; i < players.size(); i++) {
+            String player = players.get(i).getName();
+            radioButton = new JRadioButton(player);
+            radioButton.setActionCommand(player);
+            radioButton.setSize(width, height);
+            radioButton.setLocation(xAxis, yAxis);
+            radioButton.setSelected(false);
+            if (player.equals(controller.getCurrentPlayer()))
+                radioButton.setSelected(true);
+            buttonGroup.add(radioButton);
+            panel.add(radioButton);
+
+            yAxis += 80;
+            radioButton.addItemListener(new ItemListener() {
+                @Override
+                public void itemStateChanged(ItemEvent ev) {
+                    boolean selected = (ev.getStateChange() == ItemEvent.SELECTED);
+                    AbstractButton button = (AbstractButton) ev.getItemSelectable();
+                    String selectedName = button.getActionCommand();
+                    System.out.println("ITEM Choice Selected: " + selected + ", Selection: " + selectedName);
+                }
+            });
+        }
+        System.out.println("hiiiiiiiiiiiii i am selected " + buttonGroup.getSelection().getActionCommand());
+        panel.repaint();
+    }
+
+    private void displayMafiaList() {
         playersDefaultList.removeAllElements();
         List<Player> mafias = controller.getMafiaList();
         for (Player mafia : mafias) {
@@ -71,8 +111,6 @@ public class MafiaNightScreen implements MafiaNightView {
     @Override
     public void displayAtDay() {
     }
-
-
 }
 
 

@@ -2,6 +2,7 @@ package controllers.server;
 
 import channels.SocketChannel;
 import channels.messages.ChannelMessage;
+import controllers.client.Client;
 import messages.PlayerDetailsMessage;
 import org.junit.Before;
 import org.junit.Test;

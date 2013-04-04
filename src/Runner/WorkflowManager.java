@@ -6,7 +6,6 @@ import controllers.ConnectionFactory;
 import controllers.HomeController;
 import controllers.Workflow;
 import controllers.client.*;
-import controllers.server.Client;
 import controllers.server.GameStartedController;
 import controllers.server.Player;
 import controllers.server.WaitForPlayersController;
@@ -58,15 +57,15 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void mafiaNightScreen(SocketChannel channel, String serverName, List<Player> players) {
-        MafiaNightController controller = new MafiaNightController(this, channel, players);
+    public void mafiaNightScreen(SocketChannel channel, String serverName, List<Player> players, Player currentPlayer) {
+        MafiaNightController controller = new MafiaNightController(this, channel, players, currentPlayer);
         controller.bind(new MafiaNightScreen(mainFrame, controller));
         controller.start();
     }
 
     @Override
-    public void villagerNightScreen(SocketChannel channel, String serverName, List<Player> players) {
-        VillagerNightController controller = new VillagerNightController(this, channel, players);
+    public void villagerNightScreen(SocketChannel channel, String serverName, List<Player> players, Player currentPlayer) {
+        VillagerNightController controller = new VillagerNightController(this, channel, players, currentPlayer);
         controller.bind(new VillagerNightScreen(mainFrame, controller));
         controller.start();
     }

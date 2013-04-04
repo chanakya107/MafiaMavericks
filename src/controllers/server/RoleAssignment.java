@@ -3,8 +3,6 @@ package controllers.server;
 import java.util.List;
 import java.util.Random;
 
-import static java.lang.StrictMath.floor;
-
 public class RoleAssignment {
     private List<Player> players;
 
@@ -13,29 +11,39 @@ public class RoleAssignment {
     }
 
     public void assign() {
-        for (Player player : players) {
-            player.assignRole(getRole());
-        }
-    }
-
-    private Role getRole() {
         Random random = new Random();
-        if (random.nextBoolean() && canAssignToMafia())
-            return Role.Mafia;
-        return Role.Villager;
-    }
-
-    private boolean canAssignToMafia() {
-        return getMafiaCount() < floor(players.size() / 2);
-    }
-
-    public int getMafiaCount() {
-        int mafiaCount = 0;
-        for (Player player : players) {
-            if (player.isMafia())
-                mafiaCount++;
+        int villagerCount = villagerCount();
+        int mafiaCount = players.size() - villagerCount();
+        if (random.nextBoolean()) {
+            assignVillager(villagerCount);
+        } else {
+            assignMafia(mafiaCount);
         }
-        return mafiaCount;
+    }
+
+    private void assignMafia(int mafiaCount) {
+        for (Player player : players) {
+            if (mafiaCount > 0) {
+                player.assignRole(Role.Mafia);
+                mafiaCount--;
+            } else
+                player.assignRole(Role.Villager);
+        }
+    }
+
+    private void assignVillager(int villagerCount) {
+        for (Player player : players) {
+            if (villagerCount > 0) {
+                player.assignRole(Role.Villager);
+                villagerCount--;
+            } else
+                player.assignRole(Role.Mafia);
+        }
+    }
+
+    private int villagerCount() {
+        int count = players.size() / 2 + 1;
+        return count;
     }
 
     public int getVillagerCount() {
@@ -47,4 +55,12 @@ public class RoleAssignment {
         return villagerCount;
     }
 
+    public int getMafiaCount() {
+        int mafiaCount = 0;
+        for (Player player : players) {
+            if (player.isMafia())
+                mafiaCount++;
+        }
+        return mafiaCount;
+    }
 }

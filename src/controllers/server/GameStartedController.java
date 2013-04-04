@@ -3,6 +3,7 @@ package controllers.server;
 import channels.messages.ChannelMessage;
 import channels.server.SocketServer;
 import controllers.Workflow;
+import controllers.client.Client;
 import messages.ServerDisconnectedMessage;
 import view.server.GameStartedView;
 

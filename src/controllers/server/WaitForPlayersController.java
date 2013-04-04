@@ -5,6 +5,7 @@ import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import controllers.ConnectionFactory;
 import controllers.Workflow;
+import controllers.client.Client;
 import messages.PlayersUpdateMessage;
 import messages.RoundStartedMessage;
 import messages.ServerDisconnectedMessage;
@@ -69,9 +70,9 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     private void sendRoundStartedMessage(List<Client> players) {
         for (Client client : players) {
             if (client.getPlayer().isMafia())
-                client.sendMessage(new RoundStartedMessage(Role.Mafia, getPlayers()));
+                client.sendMessage(new RoundStartedMessage(Role.Mafia, getPlayers(), client.getPlayer()));
             else
-                client.sendMessage(new RoundStartedMessage(Role.Villager, getPlayers()));
+                client.sendMessage(new RoundStartedMessage(Role.Villager, getPlayers(), client.getPlayer()));
         }
     }
 

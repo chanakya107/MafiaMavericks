@@ -1,8 +1,10 @@
-package controllers.server;
+package controllers.client;
 
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
+import controllers.server.Player;
+import controllers.server.PlayerManager;
 import messages.PlayerDetailsMessage;
 
 import java.io.IOException;
@@ -22,7 +24,6 @@ public class Client implements SocketChannelListener {
     }
 
     @Override
-
     public void onClose(SocketChannel channel, Exception e) {
         playerManager.playerDisconnected(this);
     }

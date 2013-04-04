@@ -2,6 +2,7 @@ package controllers.server;
 
 import controllers.ConnectionFactory;
 import controllers.Workflow;
+import controllers.client.Client;
 import org.junit.Before;
 import org.junit.Test;
 import view.server.WaitForPlayersView;
