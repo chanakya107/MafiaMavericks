@@ -64,9 +64,7 @@ public class VillagerNightScreen implements VillagerNightView {
                     for (String s : vote.count()) {
                         String[] temp;
                         temp = s.split(" ");
-                        System.out.println(" Before : " + voteCount);
                         voteCount = voteCount + Integer.parseInt(temp[1]);
-                        System.out.println(" After : " + voteCount);
                     }
                 }
             });
