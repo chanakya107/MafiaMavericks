@@ -63,4 +63,8 @@ public class RoleAssignment {
         }
         return mafiaCount;
     }
+
+    public boolean checkRatio() {
+        return getVillagerCount() > getMafiaCount();
+    }
 }

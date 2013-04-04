@@ -29,5 +29,4 @@ public class Player implements Serializable {
     public boolean isVillager() {
         return role == Role.Villager;
     }
-
 }
