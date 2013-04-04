@@ -47,7 +47,4 @@ public class RoleAssignment {
         return villagerCount;
     }
 
-    public boolean checkRatio() {
-        return getVillagerCount() > getMafiaCount();
-    }
 }

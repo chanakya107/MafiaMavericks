@@ -1,7 +1,6 @@
 package screens.client;
 
 import controllers.client.DayController;
-import controllers.server.Role;
 import screens.controls.MainFrame;
 import view.client.DayView;
 
@@ -42,13 +41,4 @@ public class DayScreen implements DayView {
     public void displayVoting() {
     }
 
-    @Override
-    public void displayWinner(Role role) {
-        JLabel label = new JLabel("Game Over!" + role + "s won the Game");
-        panel.add(label);
-        label.setFont(new Font("Chiller", Font.PLAIN, 50));
-        label.setForeground(Color.RED);
-        label.setSize(500, 300);
-        label.setLocation(130, 25);
-    }
 }
