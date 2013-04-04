@@ -1,6 +1,6 @@
 package screens.server;
 
-import controllers.server.Client;
+import controllers.client.Client;
 import controllers.server.GameStartedController;
 import screens.controls.MainFrame;
 import view.server.GameStartedView;

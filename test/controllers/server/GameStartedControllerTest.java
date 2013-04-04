@@ -2,6 +2,7 @@ package controllers.server;
 
 import channels.server.SocketServer;
 import controllers.Workflow;
+import controllers.client.Client;
 import org.junit.Before;
 import org.junit.Test;
 import view.server.GameStartedView;

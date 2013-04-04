@@ -13,11 +13,13 @@ public class VillagerNightController {
     private final SocketChannel channel;
     protected List<Player> players;
     protected VillagerNightView view;
+    private Player currentPlayer;
 
-    public VillagerNightController(Workflow workflow, SocketChannel channel, List<Player> players) {
+    public VillagerNightController(Workflow workflow, SocketChannel channel, List<Player> players, Player currentPlayer) {
         this.workflow = workflow;
         this.channel = channel;
         this.players = players;
+        this.currentPlayer = currentPlayer;
     }
 
     public void bind(VillagerNightView view) {
@@ -46,5 +48,11 @@ public class VillagerNightController {
         return mafiaList;
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
 
+    public String getCurrentPlayer() {
+        return currentPlayer.getName();
+    }
 }

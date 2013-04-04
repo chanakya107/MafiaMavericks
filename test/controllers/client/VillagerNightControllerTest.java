@@ -21,7 +21,7 @@ public class VillagerNightControllerTest {
     public void setup() {
         workflow = mock(Workflow.class);
         channel = mock(SocketChannel.class);
-        controller = new VillagerNightController(workflow, channel, new ArrayList<Player>());
+        controller = new VillagerNightController(workflow, channel, new ArrayList<Player>(), new Player("player"));
     }
 
     @Test
