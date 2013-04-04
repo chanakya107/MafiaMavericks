@@ -66,11 +66,6 @@ public class JoinGameController implements SocketChannelListener {
             RoundStartedMessage roundStartedMessage = (RoundStartedMessage) message;
             roundStartedMessage.getRole().goToScreen(workflow, channel, serverName, roundStartedMessage.getPlayers());
         }
-//        else if (message instanceof NightStartedMessage) {
-
-//            NightStartedMessage nightStartedMessage = (NightStartedMessage) message;
-//            workflow.goToNight(nightStartedMessage.getPlayers());
-//        }
     }
 
     @Override
