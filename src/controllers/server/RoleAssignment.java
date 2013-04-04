@@ -15,29 +15,19 @@ public class RoleAssignment {
         int villagerCount = villagerCount();
         int mafiaCount = players.size() - villagerCount();
         if (random.nextBoolean()) {
-            assignVillager(villagerCount);
+            assignRole(villagerCount,Role.Villager,Role.Mafia);
         } else {
-            assignMafia(mafiaCount);
+            assignRole(mafiaCount,Role.Mafia,Role.Villager);
         }
     }
 
-    private void assignMafia(int mafiaCount) {
+    private void assignRole(int Count,Role firstRole,Role secondRole) {
         for (Player player : players) {
-            if (mafiaCount > 0) {
-                player.assignRole(Role.Mafia);
-                mafiaCount--;
+            if (Count > 0) {
+                player.assignRole(firstRole);
+                Count--;
             } else
-                player.assignRole(Role.Villager);
-        }
-    }
-
-    private void assignVillager(int villagerCount) {
-        for (Player player : players) {
-            if (villagerCount > 0) {
-                player.assignRole(Role.Villager);
-                villagerCount--;
-            } else
-                player.assignRole(Role.Mafia);
+                player.assignRole(secondRole);
         }
     }
 
