@@ -26,11 +26,28 @@ public class RoleAssignment {
     }
 
     private boolean canAssignToMafia() {
+        return getMafiaCount() < floor(players.size() / 2);
+    }
+
+    public int getMafiaCount() {
         int mafiaCount = 0;
         for (Player player : players) {
             if (player.isMafia())
                 mafiaCount++;
         }
-        return mafiaCount < floor(players.size() / 2);
+        return mafiaCount;
+    }
+
+    public int getVillagerCount() {
+        int villagerCount = 0;
+        for (Player player : players) {
+            if (player.isVillager())
+                villagerCount++;
+        }
+        return villagerCount;
+    }
+
+    public boolean checkRatio() {
+        return getVillagerCount() > getMafiaCount();
     }
 }

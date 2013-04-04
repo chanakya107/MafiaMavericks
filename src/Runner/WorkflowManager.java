@@ -80,8 +80,8 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void dayStarted(String killedPlayer, List<Player> playersRemaining) {
-        DayController controller = new DayController(this,killedPlayer,playersRemaining);
-        controller.bind(new DayScreen(mainFrame,controller));
+        DayController controller = new DayController(this, killedPlayer, playersRemaining);
+        controller.bind(new DayScreen(mainFrame, controller));
         controller.start();
     }
 }
