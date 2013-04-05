@@ -5,8 +5,8 @@ import controllers.Workflow;
 import controllers.server.Player;
 import controllers.server.Role;
 import messages.DayStartedMessage;
+import messages.NightStartedMessage;
 import messages.PlayersUpdateMessage;
-import messages.RoundStartedMessage;
 import messages.ServerDisconnectedMessage;
 import org.junit.Before;
 import org.junit.Test;
@@ -74,12 +74,12 @@ public class JoinGameControllerTest {
 
     @Test
     public void on_new_RoundStartedMessage_arrived_along_with_role_then_respective_screen_should_be_displayed() {
-        RoundStartedMessage roundStartedMessage = mock(RoundStartedMessage.class);
+        NightStartedMessage nightStartedMessage = mock(NightStartedMessage.class);
         Role role = mock(Role.class);
-        when(roundStartedMessage.getRole()).thenReturn(role);
+        when(nightStartedMessage.getRole()).thenReturn(role);
         ArrayList<Player> players = new ArrayList<Player>();
-        when(roundStartedMessage.getPlayers()).thenReturn(players);
-        controller.onNewMessageArrived(channel, roundStartedMessage);
+        when(nightStartedMessage.getPlayers()).thenReturn(players);
+        controller.onNewMessageArrived(channel, nightStartedMessage);
 //        verify(role).goToScreen(workflow, channel, "localhost", players);
     }
 

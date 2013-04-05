@@ -61,4 +61,13 @@ public class VillagerNightScreen implements VillagerNightView {
         label.setBounds(130, 25, 250, 150);
 
     }
+
+    @Override
+    public void displayTimer(int count) {
+    }
+
+    @Override
+    public String getSelectedPlayer() {
+        return "";
+    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class VillagerNightController {
     private final Workflow workflow;
-    private final SocketChannel channel;
+    protected final SocketChannel channel;
     protected List<Player> players;
     protected VillagerNightView view;
     private Player currentPlayer;
