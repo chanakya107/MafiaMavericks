@@ -28,13 +28,14 @@ public class MafiaNightController extends VillagerNightController {
             public void run() {
                 timer = new Timer(1000, new ActionListener() {
                     int count = 10;
+
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         count--;
                         view.displayTimer(count);
                         if (count == 0) {
                             ((Timer) e.getSource()).stop();
-                            channel.send(new PlayerVotedMessage(getCurrentPlayer(),view.getSelectedPlayer()));
+                            channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players)));
                         }
                     }
                 });
@@ -45,6 +46,6 @@ public class MafiaNightController extends VillagerNightController {
     }
 
     public void voteChanged() {
-        channel.send(new PlayerVotedMessage(getCurrentPlayer(),view.getSelectedPlayer()));
+        channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players)));
     }
 }

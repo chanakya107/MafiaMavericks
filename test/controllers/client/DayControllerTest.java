@@ -27,7 +27,6 @@ public class DayControllerTest {
     @Test
     public void on_day_started_the_player_killed_in_the_night_should_be_displayed_and_the_voting_should_be_displayed() {
         controller.start();
-        verify(view).displayKilledPlayer();
         verify(view).displayVoting();
     }
 }

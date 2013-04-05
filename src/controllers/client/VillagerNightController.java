@@ -10,8 +10,8 @@ import java.util.List;
 
 
 public class VillagerNightController {
-    private final Workflow workflow;
     protected final SocketChannel channel;
+    private final Workflow workflow;
     protected List<Player> players;
     protected VillagerNightView view;
     private Player currentPlayer;
@@ -28,7 +28,6 @@ public class VillagerNightController {
     }
 
     public void start() {
-
         view.displayAtNight();
     }
 

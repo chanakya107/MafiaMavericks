@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaitForPlayersController implements PlayerManager, ConnectionListener,SocketChannelListener {
+public class WaitForPlayersController implements PlayerManager, ConnectionListener, SocketChannelListener {
     private final ConnectionFactory connectionFactory;
     private Workflow workflow;
     private WaitForPlayersView view;

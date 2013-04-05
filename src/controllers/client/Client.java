@@ -5,7 +5,6 @@ import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.server.Player;
 import controllers.server.PlayerManager;
-import controllers.server.Role;
 import messages.PlayerDetailsMessage;
 import messages.PlayerVotedMessage;
 
@@ -40,11 +39,10 @@ public class Client implements SocketChannelListener {
             PlayerDetailsMessage playerDetailsMessage = (PlayerDetailsMessage) message;
             player = new Player(playerDetailsMessage.getPlayerName());
             playerManager.playerJoined(this);
-        }
-        else if (message instanceof PlayerVotedMessage){
+        } else if (message instanceof PlayerVotedMessage) {
             PlayerVotedMessage playerVotedMessage = (PlayerVotedMessage) message;
             String role = playerVotedMessage.getVotedTo().getName();
-            System.out.println("hiii----- " +playerVotedMessage.getPlayerName() + " voted to " + role);
+            System.out.println("hiii----- " + playerVotedMessage.getPlayerName() + " voted to " + role);
 
         }
     }

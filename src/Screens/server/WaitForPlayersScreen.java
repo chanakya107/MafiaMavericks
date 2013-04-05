@@ -13,7 +13,6 @@ import java.util.List;
 
 public class WaitForPlayersScreen implements WaitForPlayersView {
 
-    private final MainFrame mainFrame;
     private final WaitForPlayersController controller;
     private final JPanel panel;
     private final JButton startGame;
@@ -23,7 +22,6 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
     private DefaultListModel<String> players;
 
     public WaitForPlayersScreen(MainFrame mainFrame, WaitForPlayersController controller) {
-        this.mainFrame = mainFrame;
         this.controller = controller;
         controller.bind(this);
 

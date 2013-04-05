@@ -10,14 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HomeScreen implements HomeView {
-    private final MainFrame mainframe;
     private final HomeController controller;
     private final JButton startServer;
     private final JButton joinGame;
     private final JButton quit;
 
     public HomeScreen(MainFrame mainframe, HomeController controller) {
-        this.mainframe = mainframe;
         this.controller = controller;
         controller.bind(this);
 
