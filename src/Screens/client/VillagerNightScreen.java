@@ -1,6 +1,7 @@
 package screens.client;
 
 import controllers.client.VillagerNightController;
+import controllers.server.Player;
 import screens.controls.MainFrame;
 import view.client.VillagerNightView;
 
@@ -53,21 +54,11 @@ public class VillagerNightScreen implements VillagerNightView {
     }
 
     @Override
-    public void displayAtDay() {
-        label = new JLabel("Day Arrived");
-        panel.add(label);
-        label.setFont(new Font("Chiller", Font.PLAIN, 50));
-        label.setForeground(Color.WHITE);
-        label.setBounds(130, 25, 250, 150);
-
-    }
-
-    @Override
     public void displayTimer(int count) {
     }
 
     @Override
-    public String getSelectedPlayer() {
-        return "";
+    public Player getSelectedPlayer() {
+        return null;
     }
 }

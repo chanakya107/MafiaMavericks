@@ -2,6 +2,7 @@ package controllers.server;
 
 import channels.ConnectionListener;
 import channels.SocketChannel;
+import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.ConnectionFactory;
 import controllers.Workflow;
@@ -11,10 +12,11 @@ import messages.PlayersUpdateMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaitForPlayersController implements PlayerManager, ConnectionListener {
+public class WaitForPlayersController implements PlayerManager, ConnectionListener,SocketChannelListener {
     private final ConnectionFactory connectionFactory;
     private Workflow workflow;
     private WaitForPlayersView view;
@@ -101,4 +103,19 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         return resultName;
     }
 
+    @Override
+    public void onClose(SocketChannel channel, Exception e) {
+    }
+
+    @Override
+    public void onSendFailed(SocketChannel channel, IOException e, ChannelMessage message) {
+    }
+
+    @Override
+    public void onNewMessageArrived(SocketChannel channel, ChannelMessage message) {
+    }
+
+    @Override
+    public void onMessageReadError(SocketChannel channel, Exception e) {
+    }
 }

@@ -3,6 +3,7 @@ package controllers.client;
 import channels.SocketChannel;
 import controllers.Workflow;
 import controllers.server.Player;
+import messages.PlayerVotedMessage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,14 +27,14 @@ public class MafiaNightController extends VillagerNightController {
         Runnable runner = new Runnable() {
             public void run() {
                 timer = new Timer(1000, new ActionListener() {
-                    int count = 30;
-
+                    int count = 10;
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         count--;
                         view.displayTimer(count);
                         if (count == 0) {
                             ((Timer) e.getSource()).stop();
+                            channel.send(new PlayerVotedMessage(getCurrentPlayer(),view.getSelectedPlayer()));
                         }
                     }
                 });
@@ -41,5 +42,9 @@ public class MafiaNightController extends VillagerNightController {
             }
         };
         EventQueue.invokeLater(runner);
+    }
+
+    public void voteChanged() {
+        channel.send(new PlayerVotedMessage(getCurrentPlayer(),view.getSelectedPlayer()));
     }
 }
