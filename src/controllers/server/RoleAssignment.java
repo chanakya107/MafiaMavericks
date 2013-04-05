@@ -13,7 +13,7 @@ public class RoleAssignment {
     public void assign() {
         int villagerCount = villagerCount();
         int mafiaCount = players.size() - villagerCount();
-        if (new Random().nextInt() % 2 == 0) {
+        if (new Random().nextBoolean()) {
             assignRole(mafiaCount, Role.Mafia, Role.Villager);
         } else {
             assignRole(villagerCount, Role.Villager, Role.Mafia);

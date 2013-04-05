@@ -7,4 +7,6 @@ public interface PlayerManager {
     void playerJoined(Client player);
 
     void playerDisconnected(Client player);
+
+    void playerKilled(Player playerToBeKilled);
 }

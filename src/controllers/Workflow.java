@@ -23,4 +23,8 @@ public interface Workflow {
     void startGame(SocketServer server, List<Client> players);
 
     void dayStarted(String killedPlayer, List<Player> playersRemaining);
+
+    void playerKilled(Player killedPlayer);
+
+    void YouAreKilled();
 }

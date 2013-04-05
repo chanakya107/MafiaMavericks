@@ -29,4 +29,19 @@ public class Player implements Serializable {
     public boolean isVillager() {
         return role == Role.Villager;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return !(name != null ? !name.equals(player.name) : player.name != null) && role == player.role;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        return result;
+    }
 }

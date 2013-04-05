@@ -9,16 +9,19 @@ import messages.PlayerDetailsMessage;
 import messages.PlayerVotedMessage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Client implements SocketChannelListener {
 
+    private static final List<Player> playersSelected = new ArrayList<Player>();
     private final SocketChannel channel;
     private PlayerManager playerManager;
     private Player player;
 
 
     public Client(SocketChannel channel, PlayerManager playerManager) {
-
         this.channel = channel;
         this.playerManager = playerManager;
         channel.bind(this);
@@ -41,10 +44,28 @@ public class Client implements SocketChannelListener {
             playerManager.playerJoined(this);
         } else if (message instanceof PlayerVotedMessage) {
             PlayerVotedMessage playerVotedMessage = (PlayerVotedMessage) message;
-            String role = playerVotedMessage.getVotedTo().getName();
-            System.out.println("hiii----- " + playerVotedMessage.getPlayerName() + " voted to " + role);
-
+            playersSelected.add(playerVotedMessage.getVotedTo());
+            if (hasEveryoneVoted(playerVotedMessage.getVotersCount())) {
+                playerManager.playerKilled(getPlayerToBeKilled());
+            }
         }
+    }
+
+    private Player getPlayerToBeKilled() {
+        int votes = 0;
+        Player playerToBeKilled = null;
+        for (Player player : playersSelected) {
+            int temp = Collections.frequency(playersSelected, player);
+            if (temp > votes) {
+                votes = temp;
+                playerToBeKilled = player;
+            }
+        }
+        return playerToBeKilled;
+    }
+
+    private boolean hasEveryoneVoted(int votersCount) {
+        return playersSelected.size() == votersCount;
     }
 
     @Override
@@ -57,5 +78,9 @@ public class Client implements SocketChannelListener {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public void stop() {
+        channel.stop();
     }
 }
