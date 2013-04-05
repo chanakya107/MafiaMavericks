@@ -7,6 +7,8 @@ import view.client.DayView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
@@ -82,5 +84,26 @@ public class DayScreen implements DayView {
     @Override
     public void displayVoting() {
         dayPlayerList();
+    }
+
+    public void startDay() {
+        Runnable runner = new Runnable() {
+            public void run() {
+                Timer timer = new Timer(100000, new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                        sendMessage(new NightStartedMessage(getPlayers()));
+//                        ((Timer) e.getSource()).stop();
+//                    }
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        ((Timer) e.getSource()).stop();
+                    }
+                });
+                timer.start();
+            }
+        };
+        EventQueue.invokeLater(runner);
     }
 }
