@@ -32,7 +32,6 @@ public class DayScreen implements DayView {
         label.setSize(250, 150);
         label.setLocation(130, 25);
 
-//       dayPlayerList(controller);
     }
 
 
@@ -86,24 +85,4 @@ public class DayScreen implements DayView {
         dayPlayerList();
     }
 
-    public void startDay() {
-        Runnable runner = new Runnable() {
-            public void run() {
-                Timer timer = new Timer(100000, new ActionListener() {
-//                    @Override
-//                    public void actionPerformed(ActionEvent e) {
-//                        sendMessage(new NightStartedMessage(getPlayers()));
-//                        ((Timer) e.getSource()).stop();
-//                    }
-
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        ((Timer) e.getSource()).stop();
-                    }
-                });
-                timer.start();
-            }
-        };
-        EventQueue.invokeLater(runner);
-    }
 }
