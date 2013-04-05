@@ -13,7 +13,6 @@ import java.util.List;
 
 public class GameStartedScreen implements GameStartedView {
 
-    private final MainFrame mainFrame;
     private GameStartedController controller;
     private final JPanel panel;
     private final JButton quit;
@@ -24,7 +23,6 @@ public class GameStartedScreen implements GameStartedView {
 
     public GameStartedScreen(MainFrame mainFrame, final GameStartedController controller) {
 
-        this.mainFrame = mainFrame;
         this.controller = controller;
         controller.bind(this);
 
@@ -33,13 +31,13 @@ public class GameStartedScreen implements GameStartedView {
 
         quit = new JButton("Quit");
         panel.add(quit);
-        quit.setBounds(1120, 520, 150, 50);
+        quit.setBounds(1050, 620, 150, 50);
 
         gameStartedLabel = new JLabel("Game Started .... ");
         panel.add(gameStartedLabel);
         gameStartedLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         gameStartedLabel.setForeground(Color.WHITE);
-        gameStartedLabel.setBounds(1050, 350, 250, 150);
+        gameStartedLabel.setBounds(950, 450, 250, 150);
 
         label = new JLabel("Player Roles");
         panel.add(label);

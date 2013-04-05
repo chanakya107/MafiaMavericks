@@ -9,23 +9,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class VillagerNightScreen implements VillagerNightView {
-    private final MainFrame mainFrame;
     private final VillagerNightController controller;
     private final JPanel panel;
     private final JButton disconnect;
     private JLabel label;
 
     public VillagerNightScreen(MainFrame mainFrame, final VillagerNightController controller) {
-        this.mainFrame = mainFrame;
         this.controller = controller;
 
         controller.bind(this);
 
         Image image = new ImageIcon(".\\Images\\www.desktopwallpapers4.me.jpg").getImage();
         panel = mainFrame.createPanel(image);
-
 
         disconnect = new JButton("Disconnect");
         panel.add(disconnect);
@@ -58,7 +56,7 @@ public class VillagerNightScreen implements VillagerNightView {
     }
 
     @Override
-    public Player getSelectedPlayer() {
+    public Player getSelectedPlayer(List<Player> players) {
         return null;
     }
 }

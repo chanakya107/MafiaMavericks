@@ -12,12 +12,10 @@ import java.awt.event.ItemListener;
 import java.util.List;
 
 public class DayScreen implements DayView {
-    private final MainFrame mainFrame;
     private final DayController controller;
     private JPanel panel;
 
     public DayScreen(MainFrame mainFrame, DayController controller) {
-        this.mainFrame = mainFrame;
         this.controller = controller;
 
         Image image = new ImageIcon(".\\Images\\hdwallpapersbase.com.jpg").getImage();
@@ -30,9 +28,7 @@ public class DayScreen implements DayView {
         label.setSize(250, 150);
         label.setLocation(130, 25);
 
-//       dayPlayerList(controller);
     }
-
 
     private void dayPlayerList() {
         JRadioButton radioButton;
@@ -52,15 +48,13 @@ public class DayScreen implements DayView {
                 radioButton.setSelected(true);
             buttonGroup.add(radioButton);
             panel.add(radioButton);
-
             yAxis += 80;
             radioButton.addItemListener(new ItemListener() {
                 @Override
                 public void itemStateChanged(ItemEvent ev) {
-                    boolean selected = (ev.getStateChange() == ItemEvent.SELECTED);
                     AbstractButton button = (AbstractButton) ev.getItemSelectable();
                     String selectedName = button.getActionCommand();
-                    System.out.println("ITEM Choice Selected: " + selected + ", Selection: " + selectedName);
+                    System.out.println("ITEM Choice Selected: " + selectedName);
                 }
             });
         }
@@ -68,19 +62,9 @@ public class DayScreen implements DayView {
         panel.repaint();
     }
 
-
-    @Override
-    public void displayKilledPlayer() {
-        JLabel label = new JLabel("Killed Player : " + controller.getKilledPlayer());
-        panel.add(label);
-        label.setFont(new Font("Chiller", Font.PLAIN, 50));
-        label.setForeground(Color.RED);
-        label.setSize(500, 300);
-        label.setLocation(130, 25);
-    }
-
     @Override
     public void displayVoting() {
         dayPlayerList();
     }
+
 }

@@ -22,16 +22,11 @@ public class DayController {
     }
 
     public void start() {
-        view.displayKilledPlayer();
         view.displayVoting();
     }
 
     public void bind(DayView view) {
         this.view = view;
-    }
-
-    public String getKilledPlayer() {
-        return killedPlayer;
     }
 
     public List<Player> getPlayers() {

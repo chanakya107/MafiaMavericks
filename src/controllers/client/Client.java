@@ -15,10 +15,10 @@ import java.util.List;
 
 public class Client implements SocketChannelListener {
 
+    private static final List<Player> playersSelected = new ArrayList<Player>();
     private final SocketChannel channel;
     private PlayerManager playerManager;
     private Player player;
-    private static final List<Player> playersSelected = new ArrayList<Player>();
 
 
     public Client(SocketChannel channel, PlayerManager playerManager) {

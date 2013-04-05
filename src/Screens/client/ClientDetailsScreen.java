@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 
 public class ClientDetailsScreen implements ClientDetailsView {
 
-    private MainFrame mainFrame;
     private ClientDetailsController controller;
     private JPanel panel;
     private JLabel enterServerName;
@@ -26,7 +25,6 @@ public class ClientDetailsScreen implements ClientDetailsView {
 
     public ClientDetailsScreen(MainFrame mainFrame, ClientDetailsController controller) {
 
-        this.mainFrame = mainFrame;
         this.controller = controller;
         statusLabel = new JLabel();
 

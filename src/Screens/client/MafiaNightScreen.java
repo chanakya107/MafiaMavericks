@@ -14,7 +14,6 @@ import java.awt.event.ItemListener;
 import java.util.List;
 
 public class MafiaNightScreen implements MafiaNightView {
-    private final MainFrame mainFrame;
     private final MafiaNightController controller;
     private final JPanel panel;
     private final JButton disconnect;
@@ -25,7 +24,6 @@ public class MafiaNightScreen implements MafiaNightView {
     private String selectedPlayer;
 
     public MafiaNightScreen(MainFrame mainFrame, final MafiaNightController controller) {
-        this.mainFrame = mainFrame;
         this.controller = controller;
         controller.bind(this);
 
@@ -93,14 +91,17 @@ public class MafiaNightScreen implements MafiaNightView {
             radioButton.addItemListener(new ItemListener() {
                 @Override
                 public void itemStateChanged(ItemEvent ev) {
-                    AbstractButton button = (AbstractButton) ev.getItemSelectable();
+                    AbstractButton button;
+                    button = (AbstractButton) ev.getItemSelectable();
                     selectedPlayer = button.getActionCommand();
 //                    controller.voteChanged();
                 }
             });
+
         }
         selectedPlayer = buttonGroup.getSelection().getActionCommand();
         panel.repaint();
+
     }
 
     private void displayMafiaList() {
@@ -122,9 +123,9 @@ public class MafiaNightScreen implements MafiaNightView {
     }
 
     @Override
-    public Player getSelectedPlayer() {
+    public Player getSelectedPlayer(List<Player> players) {
         Player playerSelected = null;
-        for (Player player : controller.getPlayers()) {
+        for (Player player : players) {
             if (String.valueOf(player).equals(selectedPlayer)) {
                 playerSelected = player;
             }

@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class JoinGameScreen implements JoinGameView {
-    private final MainFrame mainFrame;
     private final JoinGameController controller;
     private final JPanel panel;
     private final JLabel label;
@@ -22,7 +21,6 @@ public class JoinGameScreen implements JoinGameView {
 
     public JoinGameScreen(MainFrame mainFrame, final JoinGameController controller) {
 
-        this.mainFrame = mainFrame;
         this.controller = controller;
 
         Image image = new ImageIcon(".\\Images\\hdwallpapersbase.com.jpg").getImage();
