@@ -21,6 +21,8 @@ public class MafiaNightScreen implements MafiaNightView {
     private final JList<String> playerList;
     private final JLabel label;
     private final DefaultListModel<String> playersDefaultList;
+    private JLabel timer;
+    private String selectedPlayer;
 
     public MafiaNightScreen(MainFrame mainFrame, final MafiaNightController controller) {
         this.mainFrame = mainFrame;
@@ -32,8 +34,9 @@ public class MafiaNightScreen implements MafiaNightView {
 
         disconnect = new JButton("Disconnect");
         panel.add(disconnect);
-        disconnect.setSize(150, 50);
-        disconnect.setLocation(950, 550);
+        disconnect.setBounds(950, 550, 150, 50);
+
+        timer = new JLabel("");
 
         label = new JLabel("Mafias");
         panel.add(label);
@@ -73,30 +76,29 @@ public class MafiaNightScreen implements MafiaNightView {
         int xAxis = 750, yAxis = 450, width = 150, height = 50;
 
         List<Player> players = controller.getPlayers();
-        for (int i = 0; i < players.size(); i++) {
-            String player = players.get(i).getName();
-            radioButton = new JRadioButton(player);
-            radioButton.setActionCommand(player);
+        for (Player player : players) {
+            String playerName = player.getName();
+            radioButton = new JRadioButton(playerName);
+            radioButton.setActionCommand(playerName);
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
             radioButton.setSelected(false);
-            if (player.equals(controller.getCurrentPlayer()))
+            if (playerName.equals(controller.getCurrentPlayer()))
                 radioButton.setSelected(true);
             buttonGroup.add(radioButton);
             panel.add(radioButton);
 
             yAxis += 80;
+
             radioButton.addItemListener(new ItemListener() {
                 @Override
                 public void itemStateChanged(ItemEvent ev) {
-                    boolean selected = (ev.getStateChange() == ItemEvent.SELECTED);
                     AbstractButton button = (AbstractButton) ev.getItemSelectable();
-                    String selectedName = button.getActionCommand();
-                    System.out.println("ITEM Choice Selected: " + selected + ", Selection: " + selectedName);
+                    selectedPlayer = button.getActionCommand();
                 }
             });
         }
-        System.out.println("hiiiiiiiiiiiii i am selected " + buttonGroup.getSelection().getActionCommand());
+        selectedPlayer = buttonGroup.getSelection().getActionCommand();
         panel.repaint();
     }
 
@@ -110,6 +112,21 @@ public class MafiaNightScreen implements MafiaNightView {
 
     @Override
     public void displayAtDay() {
+    }
+
+    @Override
+    public void displayTimer(int count) {
+        panel.remove(timer);
+        timer.setText(String.valueOf(count));
+        panel.add(timer);
+        timer.setFont(new Font("Chiller", Font.PLAIN, 90));
+        timer.setForeground(Color.WHITE);
+        timer.setBounds(950, 450, 150, 150);
+    }
+
+    @Override
+    public String getSelectedPlayer() {
+        return selectedPlayer;
     }
 }
 

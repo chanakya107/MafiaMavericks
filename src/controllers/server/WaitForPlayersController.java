@@ -6,8 +6,8 @@ import channels.messages.ChannelMessage;
 import controllers.ConnectionFactory;
 import controllers.Workflow;
 import controllers.client.Client;
+import messages.NightStartedMessage;
 import messages.PlayersUpdateMessage;
-import messages.RoundStartedMessage;
 import messages.ServerDisconnectedMessage;
 import view.server.WaitForPlayersView;
 
@@ -37,27 +37,9 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     public void startGame() {
         new RoleAssignment(getPlayers()).assign();
-        sendRoundStartedMessage(clients);
-//        sendMessage(new NightStartedMessage(getPlayers()));
-//        startNight();
+        sendNightStartedMessage(clients);
         workflow.startGame(connectionFactory.getServer(), clients);
     }
-
-//    private void startNight() {
-//        Runnable runner = new Runnable() {
-//            public void run() {
-//                Timer timer = new Timer(10000, new ActionListener() {
-//                    @Override
-//                    public void actionPerformed(ActionEvent e) {
-//                        sendMessage(new NightStartedMessage(getPlayers()));
-//                        ((Timer) e.getSource()).stop();
-//                    }
-//                });
-//                timer.start();
-//            }
-//        };
-//        EventQueue.invokeLater(runner);
-//    }
 
     private List<Player> getPlayers() {
         List<Player> players = new ArrayList<Player>();
@@ -67,12 +49,12 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         return players;
     }
 
-    private void sendRoundStartedMessage(List<Client> players) {
+    private void sendNightStartedMessage(List<Client> players) {
         for (Client client : players) {
             if (client.getPlayer().isMafia())
-                client.sendMessage(new RoundStartedMessage(Role.Mafia, getPlayers(), client.getPlayer()));
+                client.sendMessage(new NightStartedMessage(Role.Mafia, getPlayers(), client.getPlayer()));
             else
-                client.sendMessage(new RoundStartedMessage(Role.Villager, getPlayers(), client.getPlayer()));
+                client.sendMessage(new NightStartedMessage(Role.Villager, getPlayers(), client.getPlayer()));
         }
     }
 

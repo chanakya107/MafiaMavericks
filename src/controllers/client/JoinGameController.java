@@ -59,9 +59,9 @@ public class JoinGameController implements SocketChannelListener {
         } else if (message instanceof ServerDisconnectedMessage) {
             view.serverDisconnected(serverName);
             channel.stop();
-        } else if (message instanceof RoundStartedMessage) {
-            RoundStartedMessage roundStartedMessage = (RoundStartedMessage) message;
-            roundStartedMessage.getRole().goToScreen(workflow, channel, serverName, roundStartedMessage.getPlayers(), roundStartedMessage.getPlayer());
+        } else if (message instanceof NightStartedMessage) {
+            NightStartedMessage nightStartedMessage = (NightStartedMessage) message;
+            nightStartedMessage.getRole().goToScreen(workflow, channel, serverName, nightStartedMessage.getPlayers(), nightStartedMessage.getPlayer());
         } else if (message instanceof DayStartedMessage) {
             DayStartedMessage dayStartedMessage = (DayStartedMessage) message;
             workflow.dayStarted(dayStartedMessage.getKilledPlayer(), dayStartedMessage.getPlayersRemaining());

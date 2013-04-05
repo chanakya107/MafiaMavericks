@@ -96,4 +96,13 @@ public class VillagerNightScreen implements VillagerNightView {
     @Override
     public void displayAtDay() {
     }
+
+    @Override
+    public void displayTimer(int count) {
+    }
+
+    @Override
+    public String getSelectedPlayer() {
+        return "";
+    }
 }
