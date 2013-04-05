@@ -36,7 +36,14 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     public void startGame() {
         new RoleAssignment(getPlayers()).assign();
         sendNightStartedMessage(clients);
+        if (new RoleAssignment(getPlayers()).gameCanContinue()){
+            sendDayStartedMessage(clients);
+        }
         workflow.startGame(connectionFactory.getServer(), clients);
+    }
+
+    private void sendDayStartedMessage(List<Client> clients) {
+
     }
 
     private List<Player> getPlayers() {
