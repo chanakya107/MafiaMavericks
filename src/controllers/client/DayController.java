@@ -11,6 +11,8 @@ public class DayController {
     private final String killedPlayer;
     private final List<Player> playersRemaining;
     private DayView view;
+    private List<Player> players;
+    private String currentPlayer;
 
     public DayController(Workflow workflow, String killedPlayer, List<Player> playersRemaining) {
 
@@ -30,5 +32,13 @@ public class DayController {
 
     public String getKilledPlayer() {
         return killedPlayer;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public String getCurrentPlayer() {
+        return currentPlayer;
     }
 }

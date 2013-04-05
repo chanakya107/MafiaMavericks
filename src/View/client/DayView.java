@@ -4,5 +4,4 @@ public interface DayView {
     void displayKilledPlayer();
 
     void displayVoting();
-
 }

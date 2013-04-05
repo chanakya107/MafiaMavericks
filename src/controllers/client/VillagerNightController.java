@@ -5,8 +5,13 @@ import controllers.Workflow;
 import controllers.server.Player;
 import view.client.VillagerNightView;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class VillagerNightController {
     private final Workflow workflow;
@@ -27,7 +32,10 @@ public class VillagerNightController {
     }
 
     public void start() {
+
         view.displayAtNight();
+//        startDay();
+//        workflow.dayStarted("Chethan",players);
     }
 
     public void disconnectingFromServer() {
@@ -54,5 +62,26 @@ public class VillagerNightController {
 
     public String getCurrentPlayer() {
         return currentPlayer.getName();
+    }
+
+    public void startDay() {
+        Runnable runner = new Runnable() {
+            public void run() {
+                Timer timer = new Timer(100000, new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                        sendMessage(new NightStartedMessage(getPlayers()));
+//                        ((Timer) e.getSource()).stop();
+//                    }
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        ((Timer) e.getSource()).stop();
+                    }
+                });
+                timer.start();
+            }
+        };
+        EventQueue.invokeLater(runner);
     }
 }
