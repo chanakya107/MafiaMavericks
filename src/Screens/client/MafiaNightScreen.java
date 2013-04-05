@@ -67,7 +67,6 @@ public class MafiaNightScreen implements MafiaNightView {
     public void displayAtNight() {
         displayMafiaList();
         displayPlayersList();
-        displayAtDay();
     }
 
     private void displayPlayersList() {
@@ -80,7 +79,7 @@ public class MafiaNightScreen implements MafiaNightView {
         for (Player player : players) {
             String playerName = player.getName();
             radioButton = new JRadioButton(playerName);
-            radioButton.setActionCommand(playerName);
+            radioButton.setActionCommand(String.valueOf(player));
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
             radioButton.setSelected(false);
@@ -96,6 +95,7 @@ public class MafiaNightScreen implements MafiaNightView {
                 public void itemStateChanged(ItemEvent ev) {
                     AbstractButton button = (AbstractButton) ev.getItemSelectable();
                     selectedPlayer = button.getActionCommand();
+//                    controller.voteChanged();
                 }
             });
         }
@@ -112,11 +112,6 @@ public class MafiaNightScreen implements MafiaNightView {
     }
 
     @Override
-    public void displayAtDay() {
-
-    }
-
-    @Override
     public void displayTimer(int count) {
         panel.remove(timer);
         timer.setText(String.valueOf(count));
@@ -127,8 +122,14 @@ public class MafiaNightScreen implements MafiaNightView {
     }
 
     @Override
-    public String getSelectedPlayer() {
-        return selectedPlayer;
+    public Player getSelectedPlayer() {
+        Player playerSelected = null;
+        for (Player player : controller.getPlayers()) {
+            if (String.valueOf(player).equals(selectedPlayer)) {
+                playerSelected = player;
+            }
+        }
+        return playerSelected;
     }
 }
 

@@ -1,11 +1,11 @@
 package view.client;
 
+import controllers.server.Player;
+
 public interface VillagerNightView {
     void displayAtNight();
 
-    void displayAtDay();
-
     void displayTimer(int count);
 
-    String getSelectedPlayer();
+    Player getSelectedPlayer();
 }
