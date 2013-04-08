@@ -1,5 +1,6 @@
 package controllers.server;
 
+import channels.SocketChannel;
 import controllers.ConnectionFactory;
 import controllers.Workflow;
 import controllers.client.Client;
@@ -7,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import view.server.WaitForPlayersView;
 
+import java.net.Socket;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;

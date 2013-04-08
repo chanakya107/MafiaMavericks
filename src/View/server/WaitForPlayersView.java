@@ -7,4 +7,6 @@ import java.util.List;
 public interface WaitForPlayersView {
 
     void updatePlayers(List<Client> playerList);
+
+    void displayStartButton();
 }

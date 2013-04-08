@@ -18,4 +18,8 @@ public class YouAreKilledController {
     public void start() {
 
     }
+
+    public void goToHome() {
+        workflow.goToHome();
+    }
 }
