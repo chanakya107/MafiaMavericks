@@ -16,8 +16,7 @@ public class GameOverScreen implements GameOverView {
     public GameOverScreen(MainFrame mainFrame, GameOverController controller) {
         this.mainFrame = mainFrame;
         this.controller = controller;
-        Image image = new ImageIcon(".\\Images\\findwallpaper.info.jpg").getImage();
-        panel = mainFrame.createPanel(image);
+        panel = mainFrame.createPanel("findwallpaper.info.jpg");
     }
 
     @Override

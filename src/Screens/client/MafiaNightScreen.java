@@ -27,8 +27,7 @@ public class MafiaNightScreen implements MafiaNightView {
         this.controller = controller;
         controller.bind(this);
 
-        Image image = new ImageIcon(".\\Images\\if.invisionfree.com.jpg").getImage();
-        panel = mainFrame.createPanel(image);
+        panel = mainFrame.createPanel("if.invisionfree.com.jpg");
 
         disconnect = new JButton("Disconnect");
         panel.add(disconnect);

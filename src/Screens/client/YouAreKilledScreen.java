@@ -16,8 +16,7 @@ public class YouAreKilledScreen implements YouAreKilledView {
     public YouAreKilledScreen(MainFrame mainFrame, YouAreKilledController controller) {
         this.mainFrame = mainFrame;
         this.controller = controller;
-        Image image = new ImageIcon(".\\Images\\thaiintelligentnews.wordpress.com1.jpg").getImage();
-        panel = mainFrame.createPanel(image);
+        panel = mainFrame.createPanel("thaiintelligentnews.wordpress.com1.jpg");
 
         label = new JLabel("You are Killed");
         panel.add(label);

@@ -23,8 +23,7 @@ public class DayScreen implements DayView {
     public DayScreen(MainFrame mainFrame, DayController controller) {
         this.controller = controller;
 
-        Image image = new ImageIcon(".\\Images\\hdwallpapersbase.com.jpg").getImage();
-        panel = mainFrame.createPanel(image);
+        panel = mainFrame.createPanel("hdwallpapersbase.com.jpg");
 
         timer = new JLabel("");
 

@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class HomeScreen implements HomeView {
     private final HomeController controller;
@@ -20,9 +21,7 @@ public class HomeScreen implements HomeView {
         this.controller = controller;
         controller.bind(this);
 
-
-        Image image = new ImageIcon(".\\Images\\nice-cool-pics.com.jpg").getImage();
-        panel = mainframe.createPanel(image);
+        panel = mainframe.createPanel("nice-cool-pics.com.jpg");
 
         startServer = new JButton("Start server");
         panel.add(startServer);
