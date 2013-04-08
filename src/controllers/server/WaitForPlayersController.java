@@ -93,25 +93,28 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playerKilled(Player playerToBeKilled)
+    public void playerKilled(Player playerKilled)
     {
-        informKilledPlayer(playerToBeKilled);
-        informOtherPlayers(playerToBeKilled);
+        informKilledPlayer(playerKilled);
+//        informOtherPlayers(playerKilled);
     }
 
-    public void informOtherPlayers(Player playerToBeKilled) {
+    public void informOtherPlayers(Player playerKilled) {
         for (Client client : clients) {
-            client.sendMessage(new PlayerKilledMessage(playerToBeKilled));
+            client.sendMessage(new PlayerKilledMessage(playerKilled));
         }
     }
 
-    public void informKilledPlayer(Player playerToBeKilled) {
+    public void informKilledPlayer(Player playerKilled) {
         for (Client client : clients) {
-            if (client.getPlayer().getName().equals(playerToBeKilled.getName())) {
+            if (client.getPlayer().equals(playerKilled)) {
                 client.sendMessage(new YouAreKilledMessage());
-                client.stop();
-                clients.remove(client);
+//                todo : chethan - try to stop and remove the client from the list here.
+//                client.stop();
+//                clients.remove(client);
             }
+            else
+                client.sendMessage(new PlayerKilledMessage(playerKilled));
         }
     }
 

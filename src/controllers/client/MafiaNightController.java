@@ -27,7 +27,7 @@ public class MafiaNightController extends VillagerNightController {
         Runnable runner = new Runnable() {
             public void run() {
                 timer = new Timer(1000, new ActionListener() {
-                    int count = 10;
+                    int count = 30;
 
                     @Override
                     public void actionPerformed(ActionEvent e) {

@@ -14,6 +14,7 @@ public class HomeScreen implements HomeView {
     private final JButton startServer;
     private final JButton joinGame;
     private final JButton quit;
+    private JPanel panel;
 
     public HomeScreen(MainFrame mainframe, HomeController controller) {
         this.controller = controller;
@@ -21,7 +22,7 @@ public class HomeScreen implements HomeView {
 
 
         Image image = new ImageIcon(".\\Images\\nice-cool-pics.com.jpg").getImage();
-        JPanel panel = mainframe.createPanel(image);
+        panel = mainframe.createPanel(image);
 
         startServer = new JButton("Start server");
         panel.add(startServer);
@@ -60,11 +61,18 @@ public class HomeScreen implements HomeView {
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Do you really want to Quit?", "", JOptionPane.YES_NO_OPTION);
-                if (option == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
+                System.exit(0);
             }
         });
+    }
+
+    @Override
+    public void serverDisconnected(String serverName) {
+        JLabel label = new JLabel("Connection to server : " + serverName + " is lost");
+        panel.add(label);
+        label.setFont(new Font("Chiller", Font.PLAIN, 50));
+        label.setForeground(Color.RED);
+        label.setSize(600, 150);
+        label.setLocation(100, 550);
     }
 }

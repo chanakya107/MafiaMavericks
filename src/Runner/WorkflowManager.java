@@ -97,4 +97,12 @@ public class WorkflowManager implements Workflow {
         controller.bind(new YouAreKilledScreen(mainFrame,controller));
         controller.start();
     }
+
+    @Override
+    public void serverDisconnected(String serverName) {
+        HomeController controller = new HomeController(this);
+        controller.bind(new HomeScreen(mainFrame, controller));
+        controller.start();
+        controller.serverDisconnected(serverName);
+    }
 }

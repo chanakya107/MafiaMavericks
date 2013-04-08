@@ -25,4 +25,8 @@ public class HomeController {
 
     public void start() {
     }
+
+    public void serverDisconnected(String serverName) {
+        view.serverDisconnected(serverName);
+    }
 }

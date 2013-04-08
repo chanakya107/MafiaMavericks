@@ -11,7 +11,6 @@ public class MainFrame {
         frame.setVisible(true);
         frame.setBackground(Color.black);
         frame.setBounds(new Rectangle(1080, 1920));
-        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocation(300, 0);
     }
@@ -25,3 +24,4 @@ public class MainFrame {
         return panel;
     }
 }
+

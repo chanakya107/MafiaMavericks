@@ -27,4 +27,6 @@ public interface Workflow {
     void playerKilled(Player killedPlayer);
 
     void YouAreKilled();
+
+    void serverDisconnected(String serverName);
 }

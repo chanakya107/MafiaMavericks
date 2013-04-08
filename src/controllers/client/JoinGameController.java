@@ -77,4 +77,8 @@ public class JoinGameController implements SocketChannelListener {
     @Override
     public void onMessageReadError(SocketChannel channel, Exception e) {
     }
+
+    public void serverDisconnected(String serverName) {
+        workflow.serverDisconnected(serverName);
+    }
 }
