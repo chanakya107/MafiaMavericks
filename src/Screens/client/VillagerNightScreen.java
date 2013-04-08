@@ -22,8 +22,7 @@ public class VillagerNightScreen implements VillagerNightView {
 
         controller.bind(this);
 
-        Image image = new ImageIcon(".\\Images\\www.desktopwallpapers4.me.jpg").getImage();
-        panel = mainFrame.createPanel(image);
+        panel = mainFrame.createPanel("www.desktopwallpapers4.me.jpg");
 
         disconnect = new JButton("Disconnect");
         panel.add(disconnect);

@@ -26,8 +26,7 @@ public class GameStartedScreen implements GameStartedView {
         this.controller = controller;
         controller.bind(this);
 
-        Image image = new ImageIcon(".\\Images\\www.desktopwallpapers4.me.jpg").getImage();
-        panel = mainFrame.createPanel(image);
+        panel = mainFrame.createPanel("www.desktopwallpapers4.me.jpg");
 
         quit = new JButton("Quit");
         panel.add(quit);

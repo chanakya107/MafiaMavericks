@@ -19,8 +19,7 @@ public class PlayerKilledScreen implements PlayerKilledView {
         this.controller = controller;
         controller.bind(this);
 
-        Image image = new ImageIcon(".\\Images\\scottystarnes.wordpress.com.jpg").getImage();
-        panel = mainFrame.createPanel(image);
+        panel = mainFrame.createPanel("scottystarnes.wordpress.com.jpg");
     }
 
     @Override

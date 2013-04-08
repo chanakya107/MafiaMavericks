@@ -13,6 +13,18 @@
         </sound>
     </target>
 
+    <target name="jar" depends="compileSrc">
+        <mkdir dir="${sourceOutput}/Images"/>
+        <copy todir="${sourceOutput}/Images">
+            <fileset dir="Images"/>
+        </copy>
+        <jar destfile="${jarName}" basedir="${sourceOutput}">
+            <manifest>
+                <attribute name="Main-Class" value="runner.Main"/>
+            </manifest>
+        </jar>
+    </target>
+
     <target name="archive-status">
         <sound>
             <fail source="sounds\IPL.wav" loops="1"/>
@@ -30,14 +42,7 @@
     <target name="compileSrc" depends="clean">
         <mkdir dir="${sourceOutput}"/>
         <javac srcdir="src" destdir="${sourceOutput}" includeantruntime="yes"/>
-    </target>
 
-    <target name="jar" depends="compileSrc">
-        <jar destfile="${jarName}" basedir="${sourceOutput}">
-            <manifest>
-                <attribute name="Main-Class" value="runner.Main"/>
-            </manifest>
-        </jar>
     </target>
 
     <target name="compileTest" depends="jar">
