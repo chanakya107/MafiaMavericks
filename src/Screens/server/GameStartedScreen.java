@@ -33,7 +33,7 @@ public class GameStartedScreen implements GameStartedView {
         panel.add(quit);
         quit.setBounds(1050, 620, 150, 50);
 
-        gameStartedLabel = new JLabel("Game Started .... ");
+        gameStartedLabel = new JLabel("Game Running .... ");
         panel.add(gameStartedLabel);
         gameStartedLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         gameStartedLabel.setForeground(Color.WHITE);

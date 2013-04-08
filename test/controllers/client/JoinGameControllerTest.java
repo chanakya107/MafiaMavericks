@@ -87,9 +87,9 @@ public class JoinGameControllerTest {
     public void on_new_day_started_message_arrived_day_started_screen_should_be_displayed() {
         String killedPlayer = "chethan";
         ArrayList<Player> playersRemaining = new ArrayList<Player>();
-        DayStartedMessage dayStartedMessage = new DayStartedMessage(killedPlayer, playersRemaining);
+        DayStartedMessage dayStartedMessage = new DayStartedMessage(killedPlayer, playersRemaining, new Player("player"));
         controller.onNewMessageArrived(channel, dayStartedMessage);
-        verify(workflow).dayStarted(killedPlayer, playersRemaining);
+        verify(workflow).dayStarted(killedPlayer, playersRemaining, dayStartedMessage.getCurrentPlayer(), channel);
     }
 
 

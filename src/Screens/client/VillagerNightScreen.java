@@ -42,7 +42,7 @@ public class VillagerNightScreen implements VillagerNightView {
     }
 
     @Override
-    public void displayAtNight() {
+    public void display() {
         label = new JLabel("Night Arrived");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));

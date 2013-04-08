@@ -34,7 +34,9 @@ public class Player implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Player player = (Player) o;
+
         return !(name != null ? !name.equals(player.name) : player.name != null) && role == player.role;
     }
 
@@ -43,5 +45,9 @@ public class Player implements Serializable {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
+    }
+
+    public boolean isKilled() {
+        return role == Role.Killed;
     }
 }

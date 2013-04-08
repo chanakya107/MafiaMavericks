@@ -13,13 +13,20 @@ import java.util.List;
 
 public class DayScreen implements DayView {
     private final DayController controller;
+    private final JList<String> playerList;
+    private final JLabel playerKilledLabel;
     private JPanel panel;
+    private String selectedPlayer;
+    private JLabel timer;
+    private DefaultListModel<String> playersDefaultList;
 
     public DayScreen(MainFrame mainFrame, DayController controller) {
         this.controller = controller;
 
         Image image = new ImageIcon(".\\Images\\hdwallpapersbase.com.jpg").getImage();
         panel = mainFrame.createPanel(image);
+
+        timer = new JLabel("");
 
         JLabel label = new JLabel("Day Arrived..");
         panel.add(label);
@@ -28,43 +35,88 @@ public class DayScreen implements DayView {
         label.setSize(250, 150);
         label.setLocation(130, 25);
 
+        playersDefaultList = new DefaultListModel<String>();
+
+        playerList = new JList<String>(playersDefaultList);
+        panel.add(playerList);
+        playerList.setBackground(Color.GRAY);
+        playerList.setForeground(Color.WHITE);
+        playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
+        playerList.setBounds(100, 130, 250, 400);
+
+        playerKilledLabel = new JLabel(controller.getKilledPlayer() + " is Killed");
+        panel.add(playerKilledLabel);
+        playerKilledLabel.setFont(new Font("Chiller", Font.PLAIN, 90));
+        playerKilledLabel.setForeground(Color.WHITE);
+        playerKilledLabel.setBounds(700, 25, 500, 250);
     }
 
-    private void dayPlayerList() {
+    @Override
+    public void display() {
+        displayVoting();
+        displayPlayerList();
+    }
+
+    private void displayVoting() {
         JRadioButton radioButton;
         ButtonGroup buttonGroup = new ButtonGroup();
 
         int xAxis = 750, yAxis = 450, width = 150, height = 50;
 
         List<Player> players = controller.getPlayers();
-        for (int i = 0; i < players.size(); i++) {
-            String player = players.get(i).getName();
-            radioButton = new JRadioButton(player);
-            radioButton.setActionCommand(player);
+        for (Player player : players) {
+            String playerName = player.getName();
+            radioButton = new JRadioButton(playerName);
+            radioButton.setActionCommand(String.valueOf(player));
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
             radioButton.setSelected(false);
-            if (player.equals(controller.getCurrentPlayer()))
+            if (playerName.equals(controller.getCurrentPlayer()))
                 radioButton.setSelected(true);
             buttonGroup.add(radioButton);
             panel.add(radioButton);
+
             yAxis += 80;
+
             radioButton.addItemListener(new ItemListener() {
                 @Override
                 public void itemStateChanged(ItemEvent ev) {
-                    AbstractButton button = (AbstractButton) ev.getItemSelectable();
-                    String selectedName = button.getActionCommand();
-                    System.out.println("ITEM Choice Selected: " + selectedName);
+                    AbstractButton button;
+                    button = (AbstractButton) ev.getItemSelectable();
+                    selectedPlayer = button.getActionCommand();
+//                    controller.voteChanged();
                 }
             });
         }
-        System.out.println("hiiiiiiiiiiiii i am selected " + buttonGroup.getSelection().getActionCommand());
+        selectedPlayer = buttonGroup.getSelection().getActionCommand();
         panel.repaint();
     }
 
-    @Override
-    public void displayVoting() {
-        dayPlayerList();
+    private void displayPlayerList() {
+        playersDefaultList.removeAllElements();
+        List<Player> mafias = controller.getPlayers();
+        for (Player mafia : mafias) {
+            playersDefaultList.addElement(mafia.getName());
+        }
     }
 
+    @Override
+    public void displayTimer(int count) {
+        panel.remove(timer);
+        timer.setText(String.valueOf(count));
+        panel.add(timer);
+        timer.setFont(new Font("Chiller", Font.PLAIN, 90));
+        timer.setForeground(Color.WHITE);
+        timer.setBounds(950, 450, 150, 150);
+    }
+
+    public Player getSelectedPlayer(List<Player> players) {
+        Player playerSelected = null;
+        for (Player player : players) {
+            if (String.valueOf(player).equals(selectedPlayer)) {
+                playerSelected = player;
+            }
+        }
+        return playerSelected;
+    }
 }

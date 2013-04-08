@@ -28,7 +28,7 @@ public class VillagerNightController {
     }
 
     public void start() {
-        view.displayAtNight();
+        view.display();
     }
 
     public void disconnectingFromServer() {
@@ -56,6 +56,4 @@ public class VillagerNightController {
     public String getCurrentPlayer() {
         return currentPlayer.getName();
     }
-
-
 }

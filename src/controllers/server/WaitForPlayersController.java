@@ -4,6 +4,7 @@ import channels.ConnectionListener;
 import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import controllers.ConnectionFactory;
+import controllers.Phase;
 import controllers.Workflow;
 import controllers.client.Client;
 import messages.*;
@@ -35,15 +36,8 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     public void startGame() {
         new RoleAssignment(getPlayers()).assign();
-        sendNightStartedMessage(clients);
-        if (new RoleAssignment(getPlayers()).gameCanContinue()) {
-            sendDayStartedMessage(clients);
-        }
+        sendNightStartedMessage();
         workflow.startGame(connectionFactory.getServer(), clients);
-    }
-
-    private void sendDayStartedMessage(List<Client> clients) {
-
     }
 
     private List<Player> getPlayers() {
@@ -54,8 +48,8 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         return players;
     }
 
-    private void sendNightStartedMessage(List<Client> players) {
-        for (Client client : players) {
+    private void sendNightStartedMessage() {
+        for (Client client : clients) {
             if (client.getPlayer().isMafia())
                 client.sendMessage(new NightStartedMessage(Role.Mafia, getPlayers(), client.getPlayer()));
             else
@@ -76,7 +70,6 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     @Override
     public void onConnectionFailed(String serverAddress, int serverPort, Exception e) {
-
     }
 
     @Override
@@ -93,17 +86,68 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playerKilled(Player playerKilled) {
+    public void playerKilled(Player playerKilled, Phase phase) {
+        String name = playerKilled.getName();
         for (Client client : clients) {
             if (client.getPlayer().equals(playerKilled)) {
                 client.sendMessage(new YouAreKilledMessage());
-//                todo : chethan - try to stop and remove the client from the list here.
                 client.getPlayer().assignRole(Role.Killed);
                 workflow.startGame(connectionFactory.getServer(), clients);
-//                view.updatePlayers(clients);
-            } else
-                client.sendMessage(new PlayerKilledMessage(playerKilled));
+            }
         }
+
+        removeKilledPlayer();
+
+        if (new RoleAssignment(getPlayers()).canGameContinue()) {
+            continueGame(name, phase);
+        } else
+            sendGameOverMessage();
+    }
+
+    private void sendGameOverMessage() {
+        for (Client client : clients) {
+            client.sendMessage(new GameOverMessage(new RoleAssignment(getPlayers()).getWinner()));
+        }
+    }
+
+    private void continueGame(String playerKilled, Phase phase) {
+        if (phase.isNight()) {
+            sendDayStartedMessage(playerKilled);
+        } else
+            sendNightStartedMessage();
+    }
+
+    private void sendDayStartedMessage(String playerKilled) {
+        for (Client client : clients) {
+            client.sendMessage(new DayStartedMessage(playerKilled, getRemainingPlayers(), client.getPlayer()));
+        }
+    }
+
+    void removeKilledPlayer() {
+        int i;
+        for (i = 0; i < clients.size(); i++) {
+            if (clients.get(i).getPlayer().isKilled())
+                break;
+        }
+        clients.remove(i);
+    }
+
+    private List<Client> getRemainingClients() {
+        List<Client> remainingClients = new ArrayList<Client>();
+        for (Client client : clients) {
+            if (client.getPlayer().getRole() != Role.Killed)
+                remainingClients.add(client);
+        }
+        return remainingClients;
+    }
+
+    private List<Player> getRemainingPlayers() {
+        List<Player> players = new ArrayList<Player>();
+        for (Client client : clients) {
+            if (client.getPlayer().getRole() != Role.Killed)
+                players.add(client.getPlayer());
+        }
+        return players;
     }
 
     private void sendMessage(ChannelMessage message) {

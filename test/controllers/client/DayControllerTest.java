@@ -1,11 +1,13 @@
 package controllers.client;
 
+import channels.SocketChannel;
 import controllers.Workflow;
 import controllers.server.Player;
 import org.junit.Before;
 import org.junit.Test;
 import view.client.DayView;
 
+import java.net.Socket;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
@@ -19,7 +21,7 @@ public class DayControllerTest {
     @Before
     public void setup() {
         workflow = mock(Workflow.class);
-        controller = new DayController(workflow, "Player", new ArrayList<Player>());
+        controller = new DayController(workflow, "Player", new ArrayList<Player>(), new Player("player"), new SocketChannel(new Socket()));
         view = mock(DayView.class);
         controller.bind(view);
     }
@@ -27,6 +29,6 @@ public class DayControllerTest {
     @Test
     public void on_day_started_the_player_killed_in_the_night_should_be_displayed_and_the_voting_should_be_displayed() {
         controller.start();
-        verify(view).displayVoting();
+        verify(view).display();
     }
 }

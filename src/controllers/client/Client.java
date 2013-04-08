@@ -46,7 +46,7 @@ public class Client implements SocketChannelListener {
             PlayerVotedMessage playerVotedMessage = (PlayerVotedMessage) message;
             playersSelected.add(playerVotedMessage.getVotedTo());
             if (hasEveryoneVoted(playerVotedMessage.getVotersCount())) {
-                playerManager.playerKilled(getPlayerToBeKilled());
+                playerManager.playerKilled(getPlayerToBeKilled(),playerVotedMessage.getPhase());
             }
         }
     }

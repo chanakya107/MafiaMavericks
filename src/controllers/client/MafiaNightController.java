@@ -1,6 +1,7 @@
 package controllers.client;
 
 import channels.SocketChannel;
+import controllers.Phase;
 import controllers.Workflow;
 import controllers.server.Player;
 import messages.PlayerVotedMessage;
@@ -19,7 +20,7 @@ public class MafiaNightController extends VillagerNightController {
     }
 
     public void start() {
-        view.displayAtNight();
+        view.display();
         startVoting();
     }
 
@@ -35,9 +36,7 @@ public class MafiaNightController extends VillagerNightController {
                         view.displayTimer(count);
                         if (count == 0) {
                             ((Timer) e.getSource()).stop();
-
-                            channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size()));
-
+                            channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size(), Phase.Night));
                         }
                     }
                 });
@@ -48,6 +47,6 @@ public class MafiaNightController extends VillagerNightController {
     }
 
     public void voteChanged() {
-        channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size()));
+        channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size(), Phase.Night));
     }
 }

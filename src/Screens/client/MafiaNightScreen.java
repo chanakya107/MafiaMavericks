@@ -62,7 +62,7 @@ public class MafiaNightScreen implements MafiaNightView {
     }
 
     @Override
-    public void displayAtNight() {
+    public void display() {
         displayMafiaList();
         displayPlayersList();
     }

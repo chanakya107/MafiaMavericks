@@ -3,12 +3,15 @@ package runner;
 import channels.SocketChannel;
 import channels.server.SocketServer;
 import controllers.ConnectionFactory;
+import controllers.GameOverController;
 import controllers.HomeController;
 import controllers.Workflow;
 import controllers.client.*;
 import controllers.server.GameStartedController;
 import controllers.server.Player;
+import controllers.server.Role;
 import controllers.server.WaitForPlayersController;
+import screens.GameOverScreen;
 import screens.HomeScreen;
 import screens.client.*;
 import screens.controls.MainFrame;
@@ -71,23 +74,16 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void startGame(SocketServer server, List<Client> players) {
-        GameStartedController controller = new GameStartedController(this, server, players);
-        controller.bind(new GameStartedScreen(mainFrame, controller));
-        controller.start();
-    }
-
-    @Override
-    public void dayStarted(String killedPlayer, List<Player> playersRemaining) {
-        DayController controller = new DayController(this, killedPlayer, playersRemaining);
+    public void dayStarted(String killedPlayer, List<Player> playersRemaining, Player currentPlayer, SocketChannel channel) {
+        DayController controller = new DayController(this, killedPlayer, playersRemaining,currentPlayer,channel);
         controller.bind(new DayScreen(mainFrame, controller));
         controller.start();
     }
 
     @Override
-    public void playerKilled(Player killedPlayer) {
-        PlayerKilledController controller = new PlayerKilledController(this, killedPlayer);
-        controller.bind(new PlayerKilledScreen(mainFrame, controller));
+    public void startGame(SocketServer server, List<Client> players) {
+        GameStartedController controller = new GameStartedController(this, server, players);
+        controller.bind(new GameStartedScreen(mainFrame, controller));
         controller.start();
     }
 
@@ -104,5 +100,12 @@ public class WorkflowManager implements Workflow {
         controller.bind(new HomeScreen(mainFrame, controller));
         controller.start();
         controller.serverDisconnected(serverName);
+    }
+
+    @Override
+    public void gameOver(Role winner) {
+        GameOverController controller = new GameOverController(this,winner);
+        controller.bind(new GameOverScreen(mainFrame,controller));
+        controller.start();
     }
 }

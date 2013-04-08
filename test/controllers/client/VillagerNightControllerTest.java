@@ -29,7 +29,7 @@ public class VillagerNightControllerTest {
         VillagerNightView view = mock(VillagerNightView.class);
         controller.bind(view);
         controller.start();
-        verify(view).displayAtNight();
+        verify(view).display();
     }
 
     @Test

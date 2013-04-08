@@ -52,7 +52,13 @@ public class RoleAssignment {
         return mafiaCount;
     }
 
-    public boolean gameCanContinue() {
-        return getVillagerCount() > getMafiaCount();
+    public boolean canGameContinue() {
+        return getVillagerCount() > getMafiaCount() && getMafiaCount()!=0;
+    }
+
+    public Role getWinner() {
+        if(getMafiaCount()==0)
+            return Role.Villager;
+        return Role.Mafia;
     }
 }
