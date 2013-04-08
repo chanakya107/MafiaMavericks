@@ -59,7 +59,6 @@ public class GameStartedScreen implements GameStartedView {
                 int option = JOptionPane.showConfirmDialog(null, "Do you want to really Quit ?", "", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
                     controller.stopServer();
-                    System.exit(0);
                 }
             }
         });

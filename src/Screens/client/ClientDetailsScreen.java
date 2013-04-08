@@ -49,7 +49,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         enterUserName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterUserName.setLocation(100, 200);
 
-        userNameField = new JTextField("player");
+        userNameField = new JTextField();
         panel.add(userNameField);
         userNameField.setSize(200, 30);
         userNameField.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
