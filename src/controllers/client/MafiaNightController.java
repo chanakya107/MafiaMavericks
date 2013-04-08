@@ -36,7 +36,7 @@ public class MafiaNightController extends VillagerNightController {
                         if (count == 0) {
                             ((Timer) e.getSource()).stop();
 
-                            channel.send(new PlayerVotedMessage(getCurrentPlayer(),view.getSelectedPlayer(players),players,getMafiaList().size()));
+                            channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size()));
 
                         }
                     }
@@ -48,6 +48,6 @@ public class MafiaNightController extends VillagerNightController {
     }
 
     public void voteChanged() {
-        channel.send(new PlayerVotedMessage(getCurrentPlayer(),view.getSelectedPlayer(players), players, getMafiaList().size()));
+        channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size()));
     }
 }

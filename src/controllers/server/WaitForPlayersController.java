@@ -36,7 +36,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     public void startGame() {
         new RoleAssignment(getPlayers()).assign();
         sendNightStartedMessage(clients);
-        if (new RoleAssignment(getPlayers()).gameCanContinue()){
+        if (new RoleAssignment(getPlayers()).gameCanContinue()) {
             sendDayStartedMessage(clients);
         }
         workflow.startGame(connectionFactory.getServer(), clients);
@@ -93,27 +93,15 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playerKilled(Player playerKilled)
-    {
-        informKilledPlayer(playerKilled);
-//        informOtherPlayers(playerKilled);
-    }
-
-    public void informOtherPlayers(Player playerKilled) {
-        for (Client client : clients) {
-            client.sendMessage(new PlayerKilledMessage(playerKilled));
-        }
-    }
-
-    public void informKilledPlayer(Player playerKilled) {
+    public void playerKilled(Player playerKilled) {
         for (Client client : clients) {
             if (client.getPlayer().equals(playerKilled)) {
                 client.sendMessage(new YouAreKilledMessage());
 //                todo : chethan - try to stop and remove the client from the list here.
-//                client.stop();
-//                clients.remove(client);
-            }
-            else
+                client.getPlayer().assignRole(Role.Killed);
+                workflow.startGame(connectionFactory.getServer(), clients);
+//                view.updatePlayers(clients);
+            } else
                 client.sendMessage(new PlayerKilledMessage(playerKilled));
         }
     }

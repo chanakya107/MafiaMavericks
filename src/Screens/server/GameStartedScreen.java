@@ -64,7 +64,6 @@ public class GameStartedScreen implements GameStartedView {
                 }
             }
         });
-
     }
 
     @Override

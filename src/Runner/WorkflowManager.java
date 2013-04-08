@@ -86,15 +86,15 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void playerKilled(Player killedPlayer) {
-        PlayerKilledController controller = new PlayerKilledController(this,killedPlayer);
-        controller.bind(new PlayerKilledScreen(mainFrame,controller));
+        PlayerKilledController controller = new PlayerKilledController(this, killedPlayer);
+        controller.bind(new PlayerKilledScreen(mainFrame, controller));
         controller.start();
     }
 
     @Override
     public void YouAreKilled() {
         YouAreKilledController controller = new YouAreKilledController(this);
-        controller.bind(new YouAreKilledScreen(mainFrame,controller));
+        controller.bind(new YouAreKilledScreen(mainFrame, controller));
         controller.start();
     }
 

@@ -18,7 +18,7 @@ public enum Role implements Serializable {
         public void goToScreen(Workflow workflow, SocketChannel channel, String serverName, List<Player> players, Player currentPlayer) {
             workflow.villagerNightScreen(channel, serverName, players, currentPlayer);
         }
-    };
+    }, Killed;
 
     public void goToScreen(Workflow view, SocketChannel channel, String serverName, List<Player> players, Player currentPlayer) {
 
