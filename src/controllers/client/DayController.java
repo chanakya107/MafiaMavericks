@@ -36,7 +36,17 @@ public class DayController {
 
     public void startVoting() {
         view.disableConfirm();
-        channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, players.size(), Phase.Day));
+        channel.send(new PlayerVotedMessage(getCurrentPlayer().getName(),getSelectedPlayer(), players, players.size(), Phase.Day));
+    }
+
+    private Player getSelectedPlayer() {
+        Player playerSelected = null;
+        for (Player player : players) {
+            if (String.valueOf(player).equals(view.getSelectedPlayer())) {
+                playerSelected = player;
+            }
+        }
+        return playerSelected;
     }
 
     public List<Player> getPlayers() {
@@ -47,8 +57,8 @@ public class DayController {
         return killedPlayer;
     }
 
-    public String getCurrentPlayer() {
-        return currentPlayer.getName();
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 
     public void disconnectingFromServer() {

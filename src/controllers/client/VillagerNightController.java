@@ -53,7 +53,7 @@ public class VillagerNightController {
         return players;
     }
 
-    public String getCurrentPlayer() {
-        return currentPlayer.getName();
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 }

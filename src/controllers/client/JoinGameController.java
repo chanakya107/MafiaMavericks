@@ -66,7 +66,8 @@ public class JoinGameController implements SocketChannelListener {
             DayStartedMessage dayStartedMessage = (DayStartedMessage) message;
             workflow.dayStarted(dayStartedMessage.getKilledPlayer(), dayStartedMessage.getPlayersRemaining(), dayStartedMessage.getCurrentPlayer(), channel);
         } else if (message instanceof YouAreKilledMessage) {
-            workflow.YouAreKilled();
+            YouAreKilledMessage youAreKilledMessage = (YouAreKilledMessage) message;
+            workflow.YouAreKilled(youAreKilledMessage.getName());
         } else if (message instanceof GameOverMessage) {
             GameOverMessage gameOverMessage = (GameOverMessage) message;
             workflow.gameOver(gameOverMessage.getWinner());

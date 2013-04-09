@@ -20,10 +20,20 @@ public class MafiaNightController extends VillagerNightController {
 
     public void startVoting() {
         view.disableConfirm();
-        channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size(), Phase.Night));
+        channel.send(new PlayerVotedMessage(getCurrentPlayer().getName(), getSelectedPlayer(), players, getMafiaList().size(), Phase.Night));
     }
 
     public void voteChanged() {
-        channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size(), Phase.Night));
+        channel.send(new PlayerVotedMessage(getCurrentPlayer().getName(), getSelectedPlayer(), players, getMafiaList().size(), Phase.Night));
+    }
+
+    private Player getSelectedPlayer() {
+        Player playerSelected = null;
+        for (Player player : players) {
+            if (String.valueOf(player).equals(view.getSelectedPlayer())) {
+                playerSelected = player;
+            }
+        }
+        return playerSelected;
     }
 }

@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Enumeration;
 import java.util.List;
 
 public class DayScreen implements DayView {
@@ -22,6 +23,7 @@ public class DayScreen implements DayView {
     private JPanel panel;
     private String selectedPlayer;
     private DefaultListModel<String> playersDefaultList;
+    private ButtonGroup buttonGroup;
 
     public DayScreen(MainFrame mainFrame, DayController controller) {
         this.controller = controller;
@@ -58,6 +60,13 @@ public class DayScreen implements DayView {
         playerKilledLabel.setFont(new Font("Chiller", Font.PLAIN, 90));
         playerKilledLabel.setForeground(Color.WHITE);
         playerKilledLabel.setBounds(700, 25, 500, 250);
+
+        JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
+        panel.add(nameLabel);
+        nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
+        nameLabel.setForeground(Color.WHITE);
+        nameLabel.setBounds(950, 10, 500, 250);
+
         addButtonListener();
     }
 
@@ -89,7 +98,7 @@ public class DayScreen implements DayView {
 
     private void displayVoting() {
         JRadioButton radioButton;
-        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup = new ButtonGroup();
 
         int xAxis = 750, yAxis = 450, width = 150, height = 50;
 
@@ -101,7 +110,7 @@ public class DayScreen implements DayView {
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
             radioButton.setSelected(false);
-            if (playerName.equals(controller.getCurrentPlayer()))
+            if (playerName.equals(controller.getCurrentPlayer().getName()))
                 radioButton.setSelected(true);
             buttonGroup.add(radioButton);
             panel.add(radioButton);
@@ -130,18 +139,22 @@ public class DayScreen implements DayView {
         }
     }
 
-    public Player getSelectedPlayer(List<Player> players) {
-        Player playerSelected = null;
-        for (Player player : players) {
-            if (String.valueOf(player).equals(selectedPlayer)) {
-                playerSelected = player;
-            }
-        }
-        return playerSelected;
+    @Override
+    public String getSelectedPlayer() {
+        return selectedPlayer;
     }
 
     @Override
     public void disableConfirm() {
         confirm.setEnabled(false);
+        disableButtons();
+    }
+
+    private void disableButtons() {
+        Enumeration<AbstractButton> elements = buttonGroup.getElements();
+        while (elements.hasMoreElements()) {
+            AbstractButton button = elements.nextElement();
+            button.setEnabled(false);
+        }
     }
 }

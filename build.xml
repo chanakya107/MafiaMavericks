@@ -4,6 +4,7 @@
     <property name="sourceOutput" value="out/src"/>
     <property name="testOutput" value="out/test"/>
     <property name="reportsDir" value="./reports"/>
+    <property name="releaseNotes" value="./releaseNotes"/>
     <property name="archiveDir" value="//blrfs02/STEP/MafiaArchives/Mavericks/"/>
 
     <target name="ci-setup">
@@ -78,6 +79,7 @@
             <resources>
                 <file file="${jarName}"/>
                 <fileset dir="${reportsDir}"/>
+                <fileset dir="${releaseNotes}"/>
             </resources>
         </copy>
     </target>

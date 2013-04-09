@@ -95,7 +95,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         String name = playerKilled.getName();
         for (Client client : clients) {
             if (client.getPlayer().equals(playerKilled)) {
-                client.sendMessage(new YouAreKilledMessage());
+                client.sendMessage(new YouAreKilledMessage(client.getPlayer().getName()));
                 client.getPlayer().assignRole(Role.Killed);
                 workflow.startGame(connectionFactory.getServer(), clients);
             }

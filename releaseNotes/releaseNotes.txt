@@ -1,0 +1,10 @@
+Bugs Fixed :
+---------------
+-> Restricted starting of more than one server
+-> removed the timer
+-> added confirm button which gets disabled after click
+-> disabled the radio button once confirm button is clicked
+-> resolved the conflict with killing of players with same name
+-> Displayed the player name instead of displaying you are killed
+-> Added name and their role to each screen
+-> disabled the start game button until three players join
