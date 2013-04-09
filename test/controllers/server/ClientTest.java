@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class ClientTest {
     private SocketChannel channel;
@@ -42,8 +43,10 @@ public class ClientTest {
 
     @Test
     public void on_new_PlayerDetailMessage_arrives_the_player_should_be_joined() {
-        PlayerDetailsMessage message = new PlayerDetailsMessage(new Player("player"));
+        PlayerDetailsMessage message = mock(PlayerDetailsMessage.class);
+        when(message.getPlayer()).thenReturn(new Player("Player"));
         client.onNewMessageArrived(channel, message);
         verify(manager).playerJoined();
+        verify(message).getPlayer();
     }
 }
