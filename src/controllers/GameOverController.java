@@ -21,4 +21,8 @@ public class GameOverController {
     public void start() {
         view.displayWinner(winner);
     }
+
+    public void goToHome() {
+        workflow.goToHome();
+    }
 }
