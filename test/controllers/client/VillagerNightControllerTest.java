@@ -44,6 +44,4 @@ public class VillagerNightControllerTest {
         controller.goToHome();
         verify(workflow).goToHome();
     }
-
-
 }

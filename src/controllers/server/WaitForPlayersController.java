@@ -66,7 +66,9 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
-        clients.add(new Client(channel, this));
+        Client newClient = new Client(channel, this);
+        clients.add(newClient);
+
         if (clients.size() >= 3) {
             view.enableStartButton();
         }
@@ -77,14 +79,13 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playerJoined(Client player) {
+    public void playerJoined() {
         view.updatePlayers(clients);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }
 
     @Override
     public void playerDisconnected(Client client) {
-        client.stop();
         clients.remove(client);
         view.updatePlayers(clients);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));

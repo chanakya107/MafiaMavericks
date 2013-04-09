@@ -36,7 +36,7 @@ public class DayController {
 
     public void startVoting() {
         view.disableConfirm();
-        channel.send(new PlayerVotedMessage(getCurrentPlayer().getName(),getSelectedPlayer(), players, players.size(), Phase.Day));
+        channel.send(new PlayerVotedMessage(getCurrentPlayer().getName(), getSelectedPlayer(), players, players.size(), Phase.Day));
     }
 
     private Player getSelectedPlayer() {

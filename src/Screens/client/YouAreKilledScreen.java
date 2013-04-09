@@ -20,7 +20,7 @@ public class YouAreKilledScreen implements YouAreKilledView {
         this.controller = controller;
         panel = mainFrame.createPanel("thaiintelligentnews.wordpress.com1.jpg");
 
-        label = new JLabel(controller.getName() +" is Killed");
+        label = new JLabel(controller.getName() + " is Killed");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 90));
         label.setForeground(Color.WHITE);

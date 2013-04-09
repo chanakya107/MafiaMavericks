@@ -89,7 +89,7 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void YouAreKilled(String name) {
-        YouAreKilledController controller = new YouAreKilledController(this,name);
+        YouAreKilledController controller = new YouAreKilledController(this, name);
         controller.bind(new YouAreKilledScreen(mainFrame, controller));
         controller.start();
     }

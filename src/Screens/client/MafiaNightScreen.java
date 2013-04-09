@@ -103,7 +103,7 @@ public class MafiaNightScreen implements MafiaNightView {
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
             radioButton.setSelected(false);
-            if (playerName.equals(controller.getCurrentPlayer().getName()))
+            if (player.equals(controller.getCurrentPlayer()))
                 radioButton.setSelected(true);
             buttonGroup.add(radioButton);
             panel.add(radioButton);
@@ -136,7 +136,7 @@ public class MafiaNightScreen implements MafiaNightView {
 
     @Override
     public String getSelectedPlayer() {
-      return selectedPlayer;
+        return selectedPlayer;
     }
 
     @Override
@@ -153,5 +153,3 @@ public class MafiaNightScreen implements MafiaNightView {
         }
     }
 }
-
-

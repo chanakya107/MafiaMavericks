@@ -4,6 +4,7 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
+import controllers.server.Player;
 import messages.*;
 import view.client.JoinGameView;
 
@@ -31,7 +32,7 @@ public class JoinGameController implements SocketChannelListener {
 
     public void start() {
         view.connectedToServer(serverName, playerName);
-        channel.send(new PlayerDetailsMessage(playerName));
+        channel.send(new PlayerDetailsMessage(new Player(playerName)));
     }
 
     public void disconnectingFromServer() {

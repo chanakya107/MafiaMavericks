@@ -47,10 +47,9 @@ public class WaitForPlayersControllerTest {
 
     @Test
     public void when_player_joined_the_list_of_players_will_be_updated() {
-        Client player = mock(Client.class);
         WaitForPlayersView view = mock(WaitForPlayersView.class);
         controller.bind(view);
-        controller.playerJoined(player);
+        controller.playerJoined();
         verify(view).updatePlayers(new ArrayList<Client>());
     }
 
