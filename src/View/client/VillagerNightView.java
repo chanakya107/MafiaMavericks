@@ -7,7 +7,7 @@ import java.util.List;
 public interface VillagerNightView {
     void display();
 
-    void displayTimer(int count);
-
     Player getSelectedPlayer(List<Player> players);
+
+    void disableConfirm();
 }

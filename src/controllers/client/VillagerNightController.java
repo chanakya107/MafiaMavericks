@@ -33,7 +33,7 @@ public class VillagerNightController {
 
     public void disconnectingFromServer() {
         channel.stop();
-        workflow.getGameDetails();
+        workflow.goToHome();
     }
 
     public void goToHome() {
