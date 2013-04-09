@@ -82,8 +82,9 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playerDisconnected(Client player) {
-        clients.remove(player);
+    public void playerDisconnected(Client client) {
+        client.stop();
+        clients.remove(client);
         view.updatePlayers(clients);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }
