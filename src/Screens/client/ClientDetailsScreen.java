@@ -102,7 +102,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    controller.disconnect();
+                controller.disconnect();
             }
         });
     }

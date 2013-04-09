@@ -27,7 +27,8 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     public void start() {
         connectionFactory.createServer(this);
-        connectionFactory.startServer();
+        if (!connectionFactory.startServer())
+            workflow.goToHomeOnError("Server already started");
     }
 
     public void bind(WaitForPlayersView view) {

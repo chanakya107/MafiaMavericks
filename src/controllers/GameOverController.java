@@ -1,7 +1,6 @@
 package controllers;
 
 import controllers.server.Role;
-import screens.GameOverScreen;
 import view.GameOverView;
 
 public class GameOverController {

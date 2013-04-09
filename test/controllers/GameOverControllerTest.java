@@ -9,7 +9,7 @@ import static org.mockito.Mockito.verify;
 
 public class GameOverControllerTest {
     @Test
-    public void on_start_the_winner_should_be_displayed(){
+    public void on_start_the_winner_should_be_displayed() {
         Workflow workflow = mock(Workflow.class);
         GameOverController controller = new GameOverController(workflow, Role.Mafia);
         GameOverView view = mock(GameOverView.class);

@@ -27,7 +27,7 @@ public interface Workflow {
 
     void YouAreKilled();
 
-    void serverDisconnected(String serverName);
-
     void gameOver(Role winner);
+
+    void goToHomeOnError(String message);
 }

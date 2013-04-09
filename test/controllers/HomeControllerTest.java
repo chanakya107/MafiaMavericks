@@ -9,9 +9,10 @@ import static org.mockito.Mockito.verify;
 
 public class HomeControllerTest {
     Workflow workflow;
-        HomeController controller;
+    HomeController controller;
+
     @Before
-    public void setup(){
+    public void setup() {
         workflow = mock(Workflow.class);
         controller = new HomeController(workflow);
     }
@@ -29,11 +30,11 @@ public class HomeControllerTest {
     }
 
     @Test
-    public void when_server_disconnected_connection_to_server_lost_should_be_displayed(){
+    public void when_server_disconnected_connection_to_server_lost_should_be_displayed() {
         HomeView view = mock(HomeView.class);
         controller.bind(view);
-        controller.serverDisconnected("player");
-        verify(view).serverDisconnected("player");
+        controller.displayError("player");
+        verify(view).displayError("player");
     }
 
 }
