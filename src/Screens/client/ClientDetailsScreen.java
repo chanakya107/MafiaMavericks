@@ -31,6 +31,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         panel = mainFrame.createPanel("hdwallpapersbase.com.jpg");
 
         enterServerName = new JLabel("Enter the server Name :");
+        enterServerName.setForeground(Color.WHITE);
         panel.add(enterServerName);
 
         enterServerName.setSize(300, 150);
@@ -45,6 +46,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
 
         enterUserName = new JLabel("Enter the User Name :");
         panel.add(enterUserName);
+        enterUserName.setForeground(Color.WHITE);
         enterUserName.setSize(300, 150);
         enterUserName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterUserName.setLocation(100, 200);

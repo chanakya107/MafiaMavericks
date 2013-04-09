@@ -19,7 +19,6 @@ public class DayScreen implements DayView {
     private final JList<String> playerList;
     private final JLabel playerKilledLabel;
     private final JButton confirm;
-    private final JButton disconnect;
     private JPanel panel;
     private String selectedPlayer;
     private DefaultListModel<String> playersDefaultList;
@@ -32,14 +31,29 @@ public class DayScreen implements DayView {
 
         JLabel label = new JLabel("Day Arrived..");
         panel.add(label);
-        label.setFont(new Font("Chiller", Font.PLAIN, 50));
+        label.setFont(new Font("Chiller", Font.PLAIN, 60));
         label.setForeground(Color.WHITE);
         label.setSize(250, 150);
         label.setLocation(130, 25);
 
-        disconnect = new JButton("Disconnect");
-        panel.add(disconnect);
-        disconnect.setBounds(950, 550, 150, 50);
+        JLabel playersPresent = new JLabel("Players Present");
+        panel.add(playersPresent);
+        playersPresent.setFont(new Font("Chiller", Font.PLAIN, 50));
+        playersPresent.setForeground(Color.WHITE);
+        playersPresent.setSize(250, 150);
+        playersPresent.setLocation(130,130);
+
+        JLabel instruction = new JLabel("Select the player whom you want do you suspect as Mafia");
+        instruction.setFont(new Font("Chiller", Font.PLAIN, 40));
+        instruction.setForeground(Color.WHITE);
+        panel.add(instruction);
+        instruction.setBounds(500, 350, 800, 50);
+
+        JLabel instruction1 = new JLabel("Press Confirm to kill them");
+        instruction1.setFont(new Font("Chiller", Font.PLAIN, 40));
+        instruction1.setForeground(Color.WHITE);
+        panel.add(instruction1);
+        instruction1.setBounds(500, 400, 800, 50);
 
         confirm = new JButton("Confirm");
         panel.add(confirm);
@@ -52,42 +66,31 @@ public class DayScreen implements DayView {
         panel.add(playerList);
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
-        playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        playerList.setBounds(100, 130, 250, 400);
-
-        playerKilledLabel = new JLabel(controller.getKilledPlayer() + " is Killed");
-        panel.add(playerKilledLabel);
-        playerKilledLabel.setFont(new Font("Chiller", Font.PLAIN, 90));
-        playerKilledLabel.setForeground(Color.WHITE);
-        playerKilledLabel.setBounds(700, 25, 500, 250);
+        playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 30));
+        playerList.setBounds(130, 230, 250, 400);
 
         JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
         panel.add(nameLabel);
         nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(950, 10, 500, 250);
+        nameLabel.setBounds(950, 5, 500, 250);
+
+        playerKilledLabel = new JLabel(controller.getKilledPlayer() + " is Killed");
+        panel.add(playerKilledLabel);
+        playerKilledLabel.setFont(new Font("Chiller", Font.PLAIN, 60));
+        playerKilledLabel.setForeground(Color.WHITE);
+        playerKilledLabel.setBounds(950, 100, 500, 250);
 
         addButtonListener();
     }
 
     private void addButtonListener() {
-        disconnect.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Disconnect ?", "", JOptionPane.YES_NO_OPTION);
-                if (option == JOptionPane.YES_OPTION) {
-                    controller.disconnectingFromServer();
-                }
-            }
-        });
-
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.startVoting();
             }
         });
-
     }
 
     @Override
