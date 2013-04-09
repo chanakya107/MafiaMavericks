@@ -68,7 +68,7 @@ public class JoinGameControllerTest {
     public void on_new_ServerDisconnectedMessage_arrived_serverDisconnected_will_displayed_and_channel_will_be_stopped() {
         ServerDisconnectedMessage serverDisconnectedMessage = mock(ServerDisconnectedMessage.class);
         controller.onNewMessageArrived(channel, serverDisconnectedMessage);
-        verify(view).serverDisconnected("localhost");
+        verify(view).serverDisconnected("Connection to server : localhost is lost");
         verify(channel).stop();
     }
 

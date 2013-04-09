@@ -79,7 +79,7 @@ public class JoinGameScreen implements JoinGameView {
     }
 
     @Override
-    public void serverDisconnected(String serverName) {
-        controller.serverDisconnected(serverName);
+    public void serverDisconnected(String message) {
+        controller.serverDisconnected(message);
     }
 }

@@ -7,7 +7,6 @@ import controllers.server.Player;
 import messages.PlayerVotedMessage;
 import view.client.DayView;
 
-import javax.swing.*;
 import java.util.List;
 
 public class DayController {

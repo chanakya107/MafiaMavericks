@@ -102,10 +102,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Cancel ?", "", JOptionPane.YES_NO_OPTION);
-                if (option == JOptionPane.YES_OPTION) {
-                    controller.disconnect();
-                }
+                controller.disconnect();
             }
         });
     }

@@ -26,7 +26,7 @@ public class HomeController {
     public void start() {
     }
 
-    public void serverDisconnected(String serverName) {
-        view.serverDisconnected(serverName);
+    public void displayError(String message) {
+        view.displayError(message);
     }
 }
