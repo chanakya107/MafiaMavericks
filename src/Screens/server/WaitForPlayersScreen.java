@@ -42,6 +42,10 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         playerList.setBounds(100, 130, 250, 400);
 
+        startGame = new JButton("Start Game");
+        panel.add(startGame);
+        startGame.setBounds(600, 400, 150, 50);
+        startGame.setEnabled(false);
 
         stopServer = new JButton("Stop server");
         panel.add(stopServer);
@@ -50,6 +54,13 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
     }
 
     private void addButtonHandlers() {
+        startGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.startGame();
+            }
+        });
+
         stopServer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,15 +81,7 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
     }
 
     @Override
-    public void displayStartButton() {
-        startGame = new JButton("Start Game");
-        panel.add(startGame);
-        startGame.setBounds(600, 400, 150, 50);
-        startGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.startGame();
-            }
-        });
+    public void enableStartButton() {
+        startGame.setEnabled(true);
     }
 }

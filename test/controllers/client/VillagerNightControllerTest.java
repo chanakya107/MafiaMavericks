@@ -36,7 +36,7 @@ public class VillagerNightControllerTest {
     public void disconnecting_from_server_will_stop_the_channel_and_goes_back_to_the_gameDetailsScreen() {
         controller.disconnectingFromServer();
         verify(channel).stop();
-        verify(workflow).getGameDetails();
+        verify(workflow).goToHome();
     }
 
     @Test

@@ -1,16 +1,11 @@
 package controllers.client;
 
 import channels.SocketChannel;
-import controllers.Phase;
 import controllers.Workflow;
 import controllers.server.Player;
-import messages.PlayerVotedMessage;
 import view.client.VillagerNightView;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +35,7 @@ public class VillagerNightController {
 
     public void disconnectingFromServer() {
         channel.stop();
-        workflow.getGameDetails();
+        workflow.goToHome();
     }
 
     public void goToHome() {
@@ -66,27 +61,5 @@ public class VillagerNightController {
 
     public Player getCurrentPlayer() {
         return currentPlayer;
-    }
-
-    protected void startVoting() {
-        Runnable runner = new Runnable() {
-            public void run() {
-                timer = new Timer(1000, new ActionListener() {
-                    int count = 30;
-
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        count--;
-                        view.displayTimer(count);
-                        if (count == 0) {
-                            ((Timer) e.getSource()).stop();
-                            channel.send(new PlayerVotedMessage(currentPlayer.getName(), view.getSelectedPlayer(players), players, getMafiaList().size(), Phase.Night));
-                        }
-                    }
-                });
-                timer.start();
-            }
-        };
-        EventQueue.invokeLater(runner);
     }
 }

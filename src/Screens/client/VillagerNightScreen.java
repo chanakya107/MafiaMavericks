@@ -47,15 +47,14 @@ public class VillagerNightScreen implements VillagerNightView {
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
         label.setBounds(130, 25, 250, 150);
-
-    }
-
-    @Override
-    public void displayTimer(int count) {
     }
 
     @Override
     public Player getSelectedPlayer(List<Player> players) {
         return null;
+    }
+
+    @Override
+    public void disableConfirm() {
     }
 }

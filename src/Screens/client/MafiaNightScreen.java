@@ -20,7 +20,7 @@ public class MafiaNightScreen implements MafiaNightView {
     private final JList<String> playerList;
     private final JLabel label;
     private final DefaultListModel<String> playersDefaultList;
-    private JLabel timer;
+    private final JButton confirm;
     private String selectedPlayer;
 
     public MafiaNightScreen(MainFrame mainFrame, final MafiaNightController controller) {
@@ -33,7 +33,10 @@ public class MafiaNightScreen implements MafiaNightView {
         panel.add(disconnect);
         disconnect.setBounds(950, 550, 150, 50);
 
-        timer = new JLabel("");
+        confirm = new JButton("Confirm");
+        panel.add(confirm);
+        confirm.setBounds(950, 450, 150, 50);
+        confirm.setEnabled(true);
 
         label = new JLabel("Mafias");
         panel.add(label);
@@ -49,6 +52,11 @@ public class MafiaNightScreen implements MafiaNightView {
         playerList.setForeground(Color.WHITE);
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         playerList.setBounds(100, 130, 250, 400);
+
+        addButtonListeners();
+    }
+
+    private void addButtonListeners() {
         disconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,6 +64,13 @@ public class MafiaNightScreen implements MafiaNightView {
                 if (option == JOptionPane.YES_OPTION) {
                     controller.disconnectingFromServer();
                 }
+            }
+        });
+
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.startVoting();
             }
         });
     }
@@ -112,16 +127,6 @@ public class MafiaNightScreen implements MafiaNightView {
     }
 
     @Override
-    public void displayTimer(int count) {
-        panel.remove(timer);
-        timer.setText(String.valueOf(count));
-        panel.add(timer);
-        timer.setFont(new Font("Chiller", Font.PLAIN, 90));
-        timer.setForeground(Color.WHITE);
-        timer.setBounds(950, 450, 150, 150);
-    }
-
-    @Override
     public Player getSelectedPlayer(List<Player> players) {
         Player playerSelected = null;
         for (Player player : players) {
@@ -130,5 +135,10 @@ public class MafiaNightScreen implements MafiaNightView {
             }
         }
         return playerSelected;
+    }
+
+    @Override
+    public void disableConfirm() {
+        confirm.setEnabled(false);
     }
 }

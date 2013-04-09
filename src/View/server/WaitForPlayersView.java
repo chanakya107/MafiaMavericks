@@ -8,5 +8,5 @@ public interface WaitForPlayersView {
 
     void updatePlayers(List<Client> playerList);
 
-    void displayStartButton();
+    void enableStartButton();
 }

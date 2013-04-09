@@ -7,6 +7,8 @@ import view.client.DayView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
@@ -15,9 +17,10 @@ public class DayScreen implements DayView {
     private final DayController controller;
     private final JList<String> playerList;
     private final JLabel playerKilledLabel;
+    private final JButton confirm;
+    private final JButton disconnect;
     private JPanel panel;
     private String selectedPlayer;
-    private JLabel timer;
     private DefaultListModel<String> playersDefaultList;
 
     public DayScreen(MainFrame mainFrame, DayController controller) {
@@ -25,14 +28,21 @@ public class DayScreen implements DayView {
 
         panel = mainFrame.createPanel("hdwallpapersbase.com.jpg");
 
-        timer = new JLabel("");
-
         JLabel label = new JLabel("Day Arrived..");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
         label.setSize(250, 150);
         label.setLocation(130, 25);
+
+        disconnect = new JButton("Disconnect");
+        panel.add(disconnect);
+        disconnect.setBounds(950, 550, 150, 50);
+
+        confirm = new JButton("Confirm");
+        panel.add(confirm);
+        confirm.setBounds(950, 450, 150, 50);
+        confirm.setEnabled(true);
 
         playersDefaultList = new DefaultListModel<String>();
 
@@ -48,6 +58,27 @@ public class DayScreen implements DayView {
         playerKilledLabel.setFont(new Font("Chiller", Font.PLAIN, 90));
         playerKilledLabel.setForeground(Color.WHITE);
         playerKilledLabel.setBounds(700, 25, 500, 250);
+        addButtonListener();
+    }
+
+    private void addButtonListener() {
+        disconnect.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Disconnect ?", "", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                    controller.disconnectingFromServer();
+                }
+            }
+        });
+
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.startVoting();
+            }
+        });
+
     }
 
     @Override
@@ -99,16 +130,6 @@ public class DayScreen implements DayView {
         }
     }
 
-    @Override
-    public void displayTimer(int count) {
-        panel.remove(timer);
-        timer.setText(String.valueOf(count));
-        panel.add(timer);
-        timer.setFont(new Font("Chiller", Font.PLAIN, 90));
-        timer.setForeground(Color.WHITE);
-        timer.setBounds(950, 450, 150, 150);
-    }
-
     public Player getSelectedPlayer(List<Player> players) {
         Player playerSelected = null;
         for (Player player : players) {
@@ -117,5 +138,10 @@ public class DayScreen implements DayView {
             }
         }
         return playerSelected;
+    }
+
+    @Override
+    public void disableConfirm() {
+        confirm.setEnabled(false);
     }
 }
