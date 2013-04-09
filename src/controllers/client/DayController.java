@@ -52,7 +52,7 @@ public class DayController {
                         view.displayTimer(count);
                         if (count == 0) {
                             ((Timer) e.getSource()).stop();
-                            channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, players.size(), Phase.Day));
+                            channel.send(new PlayerVotedMessage(currentPlayer.getName(), view.getSelectedPlayer(players), players, players.size(), Phase.Day));
                         }
                     }
                 });
@@ -70,7 +70,7 @@ public class DayController {
         return killedPlayer;
     }
 
-    public String getCurrentPlayer() {
-        return currentPlayer.getName();
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 }

@@ -13,38 +13,37 @@ import static org.mockito.Mockito.verify;
 public class ClientTest {
     private SocketChannel channel;
     private PlayerManager manager;
-    private Client player;
+    private Client client;
 
     @Before
     public void setup() {
         channel = mock(SocketChannel.class);
         manager = mock(PlayerManager.class);
-        player = new Client(channel, manager);
+        client = new Client(channel, manager);
     }
 
     @Test
     public void on_creating_a_player_a_channel_should_be_bound_with_the_player() {
-        verify(channel).bind(player);
+        verify(channel).bind(client);
     }
 
     @Test
     public void player_can_send_message_through_channel() {
-        ChannelMessage message = mock(ChannelMessage.class);
-        player.sendMessage(message);
+        ChannelMessage message = new ChannelMessage();
+        client.sendMessage(message);
         verify(channel).send(message);
     }
 
     @Test
     public void on_closing_of_the_connection_the_player_should_be_disconnected() {
-        player.onClose(channel, new Exception());
-        verify(manager).playerDisconnected(player);
+        client.onClose(channel, new Exception());
+        verify(manager).playerDisconnected(client);
     }
 
     @Test
     public void on_new_PlayerDetailMessage_arrives_the_player_should_be_joined() {
-        PlayerDetailsMessage message = mock(PlayerDetailsMessage.class);
-        player.onNewMessageArrived(channel, message);
-        verify(manager).playerJoined(player);
+        PlayerDetailsMessage message = new PlayerDetailsMessage(new Player("player"));
+        client.onNewMessageArrived(channel, message);
+        verify(manager).playerJoined();
     }
-
 }

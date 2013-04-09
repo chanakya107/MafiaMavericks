@@ -4,10 +4,7 @@ import channels.SocketChannel;
 import controllers.Workflow;
 import controllers.server.Player;
 import controllers.server.Role;
-import messages.DayStartedMessage;
-import messages.NightStartedMessage;
-import messages.PlayersUpdateMessage;
-import messages.ServerDisconnectedMessage;
+import messages.*;
 import org.junit.Before;
 import org.junit.Test;
 import view.client.JoinGameView;
@@ -40,6 +37,7 @@ public class JoinGameControllerTest {
     public void start_on_controller_displays_connected_to_server_screen() {
         controller.start();
         verify(view).connectedToServer("localhost", "player");
+        verify(channel).send(new PlayerDetailsMessage(new Player("player")));
     }
 
     @Test
