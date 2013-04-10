@@ -21,7 +21,7 @@ public interface Workflow {
 
     void villagerNightScreen(SocketChannel channel, String serverName, List<Player> players, Player currentPlayer);
 
-    void startGame(SocketServer server, List<Client> players);
+    void startGame(SocketServer server, List<Client> players, String message);
 
     void dayStarted(String killedPlayer, List<Player> playersRemaining, Player currentPlayer, SocketChannel channel);
 

@@ -35,7 +35,7 @@ public class WaitForPlayersControllerTest {
     public void startGame_should_show_the_StartGame_screen_through_workflow() {
         controller.startGame();
         verify(connectionFactory).getServer();
-        verify(workflow).startGame(connectionFactory.getServer(), new ArrayList<Client>());
+        verify(workflow).startGame(connectionFactory.getServer(), new ArrayList<Client>(), "Game Started");
     }
 
     @Test

@@ -39,7 +39,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         connectionFactory.stopServer();
         new RoleAssignment(getPlayers()).assign();
         sendNightStartedMessage();
-        workflow.startGame(connectionFactory.getServer(), clients);
+        workflow.startGame(connectionFactory.getServer(), clients,"Game Started");
     }
 
     private List<Player> getPlayers() {
@@ -70,6 +70,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         Client newClient = new Client(channel, this);
         clients.add(newClient);
 
+
         if (clients.size() >= 3) {
             view.enableStartButton();
         }
@@ -99,7 +100,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
             if (client.getPlayer().equals(playerKilled)) {
                 client.sendMessage(new YouAreKilledMessage(client.getPlayer().getName()));
                 client.getPlayer().assignRole(Role.Killed);
-                workflow.startGame(connectionFactory.getServer(), clients);
+                workflow.startGame(connectionFactory.getServer(), clients, "Game Running");
             }
         }
 
@@ -107,6 +108,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
             continueGame(name, phase);
         } else
             sendGameOverMessage();
+        workflow.startGame(connectionFactory.getServer(), clients, "Game Over... " +(new RoleAssignment(getPlayers()).getWinner())+"s won the game");
     }
 
     private void sendGameOverMessage() {

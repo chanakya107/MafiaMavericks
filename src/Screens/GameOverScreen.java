@@ -19,7 +19,7 @@ public class GameOverScreen implements GameOverView {
         this.mainFrame = mainFrame;
         this.controller = controller;
         panel = mainFrame.createPanel("www.bimmerfest.jpg");
-        JButton goToHome = new JButton("Go Back");
+        JButton goToHome = new JButton("Home");
         panel.add(goToHome);
         goToHome.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         goToHome.setBackground(Color.BLUE);
