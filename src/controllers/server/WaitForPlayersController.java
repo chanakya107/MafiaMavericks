@@ -36,6 +36,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     public void startGame() {
+        connectionFactory.stopServer();
         new RoleAssignment(getPlayers()).assign();
         sendNightStartedMessage();
         workflow.startGame(connectionFactory.getServer(), clients);
@@ -142,7 +143,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     private List<Client> getRemainingClients() {
         List<Client> remainingClients = new ArrayList<Client>();
         for (Client client : clients) {
-            if (client.getPlayer().getRole() != Role.Killed)
+            if (!client.getPlayer().isKilled())
                 remainingClients.add(client);
         }
         return remainingClients;

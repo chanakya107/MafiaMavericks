@@ -8,3 +8,13 @@ Bugs Fixed :
 -> Displayed the player name instead of displaying you are killed
 -> Added name and their role to each screen
 -> disabled the start game button until three players join
+
+
+Demo 2 - Bugs Fixed:
+---------------------
+-> changed the game over screen
+-> added instructions to all screens
+-> Resolved the transition issue from first round(night & day) to the next
+-> changed the you are killed message
+-> removed disconnect button from voting screens
+-> Blocked accepting of connections once the game is started

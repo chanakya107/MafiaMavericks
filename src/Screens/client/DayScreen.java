@@ -41,7 +41,7 @@ public class DayScreen implements DayView {
         playersPresent.setFont(new Font("Chiller", Font.PLAIN, 50));
         playersPresent.setForeground(Color.WHITE);
         playersPresent.setSize(250, 150);
-        playersPresent.setLocation(130,130);
+        playersPresent.setLocation(130, 130);
 
         JLabel instruction = new JLabel("Select the player whom you want do you suspect as Mafia");
         instruction.setFont(new Font("Chiller", Font.PLAIN, 40));

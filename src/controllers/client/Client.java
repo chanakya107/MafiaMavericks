@@ -63,6 +63,7 @@ public class Client implements SocketChannelListener {
                 playerToBeKilled = player;
             }
         }
+        playersSelected.clear();
         return playerToBeKilled;
     }
 

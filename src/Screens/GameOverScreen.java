@@ -22,7 +22,7 @@ public class GameOverScreen implements GameOverView {
         JButton goToHome = new JButton("Go Back");
         panel.add(goToHome);
         goToHome.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        goToHome.setBackground(Color.BLUE );
+        goToHome.setBackground(Color.BLUE);
         goToHome.setForeground(Color.white);
         goToHome.setBounds(550, 800, 180, 40);
 
