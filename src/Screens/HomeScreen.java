@@ -71,6 +71,6 @@ public class HomeScreen implements HomeView {
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.RED);
         label.setSize(600, 150);
-        label.setLocation(100,150);
+        label.setLocation(150,450);
     }
 }
