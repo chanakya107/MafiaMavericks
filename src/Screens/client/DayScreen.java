@@ -73,7 +73,7 @@ public class DayScreen implements DayView {
         panel.add(nameLabel);
         nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(950,5, 500, 250);
+        nameLabel.setBounds(950, 5, 500, 250);
 
         playerKilledLabel = new JLabel(controller.getKilledPlayer() + " is Killed");
         panel.add(playerKilledLabel);

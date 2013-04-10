@@ -19,7 +19,7 @@ public class GameStartedScreen implements GameStartedView {
     private final DefaultListModel<String> playersDefaultList;
     private final JList<String> playerList;
     private final JLabel label;
-    private final JLabel gameStartedLabel;
+    private JLabel gameStartedLabel;
 
     public GameStartedScreen(MainFrame mainFrame, final GameStartedController controller) {
 
@@ -30,13 +30,8 @@ public class GameStartedScreen implements GameStartedView {
 
         quit = new JButton("Quit");
         panel.add(quit);
-        quit.setBounds(500,400, 150, 50);
 
-        gameStartedLabel = new JLabel("Game Running .... ");
-        panel.add(gameStartedLabel);
-        gameStartedLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
-        gameStartedLabel.setForeground(Color.WHITE);
-        gameStartedLabel.setBounds(450, 450, 250, 150);
+        quit.setBounds(500, 400, 150, 50);
 
         label = new JLabel("Player Roles");
         panel.add(label);
@@ -70,5 +65,14 @@ public class GameStartedScreen implements GameStartedView {
         for (Client client : players) {
             playersDefaultList.addElement(client.getPlayer().getName() + " - " + client.getPlayer().getRole());
         }
+    }
+
+    @Override
+    public void displayMessage(String message) {
+        gameStartedLabel = new JLabel(message);
+        panel.add(gameStartedLabel);
+        gameStartedLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
+        gameStartedLabel.setForeground(Color.WHITE);
+        gameStartedLabel.setBounds(950, 450, 250, 150);
     }
 }
