@@ -65,8 +65,8 @@ public class HomeScreen implements HomeView {
     }
 
     @Override
-    public void serverDisconnected(String serverName) {
-        JLabel label = new JLabel("Connection to server : " + serverName + " is lost");
+    public void displayError(String message) {
+        JLabel label = new JLabel(message);
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.RED);

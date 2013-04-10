@@ -1,7 +1,6 @@
 package screens.client;
 
 import controllers.client.VillagerNightController;
-import controllers.server.Player;
 import screens.controls.MainFrame;
 import view.client.VillagerNightView;
 
@@ -9,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class VillagerNightScreen implements VillagerNightView {
     private final VillagerNightController controller;
@@ -29,6 +27,12 @@ public class VillagerNightScreen implements VillagerNightView {
         disconnect.setSize(150, 50);
         disconnect.setLocation(950, 550);
 
+        JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
+        panel.add(nameLabel);
+        nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
+        nameLabel.setForeground(Color.WHITE);
+        nameLabel.setBounds(950, 10, 500, 250);
+
         disconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,15 +51,14 @@ public class VillagerNightScreen implements VillagerNightView {
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
         label.setBounds(130, 25, 250, 150);
-
     }
 
     @Override
-    public void displayTimer(int count) {
-    }
-
-    @Override
-    public Player getSelectedPlayer(List<Player> players) {
+    public String getSelectedPlayer() {
         return null;
+    }
+
+    @Override
+    public void disableConfirm() {
     }
 }

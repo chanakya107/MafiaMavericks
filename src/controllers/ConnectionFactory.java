@@ -17,8 +17,8 @@ public class ConnectionFactory {
         server = new SocketServer(1254, waitForPlayersController);
     }
 
-    public void startServer() {
-        server.start();
+    public boolean startServer() {
+        return server.start();
     }
 
     public SocketServer getServer() {

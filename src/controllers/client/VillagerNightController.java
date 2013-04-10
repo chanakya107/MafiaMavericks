@@ -33,7 +33,7 @@ public class VillagerNightController {
 
     public void disconnectingFromServer() {
         channel.stop();
-        workflow.getGameDetails();
+        workflow.goToHome();
     }
 
     public void goToHome() {
@@ -53,7 +53,7 @@ public class VillagerNightController {
         return players;
     }
 
-    public String getCurrentPlayer() {
-        return currentPlayer.getName();
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 }

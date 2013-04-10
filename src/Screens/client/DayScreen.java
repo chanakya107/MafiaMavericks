@@ -7,39 +7,46 @@ import view.client.DayView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Enumeration;
 import java.util.List;
 
 public class DayScreen implements DayView {
     private final DayController controller;
     private final JList<String> playerList;
     private final JLabel playerKilledLabel;
+    private final JButton confirm;
     private JPanel panel;
     private String selectedPlayer;
-    private JLabel timer;
     private DefaultListModel<String> playersDefaultList;
+    private ButtonGroup buttonGroup;
 
     public DayScreen(MainFrame mainFrame, DayController controller) {
         this.controller = controller;
 
         panel = mainFrame.createPanel("hdwallpapersbase.com.jpg");
 
-        timer = new JLabel("");
-
         JLabel label = new JLabel("Day Arrived..");
         panel.add(label);
-        label.setFont(new Font("Chiller", Font.PLAIN, 50));
-        label.setForeground(Color.WHITE);
+        label.setFont(new Font("Chiller", Font.PLAIN, 60));
+        label.setForeground(Color.red);
         label.setSize(250, 150);
-        label.setLocation(130, 25);
+        label.setLocation(130, 20);
 
-        JLabel playelListLabel= new JLabel("Player's list");
-        panel.add(playelListLabel);
-        playelListLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
-        playelListLabel.setForeground(Color.WHITE);
-        playelListLabel.setSize(250, 150);
-        playelListLabel.setLocation(130, 40);
+        JLabel playerListLabel= new JLabel("Player's list");
+        panel.add(playerListLabel);
+        playerListLabel.setFont(new Font("Chiller", Font.PLAIN, 40));
+        playerListLabel.setForeground(Color.WHITE);
+        playerListLabel.setSize(250, 150);
+        playerListLabel.setLocation(130, 70);
+
+        confirm = new JButton("Confirm");
+        panel.add(confirm);
+        confirm.setBounds(950, 450, 150, 50);
+        confirm.setEnabled(true);
 
         playersDefaultList = new DefaultListModel<String>();
 
@@ -48,13 +55,30 @@ public class DayScreen implements DayView {
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        playerList.setBounds(100, 130, 250, 400);
+        playerList.setBounds(100, 180, 250, 400);
 
         playerKilledLabel = new JLabel(controller.getKilledPlayer() + " is Killed");
         panel.add(playerKilledLabel);
         playerKilledLabel.setFont(new Font("Chiller", Font.PLAIN, 90));
         playerKilledLabel.setForeground(Color.WHITE);
         playerKilledLabel.setBounds(700, 25, 500, 250);
+
+        JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
+        panel.add(nameLabel);
+        nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
+        nameLabel.setForeground(Color.WHITE);
+        nameLabel.setBounds(950,5, 500, 250);
+
+        addButtonListener();
+    }
+   private void addButtonListener() {
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.startVoting();
+            }
+        });
+
     }
 
     @Override
@@ -65,7 +89,7 @@ public class DayScreen implements DayView {
 
     private void displayVoting() {
         JRadioButton radioButton;
-        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup = new ButtonGroup();
 
         int xAxis = 750, yAxis = 450, width = 150, height = 50;
 
@@ -77,7 +101,7 @@ public class DayScreen implements DayView {
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
             radioButton.setSelected(false);
-            if (playerName.equals(controller.getCurrentPlayer()))
+            if (player.equals(controller.getCurrentPlayer()))
                 radioButton.setSelected(true);
             buttonGroup.add(radioButton);
             panel.add(radioButton);
@@ -107,22 +131,21 @@ public class DayScreen implements DayView {
     }
 
     @Override
-    public void displayTimer(int count) {
-        panel.remove(timer);
-        timer.setText(String.valueOf(count));
-        panel.add(timer);
-        timer.setFont(new Font("Chiller", Font.PLAIN, 90));
-        timer.setForeground(Color.WHITE);
-        timer.setBounds(950, 450, 150, 150);
+    public String getSelectedPlayer() {
+        return selectedPlayer;
     }
 
-    public Player getSelectedPlayer(List<Player> players) {
-        Player playerSelected = null;
-        for (Player player : players) {
-            if (String.valueOf(player).equals(selectedPlayer)) {
-                playerSelected = player;
-            }
+    @Override
+    public void disableConfirm() {
+        confirm.setEnabled(false);
+        disableButtons();
+    }
+
+    private void disableButtons() {
+        Enumeration<AbstractButton> elements = buttonGroup.getElements();
+        while (elements.hasMoreElements()) {
+            AbstractButton button = elements.nextElement();
+            button.setEnabled(false);
         }
-        return playerSelected;
     }
 }

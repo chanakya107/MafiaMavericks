@@ -4,6 +4,7 @@ import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
 import controllers.Workflow;
+import controllers.server.Player;
 import messages.*;
 import view.client.JoinGameView;
 
@@ -31,7 +32,7 @@ public class JoinGameController implements SocketChannelListener {
 
     public void start() {
         view.connectedToServer(serverName, playerName);
-        channel.send(new PlayerDetailsMessage(playerName));
+        channel.send(new PlayerDetailsMessage(new Player(playerName)));
     }
 
     public void disconnectingFromServer() {
@@ -57,17 +58,18 @@ public class JoinGameController implements SocketChannelListener {
             PlayersUpdateMessage playersUpdateMessage = (PlayersUpdateMessage) message;
             view.displayPlayers(playersUpdateMessage.getPlayersConnected());
         } else if (message instanceof ServerDisconnectedMessage) {
-            view.serverDisconnected(serverName);
+            view.serverDisconnected("Connection to server : " + serverName + " is lost");
             channel.stop();
         } else if (message instanceof NightStartedMessage) {
             NightStartedMessage nightStartedMessage = (NightStartedMessage) message;
             nightStartedMessage.getRole().goToScreen(workflow, channel, serverName, nightStartedMessage.getPlayers(), nightStartedMessage.getPlayer());
         } else if (message instanceof DayStartedMessage) {
             DayStartedMessage dayStartedMessage = (DayStartedMessage) message;
-            workflow.dayStarted(dayStartedMessage.getKilledPlayer(), dayStartedMessage.getPlayersRemaining(),dayStartedMessage.getCurrentPlayer(),channel);
+            workflow.dayStarted(dayStartedMessage.getKilledPlayer(), dayStartedMessage.getPlayersRemaining(), dayStartedMessage.getCurrentPlayer(), channel);
         } else if (message instanceof YouAreKilledMessage) {
-            workflow.YouAreKilled();
-        }else if(message instanceof GameOverMessage) {
+            YouAreKilledMessage youAreKilledMessage = (YouAreKilledMessage) message;
+            workflow.YouAreKilled(youAreKilledMessage.getName());
+        } else if (message instanceof GameOverMessage) {
             GameOverMessage gameOverMessage = (GameOverMessage) message;
             workflow.gameOver(gameOverMessage.getWinner());
         }
@@ -77,7 +79,7 @@ public class JoinGameController implements SocketChannelListener {
     public void onMessageReadError(SocketChannel channel, Exception e) {
     }
 
-    public void serverDisconnected(String serverName) {
-        workflow.serverDisconnected(serverName);
+    public void serverDisconnected(String message) {
+        workflow.goToHomeOnError(message);
     }
 }

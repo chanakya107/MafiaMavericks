@@ -5,9 +5,10 @@ import controllers.client.Client;
 
 public interface PlayerManager {
 
-    void playerJoined(Client player);
+    void playerJoined();
 
     void playerDisconnected(Client player);
 
     void playerKilled(Player playerToBeKilled, Phase phase);
+
 }

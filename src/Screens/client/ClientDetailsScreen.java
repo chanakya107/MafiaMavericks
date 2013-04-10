@@ -49,7 +49,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         enterUserName.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         enterUserName.setLocation(100, 200);
 
-        userNameField = new JTextField();
+        userNameField = new JTextField("player");
         panel.add(userNameField);
         userNameField.setSize(200, 30);
         userNameField.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
@@ -102,13 +102,8 @@ public class ClientDetailsScreen implements ClientDetailsView {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Cancel ?", "", JOptionPane.YES_NO_OPTION);
-                if (option == JOptionPane.YES_OPTION) {
-                    controller.disconnect();
-                }
+                controller.disconnect();
             }
         });
     }
 }
-
-

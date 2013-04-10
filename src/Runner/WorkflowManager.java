@@ -75,7 +75,7 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void dayStarted(String killedPlayer, List<Player> playersRemaining, Player currentPlayer, SocketChannel channel) {
-        DayController controller = new DayController(this, killedPlayer, playersRemaining,currentPlayer,channel);
+        DayController controller = new DayController(this, killedPlayer, playersRemaining, currentPlayer, channel);
         controller.bind(new DayScreen(mainFrame, controller));
         controller.start();
     }
@@ -88,24 +88,23 @@ public class WorkflowManager implements Workflow {
     }
 
     @Override
-    public void YouAreKilled() {
-        YouAreKilledController controller = new YouAreKilledController(this);
+    public void YouAreKilled(String name) {
+        YouAreKilledController controller = new YouAreKilledController(this, name);
         controller.bind(new YouAreKilledScreen(mainFrame, controller));
         controller.start();
     }
 
     @Override
-    public void serverDisconnected(String serverName) {
-        HomeController controller = new HomeController(this);
-        controller.bind(new HomeScreen(mainFrame, controller));
+    public void gameOver(Role winner) {
+        GameOverController controller = new GameOverController(this, winner);
+        controller.bind(new GameOverScreen(mainFrame, controller));
         controller.start();
-        controller.serverDisconnected(serverName);
     }
 
     @Override
-    public void gameOver(Role winner) {
-        GameOverController controller = new GameOverController(this,winner);
-        controller.bind(new GameOverScreen(mainFrame,controller));
-        controller.start();
+    public void goToHomeOnError(String message) {
+        HomeController controller = new HomeController(this);
+        controller.bind(new HomeScreen(mainFrame, controller));
+        controller.displayError(message);
     }
 }

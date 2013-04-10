@@ -29,6 +29,7 @@ public class Client implements SocketChannelListener {
 
     @Override
     public void onClose(SocketChannel channel, Exception e) {
+        channel.stop();
         playerManager.playerDisconnected(this);
     }
 
@@ -40,13 +41,14 @@ public class Client implements SocketChannelListener {
     public void onNewMessageArrived(SocketChannel channel, ChannelMessage message) {
         if (message instanceof PlayerDetailsMessage) {
             PlayerDetailsMessage playerDetailsMessage = (PlayerDetailsMessage) message;
-            player = new Player(playerDetailsMessage.getPlayerName());
-            playerManager.playerJoined(this);
+            player = playerDetailsMessage.getPlayer();
+            player.assignNumber(hashCode());
+            playerManager.playerJoined();
         } else if (message instanceof PlayerVotedMessage) {
             PlayerVotedMessage playerVotedMessage = (PlayerVotedMessage) message;
             playersSelected.add(playerVotedMessage.getVotedTo());
             if (hasEveryoneVoted(playerVotedMessage.getVotersCount())) {
-                playerManager.playerKilled(getPlayerToBeKilled(),playerVotedMessage.getPhase());
+                playerManager.playerKilled(getPlayerToBeKilled(), playerVotedMessage.getPhase());
             }
         }
     }

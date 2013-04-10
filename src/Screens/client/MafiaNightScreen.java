@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Enumeration;
 import java.util.List;
 
 public class MafiaNightScreen implements MafiaNightView {
@@ -20,8 +21,9 @@ public class MafiaNightScreen implements MafiaNightView {
     private final JList<String> playerList;
     private final JLabel label;
     private final DefaultListModel<String> playersDefaultList;
-    private JLabel timer;
+    private final JButton confirm;
     private String selectedPlayer;
+    private ButtonGroup buttonGroup;
 
     public MafiaNightScreen(MainFrame mainFrame, final MafiaNightController controller) {
         this.controller = controller;
@@ -33,7 +35,10 @@ public class MafiaNightScreen implements MafiaNightView {
         panel.add(disconnect);
         disconnect.setBounds(950, 550, 150, 50);
 
-        timer = new JLabel("");
+        confirm = new JButton("Confirm");
+        panel.add(confirm);
+        confirm.setBounds(950, 450, 150, 50);
+        confirm.setEnabled(true);
 
         label = new JLabel("Mafias");
         panel.add(label);
@@ -49,6 +54,17 @@ public class MafiaNightScreen implements MafiaNightView {
         playerList.setForeground(Color.WHITE);
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
         playerList.setBounds(100, 130, 250, 400);
+
+        JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
+        panel.add(nameLabel);
+        nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
+        nameLabel.setForeground(Color.WHITE);
+        nameLabel.setBounds(950, 10, 500, 250);
+
+        addButtonListeners();
+    }
+
+    private void addButtonListeners() {
         disconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,6 +72,13 @@ public class MafiaNightScreen implements MafiaNightView {
                 if (option == JOptionPane.YES_OPTION) {
                     controller.disconnectingFromServer();
                 }
+            }
+        });
+
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.startVoting();
             }
         });
     }
@@ -68,7 +91,7 @@ public class MafiaNightScreen implements MafiaNightView {
 
     private void displayPlayersList() {
         JRadioButton radioButton;
-        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup = new ButtonGroup();
 
         int xAxis = 750, yAxis = 450, width = 150, height = 50;
 
@@ -80,7 +103,7 @@ public class MafiaNightScreen implements MafiaNightView {
             radioButton.setSize(width, height);
             radioButton.setLocation(xAxis, yAxis);
             radioButton.setSelected(false);
-            if (playerName.equals(controller.getCurrentPlayer()))
+            if (player.equals(controller.getCurrentPlayer()))
                 radioButton.setSelected(true);
             buttonGroup.add(radioButton);
             panel.add(radioButton);
@@ -112,25 +135,21 @@ public class MafiaNightScreen implements MafiaNightView {
     }
 
     @Override
-    public void displayTimer(int count) {
-        panel.remove(timer);
-        timer.setText(String.valueOf(count));
-        panel.add(timer);
-        timer.setFont(new Font("Chiller", Font.PLAIN, 90));
-        timer.setForeground(Color.WHITE);
-        timer.setBounds(950, 450, 150, 150);
+    public String getSelectedPlayer() {
+        return selectedPlayer;
     }
 
     @Override
-    public Player getSelectedPlayer(List<Player> players) {
-        Player playerSelected = null;
-        for (Player player : players) {
-            if (String.valueOf(player).equals(selectedPlayer)) {
-                playerSelected = player;
-            }
+    public void disableConfirm() {
+        confirm.setEnabled(false);
+        disableButtons();
+    }
+
+    private void disableButtons() {
+        Enumeration<AbstractButton> elements = buttonGroup.getElements();
+        while (elements.hasMoreElements()) {
+            AbstractButton button = elements.nextElement();
+            button.setEnabled(false);
         }
-        return playerSelected;
     }
 }
-
-

@@ -6,14 +6,9 @@ import controllers.Workflow;
 import controllers.server.Player;
 import messages.PlayerVotedMessage;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class MafiaNightController extends VillagerNightController {
-    Timer timer;
 
     public MafiaNightController(Workflow workflow, SocketChannel channel, List<Player> players, Player currentPlayer) {
         super(workflow, channel, players, currentPlayer);
@@ -21,32 +16,25 @@ public class MafiaNightController extends VillagerNightController {
 
     public void start() {
         view.display();
-        startVoting();
     }
 
-    private void startVoting() {
-        Runnable runner = new Runnable() {
-            public void run() {
-                timer = new Timer(1000, new ActionListener() {
-                    int count = 30;
 
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        count--;
-                        view.displayTimer(count);
-                        if (count == 0) {
-                            ((Timer) e.getSource()).stop();
-                            channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size(), Phase.Night));
-                        }
-                    }
-                });
-                timer.start();
-            }
-        };
-        EventQueue.invokeLater(runner);
+    public void startVoting() {
+        view.disableConfirm();
+        channel.send(new PlayerVotedMessage(getCurrentPlayer().getName(), getSelectedPlayer(), players, getMafiaList().size(), Phase.Night));
     }
 
     public void voteChanged() {
-        channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, getMafiaList().size(), Phase.Night));
+        channel.send(new PlayerVotedMessage(getCurrentPlayer().getName(), getSelectedPlayer(), players, getMafiaList().size(), Phase.Night));
+    }
+
+    private Player getSelectedPlayer() {
+        Player playerSelected = null;
+        for (Player player : players) {
+            if (String.valueOf(player).equals(view.getSelectedPlayer())) {
+                playerSelected = player;
+            }
+        }
+        return playerSelected;
     }
 }

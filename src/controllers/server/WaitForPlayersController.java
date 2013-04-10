@@ -27,7 +27,8 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     public void start() {
         connectionFactory.createServer(this);
-        connectionFactory.startServer();
+        if (!connectionFactory.startServer())
+            workflow.goToHomeOnError("Server already started");
     }
 
     public void bind(WaitForPlayersView view) {
@@ -49,7 +50,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     private void sendNightStartedMessage() {
-        for (Client client : clients) {
+        for (Client client : getRemainingClients()) {
             if (client.getPlayer().isMafia())
                 client.sendMessage(new NightStartedMessage(Role.Mafia, getPlayers(), client.getPlayer()));
             else
@@ -65,9 +66,11 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
 
     @Override
     public void onConnectionEstablished(SocketChannel channel) {
-        clients.add(new Client(channel, this));
+        Client newClient = new Client(channel, this);
+        clients.add(newClient);
+
         if (clients.size() >= 3) {
-            view.displayStartButton();
+            view.enableStartButton();
         }
     }
 
@@ -76,14 +79,13 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     @Override
-    public void playerJoined(Client player) {
+    public void playerJoined() {
         view.updatePlayers(clients);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
     }
 
     @Override
     public void playerDisconnected(Client client) {
-        client.stop();
         clients.remove(client);
         view.updatePlayers(clients);
         sendMessage(new PlayersUpdateMessage(getPlayerNames()));
@@ -94,7 +96,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         String name = playerKilled.getName();
         for (Client client : clients) {
             if (client.getPlayer().equals(playerKilled)) {
-                client.sendMessage(new YouAreKilledMessage());
+                client.sendMessage(new YouAreKilledMessage(client.getPlayer().getName()));
                 client.getPlayer().assignRole(Role.Killed);
                 workflow.startGame(connectionFactory.getServer(), clients);
             }
@@ -115,14 +117,14 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     }
 
     private void continueGame(String playerKilled, Phase phase) {
-        if (phase.isNight()) {
-            sendDayStartedMessage(playerKilled);
-        } else
+        if (!phase.isNight()) {
             sendNightStartedMessage();
+        } else
+            sendDayStartedMessage(playerKilled);
     }
 
     private void sendDayStartedMessage(String playerKilled) {
-        for (Client client : clients) {
+        for (Client client : getRemainingClients()) {
             client.sendMessage(new DayStartedMessage(playerKilled, getRemainingPlayers(), client.getPlayer()));
         }
     }
@@ -133,6 +135,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
             if (clients.get(i).getPlayer().isKilled())
                 break;
         }
+        clients.get(i).stop();
         clients.remove(i);
     }
 

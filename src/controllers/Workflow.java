@@ -25,9 +25,9 @@ public interface Workflow {
 
     void dayStarted(String killedPlayer, List<Player> playersRemaining, Player currentPlayer, SocketChannel channel);
 
-    void YouAreKilled();
-
-    void serverDisconnected(String serverName);
+    void YouAreKilled(String name);
 
     void gameOver(Role winner);
+
+    void goToHomeOnError(String message);
 }

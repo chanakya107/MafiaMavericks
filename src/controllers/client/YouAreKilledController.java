@@ -5,10 +5,12 @@ import view.client.YouAreKilledView;
 
 public class YouAreKilledController {
     private Workflow workflow;
+    private String name;
     private YouAreKilledView view;
 
-    public YouAreKilledController(Workflow workflow) {
+    public YouAreKilledController(Workflow workflow, String name) {
         this.workflow = workflow;
+        this.name = name;
     }
 
     public void bind(YouAreKilledView view) {
@@ -21,5 +23,9 @@ public class YouAreKilledController {
 
     public void goToHome() {
         workflow.goToHome();
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -7,10 +7,6 @@ import controllers.server.Player;
 import messages.PlayerVotedMessage;
 import view.client.DayView;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class DayController {
@@ -20,7 +16,6 @@ public class DayController {
     private final List<Player> players;
     private Player currentPlayer;
     private SocketChannel channel;
-    private Timer timer;
     private DayView view;
 
     public DayController(Workflow workflow, String killedPlayer, List<Player> players, Player currentPlayer, SocketChannel channel) {
@@ -33,33 +28,25 @@ public class DayController {
 
     public void start() {
         view.display();
-        startVoting();
     }
 
     public void bind(DayView view) {
         this.view = view;
     }
 
-    private void startVoting() {
-        Runnable runner = new Runnable() {
-            public void run() {
-                timer = new Timer(1000, new ActionListener() {
-                    int count = 30;
+    public void startVoting() {
+        view.disableConfirm();
+        channel.send(new PlayerVotedMessage(getCurrentPlayer().getName(), getSelectedPlayer(), players, players.size(), Phase.Day));
+    }
 
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        count--;
-                        view.displayTimer(count);
-                        if (count == 0) {
-                            ((Timer) e.getSource()).stop();
-                            channel.send(new PlayerVotedMessage(getCurrentPlayer(), view.getSelectedPlayer(players), players, players.size(), Phase.Day));
-                        }
-                    }
-                });
-                timer.start();
+    private Player getSelectedPlayer() {
+        Player playerSelected = null;
+        for (Player player : players) {
+            if (String.valueOf(player).equals(view.getSelectedPlayer())) {
+                playerSelected = player;
             }
-        };
-        EventQueue.invokeLater(runner);
+        }
+        return playerSelected;
     }
 
     public List<Player> getPlayers() {
@@ -70,7 +57,12 @@ public class DayController {
         return killedPlayer;
     }
 
-    public String getCurrentPlayer() {
-        return currentPlayer.getName();
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void disconnectingFromServer() {
+        channel.stop();
+        workflow.goToHome();
     }
 }
