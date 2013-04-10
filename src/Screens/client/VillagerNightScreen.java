@@ -25,13 +25,13 @@ public class VillagerNightScreen implements VillagerNightView {
         disconnect = new JButton("Disconnect");
         panel.add(disconnect);
         disconnect.setSize(150, 50);
-        disconnect.setLocation(950, 550);
+        disconnect.setLocation(450, 450);
 
         JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
         panel.add(nameLabel);
         nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(950, 10, 500, 250);
+        nameLabel.setBounds(450,5, 500, 250);
 
         disconnect.addActionListener(new ActionListener() {
             @Override
