@@ -49,7 +49,7 @@ public class YouAreKilledScreen implements YouAreKilledView {
         logList.setBackground(Color.GRAY);
         logList.setForeground(Color.WHITE);
         logList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
-        scrollPane.setBounds(370, 110, 350, 450);
+        scrollPane.setBounds(50, 200, 350, 450);
 
         logDefaultList.removeAllElements();
         for (String log1 : log) {

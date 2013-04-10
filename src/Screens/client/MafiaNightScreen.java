@@ -35,25 +35,25 @@ public class MafiaNightScreen implements MafiaNightView {
         instruction.setFont(new Font("Chiller", Font.PLAIN, 40));
         instruction.setForeground(Color.yellow);
         panel.add(instruction);
-        instruction.setBounds(50, 550, 800, 50);
+        instruction.setBounds(50, 650, 800, 50);
 
         confirm = new JButton("Confirm");
         panel.add(confirm);
         confirm.setBackground(Color.white);
-        confirm.setBounds(500, 250, 150, 50);
+        confirm.setBounds(500, 700, 150, 50);
         confirm.setEnabled(true);
 
         label1 = new JLabel("Night Arrived");
         panel.add(label1);
         label1.setFont(new Font("Chiller", Font.PLAIN, 50));
-        label1.setForeground(Color.WHITE);
-        label1.setBounds(400, 10, 250, 150);
+        label1.setForeground(Color.red);
+        label1.setBounds(350, 10, 250, 150);
 
         label = new JLabel("Other Mafias");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
-        label.setBounds(50, 25, 250, 150);
+        label.setBounds(80, 25, 250, 150);
 
         playersDefaultList = new DefaultListModel<String>();
 
@@ -62,13 +62,13 @@ public class MafiaNightScreen implements MafiaNightView {
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        playerList.setBounds(30, 130, 250, 400);
+        playerList.setBounds(30, 170, 250, 400);
 
         JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
         panel.add(nameLabel);
         nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(500, 2, 500, 250);
+        nameLabel.setBounds(650, 1, 500, 250);
 
         addButtonListeners();
     }
@@ -92,7 +92,7 @@ public class MafiaNightScreen implements MafiaNightView {
         JRadioButton radioButton;
         buttonGroup = new ButtonGroup();
 
-        int xAxis = 300, yAxis = 150, width = 150, height = 35;
+        int xAxis = 300, yAxis = 170, width = 150, height = 35;
 
         List<Player> players = controller.getPlayers();
         for (Player player : players) {
@@ -153,7 +153,7 @@ public class MafiaNightScreen implements MafiaNightView {
         logList.setBackground(Color.GRAY);
         logList.setForeground(Color.WHITE);
         logList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
-        scrollPane.setBounds(370, 110, 350, 450);
+        scrollPane.setBounds(500, 170, 350, 450);
 
         logDefaultList.removeAllElements();
         for (String log1 : log) {
