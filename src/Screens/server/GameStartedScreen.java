@@ -31,8 +31,7 @@ public class GameStartedScreen implements GameStartedView {
 
         quit = new JButton("Quit");
         panel.add(quit);
-
-        quit.setBounds(500, 400, 150, 50);
+        quit.setBounds(300, 600, 150, 50);
 
         label = new JLabel("Player Roles");
         panel.add(label);
@@ -74,7 +73,7 @@ public class GameStartedScreen implements GameStartedView {
         panel.add(gameStartedLabel);
         gameStartedLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         gameStartedLabel.setForeground(Color.red);
-        gameStartedLabel.setBounds(400, 50, 500, 150);
+        gameStartedLabel.setBounds(400, 25, 500, 150);
     }
 
     @Override
