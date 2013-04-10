@@ -24,12 +24,12 @@ public class YouAreKilledScreen implements YouAreKilledView {
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 90));
         label.setForeground(Color.RED);
-        label.setBounds(300, 5, 700, 250);
+        label.setBounds(100, 5, 700, 250);
 
-        final JButton goToHome = new JButton("Home");
+        final JButton goToHome = new JButton("Go To Home Page");
         panel.add(goToHome);
         goToHome.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        goToHome.setBounds(900, 700, 180, 40);
+        goToHome.setBounds(400, 400, 200, 40);
 
         goToHome.addActionListener(new ActionListener() {
             @Override

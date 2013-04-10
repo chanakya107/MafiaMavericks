@@ -31,12 +31,10 @@ public class DayScreen implements DayView {
 
         JLabel label = new JLabel("Day Arrived..");
         panel.add(label);
-        label.setFont(new Font("Chiller", Font.PLAIN, 60));
-
+        label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.red);
-
         label.setSize(250, 150);
-        label.setLocation(130, 20);
+        label.setLocation(50,2);
 
 
         JLabel playersPresent = new JLabel("Players Present");
@@ -44,42 +42,45 @@ public class DayScreen implements DayView {
         playersPresent.setFont(new Font("Chiller", Font.PLAIN, 50));
         playersPresent.setForeground(Color.WHITE);
         playersPresent.setSize(250, 150);
-        playersPresent.setLocation(130, 130);
+        playersPresent.setLocation(50,10);
 
         JLabel instruction = new JLabel("Select the player whom you want do you suspect as Mafia");
         instruction.setFont(new Font("Chiller", Font.PLAIN, 40));
         instruction.setForeground(Color.WHITE);
         panel.add(instruction);
-        instruction.setBounds(500, 350, 800, 50);
+        instruction.setBounds(50, 500, 800, 50);
 
         JLabel instruction1 = new JLabel("Press Confirm to kill them");
         instruction1.setFont(new Font("Chiller", Font.PLAIN, 40));
         instruction1.setForeground(Color.WHITE);
         panel.add(instruction1);
-        instruction1.setBounds(500, 400, 800, 50);
+        instruction1.setBounds(50,550, 800, 50);
 
         confirm = new JButton("Confirm");
         panel.add(confirm);
-        confirm.setBounds(950, 450, 150, 50);
+        confirm.setBounds(550, 250, 150, 50);
 
         playersDefaultList = new DefaultListModel<String>();
 
         playerList = new JList<String>(playersDefaultList);
         panel.add(playerList);
-        playerList.setBackground(Color.GRAY);
+        playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
+        playerList.setBackground(Color.gray);
         playerList.setForeground(Color.WHITE);
+        playerList.setVisible(true);
+        playerList.setBounds(30, 80, 250, 400);
 
         JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
         panel.add(nameLabel);
-        nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
+        nameLabel.setFont(new Font("Chiller", Font.PLAIN, 30));
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(950, 5, 500, 250);
+        nameLabel.setBounds(500, 2, 500, 250);
 
         playerKilledLabel = new JLabel(controller.getKilledPlayer() + " is Killed");
         panel.add(playerKilledLabel);
-        playerKilledLabel.setFont(new Font("Chiller", Font.PLAIN, 60));
+        playerKilledLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         playerKilledLabel.setForeground(Color.WHITE);
-        playerKilledLabel.setBounds(950, 100, 500, 250);
+        playerKilledLabel.setBounds(250, 30, 500, 250);
 
         addButtonListener();
     }
@@ -103,8 +104,7 @@ public class DayScreen implements DayView {
         JRadioButton radioButton;
         buttonGroup = new ButtonGroup();
 
-        int xAxis = 750, yAxis = 450, width = 150, height = 50;
-
+        int xAxis = 350, yAxis = 100, width = 100, height = 30;
         List<Player> players = controller.getPlayers();
         for (Player player : players) {
             String playerName = player.getName();
@@ -118,7 +118,7 @@ public class DayScreen implements DayView {
             buttonGroup.add(radioButton);
             panel.add(radioButton);
 
-            yAxis += 80;
+            yAxis += 50;
 
             radioButton.addItemListener(new ItemListener() {
                 @Override

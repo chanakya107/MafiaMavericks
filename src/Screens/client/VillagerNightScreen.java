@@ -28,7 +28,6 @@ public class VillagerNightScreen implements VillagerNightView {
         nameLabel.setForeground(Color.WHITE);
         nameLabel.setBounds(500,2, 500, 250);
 
-
     }
 
     @Override

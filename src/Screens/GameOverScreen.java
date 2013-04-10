@@ -19,12 +19,12 @@ public class GameOverScreen implements GameOverView {
         this.mainFrame = mainFrame;
         this.controller = controller;
         panel = mainFrame.createPanel("www.bimmerfest.jpg");
-        JButton goToHome = new JButton("Home");
+        JButton goToHome = new JButton("Go To Home Page");
         panel.add(goToHome);
-        goToHome.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
+        goToHome.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
         goToHome.setBackground(Color.BLUE);
         goToHome.setForeground(Color.white);
-        goToHome.setBounds(550, 800, 180, 40);
+        goToHome.setBounds(450, 500, 200, 40);
 
         goToHome.addActionListener(new ActionListener() {
             @Override
@@ -40,6 +40,6 @@ public class GameOverScreen implements GameOverView {
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 90));
         label.setForeground(Color.BLUE);
-        label.setBounds(300, 600, 900, 250);
+        label.setBounds(100, 300, 900, 250);
     }
 }
