@@ -72,7 +72,7 @@ public class GameStartedScreen implements GameStartedView {
         gameStartedLabel = new JLabel(message);
         panel.add(gameStartedLabel);
         gameStartedLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
-        gameStartedLabel.setForeground(Color.WHITE);
-        gameStartedLabel.setBounds(950, 450, 250, 150);
+        gameStartedLabel.setForeground(Color.red);
+        gameStartedLabel.setBounds(400, 250, 250, 150);
     }
 }
