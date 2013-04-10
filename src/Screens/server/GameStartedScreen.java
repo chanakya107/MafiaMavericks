@@ -68,15 +68,6 @@ public class GameStartedScreen implements GameStartedView {
     }
 
     @Override
-    public void displayMessage(String message) {
-        gameStartedLabel = new JLabel(message);
-        panel.add(gameStartedLabel);
-        gameStartedLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
-        gameStartedLabel.setForeground(Color.red);
-        gameStartedLabel.setBounds(400, 25, 500, 150);
-    }
-
-    @Override
     public void displayLog() {
         final DefaultListModel<String> logDefaultList = new DefaultListModel<String>();
         final JList<String> logList = new JList<String>(logDefaultList);

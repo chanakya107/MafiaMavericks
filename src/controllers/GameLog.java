@@ -9,7 +9,7 @@ public class GameLog {
     private static final List<String> log = new ArrayList<String>();
 
     public static void add(String logMessage) {
-        log.add(logMessage + " - " + getCurrentTime());
+        log.add(getCurrentTime()+ " - " +logMessage);
     }
 
     public static List<String> getLog() {
@@ -17,7 +17,7 @@ public class GameLog {
     }
 
     public static String getCurrentTime() {
-        SimpleDateFormat sdfDate = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat sdfDate = new SimpleDateFormat("hh:mm:ss a");
         Date now = new Date();
         return sdfDate.format(now);
     }

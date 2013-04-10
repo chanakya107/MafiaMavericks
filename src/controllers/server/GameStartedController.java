@@ -13,14 +13,12 @@ public class GameStartedController {
     private Workflow workflow;
     private final SocketServer server;
     private final List<Client> clients;
-    private final String message;
     private GameStartedView view;
 
-    public GameStartedController(Workflow workflow, SocketServer server, List<Client> players, String message) {
+    public GameStartedController(Workflow workflow, SocketServer server, List<Client> players) {
         this.workflow = workflow;
         this.server = server;
         this.clients = players;
-        this.message = message;
     }
 
     public void bind(GameStartedView view) {
@@ -29,7 +27,6 @@ public class GameStartedController {
 
     public void start() {
         view.displayPlayers(clients);
-        view.displayMessage(message);
         view.displayLog();
     }
 
