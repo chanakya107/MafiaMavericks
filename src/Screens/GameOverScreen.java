@@ -19,12 +19,19 @@ public class GameOverScreen implements GameOverView {
         this.mainFrame = mainFrame;
         this.controller = controller;
         panel = mainFrame.createPanel("www.bimmerfest.jpg");
+
+        JLabel gameOver =new JLabel("Game Over");
+        panel.add(gameOver);
+        gameOver.setFont(new Font("Comic Sans Ms", Font.PLAIN, 80));
+        gameOver.setForeground(Color.blue);
+        gameOver.setBounds(100, 10, 600, 100);
+
         JButton goToHome = new JButton("Go To Home Page");
         panel.add(goToHome);
         goToHome.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
         goToHome.setBackground(Color.BLUE);
         goToHome.setForeground(Color.white);
-        goToHome.setBounds(450, 500, 200, 40);
+        goToHome.setBounds(150, 600, 200, 40);
 
         goToHome.addActionListener(new ActionListener() {
             @Override
@@ -38,9 +45,9 @@ public class GameOverScreen implements GameOverView {
     public void displayWinner(Role winner) {
         JLabel label = new JLabel(winner + "s won the Game ...");
         panel.add(label);
-        label.setFont(new Font("Chiller", Font.PLAIN, 90));
+        label.setFont(new Font("Chiller", Font.PLAIN, 60));
         label.setForeground(Color.BLUE);
-        label.setBounds(100, 300, 900, 250);
+        label.setBounds(100, 80, 900, 250);
     }
 
     @Override
@@ -52,7 +59,7 @@ public class GameOverScreen implements GameOverView {
         logList.setBackground(Color.GRAY);
         logList.setForeground(Color.WHITE);
         logList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
-        scrollPane.setBounds(370, 110, 350, 450);
+        scrollPane.setBounds(370, 230, 350, 450);
 
         logDefaultList.removeAllElements();
         for (String log1 : log) {
