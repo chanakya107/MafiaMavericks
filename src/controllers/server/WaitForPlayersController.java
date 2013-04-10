@@ -53,9 +53,9 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     private void sendNightStartedMessage() {
         for (Client client : getRemainingClients()) {
             if (client.getPlayer().isMafia())
-                client.sendMessage(new NightStartedMessage(Role.Mafia, getPlayers(), client.getPlayer()));
+                client.sendMessage(new NightStartedMessage(Role.Mafia, getRemainingPlayers(), client.getPlayer()));
             else
-                client.sendMessage(new NightStartedMessage(Role.Villager, getPlayers(), client.getPlayer()));
+                client.sendMessage(new NightStartedMessage(Role.Villager, getRemainingPlayers(), client.getPlayer()));
         }
     }
 
@@ -103,8 +103,6 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
             }
         }
 
-        removeKilledPlayer();
-
         if (new RoleAssignment(getPlayers()).canGameContinue()) {
             continueGame(name, phase);
         } else
@@ -128,16 +126,6 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         for (Client client : getRemainingClients()) {
             client.sendMessage(new DayStartedMessage(playerKilled, getRemainingPlayers(), client.getPlayer()));
         }
-    }
-
-    void removeKilledPlayer() {
-        int i;
-        for (i = 0; i < clients.size(); i++) {
-            if (clients.get(i).getPlayer().isKilled())
-                break;
-        }
-        clients.get(i).stop();
-        clients.remove(i);
     }
 
     private List<Client> getRemainingClients() {
