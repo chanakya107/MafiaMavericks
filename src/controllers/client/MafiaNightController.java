@@ -10,12 +10,13 @@ import java.util.List;
 
 public class MafiaNightController extends VillagerNightController {
 
-    public MafiaNightController(Workflow workflow, SocketChannel channel, List<Player> players, Player currentPlayer) {
-        super(workflow, channel, players, currentPlayer);
+    public MafiaNightController(Workflow workflow, SocketChannel channel, List<Player> players, Player currentPlayer, List<String> log) {
+        super(workflow, channel, players, currentPlayer, log);
     }
 
     public void start() {
         view.display();
+        view.displayLog(log);
     }
 
 

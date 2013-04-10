@@ -4,6 +4,7 @@ import channels.ConnectionListener;
 import channels.SocketChannel;
 import channels.messages.ChannelMessage;
 import controllers.ConnectionFactory;
+import controllers.GameLog;
 import controllers.Phase;
 import controllers.Workflow;
 import controllers.client.Client;
@@ -38,8 +39,9 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
     public void startGame() {
         connectionFactory.stopServer();
         new RoleAssignment(getPlayers()).assign();
+        GameLog.add("Game Started");
         sendNightStartedMessage();
-        workflow.startGame(connectionFactory.getServer(), clients,"Game Started");
+        workflow.startGame(connectionFactory.getServer(), clients, "Game Started");
     }
 
     private List<Player> getPlayers() {
@@ -48,15 +50,6 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
             players.add(client.getPlayer());
         }
         return players;
-    }
-
-    private void sendNightStartedMessage() {
-        for (Client client : getRemainingClients()) {
-            if (client.getPlayer().isMafia())
-                client.sendMessage(new NightStartedMessage(Role.Mafia, getRemainingPlayers(), client.getPlayer()));
-            else
-                client.sendMessage(new NightStartedMessage(Role.Villager, getRemainingPlayers(), client.getPlayer()));
-        }
     }
 
     public void stopServer() {
@@ -98,22 +91,46 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         String name = playerKilled.getName();
         for (Client client : clients) {
             if (client.getPlayer().equals(playerKilled)) {
-                client.sendMessage(new YouAreKilledMessage(client.getPlayer().getName()));
+                client.sendMessage(new YouAreKilledMessage(client.getPlayer().getName(),GameLog.getLog()));
                 client.getPlayer().assignRole(Role.Killed);
+                GameLog.add(playerKilled.getName() + " is Dead");
                 workflow.startGame(connectionFactory.getServer(), clients, "Game Running");
             }
         }
 
         if (new RoleAssignment(getPlayers()).canGameContinue()) {
             continueGame(name, phase);
-        } else
+        } else {
             sendGameOverMessage();
-        workflow.startGame(connectionFactory.getServer(), clients, "Game Over... " +(new RoleAssignment(getPlayers()).getWinner())+"s won the game");
+            GameLog.add((new RoleAssignment(getPlayers()).getWinner()) + "s won the game");
+            workflow.startGame(connectionFactory.getServer(), clients, "Game Over... " + (new RoleAssignment(getPlayers()).getWinner()) + "s won the game");
+        }
+    }
+
+    private void sendNightStartedMessage() {
+        GameLog.add("Night Started");
+        workflow.startGame(connectionFactory.getServer(), clients, "Night Arrived");
+        for (Client client : getRemainingClients()) {
+            if (client.getPlayer().isMafia())
+                client.sendMessage(new NightStartedMessage(Role.Mafia, getRemainingPlayers(), client.getPlayer(), GameLog.getClientLog()));
+            else
+                client.sendMessage(new NightStartedMessage(Role.Villager, getRemainingPlayers(), client.getPlayer(), GameLog.getClientLog()));
+        }
+    }
+
+    private void sendDayStartedMessage(String playerKilled) {
+        GameLog.add("Day Started");
+        workflow.startGame(connectionFactory.getServer(), clients, "Day Arrived");
+        for (Client client : getRemainingClients()) {
+            client.sendMessage(new DayStartedMessage(playerKilled, getRemainingPlayers(), client.getPlayer(),GameLog.getClientLog()));
+        }
     }
 
     private void sendGameOverMessage() {
+        GameLog.add("Game Over");
+        workflow.startGame(connectionFactory.getServer(), clients, "Game Over");
         for (Client client : clients) {
-            client.sendMessage(new GameOverMessage(new RoleAssignment(getPlayers()).getWinner()));
+            client.sendMessage(new GameOverMessage(new RoleAssignment(getPlayers()).getWinner(),GameLog.getLog()));
         }
     }
 
@@ -122,12 +139,6 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
             sendNightStartedMessage();
         } else
             sendDayStartedMessage(playerKilled);
-    }
-
-    private void sendDayStartedMessage(String playerKilled) {
-        for (Client client : getRemainingClients()) {
-            client.sendMessage(new DayStartedMessage(playerKilled, getRemainingPlayers(), client.getPlayer()));
-        }
     }
 
     private List<Client> getRemainingClients() {

@@ -9,6 +9,7 @@ import view.server.WaitForPlayersView;
 
 import java.util.ArrayList;
 
+import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -34,8 +35,8 @@ public class WaitForPlayersControllerTest {
     @Test
     public void startGame_should_show_the_StartGame_screen_through_workflow() {
         controller.startGame();
-        verify(connectionFactory).getServer();
-        verify(workflow).startGame(connectionFactory.getServer(), new ArrayList<Client>(), "Game Started");
+        verify(connectionFactory,atLeast(1)).getServer();
+        verify(workflow,atLeast(1)).startGame(connectionFactory.getServer(), new ArrayList<Client>(), "Game Started");
     }
 
     @Test

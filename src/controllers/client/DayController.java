@@ -16,18 +16,21 @@ public class DayController {
     private final List<Player> players;
     private Player currentPlayer;
     private SocketChannel channel;
+    private final List<String> log;
     private DayView view;
 
-    public DayController(Workflow workflow, String killedPlayer, List<Player> players, Player currentPlayer, SocketChannel channel) {
+    public DayController(Workflow workflow, String killedPlayer, List<Player> players, Player currentPlayer, SocketChannel channel, List<String> log) {
         this.workflow = workflow;
         this.killedPlayer = killedPlayer;
         this.players = players;
         this.currentPlayer = currentPlayer;
         this.channel = channel;
+        this.log = log;
     }
 
     public void start() {
         view.display();
+        view.displayLog(log);
     }
 
     public void bind(DayView view) {

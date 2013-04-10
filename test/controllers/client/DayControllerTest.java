@@ -21,7 +21,7 @@ public class DayControllerTest {
     @Before
     public void setup() {
         workflow = mock(Workflow.class);
-        controller = new DayController(workflow, "Player", new ArrayList<Player>(), new Player("player"), new SocketChannel(new Socket()));
+        controller = new DayController(workflow, "Player", new ArrayList<Player>(), new Player("player"), new SocketChannel(new Socket()), new ArrayList<String>());
         view = mock(DayView.class);
         controller.bind(view);
     }

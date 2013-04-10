@@ -15,12 +15,14 @@ public class VillagerNightController {
     protected List<Player> players;
     protected VillagerNightView view;
     private Player currentPlayer;
+    protected final List<String> log;
 
-    public VillagerNightController(Workflow workflow, SocketChannel channel, List<Player> players, Player currentPlayer) {
+    public VillagerNightController(Workflow workflow, SocketChannel channel, List<Player> players, Player currentPlayer, List<String> log) {
         this.workflow = workflow;
         this.channel = channel;
         this.players = players;
         this.currentPlayer = currentPlayer;
+        this.log = log;
     }
 
     public void bind(VillagerNightView view) {

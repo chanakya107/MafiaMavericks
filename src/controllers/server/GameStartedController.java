@@ -30,6 +30,7 @@ public class GameStartedController {
     public void start() {
         view.displayPlayers(clients);
         view.displayMessage(message);
+        view.displayLog();
     }
 
     public void stopServer() {

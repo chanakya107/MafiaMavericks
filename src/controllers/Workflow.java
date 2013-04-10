@@ -17,17 +17,17 @@ public interface Workflow {
 
     void connectedToServer(SocketChannel channel, String serverName, String playerName);
 
-    void mafiaNightScreen(SocketChannel channel, String serverName, List<Player> players, Player currentPlayer);
+    void mafiaNightScreen(SocketChannel channel, String serverName, List<Player> players, Player currentPlayer, List<String> log);
 
-    void villagerNightScreen(SocketChannel channel, String serverName, List<Player> players, Player currentPlayer);
+    void villagerNightScreen(SocketChannel channel, String serverName, List<Player> players, Player currentPlayer, List<String> log);
 
     void startGame(SocketServer server, List<Client> players, String message);
 
-    void dayStarted(String killedPlayer, List<Player> playersRemaining, Player currentPlayer, SocketChannel channel);
+    void dayStarted(String killedPlayer, List<Player> playersRemaining, Player currentPlayer, SocketChannel channel, List<String> log);
 
-    void YouAreKilled(String name);
+    void YouAreKilled(String name, List<String> log);
 
-    void gameOver(Role winner);
+    void gameOver(Role winner, List<String> log);
 
     void goToHomeOnError(String message);
 }

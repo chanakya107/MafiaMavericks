@@ -9,11 +9,13 @@ public class DayStartedMessage extends ChannelMessage {
     private String killedPlayer;
     private List<Player> playersRemaining;
     private Player currentPlayer;
+    private final List<String> log;
 
-    public DayStartedMessage(String killedPlayer, List<Player> playersRemaining, Player currentPlayer) {
+    public DayStartedMessage(String killedPlayer, List<Player> playersRemaining, Player currentPlayer, List<String> log) {
         this.killedPlayer = killedPlayer;
         this.playersRemaining = playersRemaining;
         this.currentPlayer = currentPlayer;
+        this.log = log;
     }
 
     public String getKilledPlayer() {
@@ -26,5 +28,9 @@ public class DayStartedMessage extends ChannelMessage {
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public List<String> getLog() {
+        return log;
     }
 }
