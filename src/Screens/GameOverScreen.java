@@ -26,7 +26,7 @@ public class GameOverScreen implements GameOverView {
         gameOver.setForeground(Color.blue);
         gameOver.setBounds(100, 10, 600, 100);
 
-        JButton goToHome = new JButton("Go To Home Page");
+        JButton goToHome = new JButton("Go To Home");
         panel.add(goToHome);
         goToHome.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
         goToHome.setBackground(Color.BLUE);

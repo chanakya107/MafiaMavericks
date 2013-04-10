@@ -18,3 +18,9 @@ Demo 2 - Bugs Fixed:
 -> changed the you are killed message
 -> removed disconnect button from voting screens
 -> Blocked accepting of connections once the game is started
+-> Changed the screen size
+
+Features
+------------
+-> Added log on both server and client screens
+

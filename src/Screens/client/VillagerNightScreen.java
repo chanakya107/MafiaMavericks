@@ -31,11 +31,11 @@ public class VillagerNightScreen implements VillagerNightView {
 
     @Override
     public void display() {
-        label = new JLabel("Night Arrived");
+        label = new JLabel("Night Arrived... Please Wait for Day");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.red);
-        label.setBounds(130, 25, 250, 150);
+        label.setBounds(130, 25, 500, 150);
     }
 
     @Override

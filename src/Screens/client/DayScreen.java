@@ -50,7 +50,7 @@ public class DayScreen implements DayView {
         panel.add(instruction);
         instruction.setBounds(50, 525, 800, 50);
 
-        JLabel instruction1 = new JLabel("Press Confirm to kill them");
+        JLabel instruction1 = new JLabel("Press Confirm to suspect them");
         instruction1.setFont(new Font("Chiller", Font.PLAIN, 30));
         instruction1.setForeground(Color.yellow);
         panel.add(instruction1);
