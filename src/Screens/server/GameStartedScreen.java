@@ -31,8 +31,7 @@ public class GameStartedScreen implements GameStartedView {
 
         quit = new JButton("Quit");
         panel.add(quit);
-
-        quit.setBounds(500, 400, 150, 50);
+        quit.setBounds(300, 600, 150, 50);
 
         label = new JLabel("Player Roles");
         panel.add(label);
