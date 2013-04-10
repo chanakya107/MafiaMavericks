@@ -30,9 +30,9 @@ public class MafiaNightScreen implements MafiaNightView {
 
         panel = mainFrame.createPanel("if.invisionfree.com.jpg");
 
-        JLabel instruction = new JLabel("Select the player whom you want to kill "+ "\n" + "and press Confirm");
+        JLabel instruction = new JLabel("Select the player whom you want to kill  and press Confirm");
         instruction.setFont(new Font("Chiller", Font.PLAIN, 40));
-        instruction.setForeground(Color.WHITE);
+        instruction.setForeground(Color.yellow);
         panel.add(instruction);
         instruction.setBounds(50, 550, 800, 50);
 
