@@ -25,18 +25,18 @@ public class HomeScreen implements HomeView {
         startServer = new JButton("Start server");
         panel.add(startServer);
         startServer.setSize(150, 50);
-        startServer.setLocation(100, 300);
+        startServer.setLocation(300, 200);
 
         joinGame = new JButton("Join Game");
         panel.add(joinGame);
         joinGame.setSize(150, 50);
-        joinGame.setLocation(100, 400);
+        joinGame.setLocation(300, 300);
 
 
         quit = new JButton("Quit");
         panel.add(quit);
         quit.setSize(150, 50);
-        quit.setLocation(100, 500);
+        quit.setLocation(300, 400);
 
         addButtonHandlers();
     }

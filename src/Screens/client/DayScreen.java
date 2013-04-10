@@ -32,9 +32,12 @@ public class DayScreen implements DayView {
         JLabel label = new JLabel("Day Arrived..");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 60));
-        label.setForeground(Color.WHITE);
+
+        label.setForeground(Color.red);
+
         label.setSize(250, 150);
-        label.setLocation(130, 25);
+        label.setLocation(130, 20);
+
 
         JLabel playersPresent = new JLabel("Players Present");
         panel.add(playersPresent);
@@ -58,7 +61,6 @@ public class DayScreen implements DayView {
         confirm = new JButton("Confirm");
         panel.add(confirm);
         confirm.setBounds(950, 450, 150, 50);
-        confirm.setEnabled(true);
 
         playersDefaultList = new DefaultListModel<String>();
 
@@ -66,14 +68,12 @@ public class DayScreen implements DayView {
         panel.add(playerList);
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
-        playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 30));
-        playerList.setBounds(130, 230, 250, 400);
 
         JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
         panel.add(nameLabel);
         nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(950, 5, 500, 250);
+        nameLabel.setBounds(950,5, 500, 250);
 
         playerKilledLabel = new JLabel(controller.getKilledPlayer() + " is Killed");
         panel.add(playerKilledLabel);

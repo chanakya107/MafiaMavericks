@@ -30,7 +30,7 @@ public class GameStartedScreen implements GameStartedView {
 
         quit = new JButton("Quit");
         panel.add(quit);
-        quit.setBounds(1050, 620, 150, 50);
+        quit.setBounds(500,400, 150, 50);
 
         gameStartedLabel = new JLabel("Game Running .... ");
         panel.add(gameStartedLabel);
@@ -42,7 +42,7 @@ public class GameStartedScreen implements GameStartedView {
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
-        label.setBounds(95, 100, 250, 150);
+        label.setBounds(95, 10, 250, 150);
 
         playersDefaultList = new DefaultListModel<String>();
 
@@ -51,7 +51,7 @@ public class GameStartedScreen implements GameStartedView {
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        playerList.setBounds(60, 200, 250, 450);
+        playerList.setBounds(60, 110, 250, 450);
 
         quit.addActionListener(new ActionListener() {
             @Override
