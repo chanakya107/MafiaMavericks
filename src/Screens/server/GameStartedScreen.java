@@ -19,6 +19,7 @@ public class GameStartedScreen implements GameStartedView {
     private final DefaultListModel<String> playersDefaultList;
     private final JList<String> playerList;
     private final JLabel label;
+    private final JLabel log;
     private GameStartedController controller;
     private JLabel gameStartedLabel;
 
@@ -37,7 +38,13 @@ public class GameStartedScreen implements GameStartedView {
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
-        label.setBounds(95, 10, 250, 150);
+        label.setBounds(80, 10, 250, 150);
+
+        log = new JLabel("Game Log");
+        panel.add(log);
+        log.setFont(new Font("Chiller", Font.PLAIN, 50));
+        log.setForeground(Color.WHITE);
+        log.setBounds(400, 10, 250, 150);
 
         playersDefaultList = new DefaultListModel<String>();
 

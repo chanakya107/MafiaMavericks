@@ -62,16 +62,16 @@ public class JoinGameController implements SocketChannelListener {
             channel.stop();
         } else if (message instanceof NightStartedMessage) {
             NightStartedMessage nightStartedMessage = (NightStartedMessage) message;
-            nightStartedMessage.getRole().goToScreen(workflow, channel, serverName, nightStartedMessage.getPlayers(), nightStartedMessage.getPlayer(),nightStartedMessage.getLog());
+            nightStartedMessage.getRole().goToScreen(workflow, channel, serverName, nightStartedMessage.getPlayers(), nightStartedMessage.getPlayer(), nightStartedMessage.getLog());
         } else if (message instanceof DayStartedMessage) {
             DayStartedMessage dayStartedMessage = (DayStartedMessage) message;
-            workflow.dayStarted(dayStartedMessage.getKilledPlayer(), dayStartedMessage.getPlayersRemaining(), dayStartedMessage.getCurrentPlayer(), channel,dayStartedMessage.getLog());
+            workflow.dayStarted(dayStartedMessage.getKilledPlayer(), dayStartedMessage.getPlayersRemaining(), dayStartedMessage.getCurrentPlayer(), channel, dayStartedMessage.getLog());
         } else if (message instanceof YouAreKilledMessage) {
             YouAreKilledMessage youAreKilledMessage = (YouAreKilledMessage) message;
-            workflow.YouAreKilled(youAreKilledMessage.getName(),youAreKilledMessage.getLog());
+            workflow.YouAreKilled(youAreKilledMessage.getName(), youAreKilledMessage.getLog());
         } else if (message instanceof GameOverMessage) {
             GameOverMessage gameOverMessage = (GameOverMessage) message;
-            workflow.gameOver(gameOverMessage.getWinner(),gameOverMessage.getLog());
+            workflow.gameOver(gameOverMessage.getWinner(), gameOverMessage.getLog());
         }
     }
 

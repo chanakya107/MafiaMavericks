@@ -34,7 +34,7 @@ public class DayScreen implements DayView {
         label.setFont(new Font("Chiller", Font.PLAIN, 45));
         label.setForeground(Color.red);
         label.setSize(250, 150);
-        label.setLocation(250,0);
+        label.setLocation(250, 0);
 
 
         JLabel playersPresent = new JLabel("Players Present");
@@ -42,7 +42,7 @@ public class DayScreen implements DayView {
         playersPresent.setFont(new Font("Chiller", Font.PLAIN, 30));
         playersPresent.setForeground(Color.WHITE);
         playersPresent.setSize(250, 150);
-        playersPresent.setLocation(50,35);
+        playersPresent.setLocation(50, 35);
 
         JLabel instruction = new JLabel("Villager wakeup, whom do you want to suspect ??");
         instruction.setFont(new Font("Chiller", Font.PLAIN, 30));
@@ -54,7 +54,7 @@ public class DayScreen implements DayView {
         instruction1.setFont(new Font("Chiller", Font.PLAIN, 30));
         instruction1.setForeground(Color.yellow);
         panel.add(instruction1);
-        instruction1.setBounds(50,550, 800, 50);
+        instruction1.setBounds(50, 550, 800, 50);
 
         confirm = new JButton("Confirm");
         panel.add(confirm);

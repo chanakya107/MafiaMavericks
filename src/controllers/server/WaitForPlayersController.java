@@ -91,7 +91,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         String name = playerKilled.getName();
         for (Client client : clients) {
             if (client.getPlayer().equals(playerKilled)) {
-                client.sendMessage(new YouAreKilledMessage(client.getPlayer().getName(),GameLog.getLog()));
+                client.sendMessage(new YouAreKilledMessage(client.getPlayer().getName(), GameLog.getLog()));
                 client.getPlayer().assignRole(Role.Killed);
                 GameLog.add(playerKilled.getName() + " is Dead");
                 workflow.startGame(connectionFactory.getServer(), clients);
@@ -122,7 +122,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         GameLog.add("Day Started");
         workflow.startGame(connectionFactory.getServer(), clients);
         for (Client client : getRemainingClients()) {
-            client.sendMessage(new DayStartedMessage(playerKilled, getRemainingPlayers(), client.getPlayer(),GameLog.getClientLog()));
+            client.sendMessage(new DayStartedMessage(playerKilled, getRemainingPlayers(), client.getPlayer(), GameLog.getClientLog()));
         }
     }
 
@@ -130,7 +130,7 @@ public class WaitForPlayersController implements PlayerManager, ConnectionListen
         GameLog.add("Game Over");
         workflow.startGame(connectionFactory.getServer(), clients);
         for (Client client : clients) {
-            client.sendMessage(new GameOverMessage(new RoleAssignment(getPlayers()).getWinner(),GameLog.getLog()));
+            client.sendMessage(new GameOverMessage(new RoleAssignment(getPlayers()).getWinner(), GameLog.getLog()));
         }
     }
 
