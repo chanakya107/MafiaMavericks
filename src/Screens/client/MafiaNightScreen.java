@@ -21,6 +21,7 @@ public class MafiaNightScreen implements MafiaNightView {
     private final JLabel label;
     private final DefaultListModel<String> playersDefaultList;
     private final JButton confirm;
+    private final JLabel label1;
     private String selectedPlayer;
     private ButtonGroup buttonGroup;
 
@@ -30,7 +31,7 @@ public class MafiaNightScreen implements MafiaNightView {
 
         panel = mainFrame.createPanel("if.invisionfree.com.jpg");
 
-        JLabel instruction = new JLabel("Select the player whom you want to kill "+ "\n" + "and press Confirm");
+        JLabel instruction = new JLabel("Select the player whom you want to kill and press Confirm");
         instruction.setFont(new Font("Chiller", Font.PLAIN, 40));
         instruction.setForeground(Color.WHITE);
         panel.add(instruction);
@@ -41,6 +42,12 @@ public class MafiaNightScreen implements MafiaNightView {
         confirm.setBackground(Color.white);
         confirm.setBounds(500, 250, 150, 50);
         confirm.setEnabled(true);
+
+        label1 = new JLabel("Night Arrived");
+        panel.add(label1);
+        label1.setFont(new Font("Chiller", Font.PLAIN, 50));
+        label1.setForeground(Color.WHITE);
+        label1.setBounds(400, 10, 250, 150);
 
         label = new JLabel("Other Mafias");
         panel.add(label);
@@ -61,7 +68,7 @@ public class MafiaNightScreen implements MafiaNightView {
         panel.add(nameLabel);
         nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(500,2, 500, 250);
+        nameLabel.setBounds(500, 2, 500, 250);
 
         addButtonListeners();
     }
@@ -135,6 +142,23 @@ public class MafiaNightScreen implements MafiaNightView {
     public void disableConfirm() {
         confirm.setEnabled(false);
         disableButtons();
+    }
+
+    @Override
+    public void displayLog(List<String> log) {
+        final DefaultListModel<String> logDefaultList = new DefaultListModel<String>();
+        final JList<String> logList = new JList<String>(logDefaultList);
+        JScrollPane scrollPane = new JScrollPane(logList);
+        panel.add(scrollPane);
+        logList.setBackground(Color.GRAY);
+        logList.setForeground(Color.WHITE);
+        logList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
+        scrollPane.setBounds(370, 110, 350, 450);
+
+        logDefaultList.removeAllElements();
+        for (String log1 : log) {
+            logDefaultList.addElement(log1);
+        }
     }
 
     private void disableButtons() {

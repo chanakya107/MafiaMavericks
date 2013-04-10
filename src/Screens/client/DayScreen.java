@@ -153,6 +153,23 @@ public class DayScreen implements DayView {
         disableButtons();
     }
 
+    @Override
+    public void displayLog(List<String> log) {
+        final DefaultListModel<String> logDefaultList = new DefaultListModel<String>();
+        final JList<String> logList = new JList<String>(logDefaultList);
+        JScrollPane scrollPane = new JScrollPane(logList);
+        panel.add(scrollPane);
+        logList.setBackground(Color.GRAY);
+        logList.setForeground(Color.WHITE);
+        logList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
+        scrollPane.setBounds(370, 110, 350, 450);
+
+        logDefaultList.removeAllElements();
+        for (String log1 : log) {
+            logDefaultList.addElement(log1);
+        }
+    }
+
     private void disableButtons() {
         Enumeration<AbstractButton> elements = buttonGroup.getElements();
         while (elements.hasMoreElements()) {

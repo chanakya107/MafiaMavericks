@@ -1,5 +1,6 @@
 package screens.server;
 
+import controllers.GameLog;
 import controllers.client.Client;
 import controllers.server.GameStartedController;
 import screens.controls.MainFrame;
@@ -13,12 +14,12 @@ import java.util.List;
 
 public class GameStartedScreen implements GameStartedView {
 
-    private GameStartedController controller;
     private final JPanel panel;
     private final JButton quit;
     private final DefaultListModel<String> playersDefaultList;
     private final JList<String> playerList;
     private final JLabel label;
+    private GameStartedController controller;
     private JLabel gameStartedLabel;
 
     public GameStartedScreen(MainFrame mainFrame, final GameStartedController controller) {
@@ -73,6 +74,25 @@ public class GameStartedScreen implements GameStartedView {
         panel.add(gameStartedLabel);
         gameStartedLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         gameStartedLabel.setForeground(Color.red);
-        gameStartedLabel.setBounds(400, 250, 250, 150);
+        gameStartedLabel.setBounds(400, 50, 500, 150);
+    }
+
+    @Override
+    public void displayLog() {
+        final DefaultListModel<String> logDefaultList = new DefaultListModel<String>();
+        final JList<String> logList = new JList<String>(logDefaultList);
+        JScrollPane scrollPane = new JScrollPane(logList);
+        panel.add(scrollPane);
+        logList.setBackground(Color.GRAY);
+        logList.setForeground(Color.WHITE);
+        logList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 20));
+        scrollPane.setBounds(370, 110, 350, 450);
+
+        logDefaultList.removeAllElements();
+        for (String log : GameLog.getLog()) {
+            logDefaultList.addElement(log);
+        }
     }
 }
+
+

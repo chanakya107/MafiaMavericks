@@ -3,6 +3,7 @@ package controllers.client;
 import channels.SocketChannel;
 import channels.SocketChannelListener;
 import channels.messages.ChannelMessage;
+import controllers.GameLog;
 import controllers.server.Player;
 import controllers.server.PlayerManager;
 import messages.PlayerDetailsMessage;
@@ -47,6 +48,7 @@ public class Client implements SocketChannelListener {
         } else if (message instanceof PlayerVotedMessage) {
             PlayerVotedMessage playerVotedMessage = (PlayerVotedMessage) message;
             playersSelected.add(playerVotedMessage.getVotedTo());
+            GameLog.add(playerVotedMessage.getPlayerName() + " voted to " + playerVotedMessage.getVotedTo().getName());
             if (hasEveryoneVoted(playerVotedMessage.getVotersCount())) {
                 playerManager.playerKilled(getPlayerToBeKilled(), playerVotedMessage.getPhase());
             }

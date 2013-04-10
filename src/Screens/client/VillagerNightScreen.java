@@ -6,8 +6,7 @@ import view.client.VillagerNightView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
 public class VillagerNightScreen implements VillagerNightView {
     private final VillagerNightController controller;
@@ -46,5 +45,10 @@ public class VillagerNightScreen implements VillagerNightView {
 
     @Override
     public void disableConfirm() {
+    }
+
+    @Override
+    public void displayLog(List<String> log) {
+
     }
 }
