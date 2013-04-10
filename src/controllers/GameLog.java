@@ -9,7 +9,7 @@ public class GameLog {
     private static final List<String> log = new ArrayList<String>();
 
     public static void add(String logMessage) {
-        log.add(getCurrentTime()+ " - " +logMessage);
+        log.add(getCurrentTime() + " - " + logMessage);
     }
 
     public static List<String> getLog() {

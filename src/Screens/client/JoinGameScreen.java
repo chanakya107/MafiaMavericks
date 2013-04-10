@@ -74,7 +74,7 @@ public class JoinGameScreen implements JoinGameView {
         connectedToServer.setFont(new Font("Chiller", Font.BOLD, 40));
         connectedToServer.setForeground(Color.red);
         connectedToServer.setSize(500, 100);
-        connectedToServer.setLocation(100,5);
+        connectedToServer.setLocation(100, 5);
 
     }
 

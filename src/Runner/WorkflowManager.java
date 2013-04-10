@@ -61,21 +61,21 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void mafiaNightScreen(SocketChannel channel, String serverName, List<Player> players, Player currentPlayer, List<String> log) {
-        MafiaNightController controller = new MafiaNightController(this, channel, players, currentPlayer,log);
+        MafiaNightController controller = new MafiaNightController(this, channel, players, currentPlayer, log);
         controller.bind(new MafiaNightScreen(mainFrame, controller));
         controller.start();
     }
 
     @Override
     public void villagerNightScreen(SocketChannel channel, String serverName, List<Player> players, Player currentPlayer, List<String> log) {
-        VillagerNightController controller = new VillagerNightController(this, channel, players, currentPlayer,log);
+        VillagerNightController controller = new VillagerNightController(this, channel, players, currentPlayer, log);
         controller.bind(new VillagerNightScreen(mainFrame, controller));
         controller.start();
     }
 
     @Override
     public void dayStarted(String killedPlayer, List<Player> playersRemaining, Player currentPlayer, SocketChannel channel, List<String> log) {
-        DayController controller = new DayController(this, killedPlayer, playersRemaining, currentPlayer, channel,log);
+        DayController controller = new DayController(this, killedPlayer, playersRemaining, currentPlayer, channel, log);
         controller.bind(new DayScreen(mainFrame, controller));
         controller.start();
     }
@@ -89,14 +89,14 @@ public class WorkflowManager implements Workflow {
 
     @Override
     public void YouAreKilled(String name, List<String> log) {
-        YouAreKilledController controller = new YouAreKilledController(this, name,log);
+        YouAreKilledController controller = new YouAreKilledController(this, name, log);
         controller.bind(new YouAreKilledScreen(mainFrame, controller));
         controller.start();
     }
 
     @Override
     public void gameOver(Role winner, List<String> log) {
-        GameOverController controller = new GameOverController(this, winner,log);
+        GameOverController controller = new GameOverController(this, winner, log);
         controller.bind(new GameOverScreen(mainFrame, controller));
         controller.start();
     }

@@ -25,7 +25,7 @@ public class VillagerNightScreen implements VillagerNightView {
         panel.add(nameLabel);
         nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(500,2, 500, 250);
+        nameLabel.setBounds(500, 2, 500, 250);
 
     }
 
