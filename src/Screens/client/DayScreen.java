@@ -34,6 +34,13 @@ public class DayScreen implements DayView {
         label.setSize(250, 150);
         label.setLocation(130, 25);
 
+        JLabel playelListLabel= new JLabel("Player's list");
+        panel.add(playelListLabel);
+        playelListLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
+        playelListLabel.setForeground(Color.WHITE);
+        playelListLabel.setSize(250, 150);
+        playelListLabel.setLocation(130, 40);
+
         playersDefaultList = new DefaultListModel<String>();
 
         playerList = new JList<String>(playersDefaultList);
