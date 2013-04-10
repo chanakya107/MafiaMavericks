@@ -18,13 +18,13 @@ public class GameOverScreen implements GameOverView {
     public GameOverScreen(MainFrame mainFrame, final GameOverController controller) {
         this.mainFrame = mainFrame;
         this.controller = controller;
-        panel = mainFrame.createPanel("findwallpaper.info.jpg");
-        JButton goToHome = new JButton("Go To Home");
+        panel = mainFrame.createPanel("www.bimmerfest.jpg");
+        JButton goToHome = new JButton("Go Back");
         panel.add(goToHome);
         goToHome.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        goToHome.setBackground(Color.BLACK);
+        goToHome.setBackground(Color.BLUE);
         goToHome.setForeground(Color.white);
-        goToHome.setBounds(1000, 700, 180, 40);
+        goToHome.setBounds(550, 800, 180, 40);
 
         goToHome.addActionListener(new ActionListener() {
             @Override
@@ -39,7 +39,7 @@ public class GameOverScreen implements GameOverView {
         JLabel label = new JLabel(winner + "s won the Game ...");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 90));
-        label.setForeground(Color.BLACK);
+        label.setForeground(Color.BLUE);
         label.setBounds(300, 600, 900, 250);
     }
 }

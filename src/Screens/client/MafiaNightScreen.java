@@ -17,7 +17,6 @@ import java.util.List;
 public class MafiaNightScreen implements MafiaNightView {
     private final MafiaNightController controller;
     private final JPanel panel;
-    private final JButton disconnect;
     private final JList<String> playerList;
     private final JLabel label;
     private final DefaultListModel<String> playersDefaultList;
@@ -31,16 +30,18 @@ public class MafiaNightScreen implements MafiaNightView {
 
         panel = mainFrame.createPanel("if.invisionfree.com.jpg");
 
-        disconnect = new JButton("Disconnect");
-        panel.add(disconnect);
-        disconnect.setBounds(950, 550, 150, 50);
+        JLabel instruction = new JLabel("Select the player whom you want to kill and press Confirm");
+        instruction.setFont(new Font("Chiller", Font.PLAIN, 40));
+        instruction.setForeground(Color.WHITE);
+        panel.add(instruction);
+        instruction.setBounds(500, 350, 800, 50);
 
         confirm = new JButton("Confirm");
         panel.add(confirm);
         confirm.setBounds(950, 450, 150, 50);
         confirm.setEnabled(true);
 
-        label = new JLabel("Mafias");
+        label = new JLabel("Other Mafias");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
@@ -65,16 +66,6 @@ public class MafiaNightScreen implements MafiaNightView {
     }
 
     private void addButtonListeners() {
-        disconnect.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Do you want to really Disconnect ?", "", JOptionPane.YES_NO_OPTION);
-                if (option == JOptionPane.YES_OPTION) {
-                    controller.disconnectingFromServer();
-                }
-            }
-        });
-
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

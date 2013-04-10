@@ -71,9 +71,9 @@ public class JoinGameScreen implements JoinGameView {
         String connectedMessage = "Connected To " + serverName + " as " + playerName;
         connectedToServer = new JLabel(connectedMessage);
         panel.add(connectedToServer);
-        connectedToServer.setFont(new Font("Chiller", Font.PLAIN, 30));
+        connectedToServer.setFont(new Font("Chiller", Font.PLAIN, 40));
         connectedToServer.setForeground(Color.red);
-        connectedToServer.setSize(350, 100);
+        connectedToServer.setSize(500, 100);
         connectedToServer.setLocation(400, 30);
 
     }
