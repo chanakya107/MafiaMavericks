@@ -23,6 +23,7 @@ public class MainFrame {
         ImagePanel panel = new ImagePanel(image);
         panel.setLayout(null);
         frame.getContentPane().add(panel);
+//        frame.setResizable(false);
         frame.pack();
         return panel;
     }

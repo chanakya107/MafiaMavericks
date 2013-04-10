@@ -60,13 +60,13 @@ public class ClientDetailsScreen implements ClientDetailsView {
         connect = new JButton("Connect");
         panel.add(connect);
         connect.setSize(150, 50);
-        connect.setLocation(400, 500);
+        connect.setLocation(300, 500);
 
 
         cancel = new JButton("Cancel");
         panel.add(cancel);
         cancel.setSize(150, 50);
-        cancel.setLocation(600, 500);
+        cancel.setLocation(500, 500);
 
         addButtonHandlers();
     }
@@ -86,7 +86,7 @@ public class ClientDetailsScreen implements ClientDetailsView {
         panel.remove(statusLabel);
         statusLabel = new JLabel(message);
         panel.add(statusLabel);
-        statusLabel.setBounds(400, 400, 1000, 150);
+        statusLabel.setBounds(200, 400, 1000, 150);
         statusLabel.setForeground(Color.red);
         statusLabel.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
     }

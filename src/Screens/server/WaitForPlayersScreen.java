@@ -44,12 +44,12 @@ public class WaitForPlayersScreen implements WaitForPlayersView {
 
         startGame = new JButton("Start Game");
         panel.add(startGame);
-        startGame.setBounds(600, 400, 150, 50);
+        startGame.setBounds(400, 400, 150, 50);
         startGame.setEnabled(false);
 
         stopServer = new JButton("Stop server");
         panel.add(stopServer);
-        stopServer.setBounds(600, 500, 150, 50);
+        stopServer.setBounds(400, 500, 150, 50);
         addButtonHandlers();
     }
 

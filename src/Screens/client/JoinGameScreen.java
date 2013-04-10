@@ -45,7 +45,7 @@ public class JoinGameScreen implements JoinGameView {
         disconnect = new JButton("Disconnect");
         panel.add(disconnect);
         disconnect.setSize(150, 50);
-        disconnect.setLocation(650, 550);
+        disconnect.setLocation(400, 500);
 
         disconnect.addActionListener(new ActionListener() {
             @Override
@@ -71,10 +71,10 @@ public class JoinGameScreen implements JoinGameView {
         String connectedMessage = "Connected To " + serverName + " as " + playerName;
         connectedToServer = new JLabel(connectedMessage);
         panel.add(connectedToServer);
-        connectedToServer.setFont(new Font("Chiller", Font.PLAIN, 40));
+        connectedToServer.setFont(new Font("Chiller", Font.BOLD, 40));
         connectedToServer.setForeground(Color.red);
         connectedToServer.setSize(500, 100);
-        connectedToServer.setLocation(400, 30);
+        connectedToServer.setLocation(100,5);
 
     }
 

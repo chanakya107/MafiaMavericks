@@ -36,7 +36,7 @@ public class GameStartedScreen implements GameStartedView {
         panel.add(gameStartedLabel);
         gameStartedLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         gameStartedLabel.setForeground(Color.WHITE);
-        gameStartedLabel.setBounds(950, 450, 250, 150);
+        gameStartedLabel.setBounds(450, 450, 250, 150);
 
         label = new JLabel("Player Roles");
         panel.add(label);

@@ -30,22 +30,23 @@ public class MafiaNightScreen implements MafiaNightView {
 
         panel = mainFrame.createPanel("if.invisionfree.com.jpg");
 
-        JLabel instruction = new JLabel("Select the player whom you want to kill and press Confirm");
+        JLabel instruction = new JLabel("Select the player whom you want to kill "+ "\n" + "and press Confirm");
         instruction.setFont(new Font("Chiller", Font.PLAIN, 40));
         instruction.setForeground(Color.WHITE);
         panel.add(instruction);
-        instruction.setBounds(500, 350, 800, 50);
+        instruction.setBounds(50, 550, 800, 50);
 
         confirm = new JButton("Confirm");
         panel.add(confirm);
-        confirm.setBounds(950, 450, 150, 50);
+        confirm.setBackground(Color.white);
+        confirm.setBounds(500, 250, 150, 50);
         confirm.setEnabled(true);
 
         label = new JLabel("Other Mafias");
         panel.add(label);
         label.setFont(new Font("Chiller", Font.PLAIN, 50));
         label.setForeground(Color.WHITE);
-        label.setBounds(130, 25, 250, 150);
+        label.setBounds(50, 25, 250, 150);
 
         playersDefaultList = new DefaultListModel<String>();
 
@@ -54,13 +55,13 @@ public class MafiaNightScreen implements MafiaNightView {
         playerList.setBackground(Color.GRAY);
         playerList.setForeground(Color.WHITE);
         playerList.setFont(new Font("Comic Sans Ms", Font.PLAIN, 25));
-        playerList.setBounds(100, 130, 250, 400);
+        playerList.setBounds(30, 130, 250, 400);
 
         JLabel nameLabel = new JLabel(controller.getCurrentPlayer().getName() + " - " + controller.getCurrentPlayer().getRole());
         panel.add(nameLabel);
         nameLabel.setFont(new Font("Chiller", Font.PLAIN, 50));
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(950, 10, 500, 250);
+        nameLabel.setBounds(500,2, 500, 250);
 
         addButtonListeners();
     }
@@ -84,7 +85,7 @@ public class MafiaNightScreen implements MafiaNightView {
         JRadioButton radioButton;
         buttonGroup = new ButtonGroup();
 
-        int xAxis = 750, yAxis = 450, width = 150, height = 50;
+        int xAxis = 300, yAxis = 150, width = 150, height = 35;
 
         List<Player> players = controller.getPlayers();
         for (Player player : players) {
@@ -99,7 +100,7 @@ public class MafiaNightScreen implements MafiaNightView {
             buttonGroup.add(radioButton);
             panel.add(radioButton);
 
-            yAxis += 80;
+            yAxis += 50;
 
             radioButton.addItemListener(new ItemListener() {
                 @Override
